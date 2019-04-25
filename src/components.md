@@ -8,7 +8,7 @@ Basic stuff we've been doing, I can explain more if needed.
 
 Some sort of form that can accept an image as an input. Maybe allow users to take photos inside the app somehow. Submit sends the photo to the data science magic. Not sure what to do from there.
 
-## Journal:
+## Diary:
 
 A little confused what is entailed with this view. I mentioned earlier `medication` and `medication list` views so maybe those instead of being views could be components inside this view? just spit balling
 
