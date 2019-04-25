@@ -7,12 +7,14 @@ import Login from "./components/Login/Login";
 import Scan from "./components/Scan/Scan";
 import SignUp from "./components/SignUp/SignUp";
 import UserDashboard from "./components/UserDashboard/UserDashboard";
+import Landing from "./components/Landing/Landing";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <Route exact path="/" component={Home} />
+        <Route exact path="/landing" component={Landing} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={SignUp} />
         <Route exact path="/journal" component={Journal} />
