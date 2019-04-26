@@ -1,5 +1,5 @@
-require("dotenv").config();
 import axios from "axios";
+require("dotenv").config();
 const endpoint = process.env.REACT_APP_ENDPOINT;
 
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
