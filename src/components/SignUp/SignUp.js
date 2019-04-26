@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-
+import { signUp } from "../../actions";
 import { useInput } from "../../utilities/useInput";
 
-const SignUp = () => {
+const SignUp = ({ history, signUp }) => {
   const firstName = useInput();
   const lastName = useInput();
   const phone = useInput();
@@ -12,11 +12,31 @@ const SignUp = () => {
   const password = useInput();
   const confirmPassword = useInput();
 
-  // Sign Up action creator call goes here...
+  const submitSignUp = e => {
+    e.preventDefault();
+    if (password.value === confirmPassword.value) {
+      signUp({
+        username: username.value,
+        password: password.value,
+        firstName: firstName.value,
+        lastName: lastName.value,
+        phone: phone.value,
+        email: email.value
+      })
+        .then(res => {
+          history.push("/dashboard");
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    } else {
+      alert("Passwords do not match.");
+    }
+  };
 
   return (
     <div className="signUpPage">
-      <form>
+      <form onSubmit={submitSignUp}>
         <input
           required
           type="text"
@@ -78,5 +98,5 @@ const SignUp = () => {
 
 export default connect(
   null,
-  null
+  { signUp }
 )(SignUp);
