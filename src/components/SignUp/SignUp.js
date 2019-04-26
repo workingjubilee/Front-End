@@ -14,20 +14,24 @@ const SignUp = ({ history, signUp }) => {
 
   const submitSignUp = e => {
     e.preventDefault();
-    signUp({
-      username: username.value,
-      password: password.value,
-      firstName: firstName.value,
-      lastName: lastName.value,
-      phone: phone.value,
-      email: email.value
-    })
-      .then(res => {
-        history.push("/dashboard");
+    if (password.value === confirmPassword.value) {
+      signUp({
+        username: username.value,
+        password: password.value,
+        firstName: firstName.value,
+        lastName: lastName.value,
+        phone: phone.value,
+        email: email.value
       })
-      .catch(err => {
-        console.log(err);
-      });
+        .then(res => {
+          history.push("/dashboard");
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    } else {
+      alert("Passwords do not match.");
+    }
   };
 
   return (
