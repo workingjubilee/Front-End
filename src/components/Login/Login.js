@@ -1,33 +1,42 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
+import { logIn } from "../../actions";
+import { useInput } from "../../utilities/useInput";
 
-import { useInput } from '../../utilities/useInput';
-
-const Login = () => {
+const Login = ({ history, logIn }) => {
   const username = useInput();
   const password = useInput();
 
-  // login action creator call goes here...
+  const submitLogin = e => {
+    e.preventDefault();
+    logIn({ username: username.value, password: password.value })
+      .then(res => {
+        history.push("/dashboard");
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   return (
-    <div className='loginPage'>
-      <form>
+    <div className="loginPage">
+      <form onSubmit={submitLogin}>
         <input
           required
-          type='text'
+          type="text"
           value={username.value}
-          name='username'
+          name="username"
           onChange={username.updateValue}
-          placeholder='username'
+          placeholder="username"
         />
         <input
-          type='password'
+          type="password"
           value={password.value}
-          name='password'
+          name="password"
           onChange={password.updateValue}
-          placeholder='password'
+          placeholder="password"
         />
-        <button type='submit'>Login</button>
+        <button type="submit">Login</button>
       </form>
     </div>
   );
@@ -35,5 +44,5 @@ const Login = () => {
 
 export default connect(
   null,
-  null
+  { logIn }
 )(Login);
