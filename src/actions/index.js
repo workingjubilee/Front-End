@@ -2,10 +2,25 @@ require("dotenv").config();
 import axios from "axios";
 const endpoint = process.env.REACT_APP_ENDPOINT;
 
-export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_USER = "LOGIN_USER";
+export const LOGIN_USER_SUCCESS = "LOGIN_USER_SUCCESS";
+export const LOGIN_USER_FAILURE = "LOGIN_USER_FAILURE";
 
 export const login = creds => dispatch => {
-  dispatch({ type: LOGIN_SUCCESS });
+  dispatch({ type: LOGIN_USER });
+  axios
+    .get(`${endpoint}/api/auth`, creds)
+    .then(res => {
+      dispatch({ type: LOGIN_USER_SUCCESS });
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("userID", res.data.id);
+    })
+    .catch(err => {
+      dispatch({
+        type: LOGIN_USER_FAILURE,
+        payload: `${err.message}. ${err.response.data.message}`
+      });
+    });
 };
 
 export const FETCH_USER = "FETCH_USER";
