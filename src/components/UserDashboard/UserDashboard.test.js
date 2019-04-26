@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import { MemoryRouter } from 'react-router-dom'; // Wrap router components to make them unit-testable
+import UserDashboard from './UserDashboard';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<MemoryRouter><App /></MemoryRouter>, div);
+  ReactDOM.render(<UserDashboard />, div);
   ReactDOM.unmountComponentAtNode(div);
 });
