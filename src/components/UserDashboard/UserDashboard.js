@@ -10,7 +10,7 @@ class UserDashboard extends Component {
     const { username, first_name, last_name } = this.props.user;
     return (
       <div className="userDashboardPage">
-        {props.username ? (
+        {username ? (
           <h2>
             Welcome <em>{username}</em>!
           </h2>
