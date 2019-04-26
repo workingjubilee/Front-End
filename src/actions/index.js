@@ -6,10 +6,10 @@ export const LOGIN_USER = "LOGIN_USER";
 export const LOGIN_USER_SUCCESS = "LOGIN_USER_SUCCESS";
 export const LOGIN_USER_FAILURE = "LOGIN_USER_FAILURE";
 
-export const login = creds => dispatch => {
+export const logIn = creds => dispatch => {
   dispatch({ type: LOGIN_USER });
-  axios
-    .get(`${endpoint}/api/auth`, creds)
+  return axios
+    .post(`${endpoint}/api/auth/login`, creds)
     .then(res => {
       dispatch({ type: LOGIN_USER_SUCCESS });
       localStorage.setItem("token", res.data.token);
