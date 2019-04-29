@@ -18,8 +18,8 @@ const SignUp = ({ history, signUp }) => {
       signUp({
         username: username.value,
         password: password.value,
-        firstName: firstName.value,
-        lastName: lastName.value,
+        first_name: firstName.value,
+        last_name: lastName.value,
         phone: phone.value,
         email: email.value
       })
