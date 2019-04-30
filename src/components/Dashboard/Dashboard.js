@@ -26,7 +26,7 @@ const Dashboard = ({ getUser, user }) => {
           <p>Phone number: {phone}</p>
           <p>First Name: {first_name}</p>
           <p>Last Name: {last_name}</p>
-          <Meds />
+          <Meds user_id={user.id} />
         </div>
       ) : null}
     </div>
