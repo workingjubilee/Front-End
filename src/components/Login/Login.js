@@ -4,13 +4,13 @@ import { connect } from 'react-redux';
 import { logIn } from '../../actions';
 import { useInput } from '../../utilities/useInput';
 
-const Login = ({ history, logIn }) => {
+const Login = ({history, logIn}) => {
   const username = useInput();
   const password = useInput();
 
   const submitLogin = e => {
     e.preventDefault();
-    logIn({ username: username.value, password: password.value })
+    logIn({username: username.value, password: password.value})
       .then(res => {
         history.push('/dashboard');
       })
@@ -45,5 +45,5 @@ const Login = ({ history, logIn }) => {
 
 export default connect(
   null,
-  { logIn }
+  {logIn}
 )(Login);
