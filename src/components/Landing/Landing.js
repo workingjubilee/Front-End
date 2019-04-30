@@ -1,17 +1,17 @@
-import React from "react";
-import { withRouter } from "react-router-dom";
+import React from 'react';
+import { withRouter } from 'react-router-dom';
 
-const Landing = (props) => {
+const Landing = props => {
   const handleGetStarted = e => {
     e.preventDefault();
     console.log("it's working");
-    props.history.push("/register");
+    props.history.push('/register');
   };
 
   const handleGoogle = e => {
     e.preventDefault();
     console.log("it's working");
-    // executes the signup action with user's google info
+    // executes the register action with user's google info
     // links to user dasboard on success
     // alerts user of error on failuer
   };
@@ -19,7 +19,7 @@ const Landing = (props) => {
   const handleFacebook = e => {
     e.preventDefault();
     console.log("it's working");
-    // executes the signup action with user's facebook info
+    // executes the register action with user's facebook info
     // links to user dasboard on success
     // alerts user of error on failuer
   };
