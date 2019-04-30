@@ -2,16 +2,17 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getUser } from '../../actions';
 
-const UserDashboard = ({ user, getUser }) => {
+const Dashboard = ({ user, getUser }) => {
   const { username, premium, email, phone, first_name, last_name } = user;
   useEffect(() => {
     if (!user.username) {
+      console.log('test');
       getUser(localStorage.getItem('userID'));
     }
-  });
+  }, [user, getUser]);
 
   return (
-    <div className='userDashboardPage'>
+    <div className='DashboardPage'>
       {username ? (
         <div className='user'>
           <h2>
@@ -39,4 +40,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { getUser }
-)(UserDashboard);
+)(Dashboard);

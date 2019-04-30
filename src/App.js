@@ -5,8 +5,8 @@ import './App.css';
 import Diary from './components/Diary/Diary';
 import Login from './components/Login/Login';
 // import Scan from './components/Scan/Scan';
-import SignUp from './components/SignUp/SignUp';
-import UserDashboard from './components/UserDashboard/UserDashboard';
+import Register from './components/Register/Register';
+import Dashboard from './components/Dashboard/Dashboard';
 import Landing from './components/Landing/Landing';
 
 function App() {
@@ -16,10 +16,10 @@ function App() {
         <Route exact path='/' component={Home} />
         <Route exact path='/landing' component={Landing} />
         <Route exact path='/login' component={Login} />
-        <Route exact path='/register' component={SignUp} />
+        <Route exact path='/register' component={Register} />
         <Route exact path='/diary' component={Diary} />
         {/* <Route exact path='/scan' component={Scan} /> */}
-        <Route exact path='/dashboard' component={UserDashboard} />
+        <Route exact path='/dashboard' component={Dashboard} />
       </header>
     </div>
   );
