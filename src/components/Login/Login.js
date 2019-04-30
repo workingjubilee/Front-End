@@ -1,7 +1,8 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {logIn} from '../../actions';
-import {useInput} from '../../utilities/useInput';
+import { connect } from 'react-redux';
+
+import { logIn } from '../../actions';
+import { useInput } from '../../utilities/useInput';
 
 const Login = ({history, logIn}) => {
   const username = useInput();
@@ -19,24 +20,24 @@ const Login = ({history, logIn}) => {
   };
 
   return (
-    <div className="loginPage">
+    <div className='loginPage'>
       <form onSubmit={submitLogin}>
         <input
           required
-          type="text"
+          type='text'
           value={username.value}
-          name="username"
+          name='username'
           onChange={username.updateValue}
-          placeholder="username"
+          placeholder='username'
         />
         <input
-          type="password"
+          type='password'
           value={password.value}
-          name="password"
+          name='password'
           onChange={password.updateValue}
-          placeholder="password"
+          placeholder='password'
         />
-        <button type="submit">Login</button>
+        <button type='submit'>Login</button>
       </form>
     </div>
   );
