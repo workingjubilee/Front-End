@@ -1,8 +1,9 @@
 # Components 💯
 
-## SignUp / Login:
+## Register / Login:
 
 Basic stuff we've been doing, I can explain more if needed.
+Chris: Changed all mentions of 'SignUp' to 'Register' per group discussion.
 
 ## Scan:
 
