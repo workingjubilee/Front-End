@@ -20,7 +20,7 @@ function App() {
         <Route exact path='/register' component={Register} />
         <Route exact path='/diary' component={Diary} />
         {/* <Route exact path='/scan' component={Scan} /> */}
-        <Route exact path='/dashboard' component={UserDashboard} />
+        <Route exact path='/dashboard' component={Dashboard} />
         <Route exact path = '/callback' component={Callback} />
       </header>
     </div>
