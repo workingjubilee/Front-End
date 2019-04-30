@@ -3,19 +3,28 @@ import { connect } from 'react-redux';
 import { getUser } from '../../actions';
 
 const UserDashboard = ({ user, getUser }) => {
+  const { username, premium, email, phone, first_name, last_name } = user;
   useEffect(() => {
     if (!user.username) {
       getUser(localStorage.getItem('userID'));
     }
   });
 
-  const { username, first_name, last_name } = user;
   return (
     <div className='userDashboardPage'>
       {username ? (
-        <h2>
-          Welcome <em>{username}</em>!
-        </h2>
+        <div className='user'>
+          <h2>
+            Welcome <em>{username}</em> !
+          </h2>
+          <h2>Account Information:</h2>
+          <p>Username: {username}</p>
+          <p>Account type: {premium ? 'premium' : 'trial'}</p>
+          <p>Email address: {email}</p>
+          <p>Phone number: {phone}</p>
+          <p>First Name: {first_name}</p>
+          <p>Last Name: {last_name}</p>
+        </div>
       ) : null}
     </div>
   );
