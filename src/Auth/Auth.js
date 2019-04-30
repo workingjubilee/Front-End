@@ -12,6 +12,10 @@ export default class Auth {
     scope: 'openid'
   });
 
+  //   constructor() {
+  //       this.login =
+  //   }
+
   login() {
     this.auth0.authorize();
   }
