@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import MedicationList from './MedicationList';
+import MedList from './MedList';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<MedicationList />, div);
+  ReactDOM.render(<MedList />, div);
   ReactDOM.unmountComponentAtNode(div);
 });
