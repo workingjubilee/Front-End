@@ -1,40 +1,34 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getUser } from '../../actions';
 
-// Required for DS Server connection. Remove when axios call is removed.
-import axios from 'axios';
+const UserDashboard = ({ user, getUser }) => {
+  const { username, premium, email, phone, first_name, last_name } = user;
+  useEffect(() => {
+    if (!user.username) {
+      getUser(localStorage.getItem('userID'));
+    }
+  });
 
-class UserDashboard extends Component {
-  componentDidMount() {
-    this.props.getUser(localStorage.getItem('userID'));
-
-    // Demonstrates connection to DS server with a minimum of clutter. Remove once connection is established in action creators.
-    axios
-      .get(
-        `https://rxid-ds.us-east-2.elasticbeanstalk.com//identify/param1=Red`
-      )
-      .then(res => {
-        console.log('Connection to DS enpoint:', res.data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }
-
-  render() {
-    const { username, first_name, last_name } = this.props.user;
-    return (
-      <div className='userDashboardPage'>
-        {username ? (
+  return (
+    <div className='userDashboardPage'>
+      {username ? (
+        <div className='user'>
           <h2>
-            Welcome <em>{username}</em>!
+            Welcome <em>{username}</em> !
           </h2>
-        ) : null}
-      </div>
-    );
-  }
-}
+          <h2>Account Information:</h2>
+          <p>Username: {username}</p>
+          <p>Account type: {premium ? 'premium' : 'trial'}</p>
+          <p>Email address: {email}</p>
+          <p>Phone number: {phone}</p>
+          <p>First Name: {first_name}</p>
+          <p>Last Name: {last_name}</p>
+        </div>
+      ) : null}
+    </div>
+  );
+};
 
 const mapStateToProps = state => ({
   user: state.user,
