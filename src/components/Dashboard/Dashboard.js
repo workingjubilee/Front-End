@@ -6,9 +6,10 @@ const Dashboard = ({ user, getUser }) => {
   const { username, premium, email, phone, first_name, last_name } = user;
   useEffect(() => {
     if (!user.username) {
+      console.log('test');
       getUser(localStorage.getItem('userID'));
     }
-  });
+  }, [user, getUser]);
 
   return (
     <div className='DashboardPage'>
