@@ -1,27 +1,14 @@
-import React from "react";
-import { withRouter } from "react-router-dom";
+import React from 'react';
+import {withRouter} from 'react-router-dom';
+import Auth from '../Auth/Auth';
 
-const Landing = (props) => {
+const auth = new Auth();
+
+const Landing = () => {
   const handleGetStarted = e => {
     e.preventDefault();
     console.log("it's working");
-    props.history.push("/register");
-  };
-
-  const handleGoogle = e => {
-    e.preventDefault();
-    console.log("it's working");
-    // executes the signup action with user's google info
-    // links to user dasboard on success
-    // alerts user of error on failuer
-  };
-
-  const handleFacebook = e => {
-    e.preventDefault();
-    console.log("it's working");
-    // executes the signup action with user's facebook info
-    // links to user dasboard on success
-    // alerts user of error on failuer
+    auth.login();
   };
 
   return (
@@ -35,11 +22,6 @@ const Landing = (props) => {
       </header>
       <section>
         <button onClick={handleGetStarted}>Get Started</button>
-        <p>or sign up with</p>
-        <div>
-          <button onClick={handleGoogle}>google</button>
-          <button onClick={handleFacebook}>facebook</button>
-        </div>
       </section>
     </div>
   );
