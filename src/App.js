@@ -4,7 +4,7 @@ import './App.css';
 
 import Diary from './components/Diary/Diary';
 import Login from './components/Login/Login';
-import Scan from './components/Scan/Scan';
+// import Scan from './components/Scan/Scan';
 import SignUp from './components/SignUp/SignUp';
 import UserDashboard from './components/UserDashboard/UserDashboard';
 import Landing from './components/Landing/Landing';
