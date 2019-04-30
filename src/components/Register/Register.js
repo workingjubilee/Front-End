@@ -1,9 +1,9 @@
-import React from "react";
-import { connect } from "react-redux";
-import { signUp } from "../../actions";
-import { useInput } from "../../utilities/useInput";
+import React from 'react';
+import { connect } from 'react-redux';
+import { register } from '../../actions';
+import { useInput } from '../../utilities/useInput';
 
-const SignUp = ({ history, signUp }) => {
+const Register = ({ history, register }) => {
   const firstName = useInput();
   const lastName = useInput();
   const phone = useInput();
@@ -12,10 +12,10 @@ const SignUp = ({ history, signUp }) => {
   const password = useInput();
   const confirmPassword = useInput();
 
-  const submitSignUp = e => {
+  const submitRegister = e => {
     e.preventDefault();
     if (password.value === confirmPassword.value) {
-      signUp({
+      register({
         username: username.value,
         password: password.value,
         first_name: firstName.value,
@@ -24,73 +24,72 @@ const SignUp = ({ history, signUp }) => {
         email: email.value
       })
         .then(res => {
-          history.push("/dashboard");
+          history.push('/dashboard');
         })
         .catch(err => {
           console.log(err);
         });
     } else {
-      alert("Passwords do not match.");
+      alert('Passwords do not match.');
     }
   };
 
   return (
-    <div className="signUpPage">
-      <form onSubmit={submitSignUp}>
+    <div className='registerPage'>
+      <form onSubmit={submitRegister}>
         <input
-          required
-          type="text"
+          type='text'
           value={firstName.value}
-          name="firstName"
+          name='firstName'
           onChange={firstName.updateValue}
-          placeholder="first name"
+          placeholder='first name'
         />
         <input
-          type="password"
+          type='text'
           value={lastName.value}
-          name="lastName"
+          name='lastName'
           onChange={lastName.updateValue}
-          placeholder="last name"
+          placeholder='last name'
         />
         <input
-          required
-          type="number"
+          type='text'
           value={phone.value}
-          name="phone"
+          name='phone'
           onChange={phone.updateValue}
-          placeholder="phone"
+          placeholder='phone'
         />
         <input
-          type="text"
+          type='text'
           value={email.value}
-          name="email"
+          name='email'
           onChange={email.updateValue}
-          placeholder="email"
+          placeholder='email'
         />
         <input
           required
-          type="text"
+          type='text'
           value={username.value}
-          name="username"
+          name='username'
           onChange={username.updateValue}
-          placeholder="username"
-        />
-        <input
-          type="password"
-          value={password.value}
-          name="password"
-          onChange={password.updateValue}
-          placeholder="password"
+          placeholder='username'
         />
         <input
           required
-          type="password"
-          value={confirmPassword.value}
-          name="confirmPassword"
-          onChange={confirmPassword.updateValue}
-          placeholder="confirm password"
+          type='password'
+          value={password.value}
+          name='password'
+          onChange={password.updateValue}
+          placeholder='password'
         />
-        <button type="submit">Sign Up</button>
+        <input
+          required
+          type='password'
+          value={confirmPassword.value}
+          name='confirmPassword'
+          onChange={confirmPassword.updateValue}
+          placeholder='confirm password'
+        />
+        <button type='submit'>Register</button>
       </form>
     </div>
   );
@@ -98,5 +97,5 @@ const SignUp = ({ history, signUp }) => {
 
 export default connect(
   null,
-  { signUp }
-)(SignUp);
+  { register }
+)(Register);
