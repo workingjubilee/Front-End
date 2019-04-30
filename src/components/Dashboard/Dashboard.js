@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getUser } from '../../actions';
 
-const Dashboard = ({ user, getUser }) => {
+import { getUser } from '../../actions';
+import Meds from '../Meds/Meds';
+
+const Dashboard = ({ getUser, user }) => {
   const { username, premium, email, phone, first_name, last_name } = user;
   useEffect(() => {
     if (!user.username) {
-      console.log('test');
       getUser(localStorage.getItem('userID'));
     }
   }, [user, getUser]);
@@ -25,6 +26,7 @@ const Dashboard = ({ user, getUser }) => {
           <p>Phone number: {phone}</p>
           <p>First Name: {first_name}</p>
           <p>Last Name: {last_name}</p>
+          <Meds />
         </div>
       ) : null}
     </div>
