@@ -8,6 +8,7 @@ import Scan from './components/Scan/Scan';
 import SignUp from './components/SignUp/SignUp';
 import UserDashboard from './components/UserDashboard/UserDashboard';
 import Landing from './components/Landing/Landing';
+import Callback from './components/Callback/Callback'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route exact path='/diary' component={Diary} />
         {/* <Route exact path='/scan' component={Scan} /> */}
         <Route exact path='/dashboard' component={UserDashboard} />
+        <Route exact path = '/callback' component={Callback} />
       </header>
     </div>
   );
