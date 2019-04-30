@@ -9,12 +9,13 @@ import {
   FETCH_USER,
   FETCH_USER_SUCCESS,
   FETCH_USER_FAILURE
-} from "../actions";
+} from '../actions';
 
 const initialState = {
   loggingIn: false,
   loggedIn: false,
   fetchingUser: false,
+  isAuthenticated: false,
   user: {},
   error: null
 };
