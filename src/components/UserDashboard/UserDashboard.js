@@ -1,31 +1,16 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { getUser } from '../../actions';
-
-// Required for DS Server connection. Remove when axios call is removed.
-import axios from 'axios';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {getUser} from '../../actions';
 
 class UserDashboard extends Component {
   componentDidMount() {
     this.props.getUser(localStorage.getItem('userID'));
-
-    // Demonstrates connection to DS server with a minimum of clutter. Remove once connection is established in action creators.
-    axios
-      .get(
-        `https://rxid-ds.us-east-2.elasticbeanstalk.com//identify/param1=Red`
-      )
-      .then(res => {
-        console.log('Connection to DS enpoint:', res.data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
   }
 
   render() {
-    const { username, first_name, last_name } = this.props.user;
+    const {username, first_name, last_name} = this.props.user;
     return (
-      <div className='userDashboardPage'>
+      <div className="userDashboardPage">
         {username ? (
           <h2>
             Welcome <em>{username}</em>!
@@ -44,5 +29,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getUser }
+  {getUser}
 )(UserDashboard);
