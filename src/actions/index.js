@@ -62,3 +62,22 @@ export const getUser = id => dispatch => {
       });
     });
 };
+
+export const FETCH_MEDS = 'FETCH_MEDS';
+export const FETCH_MEDS_SUCCESS = 'FETCH_MEDS_SUCCESS';
+export const FETCH_MEDS_FAILURE = 'FETCH_MEDS_FAILURE';
+
+export const fetchMeds = user_id => dispatch => {
+  dispatch({ type: FETCH_MEDS });
+  axios
+    .get(`${endpoint}/api/users/${user_id}/meds`)
+    .then(res => {
+      dispatch({ type: FETCH_MEDS_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({
+        type: FETCH_MEDS_FAILURE,
+        payload: `${err.message}. ${err.response.data.message}`
+      });
+    });
+};
