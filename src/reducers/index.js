@@ -1,15 +1,15 @@
 // import actions
 import {
-  LOGIN_USER,
-  LOGIN_USER_SUCCESS,
-  LOGIN_USER_FAILURE,
-  REGISTER_USER,
-  REGISTER_USER_SUCCESS,
-  REGISTER_USER_FAILURE,
-  FETCH_USER,
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+  REGISTER_REQUEST,
+  REGISTER_SUCCESS,
+  REGISTER_FAILURE,
+  FETCH_USER_REQUEST,
   FETCH_USER_SUCCESS,
   FETCH_USER_FAILURE,
-  FETCH_MEDS,
+  FETCH_MEDS_REQUEST,
   FETCH_MEDS_SUCCESS,
   FETCH_MEDS_FAILURE
 } from '../actions';
@@ -26,43 +26,43 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case LOGIN_USER:
+    case LOGIN_REQUEST:
       return {
         ...state,
         loggingIn: true,
         error: null
       };
-    case LOGIN_USER_SUCCESS:
+    case LOGIN_SUCCESS:
       return {
         ...state,
         loggingIn: false,
         loggedIn: true
       };
-    case LOGIN_USER_FAILURE:
+    case LOGIN_FAILURE:
       return {
         ...state,
         loggingIn: false,
         error: action.payload
       };
-    case REGISTER_USER:
+    case REGISTER_REQUEST:
       return {
         ...state,
         loggingIn: true,
         error: null
       };
-    case REGISTER_USER_SUCCESS:
+    case REGISTER_SUCCESS:
       return {
         ...state,
         loggingIn: false,
         loggedIn: true
       };
-    case REGISTER_USER_FAILURE:
+    case REGISTER_FAILURE:
       return {
         ...state,
         loggingIn: false,
         error: action.payload
       };
-    case FETCH_USER:
+    case FETCH_USER_REQUEST:
       return {
         ...state,
         fetchingUser: true,
@@ -81,7 +81,7 @@ export default (state = initialState, action) => {
         error: action.payload
       };
 
-    case FETCH_MEDS:
+    case FETCH_MEDS_REQUEST:
       return {
         ...state,
         fetchingMeds: true,
