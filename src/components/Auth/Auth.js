@@ -5,7 +5,7 @@ export default class Auth {
     domain: 'rxid.auth0.com',
     // clientID: process.env.REACT_APP_AUTH0_CLIENT_ID,
     clientID: '7ZygCOgK7Mrpz6pd7IlOX6cgmCxhawZu',
-    redirectUri: 'http://localhost:3000/callback',
+    redirectUri: 'http://localhost:3000/loading',
     responseType: 'token id_token',
     scope: 'openid'
   });

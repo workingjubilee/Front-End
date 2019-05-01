@@ -16,10 +16,12 @@ import {
   FETCH_DIARY_SUCCESS,
   FETCH_DIARY_FAILURE
 } from '../actions';
+import Auth from '../Auth/Auth';
 
 const initialState = {
   loggingIn: false,
   loggedIn: false,
+  auth: new Auth(),
   fetchingUser: false,
   isAuthenticated: false,
   user: {},
