@@ -8,7 +8,10 @@ import {
   REGISTER_USER_FAILURE,
   FETCH_USER,
   FETCH_USER_SUCCESS,
-  FETCH_USER_FAILURE
+  FETCH_USER_FAILURE,
+  FETCH_MEDS,
+  FETCH_MEDS_SUCCESS,
+  FETCH_MEDS_FAILURE
 } from '../actions';
 
 const initialState = {
@@ -16,6 +19,8 @@ const initialState = {
   loggedIn: false,
   fetchingUser: false,
   user: {},
+  fetchingMeds: false,
+  meds: [],
   error: null
 };
 
@@ -75,6 +80,26 @@ export default (state = initialState, action) => {
         fetchingUser: false,
         error: action.payload
       };
+
+    case FETCH_MEDS:
+      return {
+        ...state,
+        fetchingMeds: true,
+        error: null
+      };
+    case FETCH_MEDS_SUCCESS:
+      return {
+        ...state,
+        fetchingMeds: false,
+        meds: action.payload
+      };
+    case FETCH_MEDS_FAILURE:
+      return {
+        ...state,
+        fetchingMeds: false,
+        error: action.payload
+      };
+
     default:
       return state;
   }
