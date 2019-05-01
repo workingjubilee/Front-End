@@ -81,3 +81,22 @@ export const fetchMeds = user_id => dispatch => {
       });
     });
 };
+
+export const FETCH_DIARY_REQUEST = 'FETCH_DIARY_REQUEST';
+export const FETCH_DIARY_SUCCESS = 'FETCH_DIARY_SUCCESS';
+export const FETCH_DIARY_FAILURE = 'FETCH_DIARY_FAILURE';
+
+export const fetchDiary = user_id => dispatch => {
+  dispatch({ type: FETCH_DIARY_REQUEST });
+  axios
+    .get(`${endpoint}/api/users/${user_id}/diaries`)
+    .then(res => {
+      dispatch({ type: FETCH_DIARY_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({
+        type: FETCH_DIARY_FAILURE,
+        payload: `${err.message}. ${err.response.data.message}`
+      });
+    });
+};
