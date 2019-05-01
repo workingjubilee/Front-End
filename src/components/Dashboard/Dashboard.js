@@ -1,15 +1,17 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getUser } from '../../actions';
 
-const Dashboard = ({ user, getUser }) => {
+import { fetchUser } from '../../actions';
+import Meds from '../Meds/Meds';
+import Diary from '../Diary/Diary';
+
+const Dashboard = ({ fetchUser, user }) => {
   const { username, premium, email, phone, first_name, last_name } = user;
   useEffect(() => {
     if (!user.username) {
-      console.log('test');
-      getUser(localStorage.getItem('userID'));
+      fetchUser(localStorage.getItem('userID'));
     }
-  }, [user, getUser]);
+  }, [user, fetchUser]);
 
   return (
     <div className='DashboardPage'>
@@ -25,6 +27,8 @@ const Dashboard = ({ user, getUser }) => {
           <p>Phone number: {phone}</p>
           <p>First Name: {first_name}</p>
           <p>Last Name: {last_name}</p>
+          <Meds user_id={user.id} />
+          <Diary user_id={user.id} />
         </div>
       ) : null}
     </div>
@@ -39,5 +43,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getUser }
+  { fetchUser }
 )(Dashboard);
