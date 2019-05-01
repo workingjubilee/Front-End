@@ -8,7 +8,7 @@ import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import Dashboard from './components/Dashboard/Dashboard';
 import Landing from './components/Landing/Landing';
-import Callback from './components/Callback/Callback'
+import Callback from './components/Callback/Callback';
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
         <Route exact path='/diary' component={Diary} />
         {/* <Route exact path='/scan' component={Scan} /> */}
         <Route exact path='/dashboard' component={Dashboard} />
-        <Route exact path = '/callback' component={Callback} />
+        <Route exact path='/callback' component={Callback} />
       </header>
     </div>
   );

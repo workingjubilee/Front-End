@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Auth from '../Auth/Auth';
 
 const auth = new Auth();
 
 export class Callback extends Component {
   componentDidMount = () => {
-    auth.handleAuthentication()
+    auth.handleAuthentication();
     // data = await auth.handleAuthentication()
   };
   render() {
