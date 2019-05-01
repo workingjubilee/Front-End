@@ -115,7 +115,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         fetchingDiary: false,
-        meds: action.payload
+        diary: action.payload
       };
     case FETCH_DIARY_FAILURE:
       return {
