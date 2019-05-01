@@ -11,7 +11,10 @@ import {
   FETCH_USER_FAILURE,
   FETCH_MEDS_REQUEST,
   FETCH_MEDS_SUCCESS,
-  FETCH_MEDS_FAILURE
+  FETCH_MEDS_FAILURE,
+  FETCH_DIARY_REQUEST,
+  FETCH_DIARY_SUCCESS,
+  FETCH_DIARY_FAILURE
 } from '../actions';
 
 const initialState = {
@@ -21,6 +24,8 @@ const initialState = {
   user: {},
   fetchingMeds: false,
   meds: [],
+  fetchingDiary: false,
+  diary: [],
   error: null
 };
 
@@ -97,6 +102,25 @@ export default (state = initialState, action) => {
       return {
         ...state,
         fetchingMeds: false,
+        error: action.payload
+      };
+
+    case FETCH_DIARY_REQUEST:
+      return {
+        ...state,
+        fetchingDiary: true,
+        error: null
+      };
+    case FETCH_DIARY_SUCCESS:
+      return {
+        ...state,
+        fetchingDiary: false,
+        meds: action.payload
+      };
+    case FETCH_DIARY_FAILURE:
+      return {
+        ...state,
+        fetchingDiary: false,
         error: action.payload
       };
 
