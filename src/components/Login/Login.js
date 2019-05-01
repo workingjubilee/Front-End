@@ -1,28 +1,34 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import { login } from '../../actions';
 import { useInput } from '../../utilities/useInput';
 
-const Login = ({ history, login }) => {
+import Auth from '../../Auth/Auth';
+
+const Login = ({ history, login, auth }) => {
   const username = useInput();
   const password = useInput();
 
+  useEffect(() => {
+    auth.login();
+  }, []);
+
   const submitLogin = e => {
     e.preventDefault();
-    login({ username: username.value, password: password.value })
-      .then(res => {
-        history.push('/dashboard');
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    // login({ username: username.value, password: password.value })
+    //   .then(res => {
+    //     history.push('/dashboard');
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
   };
 
   return (
     <div className='loginPage'>
       <form onSubmit={submitLogin}>
-        <input
+        {/* <input
           required
           type='text'
           value={username.value}
@@ -36,7 +42,7 @@ const Login = ({ history, login }) => {
           name='password'
           onChange={password.updateValue}
           placeholder='password'
-        />
+        /> */}
         <button type='submit'>Login</button>
       </form>
     </div>
