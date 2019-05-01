@@ -1,4 +1,5 @@
 import React from 'react';
+import PhotoUpload from './PhotoUpload';
 
 // Mount PhotoUpload here?
 
