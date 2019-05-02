@@ -1,14 +1,10 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import Auth from '../Auth/Auth';
-
-const auth = new Auth();
 
 const Landing = () => {
   const handleGetStarted = e => {
     e.preventDefault();
     console.log("it's working");
-    auth.login();
   };
 
   return (
