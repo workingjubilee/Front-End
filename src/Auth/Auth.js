@@ -10,7 +10,6 @@ class Auth {
   auth0 = new auth0.WebAuth({
     domain: process.env.REACT_APP_AUTH_DOMAIN,
     clientID: process.env.REACT_APP_AUTH_CLIENT_ID,
-    // Will want this in a .env in deployment
     redirectUri: process.env.REACT_APP_AUTH_REDIRECT_URI,
     responseType: 'token id_token',
     scope: 'openid'
@@ -24,16 +23,25 @@ class Auth {
     this.getAccessToken = this.getAccessToken.bind(this);
     this.getIdToken = this.getIdToken.bind(this);
     this.renewSession = this.renewSession.bind(this);
+    this.randomString = this.randomString.bind(this);
   }
 
-  login() {
-    this.auth0.authorize();
+  login(nonce) {
+    this.auth0.authorize({
+      nonce
+    });
   }
 
   handleAuthentication() {
     return new Promise((resolve, reject) => {
       this.auth0.parseHash((err, authResult) => {
         if (authResult && authResult.accessToken && authResult.idToken) {
+          const jwt = authResult.idToken;
+          if (jwt.nonce === localStorage.getItem('nonce')) {
+            console.log('Nonce is okay!');
+          } else {
+            console.error("There's a potential replay attack!");
+          }
           this.setSession(authResult);
           resolve(authResult);
           //   history.push('/dashboard');
@@ -45,6 +53,28 @@ class Auth {
         }
       });
     });
+  }
+
+  randomString(length) {
+    const charset =
+      '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._~';
+    let result = '';
+
+    while (length > 0) {
+      const bytes = new Uint8Array(16);
+      const random = window.crypto.getRandomValues(bytes);
+
+      random.forEach(function(c) {
+        if (length == 0) {
+          return;
+        }
+        if (c < charset.length) {
+          result += charset[c];
+          length--;
+        }
+      });
+    }
+    return result;
   }
 
   getAccessToken() {
@@ -93,6 +123,7 @@ class Auth {
     // Remove isLoggedIn flag from localStorage
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('token');
+    localStorage.removeItem('userID');
 
     this.auth0.logout({
       returnTo: process.env.REACT_APP_LOGOUT_RETURN
