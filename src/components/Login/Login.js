@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import { login } from '../../actions';
+import { logIn } from '../../actions';
 import { useInput } from '../../utilities/useInput';
 
 import Auth from '../../Auth/Auth';
 
-const Login = ({ history, login }) => {
+const Login = ({ history, logIn }) => {
   const username = useInput();
   const password = useInput();
 
@@ -51,5 +51,5 @@ const Login = ({ history, login }) => {
 
 export default connect(
   null,
-  { login }
+  { logIn }
 )(Login);

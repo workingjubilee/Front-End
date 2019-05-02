@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Register from './Register';
+import Onboard from './Onboard';
 import { Provider } from 'react-redux';
 import store from '../../store';
 
