@@ -5,13 +5,28 @@ import StepTwo from './SearchPillSteps/StepTwo';
 import StepThree from './SearchPillSteps/StepThree';
 
 const AddPill = () => {
-  const name = useInput;
+  const name = useInput();
+  const imprint = useInput();
+  const [shape, setShape] = useState(0);
+  const [color, setColor] = useState(0)
+  const updateShape = shape => {
+    setShape(shape);
+  };
+  const updateColor = color => {
+    setColor(color)
+  }
   const [step, setStep] = useState(0);
   const nextStep = () => {
     setStep(step + 1);
   };
   const steps = [
-    <StepOne nextStep={nextStep} name={name} />,
+    <StepOne
+      nextStep={nextStep}
+      name={name}
+      imprint={imprint}
+      updateShape={updateShape}
+      updateColor={updateColor}
+    />,
     <StepTwo nextStep={nextStep} />,
     <StepThree />
   ];
