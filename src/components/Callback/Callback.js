@@ -1,20 +1,7 @@
-import React, { Component } from 'react';
-import Auth from '../Auth/Auth';
+import React from 'react';
 
-const auth = new Auth();
-
-export class Callback extends Component {
-  componentDidMount = () => {
-    auth.handleAuthentication();
-    // data = await auth.handleAuthentication()
-  };
-  render() {
-    return (
-      <div>
-        <p>loading..</p>
-      </div>
-    );
-  }
-}
+const Callback = () => {
+  return <div>Callback</div>;
+};
 
 export default Callback;

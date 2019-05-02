@@ -8,13 +8,14 @@ import Diary from '../Diary/Diary';
 const Dashboard = ({ fetchUser, user }) => {
   const { username, premium, email, phone, first_name, last_name } = user;
   useEffect(() => {
-    if (!user.username) {
-      fetchUser(localStorage.getItem('userID'));
-    }
+    // if (!user.username) {
+    //   fetchUser(localStorage.getItem('userID'));
+    // }
   }, [user, fetchUser]);
 
   return (
     <div className='DashboardPage'>
+      <h2>User Dashboard</h2>
       {username ? (
         <div className='user'>
           <h2>
