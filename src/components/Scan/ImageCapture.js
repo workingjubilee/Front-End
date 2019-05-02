@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Camera, { FACING_MODES, IMAGE_TYPES } from 'react-html5-camera-photo';
+import Camera, { IMAGE_TYPES } from 'react-html5-camera-photo';
 import 'react-html5-camera-photo/build/css/index.css';
  
 class ImageCapture extends Component {
