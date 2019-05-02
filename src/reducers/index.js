@@ -3,9 +3,9 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
-  REGISTER_REQUEST,
-  REGISTER_SUCCESS,
-  REGISTER_FAILURE,
+  EDIT_USER,
+  EDIT_USER_SUCCESS,
+  EDIT_USER_FAILURE,
   FETCH_USER_REQUEST,
   FETCH_USER_SUCCESS,
   FETCH_USER_FAILURE,
@@ -45,7 +45,8 @@ export default (state = initialState, action) => {
       return {
         ...state,
         loggingIn: false,
-        loggedIn: true
+        loggedIn: true,
+        user: action.payload
       };
     case LOGIN_FAILURE:
       return {
@@ -53,22 +54,19 @@ export default (state = initialState, action) => {
         loggingIn: false,
         error: action.payload
       };
-    case REGISTER_REQUEST:
+    case EDIT_USER:
       return {
         ...state,
-        loggingIn: true,
         error: null
       };
-    case REGISTER_SUCCESS:
+    case EDIT_USER_SUCCESS:
       return {
         ...state,
-        loggingIn: false,
-        loggedIn: true
+        user: action.payload
       };
-    case REGISTER_FAILURE:
+    case EDIT_USER_FAILURE:
       return {
         ...state,
-        loggingIn: false,
         error: action.payload
       };
     case FETCH_USER_REQUEST:
