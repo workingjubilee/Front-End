@@ -6,14 +6,18 @@ export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 
-export const login = creds => dispatch => {
+export const logIn = () => dispatch => {
   dispatch({ type: LOGIN_REQUEST });
   return axios
-    .post(`${endpoint}/api/auth/login`, creds)
+    .post(`${endpoint}/api/auth/login`, null, {
+      headers: {
+        authorization: localStorage.getItem('token')
+      }
+    })
     .then(res => {
-      dispatch({ type: LOGIN_SUCCESS });
-      localStorage.setItem('token', res.data.token);
+      dispatch({ type: LOGIN_SUCCESS, payload: res.data });
       localStorage.setItem('userID', res.data.id);
+      return res.data;
     })
     .catch(err => {
       dispatch({
@@ -23,22 +27,20 @@ export const login = creds => dispatch => {
     });
 };
 
-export const REGISTER_REQUEST = 'REGISTER_REQUEST';
-export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
-export const REGISTER_FAILURE = 'REGISTER_FAILURE';
+export const EDIT_USER = 'EDIT_USER';
+export const EDIT_USER_SUCCESS = 'EDIT_USER_SUCCESS';
+export const EDIT_USER_FAILURE = 'EDIT_USER_FAILURE';
 
-export const register = creds => dispatch => {
-  dispatch({ type: REGISTER_REQUEST });
+export const updateInfo = creds => dispatch => {
+  dispatch({ type: EDIT_USER });
   return axios
-    .post(`${endpoint}/api/auth/register`, creds)
+    .put(`${endpoint}/api/users/${creds.id}`, creds)
     .then(res => {
-      dispatch({ type: REGISTER_SUCCESS });
-      localStorage.setItem('token', res.data.token);
-      localStorage.setItem('userID', res.data.id);
+      dispatch({ type: EDIT_USER_SUCCESS, payload: res.data });
     })
     .catch(err => {
       dispatch({
-        type: REGISTER_FAILURE,
+        type: EDIT_USER_FAILURE,
         payload: `${err.message}. ${err.response.data.message}`
       });
     });
