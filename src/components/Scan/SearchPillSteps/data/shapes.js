@@ -1,0 +1,20 @@
+export const shapes = [
+    { id: 0, name: 'Round' },
+    { id: 1, name: 'Capsole' },
+    { id: 2, name: 'Oval' },
+    { id: 3, name: 'Egg' },
+    { id: 4, name: 'Barrel' },
+    { id: 5, name: 'Rectangle' },
+    { id: 6, name: '3 Sided' },
+    { id: 7, name: '4 Sided' },
+    { id: 8, name: '5 Sided' },
+    { id: 9, name: '6 Sided' },
+    { id: 10, name: '7 sided' },
+    { id: 11, name: '8 sided' },
+    { id: 12, name: 'U named' },
+    { id: 13, name: 'Figure 8' },
+    { id: 14, name: 'Heart' },
+    { id: 15, name: 'Kidney' },
+    { id: 16, name: 'Gear' },
+    { id: 17, name: 'Character' }
+  ];

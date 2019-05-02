@@ -9,6 +9,7 @@ import Dashboard from './components/Dashboard/Dashboard';
 import Landing from './components/Landing/Landing';
 import Callback from './components/Callback/Callback';
 import Loading from './components/Loading/Loading';
+import SearchPill from './components/Scan/SearchPill';
 
 // Only importing here for logout button for testing
 import Auth from './Auth/Auth';
@@ -27,6 +28,7 @@ function App() {
         <Route exact path='/dashboard' component={Dashboard} />
         <Route exact path='/callback' component={Callback} />
         <Route exact path='/loading' component={Loading} />
+        <Route exact path='/searchpill' component={SearchPill} />
       </header>
     </div>
   );

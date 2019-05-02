@@ -28,7 +28,6 @@ const PhotoUpload = props => {
       <input
         type='file'
         accepts='image/*'
-        capture='camera'
         onChange={photoSelect}
       />
       <button onClick={photoUpload}>Upload Picture?</button>
