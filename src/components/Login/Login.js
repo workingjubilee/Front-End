@@ -6,14 +6,12 @@ import { useInput } from '../../utilities/useInput';
 
 import Auth from '../../Auth/Auth';
 
-const auth = new Auth();
-
 const Login = ({ history, login }) => {
   const username = useInput();
   const password = useInput();
 
   useEffect(() => {
-    auth.login();
+    Auth.login();
   }, []);
 
   const submitLogin = e => {

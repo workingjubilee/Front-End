@@ -2,7 +2,7 @@ import auth0 from 'auth0-js';
 
 import history from './history';
 
-export default class Auth {
+class Auth {
   accessToken;
   idToken;
   expiresAt;
@@ -11,7 +11,7 @@ export default class Auth {
     domain: process.env.REACT_APP_AUTH_DOMAIN,
     clientID: process.env.REACT_APP_AUTH_CLIENT_ID,
     // Will want this in a .env in deployment
-    redirectUri: 'http://localhost:3000/loading',
+    redirectUri: process.env.REACT_APP_AUTH_REDIRECT_URI,
     responseType: 'token id_token',
     scope: 'openid'
   });
@@ -34,8 +34,9 @@ export default class Auth {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
+        history.push('/dashboard');
       } else if (err) {
-        history.replace('/');
+        history.push('/');
         console.log(err);
         alert(`Error: ${err.error}. Check the console for further details.`);
       }
@@ -62,7 +63,7 @@ export default class Auth {
     localStorage.setItem('token', this.idToken);
 
     // navigate to the home route
-    history.replace('/');
+    // history.replace('/');
   }
 
   renewSession() {
@@ -90,7 +91,7 @@ export default class Auth {
     localStorage.removeItem('token');
 
     this.auth0.logout({
-      returnTo: 'http://localhost:3000/'
+      returnTo: process.env.REACT_APP_LOGOUT_RETURN
     });
 
     // navigate to the home route
@@ -104,3 +105,5 @@ export default class Auth {
     return new Date().getTime() < expiresAt;
   }
 }
+
+export default new Auth();
