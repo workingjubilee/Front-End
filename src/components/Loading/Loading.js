@@ -5,14 +5,24 @@ import Auth from '../../Auth/Auth';
 
 const Loading = ({ history }) => {
   useEffect(() => {
-    Auth.handleAuthentication();
-    // it's a loading screen, so it makes sense to check every 100ms or so for _something_ to load
-    axios
-      .post(`${process.env.REACT_APP_BACKEND}/login`)
-      .then(res => {
-        // set user to response
+    Auth.handleAuthentication()
+      .then(() => {
+        axios
+          .post(`${process.env.REACT_APP_BACKEND}/api/auth/login`, null, {
+            headers: {
+              authorization: localStorage.getItem('token')
+            }
+          })
+          .then(res => {
+            console.log(res);
+            history.push('/dashboard');
+          })
+          .catch(err => {
+            console.error(err);
+            history.push('/login');
+          });
       })
-      .catch(console.error);
+      .catch(err => console.error(err));
   }, []);
 
   return <h2>loading. . .</h2>;

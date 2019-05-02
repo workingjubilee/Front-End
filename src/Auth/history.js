@@ -1,3 +1,1 @@
-import createHistory from 'history/createBrowserHistory';
-
-export default createHistory();
+export default require('history').createBrowserHistory();

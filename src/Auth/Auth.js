@@ -31,15 +31,19 @@ class Auth {
   }
 
   handleAuthentication() {
-    this.auth0.parseHash((err, authResult) => {
-      if (authResult && authResult.accessToken && authResult.idToken) {
-        this.setSession(authResult);
-        history.push('/dashboard');
-      } else if (err) {
-        history.push('/');
-        console.log(err);
-        alert(`Error: ${err.error}. Check the console for further details.`);
-      }
+    return new Promise((resolve, reject) => {
+      this.auth0.parseHash((err, authResult) => {
+        if (authResult && authResult.accessToken && authResult.idToken) {
+          this.setSession(authResult);
+          resolve(authResult);
+          //   history.push('/dashboard');
+        } else if (err) {
+          reject(err);
+          //   history.push('/');
+          console.log(err);
+          alert(`Error: ${err.error}. Check the console for further details.`);
+        }
+      });
     });
   }
 
