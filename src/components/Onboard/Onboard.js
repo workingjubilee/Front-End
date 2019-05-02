@@ -1,42 +1,59 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { register } from '../../actions';
+import { updateInfo } from '../../actions';
 import { useInput } from '../../utilities/useInput';
 
-const Register = ({ history, register }) => {
+const Onboard = ({ history, updateInfo }) => {
   const firstName = useInput();
   const lastName = useInput();
   const phone = useInput();
   const email = useInput();
   const username = useInput();
-  const password = useInput();
-  const confirmPassword = useInput();
+  // const password = useInput();
+  // const confirmPassword = useInput();
 
-  const submitRegister = e => {
+  // const submitRegister = e => {
+  //   e.preventDefault();
+  //   if (password.value === confirmPassword.value) {
+  //     register({
+  //       username: username.value,
+  //       // password: password.value,
+  //       first_name: firstName.value,
+  //       last_name: lastName.value,
+  //       phone: phone.value,
+  //       email: email.value
+  //     })
+  //       .then(res => {
+  //         history.push('/dashboard');
+  //       })
+  //       .catch(err => {
+  //         console.log(err);
+  //       });
+  //   } else {
+  //     alert('Passwords do not match.');
+  //   }
+  // };
+  const handleUpdate = e => {
     e.preventDefault();
-    if (password.value === confirmPassword.value) {
-      register({
-        username: username.value,
-        password: password.value,
-        first_name: firstName.value,
-        last_name: lastName.value,
-        phone: phone.value,
-        email: email.value
+    updateInfo({
+      id: localStorage.getItem('userID'),
+      username: username.value,
+      first_name: firstName.value,
+      last_name: lastName.value,
+      phone: phone.value,
+      email: email.value
+    })
+      .then(() => {
+        history.push('/dashboard');
       })
-        .then(res => {
-          history.push('/dashboard');
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    } else {
-      alert('Passwords do not match.');
-    }
+      .catch(err => {
+        console.error(err);
+      });
   };
 
   return (
-    <div className='registerPage'>
-      <form onSubmit={submitRegister}>
+    <div className='onboardpage'>
+      <form onSubmit={handleUpdate}>
         <input
           type='text'
           value={firstName.value}
@@ -73,7 +90,7 @@ const Register = ({ history, register }) => {
           onChange={username.updateValue}
           placeholder='username'
         />
-        <input
+        {/* <input
           required
           type='password'
           value={password.value}
@@ -88,8 +105,8 @@ const Register = ({ history, register }) => {
           name='confirmPassword'
           onChange={confirmPassword.updateValue}
           placeholder='confirm password'
-        />
-        <button type='submit'>Register</button>
+        /> */}
+        <button type='submit'>Update Info</button>
       </form>
     </div>
   );
@@ -97,5 +114,5 @@ const Register = ({ history, register }) => {
 
 export default connect(
   null,
-  { register }
-)(Register);
+  { updateInfo }
+)(Onboard);

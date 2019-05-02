@@ -26,10 +26,8 @@ class Auth {
     this.randomString = this.randomString.bind(this);
   }
 
-  login(nonce) {
-    this.auth0.authorize({
-      nonce
-    });
+  login() {
+    this.auth0.authorize();
   }
 
   handleAuthentication() {
@@ -37,11 +35,6 @@ class Auth {
       this.auth0.parseHash((err, authResult) => {
         if (authResult && authResult.accessToken && authResult.idToken) {
           const jwt = authResult.idToken;
-          if (jwt.nonce === localStorage.getItem('nonce')) {
-            console.log('Nonce is okay!');
-          } else {
-            console.error("There's a potential replay attack!");
-          }
           this.setSession(authResult);
           resolve(authResult);
           //   history.push('/dashboard');
