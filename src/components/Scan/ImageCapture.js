@@ -5,6 +5,7 @@ import 'react-html5-camera-photo/build/css/index.css';
 class ImageCapture extends Component {
   onTakePhoto (dataUri) {
     console.log('takePhoto');
+    console.log(dataUri)
   }
  
   onCameraError (error) {
@@ -26,7 +27,7 @@ class ImageCapture extends Component {
           onTakePhoto = { (dataUri) => { this.onTakePhoto(dataUri); } }
           onCameraError = { (error) => { this.onCameraError(error); } }
           idealResolution = {{width: 640, height: 480}}
-          imageType = {IMAGE_TYPES.JPG}
+          imageType = {IMAGE_TYPES.PNG}
           imageCompression = {0.97}
           isMaxResolution = {false}
           isImageMirror = {false}
