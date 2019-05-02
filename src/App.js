@@ -9,6 +9,7 @@ import Register from './components/Register/Register';
 import Dashboard from './components/Dashboard/Dashboard';
 import Landing from './components/Landing/Landing';
 import Callback from './components/Callback/Callback';
+import SearchPill from './components/Scan/SearchPill';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route exact path='/scan' component={Scan} />
         <Route exact path='/dashboard' component={Dashboard} />
         <Route exact path='/callback' component={Callback} />
+        <Route exact path='/searchpill' component={SearchPill} />
       </header>
     </div>
   );
