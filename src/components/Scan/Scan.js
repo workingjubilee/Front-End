@@ -8,7 +8,7 @@ const Scan = props => {
     <div>
       <PhotoUpload />
     </div>
-  )
-}
+  );
+};
 
 export default Scan;
