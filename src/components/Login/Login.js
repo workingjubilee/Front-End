@@ -6,7 +6,9 @@ import { useInput } from '../../utilities/useInput';
 
 import Auth from '../../Auth/Auth';
 
-const Login = ({ history, login, auth }) => {
+const auth = new Auth();
+
+const Login = ({ history, login }) => {
   const username = useInput();
   const password = useInput();
 
