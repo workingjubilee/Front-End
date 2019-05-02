@@ -1,31 +1,36 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { logIn } from '../../actions';
 
 import Auth from '../../Auth/Auth';
 
-const Loading = ({ history }) => {
+const Loading = ({ history, logIn }) => {
   useEffect(() => {
     Auth.handleAuthentication()
       .then(() => {
-        axios
-          .post(`${process.env.REACT_APP_BACKEND}/api/auth/login`, null, {
-            headers: {
-              authorization: localStorage.getItem('token')
+        logIn()
+          .then(res => {
+            if (res.newUser) {
+              history.push('/onboard');
+            } else {
+              history.push('/dashboard');
             }
           })
-          .then(res => {
-            console.log(res);
-            history.push('/dashboard');
-          })
-          .catch(err => {
-            console.error(err);
+          .catch(() => {
             history.push('/login');
           });
       })
-      .catch(err => console.error(err));
+      .catch(err => {
+        console.error(err);
+        history.push('/login');
+      });
   }, []);
 
   return <h2>loading. . .</h2>;
 };
 
-export default Loading;
+export default connect(
+  null,
+  { logIn }
+)(Loading);
