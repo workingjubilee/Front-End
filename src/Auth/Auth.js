@@ -93,6 +93,7 @@ class Auth {
     // Remove isLoggedIn flag from localStorage
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('token');
+    localStorage.removeItem('userID');
 
     this.auth0.logout({
       returnTo: process.env.REACT_APP_LOGOUT_RETURN

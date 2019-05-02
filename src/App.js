@@ -4,7 +4,7 @@ import './App.css';
 import Diary from './components/Diary/Diary';
 import Login from './components/Login/Login';
 import Scan from './components/Scan/Scan';
-import Register from './components/Register/Register';
+import Onboard from './components/Onboard/Onboard';
 import Dashboard from './components/Dashboard/Dashboard';
 import Landing from './components/Landing/Landing';
 import Callback from './components/Callback/Callback';
@@ -21,7 +21,7 @@ function App() {
         <Route exact path='/landing' component={Landing} />
         <Route exact path='/login' component={Login} />
         {/* <Route exact path='/login' component={Login} /> */}
-        <Route exact path='/register' component={Register} />
+        <Route exact path='/onboard' component={Onboard} />
         <Route exact path='/diary' component={Diary} />
         <Route exact path='/scan' component={Scan} />
         <Route exact path='/dashboard' component={Dashboard} />
