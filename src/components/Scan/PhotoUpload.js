@@ -25,7 +25,7 @@ const PhotoUpload = props => {
       .then(data => 
         axios.post(analysisEndpoint, {
           bucket: process.env.REACT_APP_IMAGE_STORE,
-          file: medImage.name
+          filename: medImage.name
         }));
   };
 
