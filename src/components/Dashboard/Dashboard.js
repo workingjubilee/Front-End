@@ -12,7 +12,7 @@ const Dashboard = ({ fetchUser, user }) => {
     if (!user.auth_id) {
       fetchUser(userID);
     }
-  }, [user, fetchUser]);
+  }, [user, fetchUser, userID]);
 
   return (
     <div className='DashboardPage'>
