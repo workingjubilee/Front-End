@@ -1,5 +1,5 @@
 import auth0 from 'auth0-js';
-
+import { httpsify } from '../utilities/httpsify';
 import history from './history';
 
 class Auth {
@@ -10,7 +10,7 @@ class Auth {
   auth0 = new auth0.WebAuth({
     domain: process.env.REACT_APP_AUTH_DOMAIN,
     clientID: process.env.REACT_APP_AUTH_CLIENT_ID,
-    redirectUri: process.env.REACT_APP_AUTH_REDIRECT_URI,
+    redirectUri: httpsify(process.env.REACT_APP_AUTH_REDIRECT_URI),
     responseType: 'token id_token',
     scope: 'openid'
   });
@@ -121,7 +121,7 @@ class Auth {
     localStorage.removeItem('userID');
 
     this.auth0.logout({
-      returnTo: process.env.REACT_APP_LOGOUT_RETURN
+      returnTo: httpsify(process.env.REACT_APP_LOGOUT_RETURN)
     });
 
     // navigate to the home route
