@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ImageCapture from './ImageCapture.js';
 import axios from 'axios';
 
@@ -11,6 +11,10 @@ const PhotoUpload = props => {
     setMedImage(event.target.files[0]);
   };
 
+  useEffect(() => {
+    console.log(medImage.name);
+  }, [medImage])
+
   const toggleCamera = () => {
     toggleDisplayCamera(!displayCamera);
   };
@@ -21,10 +25,10 @@ const PhotoUpload = props => {
   const photoUpload = () => {
     const imgData = new FormData();
     imgData.append('image', medImage, medImage.name);
-    axios.post(photoEndpoint, imgData)
+    axios.put(`${photoEndpoint}/${medImage.name}`, imgData)
       .then(data => 
         axios.post(analysisEndpoint, {
-          bucket: process.env.REACT_APP_IMAGE_STORE,
+          bucket: photoEndpoint,
           filename: medImage.name
         }));
   };
