@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import { connect } from 'react-redux';
 import { logIn } from '../../actions';
 
@@ -25,7 +25,7 @@ const Loading = ({ history, logIn }) => {
         console.error(err);
         history.push('/');
       });
-  }, []);
+  }, [history,logIn]);
 
   return <h2>loading. . .</h2>;
 };

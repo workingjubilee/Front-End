@@ -34,7 +34,7 @@ class Auth {
     return new Promise((resolve, reject) => {
       this.auth0.parseHash((err, authResult) => {
         if (authResult && authResult.accessToken && authResult.idToken) {
-          const jwt = authResult.idToken;
+          // const jwt = authResult.idToken;
           this.setSession(authResult);
           resolve(authResult);
           //   history.push('/dashboard');
@@ -53,19 +53,21 @@ class Auth {
       '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._~';
     let result = '';
 
-    while (length > 0) {
-      const bytes = new Uint8Array(16);
-      const random = window.crypto.getRandomValues(bytes);
-
-      random.forEach(function(c) {
-        if (length == 0) {
+    function randomizer(c) {
+        if (length === 0) {
           return;
         }
         if (c < charset.length) {
           result += charset[c];
           length--;
         }
-      });
+      }
+
+    while (length > 0) {
+      const bytes = new Uint8Array(16);
+      const random = window.crypto.getRandomValues(bytes);
+
+      random.forEach(c => randomizer(c));
     }
     return result;
   }
