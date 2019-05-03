@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ImageCapture from './ImageCapture.js';
 import axios from 'axios';
 
@@ -10,10 +10,6 @@ const PhotoUpload = props => {
   const photoSelect = event => {
     setMedImage(event.target.files[0]);
   };
-
-  useEffect(() => {
-    console.log(medImage.name);
-  }, [medImage])
 
   const toggleCamera = () => {
     toggleDisplayCamera(!displayCamera);
