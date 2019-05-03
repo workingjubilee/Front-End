@@ -7,10 +7,11 @@ import Diary from '../Diary/Diary';
 
 const Dashboard = ({ fetchUser, user }) => {
   const { username, premium, email, phone, first_name, last_name } = user;
+  const userID = localStorage.getItem('userID');
   useEffect(() => {
-    // if (!user.username) {
-    //   fetchUser(localStorage.getItem('userID'));
-    // }
+    if (!user.auth_id) {
+      fetchUser(userID);
+    }
   }, [user, fetchUser]);
 
   return (
@@ -28,8 +29,8 @@ const Dashboard = ({ fetchUser, user }) => {
           <p>Phone number: {phone}</p>
           <p>First Name: {first_name}</p>
           <p>Last Name: {last_name}</p>
-          <Meds user_id={user.id} />
-          <Diary user_id={user.id} />
+          <Meds user_id={userID} />
+          <Diary user_id={userID} />
         </div>
       ) : null}
     </div>
