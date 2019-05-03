@@ -18,12 +18,12 @@ const Loading = ({ history, logIn }) => {
             }
           })
           .catch(() => {
-            history.push('/login');
+            history.push('/');
           });
       })
       .catch(err => {
         console.error(err);
-        history.push('/login');
+        history.push('/');
       });
   }, []);
 
