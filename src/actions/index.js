@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { httpsify } from '../utilities/httpsify';
 
-const endpoint = process.env.REACT_APP_BACKEND;
+const endpoint = httpsify(process.env.REACT_APP_BACKEND);
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';

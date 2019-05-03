@@ -1,5 +1,5 @@
 import auth0 from 'auth0-js';
-
+import { httpsify } from '../utilities/httpsify';
 import history from './history';
 
 class Auth {
@@ -10,7 +10,7 @@ class Auth {
   auth0 = new auth0.WebAuth({
     domain: process.env.REACT_APP_AUTH_DOMAIN,
     clientID: process.env.REACT_APP_AUTH_CLIENT_ID,
-    redirectUri: process.env.REACT_APP_AUTH_REDIRECT_URI,
+    redirectUri: httpsify(process.env.REACT_APP_AUTH_REDIRECT_URI),
     responseType: 'token id_token',
     scope: 'openid'
   });
@@ -34,7 +34,7 @@ class Auth {
     return new Promise((resolve, reject) => {
       this.auth0.parseHash((err, authResult) => {
         if (authResult && authResult.accessToken && authResult.idToken) {
-          const jwt = authResult.idToken;
+          // const jwt = authResult.idToken;
           this.setSession(authResult);
           resolve(authResult);
           //   history.push('/dashboard');
@@ -53,19 +53,21 @@ class Auth {
       '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._~';
     let result = '';
 
-    while (length > 0) {
-      const bytes = new Uint8Array(16);
-      const random = window.crypto.getRandomValues(bytes);
-
-      random.forEach(function(c) {
-        if (length == 0) {
+    function randomizer(c) {
+        if (length === 0) {
           return;
         }
         if (c < charset.length) {
           result += charset[c];
           length--;
         }
-      });
+      }
+
+    while (length > 0) {
+      const bytes = new Uint8Array(16);
+      const random = window.crypto.getRandomValues(bytes);
+
+      random.forEach(c => randomizer(c));
     }
     return result;
   }
@@ -119,7 +121,7 @@ class Auth {
     localStorage.removeItem('userID');
 
     this.auth0.logout({
-      returnTo: process.env.REACT_APP_LOGOUT_RETURN
+      returnTo: httpsify(process.env.REACT_APP_LOGOUT_RETURN)
     });
 
     // navigate to the home route

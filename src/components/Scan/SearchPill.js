@@ -26,6 +26,8 @@ const AddPill = () => {
       imprint={imprint}
       updateShape={updateShape}
       updateColor={updateColor}
+      color={color}
+      shape={shape}
     />,
     <StepTwo nextStep={nextStep} />,
     <StepThree />

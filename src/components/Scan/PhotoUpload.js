@@ -16,11 +16,17 @@ const PhotoUpload = props => {
   };
 
   const photoEndpoint = process.env.REACT_APP_IMAGE_STORE;
+  const analysisEndpoint = process.env.REACT_APP_DS_ANALYZE;
 
   const photoUpload = () => {
     const imgData = new FormData();
     imgData.append('image', medImage, medImage.name);
-    axios.post(photoEndpoint, imgData);
+    axios.post(photoEndpoint, imgData)
+      .then(data => 
+        axios.post(analysisEndpoint, {
+          bucket: process.env.REACT_APP_IMAGE_STORE,
+          filename: medImage.name
+        }));
   };
 
   return (
