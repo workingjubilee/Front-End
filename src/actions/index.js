@@ -10,7 +10,7 @@ export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const logIn = () => dispatch => {
   dispatch({ type: LOGIN_REQUEST });
   return axios
-    .post(`${endpoint}/api/auth/login`, null, {
+    .post(`${endpoint}/api/auth/login/`, null, {
       headers: {
         authorization: localStorage.getItem('token')
       }
@@ -35,7 +35,7 @@ export const EDIT_USER_FAILURE = 'EDIT_USER_FAILURE';
 export const updateInfo = creds => dispatch => {
   dispatch({ type: EDIT_USER });
   return axios
-    .put(`${endpoint}/api/users/${creds.id}`, creds)
+    .put(`${endpoint}/api/users/${creds.id}/`, creds)
     .then(res => {
       dispatch({ type: EDIT_USER_SUCCESS, payload: res.data });
     })
@@ -54,7 +54,7 @@ export const FETCH_USER_FAILURE = 'FETCH_USER_FAILURE';
 export const fetchUser = id => dispatch => {
   dispatch({ type: FETCH_USER_REQUEST });
   axios
-    .get(`${endpoint}/api/users/${id}`)
+    .get(`${endpoint}/api/users/${id}/`)
     .then(res => {
       dispatch({ type: FETCH_USER_SUCCESS, payload: res.data });
     })
@@ -73,7 +73,7 @@ export const FETCH_MEDS_FAILURE = 'FETCH_MEDS_FAILURE';
 export const fetchMeds = user_id => dispatch => {
   dispatch({ type: FETCH_MEDS_REQUEST });
   axios
-    .get(`${endpoint}/api/users/${user_id}/meds`)
+    .get(`${endpoint}/api/users/${user_id}/meds/`)
     .then(res => {
       dispatch({ type: FETCH_MEDS_SUCCESS, payload: res.data });
     })
@@ -92,7 +92,7 @@ export const FETCH_DIARY_FAILURE = 'FETCH_DIARY_FAILURE';
 export const fetchDiary = user_id => dispatch => {
   dispatch({ type: FETCH_DIARY_REQUEST });
   axios
-    .get(`${endpoint}/api/users/${user_id}/diaries`)
+    .get(`${endpoint}/api/users/${user_id}/diaries/`)
     .then(res => {
       dispatch({ type: FETCH_DIARY_SUCCESS, payload: res.data });
     })
