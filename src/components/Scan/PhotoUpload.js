@@ -26,7 +26,9 @@ const PhotoUpload = props => {
         axios.post(analysisEndpoint, {
           bucket: photoEndpoint,
           filename: medImage.name
-        }));
+        }))
+      .then(data => console.log(data))
+      .catch(error => console.log(error));
   };
 
   return (
