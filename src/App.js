@@ -10,7 +10,7 @@ import Callback from './components/Callback/Callback';
 import Loading from './components/Loading/Loading';
 import SearchPill from './components/Scan/SearchPill';
 
-import Auth from './Auth/Auth';
+import auth from './Auth';
 
 function App() {
   return (
@@ -34,9 +34,16 @@ function Home() {
   return (
     <div className='homeScreen'>
       <h2>Home screen</h2>
-      <button onClick={Auth.login}>Login or Register</button>
+      <button
+        onClick={event => {
+          event.preventDefault();
+          auth.lock.show();
+        }}
+      >
+        Login or Register
+      </button>
       {/* Logout needed for Auth0 testing, needs to be moved for production */}
-      <button onClick={Auth.logout}>Logout</button>
+      <button>Logout</button>
     </div>
   );
 }
