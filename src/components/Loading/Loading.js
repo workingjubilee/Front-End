@@ -3,11 +3,12 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { logIn } from '../../actions';
 
-import Auth from '../../Auth/Auth';
+import auth from '../../Auth/Auth';
 
 const Loading = ({ history, logIn }) => {
   useEffect(() => {
-    Auth.handleAuthentication()
+    auth
+      .authn()
       .then(() => {
         logIn()
           .then(res => {
@@ -25,7 +26,7 @@ const Loading = ({ history, logIn }) => {
         console.error(err);
         history.push('/');
       });
-  }, [history,logIn]);
+  }, [history, logIn]);
 
   return <h2>loading. . .</h2>;
 };

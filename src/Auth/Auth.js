@@ -3,7 +3,10 @@ import Auth0Lock from 'auth0-lock';
 
 const lock = new Auth0Lock(
   process.env.REACT_APP_AUTH_CLIENT_ID,
-  process.env.REACT_APP_AUTH_DOMAIN
+  process.env.REACT_APP_AUTH_DOMAIN,
+  {
+    redirectUrl: process.env.REACT_APP_REDIRECT_URI
+  }
 );
 
 const Auth = (function() {
@@ -21,27 +24,24 @@ const Auth = (function() {
     });
   }
 
-  Auth.prototype.getProfile = function() {
-    return wm.get(privateStore).profile;
-  };
-
   Auth.prototype.authn = function() {
     // Listening for the authenticated event
     this.lock.on('authenticated', function(authResult) {
-      // Use the token in authResult to getUserInfo() and save it if necessary
-      this.getUserInfo(authResult.accessToken, function(error, profile) {
-        if (error) {
-          // Handle error
-          return;
-        }
-
-        //we recommend not storing access tokens unless absolutely necessary
-        wm.set(privateStore, {
-          accessToken: authResult.accessToken
-        });
-
-        wm.set(privateStore, {
-          profile: profile
+      return new Promise((resolve, reject) => {
+        this.auth0.parseHash((err, authResult) => {
+          if (authResult && authResult.accessToken && authResult.idToken) {
+            // const jwt = authResult.idToken;
+            this.setSession(authResult);
+            resolve(authResult);
+            //   history.push('/dashboard');
+          } else if (err) {
+            reject(err);
+            //   history.push('/');
+            console.log(err);
+            alert(
+              `Error: ${err.error}. Check the console for further details.`
+            );
+          }
         });
       });
     });
