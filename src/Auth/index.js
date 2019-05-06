@@ -1,51 +1,30 @@
 import { httpsify } from '../utilities/httpsify';
 import Auth0Lock from 'auth0-lock';
 
-const lock = new Auth0Lock(
-  process.env.REACT_APP_AUTH_CLIENT_ID,
-  process.env.REACT_APP_AUTH_DOMAIN,
-  {
-    redirectUrl: process.env.REACT_APP_REDIRECT_URI
-  }
-);
-
 const Auth = (function() {
-  var wm = new WeakMap();
-  var privateStore = {};
-  var lock;
+  let wm = new WeakMap();
+  let privateStore = {};
 
   function Auth() {
     this.lock = new Auth0Lock(
       process.env.REACT_APP_AUTH_CLIENT_ID,
-      process.env.REACT_APP_AUTH_DOMAIN
+      process.env.REACT_APP_AUTH_DOMAIN,
+      {
+        auth: {
+          redirectUrl: httpsify(process.env.REACT_APP_AUTH_REDIRECT_URI),
+          responseType: 'token id_token',
+          autoParseHash: false
+        }
+      }
     );
+    this.lock.on('authenticated', function(authResult) {
+      localStorage.setItem('token', authResult.idToken);
+    });
     wm.set(privateStore, {
       appName: 'Rx Id'
     });
   }
 
-  Auth.prototype.authn = function() {
-    // Listening for the authenticated event
-    this.lock.on('authenticated', function(authResult) {
-      return new Promise((resolve, reject) => {
-        this.auth0.parseHash((err, authResult) => {
-          if (authResult && authResult.accessToken && authResult.idToken) {
-            // const jwt = authResult.idToken;
-            this.setSession(authResult);
-            resolve(authResult);
-            //   history.push('/dashboard');
-          } else if (err) {
-            reject(err);
-            //   history.push('/');
-            console.log(err);
-            alert(
-              `Error: ${err.error}. Check the console for further details.`
-            );
-          }
-        });
-      });
-    });
-  };
   return Auth;
 })();
 

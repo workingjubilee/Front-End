@@ -10,7 +10,7 @@ import Callback from './components/Callback/Callback';
 import Loading from './components/Loading/Loading';
 import SearchPill from './components/Scan/SearchPill';
 
-import auth from './Auth/Auth';
+import auth from './Auth';
 
 function App() {
   return (
