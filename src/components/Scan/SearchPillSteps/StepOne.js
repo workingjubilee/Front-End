@@ -1,6 +1,6 @@
 import React from 'react';
-import { shapes } from './data/shapes';
-import { colors } from './data/colors';
+import { shapes } from '../../data/shapes';
+import { colors } from '../../data/colors';
 
 const StepOne = props => {
   const handleShapeChange = e => {
