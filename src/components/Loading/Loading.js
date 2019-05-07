@@ -6,23 +6,25 @@ import { logIn } from '../../actions';
 import auth from '../../Auth';
 
 const Loading = ({ history, logIn }) => {
+  auth.lock.on('authenticated', function(authResult) {
+    localStorage.setItem('token', authResult.idToken);
+    console.log("it's authenticated");
+    logIn()
+      .then(res => {
+        if (res.newUser) {
+          history.push('/onboard');
+        } else {
+          history.push('/dashboard');
+        }
+      })
+      .catch(() => {
+        history.push('/');
+      });
+  });
   useEffect(() => {
-    console.log(history.location.hash);
     auth.lock.resumeAuth(history.location.hash, function(error, authResult) {
       if (error) {
         alert('Could not parse hash');
-      } else {
-        logIn()
-          .then(res => {
-            if (res.newUser) {
-              history.push('/onboard');
-            } else {
-              history.push('/dashboard');
-            }
-          })
-          .catch(() => {
-            history.push('/');
-          });
       }
     });
   }, [history, logIn]);
