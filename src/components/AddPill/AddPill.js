@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useInput } from '../../utilities/useInput';
+import Card from '@material-ui/core/Card';
 import StepOne from './AddPillSteps/StepOne';
+import StepTwo from './AddPillSteps/StepTwo';
 
 const AddPill = () => {
   const name = useInput();
@@ -26,9 +28,10 @@ const AddPill = () => {
       updateColor={updateColor}
       color={color}
       shape={shape}
-    />
+    />,
+    <StepTwo />
   ];
-  return <div>{steps[step]}</div>;
+  return <Card>{steps[step]}</Card>;
 };
 
 export default AddPill;
