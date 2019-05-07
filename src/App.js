@@ -5,7 +5,6 @@ import Scan from './components/Scan/Scan';
 import Onboard from './components/Onboard/Onboard';
 import Dashboard from './components/Dashboard/Dashboard';
 import Landing from './components/Landing/Landing';
-import Callback from './components/Callback/Callback';
 import Loading from './components/Loading/Loading';
 import SearchPill from './components/Scan/SearchPill';
 
@@ -21,7 +20,6 @@ function App() {
         <Route exact path='/diary' component={Diary} />
         <Route exact path='/scan' component={Scan} />
         <Route exact path='/dashboard' component={Dashboard} />
-        <Route exact path='/callback' component={Callback} />
         <Route exact path='/loading' component={Loading} />
         <Route exact path='/searchpill' component={SearchPill} />
       </header>
@@ -30,6 +28,10 @@ function App() {
 }
 
 function Home() {
+  const logOut = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('userID');
+  };
   return (
     <div className='homeScreen'>
       <h2>Home screen</h2>
@@ -42,7 +44,7 @@ function Home() {
         Login or Register
       </button>
       {/* Logout needed for Auth0 testing, needs to be moved for production */}
-      <button>Logout</button>
+      <button onClick={logOut}>Logout</button>
     </div>
   );
 }
