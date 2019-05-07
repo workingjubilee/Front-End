@@ -17,9 +17,6 @@ const Auth = (function() {
         }
       }
     );
-    this.lock.on('authenticated', function(authResult) {
-      localStorage.setItem('token', authResult.idToken);
-    });
     wm.set(privateStore, {
       appName: 'Rx Id'
     });

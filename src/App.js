@@ -42,7 +42,14 @@ function Home() {
         Login or Register
       </button>
       {/* Logout needed for Auth0 testing, needs to be moved for production */}
-      <button>Logout</button>
+      <button
+        onClick={() => {
+          localStorage.removeItem('token');
+          localStorage.removeItem('userID');
+        }}
+      >
+        Logout
+      </button>
     </div>
   );
 }
