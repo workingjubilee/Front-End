@@ -8,6 +8,7 @@ import Landing from './components/Landing/Landing';
 import Callback from './components/Callback/Callback';
 import Loading from './components/Loading/Loading';
 import SearchPill from './components/Scan/SearchPill';
+import AddPill from './components/AddPill/AddPill';
 
 import auth from './Auth';
 
@@ -24,6 +25,7 @@ function App() {
         <Route exact path='/callback' component={Callback} />
         <Route exact path='/loading' component={Loading} />
         <Route exact path='/searchpill' component={SearchPill} />
+        <Route exact path='/addpill' component={AddPill} />
       </header>
     </div>
   );
