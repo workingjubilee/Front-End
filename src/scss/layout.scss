@@ -1,0 +1,11 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+} /* Allows usage of border-box across app, easier to style. */
+
+* {
+  border: 1px solid red;
+}
