@@ -4,7 +4,7 @@ import StepOne from './SearchPillSteps/StepOne';
 import StepTwo from './SearchPillSteps/StepTwo';
 import StepThree from './SearchPillSteps/StepThree';
 
-const AddPill = () => {
+const SearchPill = () => {
   const name = useInput();
   const imprint = useInput();
   const [shape, setShape] = useState(0);
@@ -35,4 +35,4 @@ const AddPill = () => {
   return <div>{steps[step]}</div>;
 };
 
-export default AddPill;
+export default SearchPill;
