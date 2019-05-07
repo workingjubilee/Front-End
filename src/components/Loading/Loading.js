@@ -22,7 +22,6 @@ const Loading = ({ history, logIn }) => {
       });
   });
   useEffect(() => {
-    console.log(history.location.hash);
     auth.lock.resumeAuth(history.location.hash, function(error, authResult) {
       if (error) {
         alert('Could not parse hash');
