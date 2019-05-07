@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import './App.css';
 import Diary from './components/Diary/Diary';
 import Scan from './components/Scan/Scan';
 import Onboard from './components/Onboard/Onboard';
