@@ -1,0 +1,3 @@
+# RxID's React-Powered Front-End!
+
+![Build badge](https://codebuild.us-east-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoicXg0b0g3VkZPUUlUWjRLRGZBZDhTVVYwWkVTMGhDTU1lcm5qTml2cmtLRll6Ky8zdVkzQnNTMExid2NyN1l5TUZpZ09ZczR1azdyc3V1ZHlYV0l2aGRFPSIsIml2UGFyYW1ldGVyU3BlYyI6IjUzNm1MeEN0Y3puMjVQdTQiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)

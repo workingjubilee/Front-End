@@ -3,12 +3,15 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { logIn } from '../../actions';
 
-import Auth from '../../Auth/Auth';
+import auth from '../../Auth';
 
 const Loading = ({ history, logIn }) => {
   useEffect(() => {
-    Auth.handleAuthentication()
-      .then(() => {
+    console.log(history.location.hash);
+    auth.lock.resumeAuth(history.location.hash, function(error, authResult) {
+      if (error) {
+        alert('Could not parse hash');
+      } else {
         logIn()
           .then(res => {
             if (res.newUser) {
@@ -20,12 +23,9 @@ const Loading = ({ history, logIn }) => {
           .catch(() => {
             history.push('/');
           });
-      })
-      .catch(err => {
-        console.error(err);
-        history.push('/');
-      });
-  }, [history,logIn]);
+      }
+    });
+  }, [history, logIn]);
 
   return <h2>loading. . .</h2>;
 };
