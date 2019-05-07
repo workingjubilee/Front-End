@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
+import Navigation from './components/Navigation/Navigation';
 import Diary from './components/Diary/Diary';
 import Scan from './components/Scan/Scan';
 import Onboard from './components/Onboard/Onboard';
@@ -14,6 +15,7 @@ function App() {
   return (
     <div className='App'>
       <header className='App-header'>
+        <Navigation />
         <Route exact path='/' component={Home} />
         <Route exact path='/landing' component={Landing} />
         <Route exact path='/onboard' component={Onboard} />
