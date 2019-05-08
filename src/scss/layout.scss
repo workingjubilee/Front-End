@@ -10,10 +10,17 @@ html {
 
 $primary: #2d90f5;
 
+.title {
+  color: white;
+  text-decoration: none;
+}
+
 .tab-navigator {
+  max-width: 1000px;
   display: flex;
   margin: 20px auto;
   justify-content: center;
+  align-items: center;
 
   .tab {
     border: 1px solid black;

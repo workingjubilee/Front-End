@@ -96,8 +96,8 @@ class Navigation extends Component {
                 color='inherit'
                 noWrap
               >
-                <Link to='/'>
-                  <span>rxid</span>Pill Identifier
+                <Link to='/' className='title'>
+                  <span>rxid</span> Pill Identifier
                 </Link>
               </Typography>
               <div className='searchBar'>
