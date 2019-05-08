@@ -3,16 +3,16 @@ version: 0.2
 env:
   variables:
     # enables continuous integration settings for react-scripts
-    CI: false
+    CI: true
 
 phases:
   install:
     commands:
-      # runs
+      # runs yarn via npm
       - npx yarn install
   pre_build:
     commands:
-      # - npm run test
+      - npm run test
   build:
     commands:
       - npm run build
