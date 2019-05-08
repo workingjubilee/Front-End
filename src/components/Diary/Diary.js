@@ -12,7 +12,7 @@ const Diary = ({ fetchDiary, user_id, meds }) => {
   }, [user_id, fetchDiary]);
 
   const diaryFocus = useInput(null);
-  console.log('diaryFocus:', diaryFocus);
+  console.log('diaryFocus:', diaryFocus.value);
 
   return (
     <div className='diary'>
