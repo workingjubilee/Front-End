@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import DiaryMed from './DiaryMed';
 
-const DiaryMeds = ({ fetchingMeds, meds }) => {
+const DiaryMeds = ({ fetchingMeds, meds, diaryFocus }) => {
   return (
     <div className='diaryMeds'>
       {fetchingMeds === true ? (
