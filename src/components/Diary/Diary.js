@@ -12,7 +12,11 @@ const Diary = ({ fetchDiary, user_id, meds }) => {
   }, [user_id, fetchDiary]);
 
   const diaryFocus = useInput(null);
-  console.log('diaryFocus:', diaryFocus.value);
+
+  const changeFocus = id => {
+    console.log('changeFocus!');
+    diaryFocus.setValue(id);
+  };
 
   return (
     <div className='diary'>
@@ -20,7 +24,7 @@ const Diary = ({ fetchDiary, user_id, meds }) => {
         <h1>Diary</h1>
       </div>
       <div className='diaryBody'>
-        <DiaryMeds diaryFocus={diaryFocus.value} />
+        <DiaryMeds changeFocus={changeFocus} diaryFocus={diaryFocus.value} />
         <DiaryEntries diaryFocus={diaryFocus.value} />
       </div>
     </div>
@@ -28,6 +32,7 @@ const Diary = ({ fetchDiary, user_id, meds }) => {
 };
 
 const mapStateToProps = state => ({
+  user_id: state.user.id,
   meds: state.meds,
   fetchingDiary: state.fetchingDiary,
   error: state.error
