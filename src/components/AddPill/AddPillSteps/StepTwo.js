@@ -24,19 +24,27 @@ const StepTwo = props => {
   };
   const handleDosageFrequencyChange = value => {
     if (props.dosageFrequency === value) {
-      props.updateDosageFrequency(0);
+      props.updateDosageFrequency('');
     } else {
       props.updateDosageFrequency(value);
     }
   };
   const handleDosageInstructionChange = value => {
     if (props.dosageInstruction === value) {
-      props.updateDosageInstruction(0);
+      props.updateDosageInstruction('');
     } else {
       props.updateDosageInstruction(value);
     }
   };
-
+  const handlePrevStep = () => {
+    props.prevStep();
+  };
+  const handleConfirmDosage = () => {
+    props.nextStep();
+  };
+  const handleSkip = () => {
+    props.nextStep();
+  };
   return (
     <form>
       <Typography component='p' variant='title' style={{ display: 'flex' }}>
@@ -95,28 +103,28 @@ const StepTwo = props => {
         Dosage Frequency
         <Button
           style={{
-            background: props.dosageFrequency === 1 ? '#2D90F5' : '',
-            color: props.dosageFrequency === 1 ? 'white' : ''
+            background: props.dosageFrequency === 'daily' ? '#2D90F5' : '',
+            color: props.dosageFrequency === 'daily' ? 'white' : ''
           }}
-          onClick={() => handleDosageFrequencyChange(1)}
+          onClick={() => handleDosageFrequencyChange('daily')}
         >
           Daily
         </Button>
         <Button
           style={{
-            background: props.dosageFrequency === 2 ? '#2D90F5' : '',
-            color: props.dosageFrequency === 2 ? 'white' : ''
+            background: props.dosageFrequency === 'weekly' ? '#2D90F5' : '',
+            color: props.dosageFrequency === 'weekly' ? 'white' : ''
           }}
-          onClick={() => handleDosageFrequencyChange(2)}
+          onClick={() => handleDosageFrequencyChange('weekly')}
         >
           Weekly
         </Button>
         <Button
           style={{
-            background: props.dosageFrequency === 3 ? '#2D90F5' : '',
-            color: props.dosageFrequency === 3 ? 'white' : ''
+            background: props.dosageFrequency === 'monthly' ? '#2D90F5' : '',
+            color: props.dosageFrequency === 'monthly' ? 'white' : ''
           }}
-          onClick={() => handleDosageFrequencyChange(3)}
+          onClick={() => handleDosageFrequencyChange('monthly')}
         >
           Monthly
         </Button>
@@ -126,43 +134,48 @@ const StepTwo = props => {
         How will you take this pill?
         <Button
           style={{
-            background: props.dosageInstruction === 1 ? '#2D90F5' : '',
-            color: props.dosageInstruction === 1 ? 'white' : ''
+            background:
+              props.dosageInstruction === 'Before Meal' ? '#2D90F5' : '',
+            color: props.dosageInstruction === 'Before Meal' ? 'white' : ''
           }}
-          onClick={() => handleDosageInstructionChange(1)}
+          onClick={() => handleDosageInstructionChange('Before Meal')}
         >
           Before Meal
         </Button>
         <Button
           style={{
-            background: props.dosageInstruction === 2 ? '#2D90F5' : '',
-            color: props.dosageInstruction === 2 ? 'white' : ''
+            background:
+              props.dosageInstruction === 'With Meal' ? '#2D90F5' : '',
+            color: props.dosageInstruction === 'With Meal' ? 'white' : ''
           }}
-          onClick={() => handleDosageInstructionChange(2)}
+          onClick={() => handleDosageInstructionChange('With Meal')}
         >
           With Meal
         </Button>
         <Button
           style={{
-            background: props.dosageInstruction === 3 ? '#2D90F5' : '',
-            color: props.dosageInstruction === 3 ? 'white' : ''
+            background:
+              props.dosageInstruction === 'After Meal' ? '#2D90F5' : '',
+            color: props.dosageInstruction === 'After Meal' ? 'white' : ''
           }}
-          onClick={() => handleDosageInstructionChange(3)}
+          onClick={() => handleDosageInstructionChange('After Meal')}
         >
           After Meal
         </Button>
         <Button
           style={{
-            background: props.dosageInstruction === 4 ? '#2D90F5' : '',
-            color: props.dosageInstruction === 4 ? 'white' : ''
+            background:
+              props.dosageInstruction === 'Without Meal' ? '#2D90F5' : '',
+            color: props.dosageInstruction === 'Without Meal' ? 'white' : ''
           }}
-          onClick={() => handleDosageInstructionChange(4)}
+          onClick={() => handleDosageInstructionChange('Without Meal')}
         >
           Without Meal
         </Button>
         <TextField
           label='custom instruction'
           value={props.customInstruction.value}
+          onClick={() => handleDosageInstructionChange('')}
           onChange={props.customInstruction.updateValue}
           margin='normal'
         />
@@ -176,9 +189,11 @@ const StepTwo = props => {
 
       <Typography>Text Reminder</Typography>
 
-      <Button>Confirm Dosage</Button>
+      <Button onClick={handlePrevStep}>Back</Button>
 
-      <Button>Skip</Button>
+      <Button onClick={handleConfirmDosage}>Confirm Dosage</Button>
+
+      <Button onClick={handleSkip}>Skip</Button>
     </form>
   );
 };
