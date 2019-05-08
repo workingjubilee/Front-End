@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import { fetchDiary } from '../../actions';
-// import DiaryEntry from '../Diary/DiaryEntry';
+import DiaryEntries from '../Diary/DiaryEntries';
 import DiaryMeds from './DiaryMeds';
 
 const Diary = ({ fetchDiary, user_id }) => {
@@ -17,7 +17,7 @@ const Diary = ({ fetchDiary, user_id }) => {
       </div>
       <div className='diaryBody'>
         <DiaryMeds className='diaryMeds' />
-        <h2>Diary Entries</h2>
+        <DiaryEntries className='diaryEntries' />
       </div>
     </div>
   );
