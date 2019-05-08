@@ -7,7 +7,9 @@ import { withStyles } from '@material-ui/core/styles';
 
 const Meds = ({ fetchMeds, user_id, meds, fetchingMeds, classes }) => {
   useEffect(() => {
-    fetchMeds(user_id);
+    if (meds.length === 0) {
+      fetchMeds(user_id);
+    }
   }, [user_id, fetchMeds]);
 
   if (fetchingMeds) {
