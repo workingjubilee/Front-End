@@ -7,3 +7,26 @@ html {
 *:after {
   box-sizing: inherit;
 } /* Allows usage of border-box across app, easier to style. */
+
+$primary: #2d90f5;
+
+.tab-navigator {
+  display: flex;
+  margin: 20px auto;
+  justify-content: center;
+
+  .tab {
+    border: 1px solid black;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+  }
+
+  .active-tab {
+    background-color: $primary;
+    h5 {
+      color: white;
+    }
+  }
+}
