@@ -1,32 +1,34 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
+import { useInput } from '../../utilities/useInput';
 import { fetchDiary } from '../../actions';
-import DiaryEntry from '../Diary/DiaryEntry';
+import DiaryEntries from '../Diary/DiaryEntries';
+import DiaryMeds from './DiaryMeds';
 
-const Diary = ({ fetchDiary, user_id, diary }) => {
+const Diary = ({ fetchDiary, user_id, meds }) => {
   useEffect(() => {
     fetchDiary(user_id);
   }, [user_id, fetchDiary]);
 
+  const diaryFocus = useInput(null);
+  console.log('diaryFocus:', diaryFocus.value);
+
   return (
     <div className='diary'>
-      {diary.length > 0 ? (
-        <div>
-          <h2>Diary:</h2>
-          {diary.map(diaryEntry => (
-            <DiaryEntry key={diaryEntry.id} diaryEntry={diaryEntry} />
-          ))}
-        </div>
-      ) : (
-        <h2>Loading Diary...</h2>
-      )}
+      <div className='diaryTitle'>
+        <h1>Diary</h1>
+      </div>
+      <div className='diaryBody'>
+        <DiaryMeds diaryFocus={diaryFocus.value} />
+        <DiaryEntries diaryFocus={diaryFocus.value} />
+      </div>
     </div>
   );
 };
 
 const mapStateToProps = state => ({
-  diary: state.diary,
+  meds: state.meds,
   fetchingDiary: state.fetchingDiary,
   error: state.error
 });

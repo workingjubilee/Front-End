@@ -151,8 +151,8 @@ class Navigation extends Component {
           <NavLink to='/dashboard' className='tab' activeClassName='active-tab'>
             <Typography component='h5'>Scheduled Pills</Typography>
           </NavLink>
-          <NavLink to='/diaries' className='tab' activeClassName='active-tab'>
-            <Typography component='h5'>Diaries</Typography>
+          <NavLink to='/diary' className='tab' activeClassName='active-tab'>
+            <Typography component='h5'>Diary</Typography>
           </NavLink>
         </nav>
       </>
