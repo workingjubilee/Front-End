@@ -4,6 +4,7 @@ import { fetchUser } from '../../actions';
 import Meds from '../Meds/Meds';
 import Datetime from 'react-datetime';
 import withStyles from '@material-ui/core/styles/withStyles';
+import Card from '@material-ui/core/Card';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 
@@ -26,12 +27,14 @@ const Dashboard = ({ fetchUser, user, classes }) => {
       <InputLabel className={classes.label}>Date Picker</InputLabel>
       <br />
       <FormControl>
-        <Datetime
-          timeFormat={false}
-          defaultValue={new Date()}
-          input={false}
-          onChange={changeDate}
-        />
+        <Card>
+          <Datetime
+            timeFormat={false}
+            defaultValue={new Date()}
+            input={false}
+            onChange={changeDate}
+          />
+        </Card>
       </FormControl>
       {username ? <Meds user_id={userID} /> : null}
     </div>
