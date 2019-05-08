@@ -13,7 +13,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 class Navigation extends Component {
   state = {
@@ -86,63 +86,76 @@ class Navigation extends Component {
     );
 
     return (
-      <div className={classes.root}>
-        <AppBar position='static'>
-          <Toolbar>
-            <Typography
-              className={classes.title}
-              variant='h6'
-              color='inherit'
-              noWrap
-            >
-              <Link to='/'>
-                <span>rxid</span>Pill Identifier
-              </Link>
-            </Typography>
-            <div className='searchBar'>
-              <div className={classes.search}>
-                <div className={classes.searchIcon}>
-                  <SearchIcon />
+      <>
+        <div className={classes.root}>
+          <AppBar position='static'>
+            <Toolbar>
+              <Typography
+                className={classes.title}
+                variant='h6'
+                color='inherit'
+                noWrap
+              >
+                <Link to='/'>
+                  <span>rxid</span>Pill Identifier
+                </Link>
+              </Typography>
+              <div className='searchBar'>
+                <div className={classes.search}>
+                  <div className={classes.searchIcon}>
+                    <SearchIcon />
+                  </div>
+                  <form>
+                    <InputBase
+                      name='searched'
+                      placeholder='Search to identify your pill'
+                      classes={{
+                        root: classes.inputRoot,
+                        input: classes.inputInput
+                      }}
+                    />
+                  </form>
                 </div>
-                <form>
-                  <InputBase
-                    name='searched'
-                    placeholder='Search to identify your pill'
-                    classes={{
-                      root: classes.inputRoot,
-                      input: classes.inputInput
-                    }}
-                  />
-                </form>
               </div>
-            </div>
-            <div className={classes.grow} />
-            <div className={classes.sectionDesktop}>
-              <div className='rightNav'>
+              <div className={classes.grow} />
+              <div className={classes.sectionDesktop}>
+                <div className='rightNav'>
+                  <IconButton
+                    aria-owns={isMenuOpen ? 'material-appbar' : undefined}
+                    aria-haspopup='true'
+                    onClick={this.handleProfileMenuOpen}
+                    color='inherit'
+                  >
+                    <AccountCircle />
+                  </IconButton>
+                </div>
+              </div>
+              <div className={classes.sectionMobile}>
                 <IconButton
-                  aria-owns={isMenuOpen ? 'material-appbar' : undefined}
                   aria-haspopup='true'
-                  onClick={this.handleProfileMenuOpen}
+                  onClick={this.handleMobileMenuOpen}
                   color='inherit'
                 >
-                  <AccountCircle />
+                  <MoreIcon />
                 </IconButton>
               </div>
-            </div>
-            <div className={classes.sectionMobile}>
-              <IconButton
-                aria-haspopup='true'
-                onClick={this.handleMobileMenuOpen}
-                color='inherit'
-              >
-                <MoreIcon />
-              </IconButton>
-            </div>
-          </Toolbar>
-        </AppBar>
-        {renderMenu}
-        {renderMobileMenu}
-      </div>
+            </Toolbar>
+          </AppBar>
+          {renderMenu}
+          {renderMobileMenu}
+        </div>
+        <nav className='tab-navigator'>
+          <NavLink to='/scan' className='tab' activeClassName='active-tab'>
+            <Typography component='h5'>Scan / Add Pill</Typography>
+          </NavLink>
+          <NavLink to='/dashboard' className='tab' activeClassName='active-tab'>
+            <Typography component='h5'>Scheduled Pills</Typography>
+          </NavLink>
+          <NavLink to='/diaries' className='tab' activeClassName='active-tab'>
+            <Typography component='h5'>Diaries</Typography>
+          </NavLink>
+        </nav>
+      </>
     );
   }
 }
