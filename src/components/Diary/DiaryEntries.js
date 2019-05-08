@@ -4,6 +4,10 @@ import { connect } from 'react-redux';
 import DiaryEntry from './DiaryEntry';
 
 const DiaryEntries = ({ diary, diaryFocus }) => {
+  const filteredDiary = diary.filter(diaryEntry => {
+    return diaryEntry.med_id === diaryFocus;
+  });
+
   return (
     <div className='diaryEntries'>
       {!diaryFocus ? (
@@ -11,7 +15,7 @@ const DiaryEntries = ({ diary, diaryFocus }) => {
       ) : (
         <div>
           <h2>Entries</h2>
-          {diary.map(diaryEntry => (
+          {filteredDiary.map(diaryEntry => (
             <DiaryEntry key={diaryEntry.id} diaryEntry={diaryEntry} />
           ))}
         </div>

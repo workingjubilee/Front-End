@@ -12,11 +12,9 @@ import Button from '@material-ui/core/Button';
 const StepOne = props => {
   const handleColorChange = e => {
     props.updateColor(e.target.value);
-    console.log(e.target);
   };
   const handleShapeChange = e => {
     props.updateShape(e.target.value);
-    console.log(e.target);
   };
   const handleSubmit = e => {
     e.preventDefault();
@@ -50,7 +48,7 @@ const StepOne = props => {
           })}
         </Select>
       </FormControl>
-      
+
       <FormControl>
         <InputLabel>shape</InputLabel>
         <Select value={shapes[props.shape]} onChange={handleShapeChange}>

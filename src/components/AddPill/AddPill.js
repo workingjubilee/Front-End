@@ -10,6 +10,10 @@ const AddPill = () => {
   const [color, setColor] = useState(0);
   const [shape, setShape] = useState(0);
   const [capsulesPerDose, setCapsulesPerDose] = useState(0);
+  const [lengthOfDosage, setLenghOfDosage] = useState(0);
+  const [dosageFrequency, setDosageFrequency] = useState(0);
+  const [dosageInstruction, setDosageInstruction] = useState(0);
+  const customInstruction = useInput();
   const updateColor = color => {
     setColor(color);
   };
@@ -18,6 +22,15 @@ const AddPill = () => {
   };
   const updateCapsulesPerDose = amount => {
     setCapsulesPerDose(amount);
+  };
+  const updateLengthOfDosage = value => {
+    setLenghOfDosage(value);
+  };
+  const updateDosageFrequency = value => {
+    setDosageFrequency(value);
+  };
+  const updateDosageInstruction = value => {
+    setDosageInstruction(value);
   };
   const [step, setStep] = useState(0);
   const nextStep = () => {
@@ -36,6 +49,13 @@ const AddPill = () => {
     <StepTwo
       capsulesPerDose={capsulesPerDose}
       updateCapsulesPerDose={updateCapsulesPerDose}
+      lengthOfDosage={lengthOfDosage}
+      updateLengthOfDosage={updateLengthOfDosage}
+      dosageFrequency={dosageFrequency}
+      updateDosageFrequency={updateDosageFrequency}
+      dosageInstruction={dosageInstruction}
+      customInstruction={customInstruction}
+      updateDosageInstruction={updateDosageInstruction}
     />
   ];
   return <Card>{steps[step]}</Card>;
