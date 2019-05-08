@@ -9,10 +9,14 @@ import Typography from '@material-ui/core/Typography';
 const styles = {
   card: {
     minWidth: 275,
-    margin: 10
+    maxWidth: 500,
+    margin: 10,
+    padding: 10,
+    display: 'flex',
+    justifyContent: 'space-between'
   },
   title: {
-    fontSize: 100
+    fontSize: 40
   }
 };
 
