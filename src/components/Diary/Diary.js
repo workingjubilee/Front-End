@@ -13,11 +13,11 @@ const Diary = ({ fetchDiary, user_id }) => {
   return (
     <div className='diary'>
       <div className='diaryTitle'>
-        <h1>Diary:</h1>
+        <h1>Diary</h1>
       </div>
       <div className='diaryBody'>
-        <DiaryMeds className='diaryMeds' />
-        <DiaryEntries className='diaryEntries' />
+        <DiaryMeds />
+        <DiaryEntries />
       </div>
     </div>
   );

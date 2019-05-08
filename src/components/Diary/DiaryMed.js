@@ -8,10 +8,8 @@ import Typography from '@material-ui/core/Typography';
 
 const styles = {
   card: {
-    minWidth: 275,
-    maxWidth: 500,
     margin: 10,
-    padding: 10,
+    padding: '0 10 0 10',
     display: 'flex',
     justifyContent: 'space-between'
   },
@@ -28,7 +26,7 @@ const DiaryMed = ({ classes, med_name }) => {
       </CardContent>
       <CardActions>
         <Button variant='contained' color='primary'>
-          Diary Entries
+          View Entries
         </Button>
       </CardActions>
     </Card>

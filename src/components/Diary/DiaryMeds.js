@@ -5,7 +5,7 @@ import DiaryMed from './DiaryMed';
 
 const DiaryMeds = ({ fetchingMeds, meds }) => {
   return (
-    <div>
+    <div className='diaryMeds'>
       {fetchingMeds === true ? (
         <h2>Loading medications...</h2>
       ) : meds.length === 0 ? (

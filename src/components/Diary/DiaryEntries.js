@@ -5,14 +5,13 @@ import DiaryEntry from './DiaryEntry';
 
 const DiaryEntries = ({ diary }) => {
   return (
-    <div>
+    <div className='diaryEntries'>
       <div>
         <h2>Entries</h2>
         {diary.map(diaryEntry => (
           <DiaryEntry key={diaryEntry.id} diaryEntry={diaryEntry} />
         ))}
       </div>
-      )}
     </div>
   );
 };
