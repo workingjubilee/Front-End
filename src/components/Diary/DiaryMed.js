@@ -18,14 +18,18 @@ const styles = {
   }
 };
 
-const DiaryMed = ({ classes, med_name }) => {
+const DiaryMed = ({ classes, med, changeFocus }) => {
   return (
     <Card className={classes.card}>
       <CardContent>
-        <Typography className={classes.title}>{med_name}</Typography>
+        <Typography className={classes.title}>{med.med_name}</Typography>
       </CardContent>
       <CardActions>
-        <Button variant='contained' color='primary'>
+        <Button
+          onClick={() => changeFocus(med.id)}
+          variant='contained'
+          color='primary'
+        >
           View Entries
         </Button>
       </CardActions>
