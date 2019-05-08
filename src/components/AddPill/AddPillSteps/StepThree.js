@@ -46,6 +46,9 @@ const SimpleCard = props => {
             </Typography>
           </div>
         </CardContent>
+        <CardActions>
+          <Button onClick={() => props.setStep(0)} >Edit</Button>
+        </CardActions>
       </Card>
       <Card>
         <CardContent>
@@ -82,6 +85,9 @@ const SimpleCard = props => {
             </Typography>
           </div>
         </CardContent>
+        <CardActions>
+        <Button onClick={() => props.setStep(1)} >Edit</Button>
+        </CardActions>
       </Card>
       <CardActions>
         <Button>Add Pill</Button>
