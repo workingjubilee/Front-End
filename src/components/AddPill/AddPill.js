@@ -73,6 +73,7 @@ const AddPill = () => {
       dosageFrequency={dosageFrequency}
       dosageInstruction={dosageInstruction}
       customInstruction={customInstruction}
+      setStep={setStep}
     />
   ];
   return <Card>{steps[step]}</Card>;
