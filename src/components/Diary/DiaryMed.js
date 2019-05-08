@@ -1,6 +1,4 @@
 import React from 'react';
-import moment from 'moment';
-
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -15,25 +13,24 @@ const styles = {
     display: 'flex',
     justifyContent: 'space-between'
   },
-  date: {
-    fontSize: 25
+  title: {
+    fontSize: 40
   }
 };
 
-const DiaryEntry = ({ classes, diaryEntry }) => {
-  const entryDate = moment(diaryEntry.diary_date).format('ddd M/D/YY h:mma');
+const DiaryMed = ({ classes, med_name }) => {
   return (
     <Card className={classes.card}>
       <CardContent>
-        <Typography className={classes.date}>{entryDate}</Typography>
+        <Typography className={classes.title}>{med_name}</Typography>
       </CardContent>
       <CardActions>
         <Button variant='contained' color='primary'>
-          View Entry
+          View Entries
         </Button>
       </CardActions>
     </Card>
   );
 };
 
-export default withStyles(styles)(DiaryEntry);
+export default withStyles(styles)(DiaryMed);
