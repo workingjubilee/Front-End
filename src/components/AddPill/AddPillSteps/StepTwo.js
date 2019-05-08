@@ -4,6 +4,7 @@ import RemoveIcon from '@material-ui/icons/Remove';
 import AddIcon from '@material-ui/icons/Add';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
 
 const StepTwo = props => {
   const handleIncrementCapsulesPerDose = () => {
@@ -28,11 +29,11 @@ const StepTwo = props => {
       props.updateDosageFrequency(value);
     }
   };
-  const handleDosageConsumptionMethodChange = value => {
-    if (props.dosageConsumptionMethod === value) {
-      props.updateDosageConsumptionMethod(0);
+  const handleDosageInstructionChange = value => {
+    if (props.dosageInstruction === value) {
+      props.updateDosageInstruction(0);
     } else {
-      props.updateDosageConsumptionMethod(value);
+      props.updateDosageInstruction(value);
     }
   };
 
@@ -125,49 +126,59 @@ const StepTwo = props => {
         How will you take this pill?
         <Button
           style={{
-            background: props.dosageConsumptionMethod === 1 ? '#2D90F5' : '',
-            color: props.dosageConsumptionMethod === 1 ? 'white' : ''
+            background: props.dosageInstruction === 1 ? '#2D90F5' : '',
+            color: props.dosageInstruction === 1 ? 'white' : ''
           }}
-          onClick={() => handleDosageConsumptionMethodChange(1)}
+          onClick={() => handleDosageInstructionChange(1)}
         >
           Before Meal
         </Button>
         <Button
           style={{
-            background: props.dosageConsumptionMethod === 2 ? '#2D90F5' : '',
-            color: props.dosageConsumptionMethod === 2 ? 'white' : ''
+            background: props.dosageInstruction === 2 ? '#2D90F5' : '',
+            color: props.dosageInstruction === 2 ? 'white' : ''
           }}
-          onClick={() => handleDosageConsumptionMethodChange(2)}
+          onClick={() => handleDosageInstructionChange(2)}
         >
           With Meal
         </Button>
         <Button
           style={{
-            background: props.dosageConsumptionMethod === 3 ? '#2D90F5' : '',
-            color: props.dosageConsumptionMethod === 3 ? 'white' : ''
+            background: props.dosageInstruction === 3 ? '#2D90F5' : '',
+            color: props.dosageInstruction === 3 ? 'white' : ''
           }}
-          onClick={() => handleDosageConsumptionMethodChange(3)}
+          onClick={() => handleDosageInstructionChange(3)}
         >
           After Meal
         </Button>
         <Button
           style={{
-            background: props.dosageConsumptionMethod === 4 ? '#2D90F5' : '',
-            color: props.dosageConsumptionMethod === 4 ? 'white' : ''
+            background: props.dosageInstruction === 4 ? '#2D90F5' : '',
+            color: props.dosageInstruction === 4 ? 'white' : ''
           }}
-          onClick={() => handleDosageConsumptionMethodChange(4)}
+          onClick={() => handleDosageInstructionChange(4)}
         >
           Without Meal
         </Button>
+        <TextField
+          label='custom instruction'
+          value={props.customInstruction.value}
+          onChange={props.customInstruction.updateValue}
+          margin='normal'
+        />
       </Typography>
 
-      <Typography>
-        Dosage Time of Day
-      </Typography>
+      <Typography>Dosage Time of Day</Typography>
 
-      <Typography>
-        Dosage Duration
-      </Typography>
+      <Typography>Dosage Duration</Typography>
+
+      <Typography>Start Date</Typography>
+
+      <Typography>Text Reminder</Typography>
+
+      <Button>Confirm Dosage</Button>
+
+      <Button>Skip</Button>
     </form>
   );
 };
