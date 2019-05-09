@@ -23,7 +23,9 @@ export const logIn = () => dispatch => {
     .catch(err => {
       dispatch({
         type: LOGIN_FAILURE,
-        payload: `${err.message}. ${err.response.data.message}`
+        payload: err.response.data.message
+          ? `${err.message}. ${err.response.data.message}`
+          : err.message
       });
     });
 };
@@ -42,7 +44,9 @@ export const updateInfo = creds => dispatch => {
     .catch(err => {
       dispatch({
         type: EDIT_USER_FAILURE,
-        payload: `${err.message}. ${err.response.data.message}`
+        payload: err.response.data.message
+          ? `${err.message}. ${err.response.data.message}`
+          : err.message
       });
     });
 };
@@ -61,7 +65,9 @@ export const fetchUser = id => dispatch => {
     .catch(err => {
       dispatch({
         type: FETCH_USER_FAILURE,
-        payload: `${err.message}. ${err.response.data.message}`
+        payload: err.response.data.message
+          ? `${err.message}. ${err.response.data.message}`
+          : err.message
       });
     });
 };
@@ -80,7 +86,51 @@ export const fetchMeds = user_id => dispatch => {
     .catch(err => {
       dispatch({
         type: FETCH_MEDS_FAILURE,
-        payload: `${err.message}. ${err.response.data.message}`
+        payload: err.response.data.message
+          ? `${err.message}. ${err.response.data.message}`
+          : err.message
+      });
+    });
+};
+
+export const ADD_MED_REQUEST = 'ADD_MED_REQUEST';
+export const ADD_MED_SUCCESS = 'ADD_MED_SUCCESS';
+export const ADD_MED_FAILURE = 'ADD_MED_FAILURE';
+
+export const addMed = newMed => dispatch => {
+  dispatch({ type: ADD_MED_REQUEST });
+  axios
+    .post(`${endpoint}/api/meds/`, newMed)
+    .then(res => {
+      dispatch({ type: ADD_MED_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({
+        type: ADD_MED_FAILURE,
+        payload: err.response.data.message
+          ? `${err.message}. ${err.response.data.message}`
+          : err.message
+      });
+    });
+};
+
+export const EDIT_MED_REQUEST = 'EDIT_MED_REQUEST';
+export const EDIT_MED_SUCCESS = 'EDIT_MED_SUCCESS';
+export const EDIT_MED_FAILURE = 'EDIT_MED_FAILURE';
+
+export const editMed = editedMed => dispatch => {
+  dispatch({ type: EDIT_MED_REQUEST });
+  axios
+    .put(`${endpoint}/api/meds/${editedMed.id}`, editedMed)
+    .then(res => {
+      dispatch({ type: EDIT_MED_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({
+        type: EDIT_MED_FAILURE,
+        payload: err.response.data.message
+          ? `${err.message}. ${err.response.data.message}`
+          : err.message
       });
     });
 };
@@ -99,7 +149,51 @@ export const fetchDiary = user_id => dispatch => {
     .catch(err => {
       dispatch({
         type: FETCH_DIARY_FAILURE,
-        payload: `${err.message}. ${err.response.data.message}`
+        payload: err.response.data.message
+          ? `${err.message}. ${err.response.data.message}`
+          : err.message
+      });
+    });
+};
+
+export const FETCH_REMS_REQUEST = 'FETCH_REMS_REQUEST';
+export const FETCH_REMS_SUCCESS = 'FETCH_REMS_SUCCESS';
+export const FETCH_REMS_FAILURE = 'FETCH_REMS_FAILURE';
+
+export const fetchRems = user_id => dispatch => {
+  dispatch({ type: FETCH_REMS_REQUEST });
+  axios
+    .get(`${endpoint}/api/users/${user_id}/rems/`)
+    .then(res => {
+      dispatch({ type: FETCH_REMS_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({
+        type: FETCH_REMS_FAILURE,
+        payload: err.response.data.message
+          ? `${err.message}. ${err.response.data.message}`
+          : err.message
+      });
+    });
+};
+
+export const ADD_REMS_REQUEST = 'ADD_REMS_REQUEST';
+export const ADD_REMS_SUCCESS = 'ADD_REMS_SUCCESS';
+export const ADD_REMS_FAILURE = 'ADD_REMS_FAILURE';
+
+export const addRems = remsList => dispatch => {
+  dispatch({ type: ADD_REMS_REQUEST });
+  axios
+    .post(`${endpoint}/api/rems/`, remsList)
+    .then(res => {
+      dispatch({ type: ADD_REMS_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({
+        type: ADD_REMS_FAILURE,
+        payload: err.response.data.message
+          ? `${err.message}. ${err.response.data.message}`
+          : err.message
       });
     });
 };

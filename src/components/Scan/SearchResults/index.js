@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import SearchResult from './SearchResult';
 
-const SearchResults = () => {
+const SearchResults = ({ history }) => {
   useEffect(() => {
     console.log('step 3');
     // populate fields with data we get back from ds
@@ -21,7 +21,7 @@ const SearchResults = () => {
   return (
     <div>
       {pills.map(pill => {
-        return <SearchResult pill={pill} />;
+        return <SearchResult pill={pill} history={history} />;
       })}
     </div>
   );

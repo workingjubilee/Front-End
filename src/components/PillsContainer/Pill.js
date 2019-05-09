@@ -7,7 +7,7 @@ import CardActions from '@material-ui/core/CardActions';
 // import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
-const Med = ({ med, classes }) => {
+const Pill = ({ med, classes }) => {
   const {
     med_name,
     med_dose,
@@ -26,7 +26,7 @@ const Med = ({ med, classes }) => {
         />
         <CardActions className={classes.actions} disableActionSpacing>
           <Button>View Pill Details</Button>
-          <Button>Add Note</Button>
+          <Button>Discontinue Pill</Button>
         </CardActions>
       </Card>
     </div>
@@ -52,4 +52,4 @@ const styles = theme => ({
   }
 });
 
-export default withStyles(styles)(Med);
+export default withStyles(styles)(Pill);
