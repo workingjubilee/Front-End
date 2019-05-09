@@ -3,7 +3,7 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
-  EDIT_USER,
+  EDIT_USER_REQUEST,
   EDIT_USER_SUCCESS,
   EDIT_USER_FAILURE,
   FETCH_USER_REQUEST,
@@ -21,6 +21,9 @@ import {
   FETCH_DIARY_REQUEST,
   FETCH_DIARY_SUCCESS,
   FETCH_DIARY_FAILURE,
+  EDIT_DIARY_REQUEST,
+  EDIT_DIARY_SUCCESS,
+  EDIT_DIARY_FAILURE,
   FETCH_REMS_REQUEST,
   FETCH_REMS_SUCCESS,
   FETCH_REMS_FAILURE,
@@ -43,6 +46,7 @@ const initialState = {
   editingMed: false,
   meds: [],
   fetchingDiary: false,
+  editingDiary: false,
   diary: [],
   fetchingRems: false,
   addingRems: false,
@@ -72,7 +76,7 @@ export default (state = initialState, action) => {
         loggingIn: false,
         error: action.payload
       };
-    case EDIT_USER:
+    case EDIT_USER_REQUEST:
       return {
         ...state,
         error: null
@@ -187,6 +191,33 @@ export default (state = initialState, action) => {
         fetchingDiary: false,
         error: action.payload
       };
+
+    case EDIT_DIARY_REQUEST:
+      return {
+        ...state,
+        editingDiary: true,
+        error: null
+      };
+    case EDIT_DIARY_SUCCESS:
+      return {
+        ...state,
+        editingDiary: false,
+        // diary: [...state.diary, action.payload],
+        diary: state.diary.map(diaryEntry => {
+          if (diaryEntry.id === action.payload.id) {
+            return action.payload;
+          } else {
+            return diaryEntry;
+          }
+        })
+      };
+    case EDIT_DIARY_FAILURE:
+      return {
+        ...state,
+        editingDiary: false,
+        error: action.payload
+      };
+
     case FETCH_REMS_REQUEST:
       return {
         ...state,
