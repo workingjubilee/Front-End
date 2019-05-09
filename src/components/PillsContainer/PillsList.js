@@ -3,7 +3,7 @@ import Card from '@material-ui/core/Card';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { connect } from 'react-redux';
 import { fetchMeds } from '../../actions';
-import Med from '../Meds/Med';
+import Pill from './Pill';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 class PillsList extends Component {
@@ -52,7 +52,7 @@ class PillsList extends Component {
           <h2>Your medications</h2>
           <div className={classes.meds}>
             {meds.map(med => (
-              <Med key={med.id} med={med} />
+              <Pill key={med.id} med={med} />
             ))}
           </div>
         </Card>
