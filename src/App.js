@@ -5,7 +5,7 @@ import Diary from './components/Diary/Diary';
 import Scan from './components/Scan/Scan';
 import Onboard from './components/Onboard/Onboard';
 import Dashboard from './components/Dashboard/Dashboard';
-import PillsList from './components/PillsList/PillsList';
+import PillsContainer from './components/PillsContainer/PillsContainer';
 import Landing from './components/Landing/Landing';
 import Loading from './components/Loading/Loading';
 import SearchPill from './components/Scan/SearchPill';
@@ -25,7 +25,7 @@ function App() {
         <Route exact path='/diary' component={Diary} />
         <Route exact path='/scan' component={Scan} />
         <Route exact path='/dashboard' component={Dashboard} />
-        <Route exact path='/pills' component={PillsList} />
+        <Route exact path='/pills' component={PillsContainer} />
         <Route exact path='/loading' component={Loading} />
         <Route exact path='/searchpill' component={SearchPill} />
         <Route exact path='/addpill' component={AddPill} />

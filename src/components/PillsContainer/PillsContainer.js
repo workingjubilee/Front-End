@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchUser } from '../../actions';
-import Meds from '../Meds/Meds';
+import PillsList from './PillsList';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-const PillsList = ({ fetchUser, user }) => {
+const PillsContainer = ({ fetchUser, user }) => {
   const { username } = user;
   const userID = localStorage.getItem('userID');
   useEffect(() => {
@@ -15,7 +15,7 @@ const PillsList = ({ fetchUser, user }) => {
 
   return (
     <div className='DashboardPage'>
-      {username ? <Meds user_id={userID} /> : null}
+      {username ? <PillsList user_id={userID} /> : null}
     </div>
   );
 };
@@ -34,7 +34,7 @@ const styles = theme => ({
   }
 });
 
-const StyledPillsList = withStyles(styles)(PillsList);
+const StyledPillsContainer = withStyles(styles)(PillsContainer);
 
 const mapStateToProps = state => ({
   user: state.user,
@@ -45,4 +45,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { fetchUser }
-)(StyledPillsList);
+)(StyledPillsContainer);
