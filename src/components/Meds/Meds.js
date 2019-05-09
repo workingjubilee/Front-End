@@ -23,9 +23,8 @@ class Meds extends Component {
       this.props.error
     ) {
       if (
-        this.props.error.contains(
-          'User with specified ID does not have any medications.'
-        )
+        this.props.error ===
+        'Request failed with status code 404. User with specified ID does not have any medications.'
       ) {
         this.setState({ noMeds: true });
       }
