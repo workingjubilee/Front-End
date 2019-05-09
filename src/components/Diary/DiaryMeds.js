@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import DiaryMed from './DiaryMed';
 
-const DiaryMeds = ({ fetchingMeds, meds, diaryFocus }) => {
+const DiaryMeds = ({ fetchingMeds, meds, changeFocus, diaryFocus }) => {
   return (
     <div className='diaryMeds'>
       {fetchingMeds === true ? (
@@ -17,7 +17,7 @@ const DiaryMeds = ({ fetchingMeds, meds, diaryFocus }) => {
         <div>
           <h2>Meds</h2>
           {meds.map(med => (
-            <DiaryMed key={med.id} med_name={med.med_name} />
+            <DiaryMed key={med.id} changeFocus={changeFocus} med={med} />
           ))}
         </div>
       )}
