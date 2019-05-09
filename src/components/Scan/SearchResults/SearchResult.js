@@ -17,16 +17,26 @@ const styles = {
   }
 };
 
-const SearchResult = ({ classes, pill }) => {
+const SearchResult = ({ classes, pill, history }) => {
   return (
     <Card className={classes.card}>
       <CardContent className={classes.cardContent}>
         <Image imageLink={pill.imageLink} />
         <ResultInfo pill={pill} />
-        <AddPillButton />
+        <AddPillButton addPill={addPill} pill={pill} />
       </CardContent>
     </Card>
   );
+
+  function addPill(scheduled) {
+    if (scheduled) {
+      console.log(`Gonna send ${pill} to rems table`);
+      // Needs to send user to scheduling component, but just pushing to dashboard for now
+      history.push('/dashboard');
+    }
+    console.log(`Gonna send ${pill} to meds table`);
+    history.push('/dashboard');
+  }
 };
 
 export default withStyles(styles)(SearchResult);
