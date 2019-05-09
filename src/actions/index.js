@@ -23,7 +23,9 @@ export const logIn = () => dispatch => {
     .catch(err => {
       dispatch({
         type: LOGIN_FAILURE,
-        payload: `${err.message}. ${err.response.data.message}`
+        payload: err.response.data.message
+          ? `${err.message}. ${err.response.data.message}`
+          : err.message
       });
     });
 };
@@ -42,7 +44,9 @@ export const updateInfo = creds => dispatch => {
     .catch(err => {
       dispatch({
         type: EDIT_USER_FAILURE,
-        payload: `${err.message}. ${err.response.data.message}`
+        payload: err.response.data.message
+          ? `${err.message}. ${err.response.data.message}`
+          : err.message
       });
     });
 };
@@ -61,7 +65,9 @@ export const fetchUser = id => dispatch => {
     .catch(err => {
       dispatch({
         type: FETCH_USER_FAILURE,
-        payload: `${err.message}. ${err.response.data.message}`
+        payload: err.response.data.message
+          ? `${err.message}. ${err.response.data.message}`
+          : err.message
       });
     });
 };
@@ -80,7 +86,9 @@ export const fetchMeds = user_id => dispatch => {
     .catch(err => {
       dispatch({
         type: FETCH_MEDS_FAILURE,
-        payload: `${err.message}. ${err.response.data.message}`
+        payload: err.response.data.message
+          ? `${err.message}. ${err.response.data.message}`
+          : err.message
       });
     });
 };
@@ -99,7 +107,9 @@ export const fetchDiary = user_id => dispatch => {
     .catch(err => {
       dispatch({
         type: FETCH_DIARY_FAILURE,
-        payload: `${err.message}. ${err.response.data.message}`
+        payload: err.response.data.message
+          ? `${err.message}. ${err.response.data.message}`
+          : err.message
       });
     });
 };
