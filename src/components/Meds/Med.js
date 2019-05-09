@@ -23,13 +23,9 @@ const Med = ({ med, classes }) => {
         <CardHeader
           title={med_name}
           subheader={`${med_dose} ${med_dose_unit} | ${med_color} | ${med_shape}`}
-        >
-          <Typography>{med_dose_freq}</Typography>
-          <Typography>{med_admin_times}</Typography>
-        </CardHeader>
+        />
         <CardActions className={classes.actions} disableActionSpacing>
           <Button>View Pill Details</Button>
-          <Button>Discontinue Pill</Button>
           <Button>Add Note</Button>
         </CardActions>
       </Card>
