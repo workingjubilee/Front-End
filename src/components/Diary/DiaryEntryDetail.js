@@ -7,8 +7,11 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import moment from 'moment';
+import { connect } from 'react-redux';
 
 import { useInput } from '../../utilities/useInput';
+
+import { editDiary } from '../../actions';
 
 const styles = {
   card: {
@@ -24,7 +27,7 @@ const styles = {
   }
 };
 
-const DiaryEntryDetail = ({ classes, diaryEntry }) => {
+const DiaryEntryDetail = ({ classes, diaryEntry, editDiary }) => {
   const entryDate = moment(diaryEntry.diary_date).format('ddd M/D/YY h:mma');
   const diary_text = useInput('');
 
@@ -34,6 +37,13 @@ const DiaryEntryDetail = ({ classes, diaryEntry }) => {
     }
     // eslint-disable-next-line
   }, [diaryEntry]);
+
+  const requestEditDiary = e => {
+    e.preventDefault();
+    editDiary(diaryEntry.id, {
+      diary_text: diary_text.value
+    });
+  };
 
   return (
     <Card className={classes.card}>
@@ -61,10 +71,14 @@ const DiaryEntryDetail = ({ classes, diaryEntry }) => {
         />
       </CardContent>
       <CardActions>
-        <Button variant='contained' color='accent'>
+        <Button variant='contained' color='default'>
           Cancel
         </Button>
-        <Button variant='contained' color='secondary'>
+        <Button
+          onClick={requestEditDiary}
+          variant='contained'
+          color='secondary'
+        >
           Save Entry
         </Button>
       </CardActions>
@@ -72,4 +86,7 @@ const DiaryEntryDetail = ({ classes, diaryEntry }) => {
   );
 };
 
-export default withStyles(styles)(DiaryEntryDetail);
+export default connect(
+  null,
+  { editDiary }
+)(withStyles(styles)(DiaryEntryDetail));

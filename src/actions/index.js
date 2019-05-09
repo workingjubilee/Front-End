@@ -114,6 +114,25 @@ export const fetchDiary = user_id => dispatch => {
     });
 };
 
+export const EDIT_DIARY_REQUEST = 'EDIT_DIARY_REQUEST';
+export const EDIT_DIARY_SUCCESS = 'EDIT_DIARY_SUCCESS';
+export const EDIT_DIARY_FAILURE = 'EDIT_DIARY_FAILURE';
+
+export const editDiary = (diary_id, diary_edits) => dispatch => {
+  dispatch({ type: EDIT_DIARY_REQUEST });
+  axios
+    .put(`${endpoint}/api/diaries/${diary_id}`, diary_edits)
+    .then(res => {
+      dispatch({ type: EDIT_DIARY_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({
+        type: EDIT_DIARY_FAILURE,
+        payload: `${err.message}. ${err.response.data.message}`
+      });
+    });
+};
+
 export const FETCH_REMS_REQUEST = 'FETCH_REMS_REQUEST';
 export const FETCH_REMS_SUCCESS = 'FETCH_REMS_SUCCESS';
 export const FETCH_REMS_FAILURE = 'FETCH_REMS_FAILURE';
@@ -131,25 +150,6 @@ export const fetchRems = user_id => dispatch => {
         payload: err.response.data.message
           ? `${err.message}. ${err.response.data.message}`
           : err.message
-      });
-    });
-};
-
-export const EDIT_DIARY_REQUEST = 'EDIT_DIARY_REQUEST';
-export const EDIT_DIARY_SUCCESS = 'EDIT_DIARY_SUCCESS';
-export const EDIT_DIARY_FAILURE = 'EDIT_DIARY_FAILURE';
-
-export const editDiary = diary_id => dispatch => {
-  dispatch({ type: EDIT_DIARY_REQUEST });
-  axios
-    .get(`${endpoint}/api/diaries/${diary_id}`)
-    .then(res => {
-      dispatch({ type: EDIT_DIARY_SUCCESS, payload: res.data });
-    })
-    .catch(err => {
-      dispatch({
-        type: EDIT_DIARY_FAILURE,
-        payload: `${err.message}. ${err.response.data.message}`
       });
     });
 };
