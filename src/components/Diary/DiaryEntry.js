@@ -1,7 +1,9 @@
 import React from 'react';
 import moment from 'moment';
 
-import { withStyles } from '@material-ui/core/styles';
+import SimpleDialogDemo from './DiaryEntryModal';
+
+import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -31,6 +33,7 @@ const DiaryEntry = ({ classes, diaryEntry }) => {
         <Button variant='contained' color='primary'>
           View Entry
         </Button>
+        <SimpleDialogDemo />
       </CardActions>
     </Card>
   );
