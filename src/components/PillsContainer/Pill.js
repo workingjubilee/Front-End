@@ -27,15 +27,9 @@ const Pill = ({ med, classes }) => {
           <Typography>{med_dose_freq}</Typography>
           <Typography>{med_admin_times}</Typography>
         </CardHeader>
-        {/* <CardContent>
-          <Typography component='h3'>${price} a week</Typography>
-          <Typography component='h4'>{category}</Typography>
-          <Typography component='p'>{description}</Typography>
-        </CardContent> */}
         <CardActions className={classes.actions} disableActionSpacing>
           <Button>View Pill Details</Button>
           <Button>Discontinue Pill</Button>
-          <Button>Add Note</Button>
         </CardActions>
       </Card>
     </div>
