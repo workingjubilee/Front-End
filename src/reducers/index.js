@@ -14,7 +14,10 @@ import {
   FETCH_MEDS_FAILURE,
   FETCH_DIARY_REQUEST,
   FETCH_DIARY_SUCCESS,
-  FETCH_DIARY_FAILURE
+  FETCH_DIARY_FAILURE,
+  FETCH_REMS_REQUEST,
+  FETCH_REMS_SUCCESS,
+  FETCH_REMS_FAILURE
 } from '../actions';
 // import Auth from '../Auth/Auth';
 
@@ -30,6 +33,9 @@ const initialState = {
   meds: [],
   fetchingDiary: false,
   diary: [],
+  fetchingRems: false,
+  rems: [],
+  filteredRems: [],
   error: null
 };
 
@@ -123,6 +129,24 @@ export default (state = initialState, action) => {
       return {
         ...state,
         fetchingDiary: false,
+        error: action.payload
+      };
+    case FETCH_REMS_REQUEST:
+      return {
+        ...state,
+        fetchingRems: true,
+        error: null
+      };
+    case FETCH_REMS_SUCCESS:
+      return {
+        ...state,
+        fetchingRems: false,
+        rems: action.payload
+      };
+    case FETCH_REMS_FAILURE:
+      return {
+        ...state,
+        fetchingRems: false,
         error: action.payload
       };
 

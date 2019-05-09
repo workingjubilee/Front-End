@@ -23,7 +23,9 @@ export const logIn = () => dispatch => {
     .catch(err => {
       dispatch({
         type: LOGIN_FAILURE,
-        payload: `${err.message}. ${err.response.data.message}`
+        payload: err.response.data.message
+          ? `${err.message}. ${err.response.data.message}`
+          : err.message
       });
     });
 };
@@ -42,7 +44,9 @@ export const updateInfo = creds => dispatch => {
     .catch(err => {
       dispatch({
         type: EDIT_USER_FAILURE,
-        payload: `${err.message}. ${err.response.data.message}`
+        payload: err.response.data.message
+          ? `${err.message}. ${err.response.data.message}`
+          : err.message
       });
     });
 };
@@ -61,7 +65,9 @@ export const fetchUser = id => dispatch => {
     .catch(err => {
       dispatch({
         type: FETCH_USER_FAILURE,
-        payload: `${err.message}. ${err.response.data.message}`
+        payload: err.response.data.message
+          ? `${err.message}. ${err.response.data.message}`
+          : err.message
       });
     });
 };
@@ -80,7 +86,9 @@ export const fetchMeds = user_id => dispatch => {
     .catch(err => {
       dispatch({
         type: FETCH_MEDS_FAILURE,
-        payload: `${err.message}. ${err.response.data.message}`
+        payload: err.response.data.message
+          ? `${err.message}. ${err.response.data.message}`
+          : err.message
       });
     });
 };
@@ -99,7 +107,30 @@ export const fetchDiary = user_id => dispatch => {
     .catch(err => {
       dispatch({
         type: FETCH_DIARY_FAILURE,
-        payload: `${err.message}. ${err.response.data.message}`
+        payload: err.response.data.message
+          ? `${err.message}. ${err.response.data.message}`
+          : err.message
+      });
+    });
+};
+
+export const FETCH_REMS_REQUEST = 'FETCH_REMS_REQUEST';
+export const FETCH_REMS_SUCCESS = 'FETCH_REMS_SUCCESS';
+export const FETCH_REMS_FAILURE = 'FETCH_REMS_FAILURE';
+
+export const fetchRems = user_id => dispatch => {
+  dispatch({ type: FETCH_REMS_REQUEST });
+  axios
+    .get(`${endpoint}/api/users/${user_id}/rems/`)
+    .then(res => {
+      dispatch({ type: FETCH_REMS_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({
+        type: FETCH_REMS_FAILURE,
+        payload: err.response.data.message
+          ? `${err.message}. ${err.response.data.message}`
+          : err.message
       });
     });
 };
