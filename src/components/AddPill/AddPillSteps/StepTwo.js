@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button';
 import RemoveIcon from '@material-ui/icons/Remove';
 import AddIcon from '@material-ui/icons/Add';
 import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 
@@ -30,6 +31,7 @@ const StepTwo = props => {
     }
   };
   const handleDosageInstructionChange = value => {
+    props.customInstruction.updateValue({ target: { value: '' } });
     if (props.dosageInstruction === value) {
       props.updateDosageInstruction('');
     } else {
@@ -47,8 +49,10 @@ const StepTwo = props => {
   };
   return (
     <form>
-      <Typography component='p' variant='title' style={{ display: 'flex' }}>
-        Dosage Quantity
+      <Card style={{ display: 'flex' }}>
+        <Typography component='p' variant='title'>
+          Dosage Quantity
+        </Typography>
         <Card style={{ display: 'flex' }}>
           <Typography component='p' variant='headline'>
             number of capsules per dose
@@ -66,9 +70,9 @@ const StepTwo = props => {
             <AddIcon />
           </Button>
         </Card>
-      </Typography>
+      </Card>
 
-      <Typography>
+      <CardContent>
         Length of Dosage
         <Button
           style={{
@@ -97,9 +101,9 @@ const StepTwo = props => {
         >
           3x - Thrice
         </Button>
-      </Typography>
+      </CardContent>
 
-      <Typography>
+      <CardContent>
         Dosage Frequency
         <Button
           style={{
@@ -128,9 +132,9 @@ const StepTwo = props => {
         >
           Monthly
         </Button>
-      </Typography>
+      </CardContent>
 
-      <Typography>
+      <CardContent>
         How will you take this pill?
         <Button
           style={{
@@ -179,7 +183,7 @@ const StepTwo = props => {
           onChange={props.customInstruction.updateValue}
           margin='normal'
         />
-      </Typography>
+      </CardContent>
 
       <Typography>Dosage Time of Day</Typography>
 
