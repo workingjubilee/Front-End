@@ -50,21 +50,15 @@ const StepTwo = props => {
   return (
     <form>
       <Card style={{ display: 'flex' }}>
-        <Typography component='p' variant='title'>
-          Dosage Quantity
-        </Typography>
+        <Typography component='p'>Dosage Quantity</Typography>
         <Card style={{ display: 'flex' }}>
-          <Typography component='p' variant='headline'>
-            number of capsules per dose
-          </Typography>
+          <Typography component='p'>number of capsules per dose</Typography>
 
           <Button onClick={handleDecrementCapsulesPerDose}>
             <RemoveIcon />
           </Button>
 
-          <Typography component='p' variant='display1'>
-            {props.capsulesPerDose}
-          </Typography>
+          <Typography component='p'>{props.capsulesPerDose}</Typography>
 
           <Button onClick={handleIncrementCapsulesPerDose}>
             <AddIcon />
