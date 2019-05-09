@@ -1,13 +1,12 @@
 import React from 'react';
 import moment from 'moment';
 
-import SimpleDialogDemo from './DiaryEntryModal';
+import DiaryEntryModal from './DiaryEntryModal';
 
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 const styles = {
@@ -30,10 +29,7 @@ const DiaryEntry = ({ classes, diaryEntry }) => {
         <Typography className={classes.date}>{entryDate}</Typography>
       </CardContent>
       <CardActions>
-        <Button variant='contained' color='primary'>
-          View Entry
-        </Button>
-        <SimpleDialogDemo />
+        <DiaryEntryModal diaryEntry={diaryEntry} />
       </CardActions>
     </Card>
   );
