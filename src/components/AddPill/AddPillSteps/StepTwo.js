@@ -183,7 +183,7 @@ const StepTwo = props => {
 
       <Typography>Dosage Time of Day</Typography>
 
-      <Typography>Dosage Duration</Typography>
+      <Typography>End Date</Typography>
 
       <Typography>Start Date</Typography>
 
