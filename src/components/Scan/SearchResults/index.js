@@ -7,7 +7,7 @@ const SearchResults = () => {
     // populate fields with data we get back from ds
   });
 
-  const [pills, setPills] = useState([
+  const [pills] = useState([
     {
       imageLink: 'https://www.drugs.com/images/pills/nlm/000090094.jpg',
       pillName: 'Xanax'
