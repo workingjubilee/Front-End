@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 
 import { useInput } from '../../utilities/useInput';
 
-import { editDiary } from '../../actions';
+import { editDiary, deleteDiary } from '../../actions';
 
 const styles = {
   card: {
@@ -27,7 +27,13 @@ const styles = {
   }
 };
 
-const DiaryEntryDetail = ({ classes, diaryEntry, editDiary, handleClose }) => {
+const DiaryEntryDetail = ({
+  classes,
+  diaryEntry,
+  editDiary,
+  deleteDiary,
+  handleClose
+}) => {
   const entryDate = moment(diaryEntry.diary_date).format('ddd M/D/YY h:mma');
   const diary_text = useInput('');
 
@@ -43,6 +49,12 @@ const DiaryEntryDetail = ({ classes, diaryEntry, editDiary, handleClose }) => {
     editDiary(diaryEntry.id, {
       diary_text: diary_text.value
     });
+    handleClose();
+  };
+
+  const requestDeleteDiary = e => {
+    e.preventDefault();
+    deleteDiary(diaryEntry.id);
     handleClose();
   };
 
@@ -76,6 +88,13 @@ const DiaryEntryDetail = ({ classes, diaryEntry, editDiary, handleClose }) => {
           Cancel
         </Button>
         <Button
+          onClick={requestDeleteDiary}
+          variant='contained'
+          color='secondary'
+        >
+          Delete Entry
+        </Button>
+        <Button
           onClick={requestEditDiary}
           variant='contained'
           color='secondary'
@@ -89,5 +108,5 @@ const DiaryEntryDetail = ({ classes, diaryEntry, editDiary, handleClose }) => {
 
 export default connect(
   null,
-  { editDiary }
+  { editDiary, deleteDiary }
 )(withStyles(styles)(DiaryEntryDetail));
