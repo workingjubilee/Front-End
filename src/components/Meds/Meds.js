@@ -20,10 +20,15 @@ class Meds extends Component {
     if (
       prevProps.fetchingMeds &&
       !this.props.fetchingMeds &&
-      !this.props.error &&
-      this.props.meds.length === 0
+      this.props.error
     ) {
-      this.setState({ noMeds: true });
+      if (
+        this.props.error.contains(
+          'User with specified ID does not have any medications.'
+        )
+      ) {
+        this.setState({ noMeds: true });
+      }
     }
   }
 
