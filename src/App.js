@@ -9,7 +9,7 @@ import Landing from './components/Landing/Landing';
 import Loading from './components/Loading/Loading';
 import SearchPill from './components/Scan/SearchPill';
 import AddPill from './components/AddPill/AddPill';
-import SearchResults from './components/Scan/SearchResults/SearchResults';
+import SearchResults from './components/Scan/SearchResults';
 
 import auth from './Auth';
 

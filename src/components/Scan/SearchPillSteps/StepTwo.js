@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
-import Button from '@material-ui/core/Button';
-import ExpandedSearch from '../SearchResultsModal/ExpandedSearchResultsModal';
 
 const StepTwo = props => {
   useEffect(() => {

@@ -9,30 +9,23 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { FormHelperText } from '@material-ui/core';
 
-import Image from './Image';
-import ResultInfo from './ResultInfo';
-import AddPillButton from './AddPillButton';
-
 const styles = {
   card: {
-    border: '10px dotted blue',
-    maxWidth: '90vw'
-  },
-  cardContent: {
-    display: 'flex'
+    width: '80%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between'
   }
 };
 
-const SearchResult = ({ classes, pill }) => {
+const ResultInfo = ({ classes, pill }) => {
   return (
     <Card className={classes.card}>
-      <CardContent className={classes.cardContent}>
-        <Image imageLink={pill.imageLink} />
-        <ResultInfo pill={pill} />
-        <AddPillButton />
-      </CardContent>
+      <Typography variant='h5'>{pill.pillName}</Typography>
+      <Button>Expand</Button>
+      <CardContent />
     </Card>
   );
 };
 
-export default withStyles(styles)(SearchResult);
+export default withStyles(styles)(ResultInfo);
