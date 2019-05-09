@@ -1,4 +1,3 @@
-// import React from 'react';
 import React from 'react';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -47,7 +46,7 @@ const SimpleCard = props => {
           </div>
         </CardContent>
         <CardActions>
-          <Button onClick={() => props.setStep(0)} >Edit</Button>
+          <Button onClick={() => props.setStep(0)}>Edit</Button>
         </CardActions>
       </Card>
       <Card>
@@ -86,11 +85,11 @@ const SimpleCard = props => {
           </div>
         </CardContent>
         <CardActions>
-        <Button onClick={() => props.setStep(1)} >Edit</Button>
+          <Button onClick={() => props.setStep(1)}>Edit</Button>
         </CardActions>
       </Card>
       <CardActions>
-        <Button>Add Pill</Button>
+        <Button onClick={() => props.handleAddPill()}>Add Pill</Button>
       </CardActions>
     </Card>
   );
