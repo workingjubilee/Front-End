@@ -45,14 +45,32 @@ const AddPill = () => {
     if (!dosageFrequency) {
       return null;
     }
-    makeReminders(
+    const userID = localStorage.getItem('userID');
+    const reminderTimes = makeReminders(
       '2019-05-09T14:36:31.364Z',
       '2019-06-09T12:36:31.364Z',
       dosageFrequency,
       8,
       'Wed',
-      '08:00:00'
+      '08:00:00',
+      customInstruction.value || dosageInstruction || null
     );
+    const reminders = reminderTimes.map(time => {
+      return {
+        user_id: userID,
+        med_id: 'coming soon',
+        rem_type: 'admin',
+        rem_notes: null,
+        rem_date: time
+      };
+    });
+
+    const medData = {
+      
+    }
+
+    console.log(reminders);
+    // send user to dashboard
   };
   const steps = [
     <StepOne
@@ -92,6 +110,10 @@ const AddPill = () => {
     />
   ];
   return <Card>{steps[step]}</Card>;
+};
+
+const mapStateToProps = state => {
+  return {};
 };
 
 export default AddPill;
