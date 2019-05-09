@@ -18,11 +18,7 @@ const styles = {
   }
 };
 
-function DiaryModal({ classes, diaryEntry, onClose, selectedValue, ...other }) {
-  function handleClose() {
-    onClose(selectedValue);
-  }
-
+function DiaryModal({ classes, diaryEntry, handleClose, ...other }) {
   return (
     <Dialog
       onClose={handleClose}
@@ -30,7 +26,7 @@ function DiaryModal({ classes, diaryEntry, onClose, selectedValue, ...other }) {
       {...other}
     >
       <div>
-        <DiaryEntryDetail diaryEntry={diaryEntry} />
+        <DiaryEntryDetail handleClose={handleClose} diaryEntry={diaryEntry} />
       </div>
     </Dialog>
   );
@@ -57,7 +53,12 @@ function DiaryEntryModal({ diaryEntry }) {
       <Button variant='contained' color='primary' onClick={handleClickOpen}>
         View Entry
       </Button>
-      <DiaryModal open={open} onClose={handleClose} diaryEntry={diaryEntry} />
+      <DiaryModal
+        open={open}
+        onClose={handleClose}
+        handleClose={handleClose}
+        diaryEntry={diaryEntry}
+      />
     </div>
   );
 }

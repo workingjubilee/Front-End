@@ -27,7 +27,7 @@ const styles = {
   }
 };
 
-const DiaryEntryDetail = ({ classes, diaryEntry, editDiary }) => {
+const DiaryEntryDetail = ({ classes, diaryEntry, editDiary, handleClose }) => {
   const entryDate = moment(diaryEntry.diary_date).format('ddd M/D/YY h:mma');
   const diary_text = useInput('');
 
@@ -43,6 +43,7 @@ const DiaryEntryDetail = ({ classes, diaryEntry, editDiary }) => {
     editDiary(diaryEntry.id, {
       diary_text: diary_text.value
     });
+    handleClose();
   };
 
   return (
@@ -71,7 +72,7 @@ const DiaryEntryDetail = ({ classes, diaryEntry, editDiary }) => {
         />
       </CardContent>
       <CardActions>
-        <Button variant='contained' color='default'>
+        <Button onClick={handleClose} variant='contained' color='default'>
           Cancel
         </Button>
         <Button
