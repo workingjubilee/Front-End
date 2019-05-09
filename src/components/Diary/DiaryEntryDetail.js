@@ -61,8 +61,11 @@ const DiaryEntryDetail = ({ classes, diaryEntry }) => {
         />
       </CardContent>
       <CardActions>
-        <Button variant='contained' color='primary'>
-          View Entries
+        <Button variant='contained' color='accent'>
+          Cancel
+        </Button>
+        <Button variant='contained' color='secondary'>
+          Save Entry
         </Button>
       </CardActions>
     </Card>

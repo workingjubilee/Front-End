@@ -103,3 +103,22 @@ export const fetchDiary = user_id => dispatch => {
       });
     });
 };
+
+export const EDIT_DIARY_REQUEST = 'EDIT_DIARY_REQUEST';
+export const EDIT_DIARY_SUCCESS = 'EDIT_DIARY_SUCCESS';
+export const EDIT_DIARY_FAILURE = 'EDIT_DIARY_FAILURE';
+
+export const editDiary = diary_id => dispatch => {
+  dispatch({ type: EDIT_DIARY_REQUEST });
+  axios
+    .get(`${endpoint}/api/diaries/${diary_id}`)
+    .then(res => {
+      dispatch({ type: EDIT_DIARY_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({
+        type: EDIT_DIARY_FAILURE,
+        payload: `${err.message}. ${err.response.data.message}`
+      });
+    });
+};
