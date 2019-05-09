@@ -3,7 +3,7 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
-  EDIT_USER,
+  EDIT_USER_REQUEST,
   EDIT_USER_SUCCESS,
   EDIT_USER_FAILURE,
   FETCH_USER_REQUEST,
@@ -76,7 +76,7 @@ export default (state = initialState, action) => {
         loggingIn: false,
         error: action.payload
       };
-    case EDIT_USER:
+    case EDIT_USER_REQUEST:
       return {
         ...state,
         error: null

@@ -30,12 +30,12 @@ export const logIn = () => dispatch => {
     });
 };
 
-export const EDIT_USER = 'EDIT_USER';
+export const EDIT_USER_REQUEST = 'EDIT_USER_REQUEST';
 export const EDIT_USER_SUCCESS = 'EDIT_USER_SUCCESS';
 export const EDIT_USER_FAILURE = 'EDIT_USER_FAILURE';
 
 export const updateInfo = creds => dispatch => {
-  dispatch({ type: EDIT_USER });
+  dispatch({ type: EDIT_USER_REQUEST });
   return axios
     .put(`${endpoint}/api/users/${creds.id}/`, creds)
     .then(res => {
