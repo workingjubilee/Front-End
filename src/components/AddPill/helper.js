@@ -45,7 +45,7 @@ export const makeReminders = (
     if (frequency === 'daily') {
       reminders.push(timeOnDeck);
       timeOnDeck += 86400000;
-    } else if (frequency == 'weekly') {
+    } else if (frequency === 'weekly') {
       reminders.push(timeOnDeck);
       timeOnDeck += 604800000;
     } else if (frequency === 'monthly') {
