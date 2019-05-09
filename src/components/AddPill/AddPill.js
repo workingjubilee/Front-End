@@ -4,6 +4,7 @@ import Card from '@material-ui/core/Card';
 import StepOne from './AddPillSteps/StepOne';
 import StepTwo from './AddPillSteps/StepTwo';
 import StepThree from './AddPillSteps/StepThree';
+import { makeReminders } from './helper';
 
 const AddPill = () => {
   const name = useInput();
@@ -40,6 +41,19 @@ const AddPill = () => {
   const prevStep = () => {
     setStep(step - 1);
   };
+  const handleAddPill = () => {
+    if (!dosageFrequency) {
+      return null;
+    }
+    makeReminders(
+      '2019-05-09T14:36:31.364Z',
+      '2019-06-09T12:36:31.364Z',
+      dosageFrequency,
+      8,
+      'Wed',
+      '08:00:00'
+    );
+  };
   const steps = [
     <StepOne
       nextStep={nextStep}
@@ -74,6 +88,7 @@ const AddPill = () => {
       dosageInstruction={dosageInstruction}
       customInstruction={customInstruction}
       setStep={setStep}
+      handleAddPill={handleAddPill}
     />
   ];
   return <Card>{steps[step]}</Card>;
