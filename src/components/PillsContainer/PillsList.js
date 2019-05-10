@@ -36,7 +36,7 @@ class PillsList extends Component {
     if (fetchingMeds) {
       return (
         <div className={classes.loading}>
-          <h2>Loading Meds...</h2>;
+          <h2>Loading Meds...</h2>
           <CircularProgress
             className={classes.progress}
             color='primary'
