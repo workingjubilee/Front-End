@@ -175,6 +175,25 @@ export const editDiary = (diary_id, diary_edits) => dispatch => {
     });
 };
 
+export const DELETE_DIARY_REQUEST = 'DELETE_DIARY_REQUEST';
+export const DELETE_DIARY_SUCCESS = 'DELETE_DIARY_SUCCESS';
+export const DELETE_DIARY_FAILURE = 'DELETE_DIARY_FAILURE';
+
+export const deleteDiary = diary_id => dispatch => {
+  dispatch({ type: DELETE_DIARY_REQUEST });
+  axios
+    .delete(`${endpoint}/api/diaries/${diary_id}`)
+    .then(res => {
+      dispatch({ type: DELETE_DIARY_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({
+        type: DELETE_DIARY_FAILURE,
+        payload: `${err.message}. ${err.response.data.message}`
+      });
+    });
+};
+
 export const FETCH_REMS_REQUEST = 'FETCH_REMS_REQUEST';
 export const FETCH_REMS_SUCCESS = 'FETCH_REMS_SUCCESS';
 export const FETCH_REMS_FAILURE = 'FETCH_REMS_FAILURE';

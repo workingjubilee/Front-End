@@ -24,6 +24,9 @@ import {
   EDIT_DIARY_REQUEST,
   EDIT_DIARY_SUCCESS,
   EDIT_DIARY_FAILURE,
+  DELETE_DIARY_REQUEST,
+  DELETE_DIARY_SUCCESS,
+  DELETE_DIARY_FAILURE,
   FETCH_REMS_REQUEST,
   FETCH_REMS_SUCCESS,
   FETCH_REMS_FAILURE,
@@ -47,6 +50,7 @@ const initialState = {
   meds: [],
   fetchingDiary: false,
   editingDiary: false,
+  deletingDiary: false,
   diary: [],
   fetchingRems: false,
   addingRems: false,
@@ -202,7 +206,6 @@ export default (state = initialState, action) => {
       return {
         ...state,
         editingDiary: false,
-        // diary: [...state.diary, action.payload],
         diary: state.diary.map(diaryEntry => {
           if (diaryEntry.id === action.payload.id) {
             return action.payload;
@@ -215,6 +218,27 @@ export default (state = initialState, action) => {
       return {
         ...state,
         editingDiary: false,
+        error: action.payload
+      };
+
+    case DELETE_DIARY_REQUEST:
+      return {
+        ...state,
+        deletingDiary: true,
+        error: null
+      };
+    case DELETE_DIARY_SUCCESS:
+      return {
+        ...state,
+        deletingDiary: false,
+        diary: state.diary.filter(diaryEntry => {
+          return diaryEntry.id !== action.payload.id;
+        })
+      };
+    case DELETE_DIARY_FAILURE:
+      return {
+        ...state,
+        deletingDiary: false,
         error: action.payload
       };
 
