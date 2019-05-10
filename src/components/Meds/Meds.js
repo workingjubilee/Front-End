@@ -2,41 +2,41 @@ import React, { Component } from 'react';
 import Card from '@material-ui/core/Card';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { connect } from 'react-redux';
-import { fetchMeds } from '../../actions';
+import { fetchRems } from '../../actions';
 import Med from '../Meds/Med';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 class Meds extends Component {
   state = {
-    noMeds: false
+    noRems: false
   };
   componentDidMount() {
-    if (this.props.meds.length === 0) {
-      this.props.fetchMeds(this.props.user_id);
+    if (this.props.rems.length === 0) {
+      this.props.fetchRems(this.props.user_id);
     }
   }
 
   componentDidUpdate(prevProps) {
     if (
-      prevProps.fetchingMeds &&
-      !this.props.fetchingMeds &&
+      prevProps.fetchingRems &&
+      !this.props.fetchingRems &&
       this.props.error
     ) {
       if (
         this.props.error ===
-        'Request failed with status code 404. User with specified ID does not have any medications.'
+        'Request failed with status code 404. User with specified ID does not have any reminders.'
       ) {
-        this.setState({ noMeds: true });
+        this.setState({ noRems: true });
       }
     }
   }
 
   render() {
-    const { fetchingMeds, classes, meds } = this.props;
-    if (fetchingMeds) {
+    const { fetchingRems, classes, rems } = this.props;
+    if (fetchingRems) {
       return (
         <div className={classes.loading}>
-          <h2>Loading Meds...</h2>;
+          <h2>Loading Meds...</h2>
           <CircularProgress
             className={classes.progress}
             color='primary'
@@ -44,14 +44,14 @@ class Meds extends Component {
           />
         </div>
       );
-    } else if (this.state.noMeds) {
-      return <h1>You do not have any meds saved yet.</h1>;
+    } else if (this.state.noRems) {
+      return <h1>You do not have any reminders saved yet.</h1>;
     } else {
       return (
         <Card className={classes.card}>
           <h2>Your scheduled medications for today</h2>
-          <div className={classes.meds}>
-            {meds.map(med => (
+          <div className={classes.rems}>
+            {rems.map(med => (
               <Med key={med.id} med={med} />
             ))}
           </div>
@@ -69,7 +69,7 @@ const styles = theme => ({
     maxWidth: 1100,
     margin: '0 auto'
   },
-  meds: {
+  rems: {
     display: 'flex',
     flexWrap: 'wrap'
   },
@@ -80,8 +80,8 @@ const styles = theme => ({
 });
 
 const mapStateToProps = state => ({
-  meds: state.meds,
-  fetchingMeds: state.fetchingMeds,
+  rems: state.rems,
+  fetchingRems: state.fetchingRems,
   error: state.error
 });
 
@@ -89,5 +89,5 @@ const StyledMeds = withStyles(styles)(Meds);
 
 export default connect(
   mapStateToProps,
-  { fetchMeds }
+  { fetchRems }
 )(StyledMeds);

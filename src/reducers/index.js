@@ -18,6 +18,9 @@ import {
   EDIT_MED_REQUEST,
   EDIT_MED_SUCCESS,
   EDIT_MED_FAILURE,
+  DELETE_MED_REQUEST,
+  DELETE_MED_SUCCESS,
+  DELETE_MED_FAILURE,
   FETCH_DIARY_REQUEST,
   FETCH_DIARY_SUCCESS,
   FETCH_DIARY_FAILURE,
@@ -47,6 +50,7 @@ const initialState = {
   fetchingMeds: false,
   addingMed: false,
   editingMed: false,
+  deletingMed: false,
   meds: [],
   fetchingDiary: false,
   editingDiary: false,
@@ -174,6 +178,25 @@ export default (state = initialState, action) => {
       return {
         ...state,
         editingMed: false,
+        error: action.payload
+      };
+    case DELETE_MED_REQUEST:
+      return {
+        ...state,
+        deletingMed: true,
+        error: null
+      };
+    case DELETE_MED_SUCCESS:
+      return {
+        ...state,
+        deletingMed: false,
+        meds: state.meds.filter(med => med.id !== action.payload.id),
+        rems: state.rems.filter(rem => rem.med_id !== action.payload.id)
+      };
+    case DELETE_MED_FAILURE:
+      return {
+        ...state,
+        deletingMed: false,
         error: action.payload
       };
 
