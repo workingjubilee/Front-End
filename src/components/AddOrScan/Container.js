@@ -8,7 +8,7 @@ const AddOrScan = props => {
   return (
     <section>
       { add === false ? <Scan add={add} setAdd={setAdd} /> : <AddPill /> }
-      { add ? "" : "*" }
+      { add ? "*" : "" }
     </section>
   );
 };

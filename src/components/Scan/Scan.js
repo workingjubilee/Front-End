@@ -8,6 +8,7 @@ const Scan = ({ add, setAdd }) => {
     <div>
       <PhotoUpload />
       { add ? "!" : "" }
+      <button onClick={() => setAdd(true)}>Test Me!</button>
     </div>
   );
 };
