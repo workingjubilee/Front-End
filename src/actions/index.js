@@ -135,6 +135,27 @@ export const editMed = editedMed => dispatch => {
     });
 };
 
+export const DELETE_MED_REQUEST = 'DELETE_MED_REQUEST';
+export const DELETE_MED_SUCCESS = 'DELETE_MED_SUCCESS';
+export const DELETE_MED_FAILURE = 'DELETE_MED_FAILURE';
+
+export const deleteMed = medID => dispatch => {
+  dispatch({ type: DELETE_MED_REQUEST });
+  axios
+    .delete(`${endpoint}/api/meds/${medID}`)
+    .then(res => {
+      dispatch({ type: DELETE_MED_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({
+        type: DELETE_MED_FAILURE,
+        payload: err.response.data.message
+          ? `${err.message}. ${err.response.data.message}`
+          : err.message
+      });
+    });
+};
+
 export const FETCH_DIARY_REQUEST = 'FETCH_DIARY_REQUEST';
 export const FETCH_DIARY_SUCCESS = 'FETCH_DIARY_SUCCESS';
 export const FETCH_DIARY_FAILURE = 'FETCH_DIARY_FAILURE';
