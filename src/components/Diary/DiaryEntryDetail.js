@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -32,14 +32,20 @@ const DiaryEntryDetail = ({
   diaryEntry,
   editDiary,
   deleteDiary,
-  handleClose
+  handleClose,
+  medName
 }) => {
-  const entryDate = moment(diaryEntry.diary_date).format('ddd M/D/YY h:mma');
   const diary_text = useInput('');
+  const [entryDate, setEntryDate] = useState(
+    moment(Date.now()).format('ddd M/D/YY h:mma')
+  );
+  const [newEntry, setNewEntry] = useState(true);
 
   useEffect(() => {
     if (diaryEntry) {
       diary_text.setValue(diaryEntry.diary_text);
+      setEntryDate(moment(diaryEntry.diary_date).format('ddd M/D/YY h:mma'));
+      setNewEntry(false);
     }
     // eslint-disable-next-line
   }, [diaryEntry]);
@@ -62,7 +68,7 @@ const DiaryEntryDetail = ({
     <Card className={classes.card}>
       <CardContent>
         <Typography className={classes.header}>
-          {diaryEntry.med_name}
+          {newEntry ? medName : diaryEntry.med_name}
         </Typography>
         <Typography className={classes.subheader}>{entryDate}</Typography>
         <TextField
@@ -82,17 +88,21 @@ const DiaryEntryDetail = ({
           onChange={diary_text.updateValue}
         />
       </CardContent>
-      <CardActions>
+      <CardActions className='diaryEntryButtons'>
         <Button onClick={handleClose} variant='contained' color='default'>
           Cancel
         </Button>
-        <Button
-          onClick={requestDeleteDiary}
-          variant='contained'
-          color='secondary'
-        >
-          Delete Entry
-        </Button>
+        {newEntry ? (
+          <div />
+        ) : (
+          <Button
+            onClick={requestDeleteDiary}
+            variant='contained'
+            color='secondary'
+          >
+            Delete Entry
+          </Button>
+        )}
         <Button
           onClick={requestEditDiary}
           variant='contained'

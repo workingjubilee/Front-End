@@ -1,14 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Button from '@material-ui/core/Button';
 import CardActions from '@material-ui/core/CardActions';
 
 import DiaryEntry from './DiaryEntry';
+import DiaryEntryModal from './DiaryEntryModal';
 
 const DiaryEntries = ({ diary, diaryFocus, meds }) => {
   const filteredDiary = diary.filter(diaryEntry => {
     return diaryEntry.med_id === diaryFocus;
   });
+
+  let medName;
+  if (diaryFocus) {
+    medName = meds.filter(med => {
+      return med.id === diaryFocus;
+    })[0].med_name;
+    console.log('medName:', medName);
+  }
 
   return (
     <div className='diaryEntries'>
@@ -20,20 +28,10 @@ const DiaryEntries = ({ diary, diaryFocus, meds }) => {
         <div>
           <CardActions className='diaryEntriesHeader'>
             <h2>Entries</h2>
-            <Button variant='contained' color='primary'>
-              New Entry
-            </Button>
+            <DiaryEntryModal newEntry={true} medName={medName} />
           </CardActions>
           {filteredDiary.length === 0 ? (
-            <p>
-              You have no diary entries for{' '}
-              {
-                meds.filter(med => {
-                  return med.id === diaryFocus;
-                })[0].med_name
-              }
-              .
-            </p>
+            <p>You have no diary entries for {medName}.</p>
           ) : (
             filteredDiary.map(diaryEntry => (
               <DiaryEntry key={diaryEntry.id} diaryEntry={diaryEntry} />
