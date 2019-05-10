@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import { useInput } from '../../utilities/useInput';
 import Card from '@material-ui/core/Card';
 import StepOne from './AddPillSteps/StepOne';
 import StepTwo from './AddPillSteps/StepTwo';
 import StepThree from './AddPillSteps/StepThree';
 import { makeReminders } from './helper';
+import { addRems } from '../../actions';
 
-const AddPill = () => {
+const AddPill = props => {
   const name = useInput();
   const imprint = useInput();
   const [color, setColor] = useState(0);
@@ -45,14 +47,30 @@ const AddPill = () => {
     if (!dosageFrequency) {
       return null;
     }
-    makeReminders(
+    const userID = localStorage.getItem('userID');
+    const reminderTimes = makeReminders(
       '2019-05-09T14:36:31.364Z',
       '2019-06-09T12:36:31.364Z',
       dosageFrequency,
       8,
       'Wed',
-      '08:00:00'
+      '08:00:00',
+      customInstruction.value || dosageInstruction || null
     );
+    const reminders = reminderTimes.map(time => {
+      return {
+        user_id: userID,
+        med_id: 1,
+        rem_type: 'admin',
+        rem_notes: null,
+        rem_date: time
+      };
+    });
+
+    // const medData = {};
+    props.addRems(reminders);
+    console.log(reminders);
+    // send user to dashboard
   };
   const steps = [
     <StepOne
@@ -94,4 +112,11 @@ const AddPill = () => {
   return <Card>{steps[step]}</Card>;
 };
 
-export default AddPill;
+// const mapStateToProps = state => {
+//   return {};
+// };
+
+export default connect(
+  null,
+  { addRems }
+)(AddPill);
