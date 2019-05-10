@@ -32,10 +32,10 @@ const SearchResult = ({ classes, pill, history }) => {
     if (scheduled) {
       console.log(`Gonna send ${pill} to rems table`);
       // Needs to send user to scheduling component, but just pushing to dashboard for now
-      history.push('/dashboard');
+      history.push('/addpill');
     }
     console.log(`Gonna send ${pill} to meds table`);
-    history.push('/dashboard');
+    history.push('/addpill');
   }
 };
 
