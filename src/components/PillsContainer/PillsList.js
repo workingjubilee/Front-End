@@ -32,7 +32,7 @@ class PillsList extends Component {
   }
 
   render() {
-    const { fetchingMeds, classes, meds } = this.props;
+    const { fetchingMeds, classes, meds, openDialog } = this.props;
     if (fetchingMeds) {
       return (
         <div className={classes.loading}>
@@ -52,7 +52,7 @@ class PillsList extends Component {
           <h2>Your medications</h2>
           <div className={classes.meds}>
             {meds.map(med => (
-              <Pill key={med.id} med={med} />
+              <Pill key={med.id} med={med} openDialog={openDialog} />
             ))}
           </div>
         </Card>
