@@ -18,7 +18,14 @@ const styles = {
   }
 };
 
-function DiaryModal({ classes, diaryEntry, handleClose, ...other }) {
+function DiaryModal({
+  classes,
+  diaryEntry,
+  handleClose,
+  medName,
+  med_id,
+  ...other
+}) {
   return (
     <Dialog
       onClose={handleClose}
@@ -26,7 +33,12 @@ function DiaryModal({ classes, diaryEntry, handleClose, ...other }) {
       {...other}
     >
       <div>
-        <DiaryEntryDetail handleClose={handleClose} diaryEntry={diaryEntry} />
+        <DiaryEntryDetail
+          handleClose={handleClose}
+          diaryEntry={diaryEntry}
+          medName={medName}
+          med_id={med_id}
+        />
       </div>
     </Dialog>
   );
@@ -37,7 +49,7 @@ DiaryModal.propTypes = {
   selectedValue: PropTypes.string
 };
 
-function DiaryEntryModal({ diaryEntry }) {
+function DiaryEntryModal({ diaryEntry, newEntry, medName, med_id }) {
   const [open, setOpen] = React.useState(false);
 
   function handleClickOpen() {
@@ -51,13 +63,15 @@ function DiaryEntryModal({ diaryEntry }) {
   return (
     <div>
       <Button variant='contained' color='primary' onClick={handleClickOpen}>
-        View Entry
+        {newEntry ? 'New Entry' : 'View Entry'}
       </Button>
       <DiaryModal
         open={open}
         onClose={handleClose}
         handleClose={handleClose}
         diaryEntry={diaryEntry}
+        medName={medName}
+        med_id={med_id}
       />
     </div>
   );
