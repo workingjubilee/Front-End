@@ -161,6 +161,8 @@ export const ADD_DIARY_SUCCESS = 'ADD_DIARY_SUCCESS';
 export const ADD_DIARY_FAILURE = 'ADD_DIARY_FAILURE';
 
 export const addDiary = newDiary => dispatch => {
+  console.log('newDiary: ', newDiary);
+  console.log('date: ', newDiary.diary_date, typeof newDiary.diary_date);
   dispatch({ type: ADD_DIARY_REQUEST });
   axios
     .post(`${endpoint}/api/diaries/`, newDiary)
