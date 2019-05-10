@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import SearchPill from '../SearchPill/SearchPill';
-import Scan from '../Scan/Scan.js';
+// import Scan from '../Scan/Scan.js';
 import SearchResults from '../Scan/SearchResults/';
 import AddDosage from '../AddDosage/AddDosage';
 
 const AddOrScan = ({ location, history }) => {
   const [status, setStatus] = useState('search');
-  
-  const [add, setAdd] = useState(location.pathname === '/add' ? true : false);
+
+  // const [add, setAdd] = useState(location.pathname === '/add' ? true : false);
 
   const [dosageDisplay, setDosageDisplay] = useState(false);
 
