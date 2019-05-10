@@ -15,7 +15,6 @@ const DiaryEntries = ({ diary, diaryFocus, meds }) => {
     medName = meds.filter(med => {
       return med.id === diaryFocus;
     })[0].med_name;
-    console.log('medName:', medName);
   }
 
   return (
@@ -28,7 +27,11 @@ const DiaryEntries = ({ diary, diaryFocus, meds }) => {
         <div>
           <CardActions className='diaryEntriesHeader'>
             <h2>Entries</h2>
-            <DiaryEntryModal newEntry={true} medName={medName} />
+            <DiaryEntryModal
+              newEntry={true}
+              medName={medName}
+              med_id={diaryFocus}
+            />
           </CardActions>
           {filteredDiary.length === 0 ? (
             <p>You have no diary entries for {medName}.</p>

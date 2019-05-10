@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 
 import { useInput } from '../../utilities/useInput';
 
-import { editDiary, deleteDiary } from '../../actions';
+import { addDiary, editDiary, deleteDiary } from '../../actions';
 
 const styles = {
   card: {
@@ -30,25 +30,38 @@ const styles = {
 const DiaryEntryDetail = ({
   classes,
   diaryEntry,
+  addDiary,
   editDiary,
   deleteDiary,
   handleClose,
-  medName
+  medName,
+  user_id,
+  med_id
 }) => {
   const diary_text = useInput('');
-  const [entryDate, setEntryDate] = useState(
-    moment(Date.now()).format('ddd M/D/YY h:mma')
-  );
+  const [entryDate, setEntryDate] = useState(new Date().getTime());
   const [newEntry, setNewEntry] = useState(true);
 
   useEffect(() => {
     if (diaryEntry) {
       diary_text.setValue(diaryEntry.diary_text);
-      setEntryDate(moment(diaryEntry.diary_date).format('ddd M/D/YY h:mma'));
+      setEntryDate(diaryEntry.diary_date);
       setNewEntry(false);
     }
     // eslint-disable-next-line
   }, [diaryEntry]);
+
+  const requestAddDiary = e => {
+    e.preventDefault();
+    addDiary({
+      user_id: user_id,
+      med_id: med_id,
+      diary_date: entryDate,
+      diary_emoji: 4,
+      diary_text: diary_text.value
+    });
+    handleClose();
+  };
 
   const requestEditDiary = e => {
     e.preventDefault();
@@ -70,7 +83,9 @@ const DiaryEntryDetail = ({
         <Typography className={classes.header}>
           {newEntry ? medName : diaryEntry.med_name}
         </Typography>
-        <Typography className={classes.subheader}>{entryDate}</Typography>
+        <Typography className={classes.subheader}>
+          {moment(entryDate).format('ddd M/D/YY h:mma')}
+        </Typography>
         <TextField
           id='outlined-full-width'
           style={{ margin: 8 }}
@@ -104,7 +119,7 @@ const DiaryEntryDetail = ({
           </Button>
         )}
         <Button
-          onClick={requestEditDiary}
+          onClick={newEntry ? requestAddDiary : requestEditDiary}
           variant='contained'
           color='secondary'
         >
@@ -115,7 +130,12 @@ const DiaryEntryDetail = ({
   );
 };
 
+const mapStateToProps = state => ({
+  user_id: state.user.id,
+  meds: state.meds
+});
+
 export default connect(
-  null,
-  { editDiary, deleteDiary }
+  mapStateToProps,
+  { addDiary, editDiary, deleteDiary }
 )(withStyles(styles)(DiaryEntryDetail));
