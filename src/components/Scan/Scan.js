@@ -3,10 +3,12 @@ import PhotoUpload from './PhotoUpload';
 
 // Mount PhotoUpload here?
 
-const Scan = props => {
+const Scan = ({ add, setAdd }) => {
   return (
     <div>
       <PhotoUpload />
+      { add ? "!" : "" }
+      <button onClick={() => setAdd(true)}>Test Me!</button>
     </div>
   );
 };
