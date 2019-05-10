@@ -12,7 +12,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 const PillsContainer = ({ fetchUser, user, deleteMed }) => {
   const { username } = user;
-  const userID = localStorage.getItem('userID');
+  const userID = user.id ? user.id : localStorage.getItem('userID');
   useEffect(() => {
     if (!user.auth_id) {
       fetchUser(userID);
