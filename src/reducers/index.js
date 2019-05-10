@@ -21,6 +21,9 @@ import {
   FETCH_DIARY_REQUEST,
   FETCH_DIARY_SUCCESS,
   FETCH_DIARY_FAILURE,
+  ADD_DIARY_REQUEST,
+  ADD_DIARY_SUCCESS,
+  ADD_DIARY_FAILURE,
   EDIT_DIARY_REQUEST,
   EDIT_DIARY_SUCCESS,
   EDIT_DIARY_FAILURE,
@@ -49,6 +52,7 @@ const initialState = {
   editingMed: false,
   meds: [],
   fetchingDiary: false,
+  addingDiary: false,
   editingDiary: false,
   deletingDiary: false,
   diary: [],
@@ -132,6 +136,7 @@ export default (state = initialState, action) => {
         fetchingMeds: false,
         error: action.payload
       };
+
     case ADD_MED_REQUEST:
       return {
         ...state,
@@ -150,6 +155,7 @@ export default (state = initialState, action) => {
         addingMed: false,
         error: action.payload
       };
+
     case EDIT_MED_REQUEST:
       return {
         ...state,
@@ -193,6 +199,25 @@ export default (state = initialState, action) => {
       return {
         ...state,
         fetchingDiary: false,
+        error: action.payload
+      };
+
+    case ADD_DIARY_REQUEST:
+      return {
+        ...state,
+        addingDiary: true,
+        error: null
+      };
+    case ADD_DIARY_SUCCESS:
+      return {
+        ...state,
+        addingDiary: false,
+        diary: [...state.diary, action.payload]
+      };
+    case ADD_DIARY_FAILURE:
+      return {
+        ...state,
+        addingDiary: false,
         error: action.payload
       };
 

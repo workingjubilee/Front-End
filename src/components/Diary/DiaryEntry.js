@@ -29,7 +29,7 @@ const DiaryEntry = ({ classes, diaryEntry }) => {
         <Typography className={classes.date}>{entryDate}</Typography>
       </CardContent>
       <CardActions>
-        <DiaryEntryModal diaryEntry={diaryEntry} />
+        <DiaryEntryModal diaryEntry={diaryEntry} newEntry={false} />
       </CardActions>
     </Card>
   );
