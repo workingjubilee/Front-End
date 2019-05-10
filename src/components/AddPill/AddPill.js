@@ -33,6 +33,7 @@ const StepOne = props => {
         margin='normal'
       />
 
+<<<<<<< HEAD
       <TextField
         label='imprint'
         value={imprint.value}
@@ -76,6 +77,56 @@ const mapStateToProps = state => {
     pillOnDeck: state.pillOnDeck
   };
 };
+=======
+    // const medData = {};
+    props.addRems(reminders);
+    console.log(reminders);
+    // send user to dashboard
+  };
+  const steps = [
+    <StepOne
+      nextStep={nextStep}
+      name={name}
+      imprint={imprint}
+      color={color}
+      shape={shape}
+      updateColor={updateColor}
+      updateShape={updateShape}
+    />,
+    <StepTwo
+      capsulesPerDose={capsulesPerDose}
+      updateCapsulesPerDose={updateCapsulesPerDose}
+      lengthOfDosage={lengthOfDosage}
+      updateLengthOfDosage={updateLengthOfDosage}
+      dosageFrequency={dosageFrequency}
+      updateDosageFrequency={updateDosageFrequency}
+      dosageInstruction={dosageInstruction}
+      customInstruction={customInstruction}
+      updateDosageInstruction={updateDosageInstruction}
+      prevStep={prevStep}
+      nextStep={nextStep}
+    />,
+    <StepThree
+      name={name}
+      imprint={imprint}
+      color={color}
+      shape={shape}
+      capsulesPerDose={capsulesPerDose}
+      lengthOfDosage={lengthOfDosage}
+      dosageFrequency={dosageFrequency}
+      dosageInstruction={dosageInstruction}
+      customInstruction={customInstruction}
+      setStep={setStep}
+      handleAddPill={handleAddPill}
+    />
+  ];
+  return <Card>{steps[step]}</Card>;
+};
+
+// const mapStateToProps = state => {
+//   return {};
+// };
+>>>>>>> be21d514aec8362978a72156d11b022781832f99
 
 export default connect(
   mapStateToProps,
