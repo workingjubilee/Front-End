@@ -142,7 +142,7 @@ export const DELETE_MED_FAILURE = 'DELETE_MED_FAILURE';
 export const deleteMed = medID => dispatch => {
   dispatch({ type: DELETE_MED_REQUEST });
   axios
-    .del(`${endpoint}/api/meds/${medID}`)
+    .delete(`${endpoint}/api/meds/${medID}`)
     .then(res => {
       dispatch({ type: DELETE_MED_SUCCESS, payload: res.data });
     })
