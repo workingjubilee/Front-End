@@ -148,6 +148,9 @@ class Navigation extends Component {
           <NavLink to='/scan' className='tab' activeClassName='active-tab'>
             <Typography component='h5'>Scan / Add Pill</Typography>
           </NavLink>
+          <NavLink to='/pills' className='tab' activeClassName='active-tab'>
+            <Typography component='h5'>Pill List</Typography>
+          </NavLink>
           <NavLink to='/dashboard' className='tab' activeClassName='active-tab'>
             <Typography component='h5'>Scheduled Pills</Typography>
           </NavLink>

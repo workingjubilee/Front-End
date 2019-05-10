@@ -14,7 +14,6 @@ const Diary = ({ fetchDiary, user_id, meds }) => {
   const diaryFocus = useInput(null);
 
   const changeFocus = id => {
-    console.log('changeFocus!');
     diaryFocus.setValue(id);
   };
 

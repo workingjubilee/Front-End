@@ -3,10 +3,10 @@ import Card from '@material-ui/core/Card';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { connect } from 'react-redux';
 import { fetchMeds } from '../../actions';
-import Med from '../Meds/Med';
+import Pill from './Pill';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-class Meds extends Component {
+class PillsList extends Component {
   state = {
     noMeds: false
   };
@@ -49,10 +49,10 @@ class Meds extends Component {
     } else {
       return (
         <Card className={classes.card}>
-          <h2>Your scheduled medications for today</h2>
+          <h2>Your medications</h2>
           <div className={classes.meds}>
             {meds.map(med => (
-              <Med key={med.id} med={med} />
+              <Pill key={med.id} med={med} />
             ))}
           </div>
         </Card>
@@ -85,9 +85,9 @@ const mapStateToProps = state => ({
   error: state.error
 });
 
-const StyledMeds = withStyles(styles)(Meds);
+const StyledPillsList = withStyles(styles)(PillsList);
 
 export default connect(
   mapStateToProps,
   { fetchMeds }
-)(StyledMeds);
+)(StyledPillsList);
