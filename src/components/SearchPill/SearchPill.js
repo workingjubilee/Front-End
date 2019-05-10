@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { useInput } from '../../utilities/useInput';
 import { shapes } from '../data/shapes';
 import { colors } from '../data/colors';
+import axios from 'axios';
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
@@ -10,11 +11,13 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 
-const StepOne = props => {
+// import AddPillButton from '../Scan/SearchResults/AddPillButton';
+
+const SearchPill = props => {
   const name = useInput();
   const imprint = useInput();
-  const [color, setColor] = useState(0);
-  const [shape, setShape] = useState(0);
+  const [color, setColor] = useState(null);
+  const [shape, setShape] = useState(null);
   const handleColorChange = e => {
     setColor(e.target.value);
   };
@@ -23,6 +26,27 @@ const StepOne = props => {
   };
   const handleSubmit = e => {
     e.preventDefault();
+
+    // axios
+    //   .post(`${process.env.REACT_APP_DS}`, {
+    //     name,
+    //     imprint,
+    //     color,
+    //     shape
+    //   })
+    //   .then(res => {
+    //     console.log(res);
+    //     props.setSearchResult(res.data);
+    //   })
+    //   .catch(err => console.error(err));
+    props.setSearchResults([
+      {
+        pillName: name.value,
+        imageLink:
+          'https://www.drugs.com/images/pills/mmx/t110118f/tizanidine-hydrochloride.jpg'
+      }
+    ]);
+    // Search for pill
   };
   return (
     <form onSubmit={handleSubmit}>
@@ -33,7 +57,6 @@ const StepOne = props => {
         margin='normal'
       />
 
-<<<<<<< HEAD
       <TextField
         label='imprint'
         value={imprint.value}
@@ -67,7 +90,7 @@ const StepOne = props => {
         </Select>
       </FormControl>
 
-      <Button type='submit'>next</Button>
+      <Button type='submit'>Search</Button>
     </form>
   );
 };
@@ -77,58 +100,8 @@ const mapStateToProps = state => {
     pillOnDeck: state.pillOnDeck
   };
 };
-=======
-    // const medData = {};
-    props.addRems(reminders);
-    console.log(reminders);
-    // send user to dashboard
-  };
-  const steps = [
-    <StepOne
-      nextStep={nextStep}
-      name={name}
-      imprint={imprint}
-      color={color}
-      shape={shape}
-      updateColor={updateColor}
-      updateShape={updateShape}
-    />,
-    <StepTwo
-      capsulesPerDose={capsulesPerDose}
-      updateCapsulesPerDose={updateCapsulesPerDose}
-      lengthOfDosage={lengthOfDosage}
-      updateLengthOfDosage={updateLengthOfDosage}
-      dosageFrequency={dosageFrequency}
-      updateDosageFrequency={updateDosageFrequency}
-      dosageInstruction={dosageInstruction}
-      customInstruction={customInstruction}
-      updateDosageInstruction={updateDosageInstruction}
-      prevStep={prevStep}
-      nextStep={nextStep}
-    />,
-    <StepThree
-      name={name}
-      imprint={imprint}
-      color={color}
-      shape={shape}
-      capsulesPerDose={capsulesPerDose}
-      lengthOfDosage={lengthOfDosage}
-      dosageFrequency={dosageFrequency}
-      dosageInstruction={dosageInstruction}
-      customInstruction={customInstruction}
-      setStep={setStep}
-      handleAddPill={handleAddPill}
-    />
-  ];
-  return <Card>{steps[step]}</Card>;
-};
-
-// const mapStateToProps = state => {
-//   return {};
-// };
->>>>>>> be21d514aec8362978a72156d11b022781832f99
 
 export default connect(
   mapStateToProps,
   null
-)(StepOne);
+)(SearchPill);
