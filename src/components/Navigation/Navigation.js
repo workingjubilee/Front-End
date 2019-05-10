@@ -97,7 +97,7 @@ class Navigation extends Component {
                 noWrap
               >
                 <Link to='/' className='title'>
-                  <span>rxid</span> Pill Identifier
+                  <span>rxID</span> Pill Identifier
                 </Link>
               </Typography>
               <div className='searchBar'>

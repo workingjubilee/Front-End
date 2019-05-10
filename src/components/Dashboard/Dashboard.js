@@ -11,7 +11,7 @@ import FormControl from '@material-ui/core/FormControl';
 const Dashboard = ({ fetchUser, user, classes }) => {
   const { username } = user;
   const [date, setDate] = useState(new Date());
-  const userID = localStorage.getItem('userID');
+  const userID = user.id ? user.id : localStorage.getItem('userID');
   useEffect(() => {
     if (!user.auth_id) {
       fetchUser(userID);
