@@ -1,10 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { fetchUser } from '../../actions';
+import { fetchUser, deleteMed } from '../../actions';
 import PillsList from './PillsList';
 import withStyles from '@material-ui/core/styles/withStyles';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
-const PillsContainer = ({ fetchUser, user }) => {
+const PillsContainer = ({ fetchUser, user, deleteMed }) => {
   const { username } = user;
   const userID = localStorage.getItem('userID');
   useEffect(() => {
@@ -12,10 +18,49 @@ const PillsContainer = ({ fetchUser, user }) => {
       fetchUser(userID);
     }
   }, [user, fetchUser, userID]);
+  const [open, setOpen] = useState(false);
+  const [medID, setMedID] = useState(null);
+
+  function openDialog(id) {
+    handleClickOpen();
+    setMedID(id);
+  }
+
+  function handleClickOpen() {
+    setOpen(true);
+  }
+
+  function handleClose() {
+    setOpen(false);
+  }
 
   return (
     <div className='DashboardPage'>
-      {username ? <PillsList user_id={userID} /> : null}
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby='delete-pill'
+        aria-describedby='alert-dialog-description'
+        keepMounted
+      >
+        <DialogTitle id='delete-pill'>
+          {'Are you sure you want to delete this medication?'}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id='alert-dialog-description'>
+            Deleting a medication will also delete its reminders.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color='primary'>
+            No, keep this medication
+          </Button>
+          <Button color='primary' autoFocus onClick={() => deleteMed(medID)}>
+            Delete this medication
+          </Button>
+        </DialogActions>
+      </Dialog>
+      {username ? <PillsList user_id={userID} openDialog={openDialog} /> : null}
     </div>
   );
 };
@@ -44,5 +89,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { fetchUser }
+  { fetchUser, deleteMed }
 )(StyledPillsContainer);
