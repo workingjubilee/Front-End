@@ -1,27 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import { useInput } from '../../utilities/useInput';
 import Card from '@material-ui/core/Card';
-import StepOne from './AddPillSteps/StepOne';
-import StepTwo from './AddPillSteps/StepTwo';
-import StepThree from './AddPillSteps/StepThree';
+import StepOne from './AddDosageSteps/StepOne';
+import StepTwo from './AddDosageSteps/StepTwo';
 import { makeReminders } from './helper';
+import { addRems } from '../../actions';
 
-const AddPill = () => {
-  const name = useInput();
-  const imprint = useInput();
-  const [color, setColor] = useState(0);
-  const [shape, setShape] = useState(0);
+// '/adddosage/:id'
+
+const AddPill = props => {
   const [capsulesPerDose, setCapsulesPerDose] = useState(0);
   const [lengthOfDosage, setLenghOfDosage] = useState(0);
   const [dosageFrequency, setDosageFrequency] = useState('');
   const [dosageInstruction, setDosageInstruction] = useState('');
   const customInstruction = useInput();
-  const updateColor = color => {
-    setColor(color);
-  };
-  const updateShape = shape => {
-    setShape(shape);
-  };
   const updateCapsulesPerDose = amount => {
     setCapsulesPerDose(amount);
   };
@@ -35,6 +28,11 @@ const AddPill = () => {
     setDosageInstruction(value);
   };
   const [step, setStep] = useState(0);
+  useEffect(() => {
+    console.log('name: ', props.name);
+    console.log(step);
+  }, [step, props.name]);
+
   const nextStep = () => {
     setStep(step + 1);
   };
@@ -45,26 +43,35 @@ const AddPill = () => {
     if (!dosageFrequency) {
       return null;
     }
-    makeReminders(
+    const userID = localStorage.getItem('userID');
+    const reminderTimes = makeReminders(
       '2019-05-09T14:36:31.364Z',
       '2019-06-09T12:36:31.364Z',
       dosageFrequency,
       8,
-      'Wed',
-      '08:00:00'
+      'Wednesday,',
+      '08:00:00',
+      customInstruction.value || dosageInstruction || null
     );
+    const reminders = reminderTimes.map(time => {
+      return {
+        user_id: userID,
+        med_id: 1,
+        rem_type: 'admin',
+        rem_notes: null,
+        rem_date: time
+      };
+    });
+
+    // const medData = {
+    //   // data collected from here that will be used to update the med table row
+    // };
+    props.addRems(reminders);
+    console.log(reminders);
+    // send user to dashboard
   };
   const steps = [
     <StepOne
-      nextStep={nextStep}
-      name={name}
-      imprint={imprint}
-      color={color}
-      shape={shape}
-      updateColor={updateColor}
-      updateShape={updateShape}
-    />,
-    <StepTwo
       capsulesPerDose={capsulesPerDose}
       updateCapsulesPerDose={updateCapsulesPerDose}
       lengthOfDosage={lengthOfDosage}
@@ -77,11 +84,11 @@ const AddPill = () => {
       prevStep={prevStep}
       nextStep={nextStep}
     />,
-    <StepThree
-      name={name}
-      imprint={imprint}
-      color={color}
-      shape={shape}
+    <StepTwo
+      name={props.name}
+      // imprint={props.imprint}
+      // color={props.color}
+      // shape={props.shape}
       capsulesPerDose={capsulesPerDose}
       lengthOfDosage={lengthOfDosage}
       dosageFrequency={dosageFrequency}
@@ -94,4 +101,11 @@ const AddPill = () => {
   return <Card>{steps[step]}</Card>;
 };
 
-export default AddPill;
+// const mapStateToProps = state => {
+//   return {};
+// };
+
+export default connect(
+  null,
+  { addRems }
+)(AddPill);
