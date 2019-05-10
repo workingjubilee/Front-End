@@ -2,8 +2,13 @@ import React, { useState } from 'react';
 import AddPill from '../AddPill/AddPill.js';
 import Scan from '../Scan/Scan.js';
 
-const AddOrScan = props => {
-  const [add,setAdd] = useState(false);
+const AddOrScan = ({ location }) => {
+  const [add,setAdd] = useState(
+    location.pathname === '/add' ? true : false
+  );
+
+  console.log(location);
+
 
   return (
     <section>

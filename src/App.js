@@ -8,7 +8,6 @@ import PillsContainer from './components/PillsContainer/PillsContainer';
 import Landing from './components/Landing/Landing';
 import Loading from './components/Loading/Loading';
 import SearchPill from './components/Scan/SearchPill';
-import AddPill from './components/AddPill/AddPill';
 import SearchResults from './components/Scan/SearchResults';
 import AddOrScan from './components/AddOrScan/Container.js';
 
@@ -23,7 +22,7 @@ function App() {
         <Route exact path='/landing' component={Landing} />
         <Route exact path='/onboard' component={Onboard} />
         <Route exact path='/diary' component={Diary} />
-        <Route path='/scan' component={AddOrScan} />
+        <Route path={ ['/add', '/scan'] } component={AddOrScan} />
         <Route exact path='/dashboard' component={Dashboard} />
         <Route exact path='/pills' component={PillsContainer} />
         <Route exact path='/loading' component={Loading} />
