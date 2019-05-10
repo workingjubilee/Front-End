@@ -4,8 +4,8 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { colors } from '../../data/colors';
-import { shapes } from '../../data/shapes';
+// import { colors } from '../../data/colors';
+// import { shapes } from '../../data/shapes';
 
 const StepThree = props => {
   return (

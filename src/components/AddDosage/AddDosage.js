@@ -31,7 +31,7 @@ const AddPill = props => {
   useEffect(() => {
     console.log('name: ', props.name);
     console.log(step);
-  }, [step]);
+  }, [step, props.name]);
 
   const nextStep = () => {
     setStep(step + 1);
@@ -63,9 +63,9 @@ const AddPill = props => {
       };
     });
 
-    const medData = {
-      // data collected from here that will be used to update the med table row
-    };
+    // const medData = {
+    //   // data collected from here that will be used to update the med table row
+    // };
     props.addRems(reminders);
     console.log(reminders);
     // send user to dashboard
@@ -101,9 +101,9 @@ const AddPill = props => {
   return <Card>{steps[step]}</Card>;
 };
 
-const mapStateToProps = state => {
-  return {};
-};
+// const mapStateToProps = state => {
+//   return {};
+// };
 
 export default connect(
   null,

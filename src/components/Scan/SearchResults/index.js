@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import SearchResult from './SearchResult';
 
 const SearchResults = ({
