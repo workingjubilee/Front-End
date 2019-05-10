@@ -24,6 +24,7 @@ function DiaryModal({
   handleClose,
   medName,
   med_id,
+  dateTime,
   ...other
 }) {
   return (
@@ -38,6 +39,7 @@ function DiaryModal({
           diaryEntry={diaryEntry}
           medName={medName}
           med_id={med_id}
+          dateTime={dateTime}
         />
       </div>
     </Dialog>
@@ -51,8 +53,10 @@ DiaryModal.propTypes = {
 
 function DiaryEntryModal({ diaryEntry, newEntry, medName, med_id }) {
   const [open, setOpen] = React.useState(false);
+  const [dateTime, setDateTime] = React.useState();
 
   function handleClickOpen() {
+    setDateTime(new Date().getTime());
     setOpen(true);
   }
 
@@ -72,6 +76,7 @@ function DiaryEntryModal({ diaryEntry, newEntry, medName, med_id }) {
         diaryEntry={diaryEntry}
         medName={medName}
         med_id={med_id}
+        dateTime={dateTime}
       />
     </div>
   );

@@ -36,10 +36,11 @@ const DiaryEntryDetail = ({
   handleClose,
   medName,
   user_id,
-  med_id
+  med_id,
+  dateTime
 }) => {
   const diary_text = useInput('');
-  const [entryDate, setEntryDate] = useState(new Date().getTime());
+  const [entryDate, setEntryDate] = useState();
   const [newEntry, setNewEntry] = useState(true);
 
   useEffect(() => {
@@ -47,12 +48,15 @@ const DiaryEntryDetail = ({
       diary_text.setValue(diaryEntry.diary_text);
       setEntryDate(diaryEntry.diary_date);
       setNewEntry(false);
+    } else {
+      setEntryDate(dateTime);
     }
     // eslint-disable-next-line
   }, [diaryEntry]);
 
   const requestAddDiary = e => {
     e.preventDefault();
+    console.log('entryDate:', entryDate);
     addDiary({
       user_id: user_id,
       med_id: med_id,

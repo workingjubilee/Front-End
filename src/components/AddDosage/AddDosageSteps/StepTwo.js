@@ -4,8 +4,8 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { colors } from '../../data/colors';
-import { shapes } from '../../data/shapes';
+// import { colors } from '../../data/colors';
+// import { shapes } from '../../data/shapes';
 
 const StepThree = props => {
   return (
@@ -17,10 +17,10 @@ const StepThree = props => {
               Pill Name
             </Typography>
             <Typography component='div' variant='headline'>
-              {props.name.value}
+              {props.name}
             </Typography>
           </div>
-          <div style={{ display: 'flex' }}>
+          {/* <div style={{ display: 'flex' }}>
             <Typography component='div' variant='title'>
               Imprint
             </Typography>
@@ -43,13 +43,10 @@ const StepThree = props => {
             <Typography component='div' variant='headline'>
               {shapes[props.shape].name}
             </Typography>
-          </div>
+          </div> */}
         </CardContent>
-        <CardActions>
-          <Button onClick={() => props.setStep(0)}>Edit</Button>
-        </CardActions>
       </Card>
-      {!props.capsulesPerDose &&
+      {/* {!props.capsulesPerDose &&
       !props.lengthOfDosage &&
       !props.dosageFrequency &&
       !props.dosageInstruction ? (
@@ -59,46 +56,46 @@ const StepThree = props => {
             <Button onClick={() => props.setStep(1)}>Edit</Button>
           </CardActions>
         </Card>
-      ) : (
-        <Card>
-          <CardContent>
-            <div style={{ display: 'flex' }}>
-              <Typography component='div' variant='title'>
-                Capsules Per Dose
-              </Typography>
-              <Typography component='div' variant='headline'>
-                {props.capsulesPerDose}
-              </Typography>
-            </div>
-            <div style={{ display: 'flex' }}>
-              <Typography component='div' variant='title'>
-                Length of Dosage
-              </Typography>
-              <Typography component='div' variant='headline'>
-                {props.lengthOfDosage}
-              </Typography>
-            </div>
-            <div style={{ display: 'flex' }}>
-              <Typography component='div' variant='title'>
-                Dosage Frequency
-              </Typography>
-              <Typography component='div' variant='headline'>
-                {props.dosageFrequency}
-              </Typography>
-            </div>
-            <div style={{ display: 'flex' }}>
-              <Typography component='div' variant='title'>
-                Dosage Instruction
-              </Typography>
-              <Typography component='div' variant='headline'>
-                {props.dosageInstruction}
-              </Typography>
-            </div>
-          </CardContent>
-          <CardActions>
-            <Button onClick={() => props.setStep(1)}>Edit</Button>
-          </CardActions>
-        </Card>
+      ) : ( */}
+      <Card>
+        <CardContent>
+          <div style={{ display: 'flex' }}>
+            <Typography component='div' variant='title'>
+              Capsules Per Dose
+            </Typography>
+            <Typography component='div' variant='headline'>
+              {props.capsulesPerDose}
+            </Typography>
+          </div>
+          <div style={{ display: 'flex' }}>
+            <Typography component='div' variant='title'>
+              Length of Dosage
+            </Typography>
+            <Typography component='div' variant='headline'>
+              {props.lengthOfDosage}
+            </Typography>
+          </div>
+          <div style={{ display: 'flex' }}>
+            <Typography component='div' variant='title'>
+              Dosage Frequency
+            </Typography>
+            <Typography component='div' variant='headline'>
+              {props.dosageFrequency}
+            </Typography>
+          </div>
+          <div style={{ display: 'flex' }}>
+            <Typography component='div' variant='title'>
+              Dosage Instruction
+            </Typography>
+            <Typography component='div' variant='headline'>
+              {props.dosageInstruction}
+            </Typography>
+          </div>
+        </CardContent>
+        <CardActions>
+          <Button onClick={() => props.setStep(0)}>Edit</Button>
+        </CardActions>
+      </Card>
       )}
       <CardActions>
         <Button onClick={() => props.handleAddPill()}>Add Pill</Button>

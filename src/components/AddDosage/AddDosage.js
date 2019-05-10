@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useInput } from '../../utilities/useInput';
 import Card from '@material-ui/core/Card';
-import StepOne from './AddPillSteps/StepTwo';
-import StepTwo from './AddPillSteps/StepThree';
+import StepOne from './AddDosageSteps/StepOne';
+import StepTwo from './AddDosageSteps/StepTwo';
 import { makeReminders } from './helper';
 import { addRems } from '../../actions';
 
-'/adddosage/:id'
+// '/adddosage/:id'
 
 const AddPill = props => {
   const [capsulesPerDose, setCapsulesPerDose] = useState(0);
@@ -28,6 +28,11 @@ const AddPill = props => {
     setDosageInstruction(value);
   };
   const [step, setStep] = useState(0);
+  useEffect(() => {
+    console.log('name: ', props.name);
+    console.log(step);
+  }, [step, props.name]);
+
   const nextStep = () => {
     setStep(step + 1);
   };
@@ -44,7 +49,7 @@ const AddPill = props => {
       '2019-06-09T12:36:31.364Z',
       dosageFrequency,
       8,
-      'Wed',
+      'Wednesday,',
       '08:00:00',
       customInstruction.value || dosageInstruction || null
     );
@@ -58,9 +63,9 @@ const AddPill = props => {
       };
     });
 
-    const medData = {
-        // data collected from here that will be used to update the med table row
-    };
+    // const medData = {
+    //   // data collected from here that will be used to update the med table row
+    // };
     props.addRems(reminders);
     console.log(reminders);
     // send user to dashboard
@@ -80,10 +85,10 @@ const AddPill = props => {
       nextStep={nextStep}
     />,
     <StepTwo
-      name={name}
-      imprint={imprint}
-      color={color}
-      shape={shape}
+      name={props.name}
+      // imprint={props.imprint}
+      // color={props.color}
+      // shape={props.shape}
       capsulesPerDose={capsulesPerDose}
       lengthOfDosage={lengthOfDosage}
       dosageFrequency={dosageFrequency}
@@ -96,9 +101,9 @@ const AddPill = props => {
   return <Card>{steps[step]}</Card>;
 };
 
-const mapStateToProps = state => {
-  return {};
-};
+// const mapStateToProps = state => {
+//   return {};
+// };
 
 export default connect(
   null,

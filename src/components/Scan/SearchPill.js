@@ -8,13 +8,13 @@ const SearchPill = () => {
   const name = useInput();
   const imprint = useInput();
   const [shape, setShape] = useState(0);
-  const [color, setColor] = useState(0)
+  const [color, setColor] = useState(0);
   const updateShape = shape => {
     setShape(shape);
   };
   const updateColor = color => {
-    setColor(color)
-  }
+    setColor(color);
+  };
   const [step, setStep] = useState(0);
   const nextStep = () => {
     setStep(step + 1);
