@@ -1,72 +1,83 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { useInput } from '../../utilities/useInput';
-import Card from '@material-ui/core/Card';
-import StepOne from './AddPillSteps/StepOne';
-import StepTwo from './AddPillSteps/StepTwo';
-import StepThree from './AddPillSteps/StepThree';
-import { makeReminders } from './helper';
-import { addRems } from '../../actions';
+import { shapes } from '../data/shapes';
+import { colors } from '../data/colors';
+import TextField from '@material-ui/core/TextField';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import Button from '@material-ui/core/Button';
 
-const AddPill = props => {
+const StepOne = props => {
   const name = useInput();
   const imprint = useInput();
   const [color, setColor] = useState(0);
   const [shape, setShape] = useState(0);
-  const [capsulesPerDose, setCapsulesPerDose] = useState(0);
-  const [lengthOfDosage, setLenghOfDosage] = useState(0);
-  const [dosageFrequency, setDosageFrequency] = useState('');
-  const [dosageInstruction, setDosageInstruction] = useState('');
-  const customInstruction = useInput();
-  const updateColor = color => {
-    setColor(color);
+  const handleColorChange = e => {
+    setColor(e.target.value);
   };
-  const updateShape = shape => {
-    setShape(shape);
+  const handleShapeChange = e => {
+    setShape(e.target.value);
   };
-  const updateCapsulesPerDose = amount => {
-    setCapsulesPerDose(amount);
+  const handleSubmit = e => {
+    e.preventDefault();
   };
-  const updateLengthOfDosage = value => {
-    setLenghOfDosage(value);
-  };
-  const updateDosageFrequency = value => {
-    setDosageFrequency(value);
-  };
-  const updateDosageInstruction = value => {
-    setDosageInstruction(value);
-  };
-  const [step, setStep] = useState(0);
-  const nextStep = () => {
-    setStep(step + 1);
-  };
-  const prevStep = () => {
-    setStep(step - 1);
-  };
-  const handleAddPill = () => {
-    if (!dosageFrequency) {
-      return null;
-    }
-    const userID = localStorage.getItem('userID');
-    const reminderTimes = makeReminders(
-      '2019-05-09T14:36:31.364Z',
-      '2019-06-09T12:36:31.364Z',
-      dosageFrequency,
-      8,
-      'Wed',
-      '08:00:00',
-      customInstruction.value || dosageInstruction || null
-    );
-    const reminders = reminderTimes.map(time => {
-      return {
-        user_id: userID,
-        med_id: 1,
-        rem_type: 'admin',
-        rem_notes: null,
-        rem_date: time
-      };
-    });
+  return (
+    <form onSubmit={handleSubmit}>
+      <TextField
+        label='pill name'
+        value={name.value}
+        onChange={name.updateValue}
+        margin='normal'
+      />
 
+<<<<<<< HEAD
+      <TextField
+        label='imprint'
+        value={imprint.value}
+        onChange={imprint.updateValue}
+        margin='normal'
+      />
+
+      <FormControl>
+        <InputLabel>color</InputLabel>
+        <Select value={colors[color]} onChange={handleColorChange}>
+          {colors.map(color => {
+            return (
+              <MenuItem key={color.id} value={color.id}>
+                {color.name}
+              </MenuItem>
+            );
+          })}
+        </Select>
+      </FormControl>
+
+      <FormControl>
+        <InputLabel>shape</InputLabel>
+        <Select value={shapes[shape]} onChange={handleShapeChange}>
+          {shapes.map(shape => {
+            return (
+              <MenuItem key={shape.id} value={shape.id}>
+                {shape.name}
+              </MenuItem>
+            );
+          })}
+        </Select>
+      </FormControl>
+
+      <Button type='submit'>next</Button>
+    </form>
+  );
+};
+
+const mapStateToProps = state => {
+  return {
+    pillOnDeck: state.pillOnDeck
+  };
+};
+=======
     // const medData = {};
     props.addRems(reminders);
     console.log(reminders);
@@ -115,8 +126,9 @@ const AddPill = props => {
 // const mapStateToProps = state => {
 //   return {};
 // };
+>>>>>>> be21d514aec8362978a72156d11b022781832f99
 
 export default connect(
-  null,
-  { addRems }
-)(AddPill);
+  mapStateToProps,
+  null
+)(StepOne);
