@@ -5,6 +5,8 @@ import SearchResults from '../Scan/SearchResults/';
 import AddDosage from '../AddDosage/AddDosage';
 
 const AddOrScan = ({ location, history }) => {
+  const [status, setStatus] = useState('search');
+  
   const [add, setAdd] = useState(location.pathname === '/add' ? true : false);
 
   const [dosageDisplay, setDosageDisplay] = useState(false);
@@ -20,10 +22,10 @@ const AddOrScan = ({ location, history }) => {
   if (dosageDisplay) {
     return (
       <AddDosage
-      name={pill.pillName}
-      // imprint={}
-      // color={}
-      // shape={}
+        name={pill.pillName}
+        // imprint={}
+        // color={}
+        // shape={}
       />
     );
   }
@@ -40,16 +42,18 @@ const AddOrScan = ({ location, history }) => {
 
   return (
     <section>
-      {add === false ? (
+      {/* {add === false ? (
         <Scan add={add} setAdd={setAdd} />
-      ) : (
-        <SearchPill
-          history={history}
-          setSearchResults={setSearchResults}
-          setDosageDisplay={setDosageDisplay}
-        />
-      )}
-      {add ? '*' : ''}
+      ) : ( */}
+      <SearchPill
+        status={status}
+        setStatus={setStatus}
+        history={history}
+        setSearchResults={setSearchResults}
+        setDosageDisplay={setDosageDisplay}
+      />
+      {/* )}
+      {add ? '*' : ''} */}
     </section>
   );
 };
