@@ -27,7 +27,6 @@ function App() {
         <Route exact path='/pills' component={PillsContainer} />
         <Route exact path='/loading' component={Loading} />
         <Route exact path='/searchpill' component={SearchPill} />
-        <Route exact path='/addpill' component={AddPill} />
         <Route exact path='/searchresults' component={SearchResults} />
       </header>
     </div>
