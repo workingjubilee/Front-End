@@ -34,6 +34,11 @@ const PillsContainer = ({ fetchUser, user, deleteMed }) => {
     setOpen(false);
   }
 
+  function handleDeleteMed() {
+    handleClose();
+    deleteMed(medID);
+  }
+
   return (
     <div className='DashboardPage'>
       <Dialog
@@ -55,7 +60,7 @@ const PillsContainer = ({ fetchUser, user, deleteMed }) => {
           <Button onClick={handleClose} color='primary'>
             No, keep this medication
           </Button>
-          <Button color='primary' autoFocus onClick={() => deleteMed(medID)}>
+          <Button color='primary' autoFocus onClick={handleDeleteMed}>
             Delete this medication
           </Button>
         </DialogActions>
