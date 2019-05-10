@@ -67,7 +67,6 @@ const DiaryEntryDetail = ({
         <Typography className={classes.subheader}>{entryDate}</Typography>
         <TextField
           id='outlined-full-width'
-          label='How are you feeling?'
           style={{ margin: 8 }}
           placeholder='How are you feeling?'
           fullWidth

@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Button from '@material-ui/core/Button';
+import CardActions from '@material-ui/core/CardActions';
 
 import DiaryEntry from './DiaryEntry';
 
@@ -14,17 +16,29 @@ const DiaryEntries = ({ diary, diaryFocus, meds }) => {
         <div />
       ) : !diaryFocus ? (
         <h2>Choose a medication to view diary entries...</h2>
-      ) : filteredDiary.length === 0 ? (
-        <div>
-          <h2>Entries</h2>
-          <p>You have no diary entries for this medication.</p>
-        </div>
       ) : (
         <div>
-          <h2>Entries</h2>
-          {filteredDiary.map(diaryEntry => (
-            <DiaryEntry key={diaryEntry.id} diaryEntry={diaryEntry} />
-          ))}
+          <CardActions className='diaryEntriesHeader'>
+            <h2>Entries</h2>
+            <Button variant='contained' color='primary'>
+              New Entry
+            </Button>
+          </CardActions>
+          {filteredDiary.length === 0 ? (
+            <p>
+              You have no diary entries for{' '}
+              {
+                meds.filter(med => {
+                  return med.id === diaryFocus;
+                })[0].med_name
+              }
+              .
+            </p>
+          ) : (
+            filteredDiary.map(diaryEntry => (
+              <DiaryEntry key={diaryEntry.id} diaryEntry={diaryEntry} />
+            ))
+          )}
         </div>
       )}
     </div>
