@@ -67,7 +67,7 @@ const AddPill = props => {
       };
     });
 
-    const medData = {};
+    // const medData = {};
     props.addRems(reminders);
     console.log(reminders);
     // send user to dashboard
@@ -112,9 +112,9 @@ const AddPill = props => {
   return <Card>{steps[step]}</Card>;
 };
 
-const mapStateToProps = state => {
-  return {};
-};
+// const mapStateToProps = state => {
+//   return {};
+// };
 
 export default connect(
   null,
