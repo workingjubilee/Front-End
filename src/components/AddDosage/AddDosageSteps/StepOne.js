@@ -38,15 +38,15 @@ const StepTwo = props => {
       props.updateDosageInstruction(value);
     }
   };
-  const handlePrevStep = () => {
-    props.prevStep();
-  };
+  // const handlePrevStep = () => {
+  //   props.prevStep();
+  // };
   const handleConfirmDosage = () => {
     props.nextStep();
   };
-  const handleSkip = () => {
-    props.nextStep();
-  };
+  // const handleSkip = () => {
+  //   props.nextStep();
+  // };
   return (
     <form>
       <Card style={{ display: 'flex' }}>
@@ -187,12 +187,11 @@ const StepTwo = props => {
 
       <Typography>Text Reminder</Typography>
 
-      <Button onClick={handlePrevStep}>Back</Button>
+      {/* <Button onClick={handlePrevStep}>Back</Button> */}
 
       <Button onClick={handleConfirmDosage}>Confirm Dosage</Button>
 
-      <Button onClick={handleSkip}>Skip</Button>
-    </form>
+x    </form>
   );
 };
 
