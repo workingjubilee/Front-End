@@ -47,14 +47,15 @@ const AddPill = props => {
     const userID = localStorage.getItem('userID');
     const reminderTimes = makeReminders(
       '2019-05-09T14:36:31.364Z',
-      '2019-06-09T12:36:31.364Z',
+      '2020-05-09T12:36:31.364Z',
       3,
       'monthly',
       [7, 14, 21],
       ['Monday,', 'Wednesday,', 'Friday,'],
-      ['23:15', '12:30', '00:00'],
-      customInstruction.value || dosageInstruction || null
+      ['23:15', '12:30', '00:00']
+      // customInstruction.value || dosageInstruction || null
     );
+    console.log(reminderTimes.map(time => new Date(time)));
     // const reminders = reminderTimes.map(time => {
     //   return {
     //     user_id: userID,
