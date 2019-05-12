@@ -23,7 +23,7 @@ export const logIn = () => dispatch => {
     .catch(err => {
       dispatch({
         type: LOGIN_FAILURE,
-        payload: err.response.data.message
+        payload: err.response
           ? `${err.message}. ${err.response.data.message}`
           : err.message
       });
@@ -44,7 +44,7 @@ export const updateInfo = creds => dispatch => {
     .catch(err => {
       dispatch({
         type: EDIT_USER_FAILURE,
-        payload: err.response.data.message
+        payload: err.response
           ? `${err.message}. ${err.response.data.message}`
           : err.message
       });
@@ -65,7 +65,7 @@ export const fetchUser = id => dispatch => {
     .catch(err => {
       dispatch({
         type: FETCH_USER_FAILURE,
-        payload: err.response.data.message
+        payload: err.response
           ? `${err.message}. ${err.response.data.message}`
           : err.message
       });
@@ -86,7 +86,7 @@ export const fetchMeds = user_id => dispatch => {
     .catch(err => {
       dispatch({
         type: FETCH_MEDS_FAILURE,
-        payload: err.response.data.message
+        payload: err.response
           ? `${err.message}. ${err.response.data.message}`
           : err.message
       });
@@ -107,7 +107,7 @@ export const addMed = newMed => dispatch => {
     .catch(err => {
       dispatch({
         type: ADD_MED_FAILURE,
-        payload: err.response.data.message
+        payload: err.response
           ? `${err.message}. ${err.response.data.message}`
           : err.message
       });
@@ -128,7 +128,7 @@ export const editMed = editedMed => dispatch => {
     .catch(err => {
       dispatch({
         type: EDIT_MED_FAILURE,
-        payload: err.response.data.message
+        payload: err.response
           ? `${err.message}. ${err.response.data.message}`
           : err.message
       });
@@ -149,7 +149,7 @@ export const deleteMed = medID => dispatch => {
     .catch(err => {
       dispatch({
         type: DELETE_MED_FAILURE,
-        payload: err.response.data.message
+        payload: err.response
           ? `${err.message}. ${err.response.data.message}`
           : err.message
       });
@@ -170,7 +170,7 @@ export const fetchDiary = user_id => dispatch => {
     .catch(err => {
       dispatch({
         type: FETCH_DIARY_FAILURE,
-        payload: err.response.data.message
+        payload: err.response
           ? `${err.message}. ${err.response.data.message}`
           : err.message
       });
@@ -212,7 +212,9 @@ export const editDiary = (diary_id, diary_edits) => dispatch => {
     .catch(err => {
       dispatch({
         type: EDIT_DIARY_FAILURE,
-        payload: `${err.message}. ${err.response.data.message}`
+        payload: err.response
+          ? `${err.message}. ${err.response.data.message}`
+          : err.message
       });
     });
 };
@@ -231,7 +233,9 @@ export const deleteDiary = diary_id => dispatch => {
     .catch(err => {
       dispatch({
         type: DELETE_DIARY_FAILURE,
-        payload: `${err.message}. ${err.response.data.message}`
+        payload: err.response
+          ? `${err.message}. ${err.response.data.message}`
+          : err.message
       });
     });
 };
@@ -250,7 +254,7 @@ export const fetchRems = user_id => dispatch => {
     .catch(err => {
       dispatch({
         type: FETCH_REMS_FAILURE,
-        payload: err.response.data.message
+        payload: err.response
           ? `${err.message}. ${err.response.data.message}`
           : err.message
       });
@@ -271,7 +275,7 @@ export const addRems = remsList => dispatch => {
     .catch(err => {
       dispatch({
         type: ADD_REMS_FAILURE,
-        payload: err.response.data.message
+        payload: err.response
           ? `${err.message}. ${err.response.data.message}`
           : err.message
       });

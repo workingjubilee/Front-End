@@ -17,7 +17,13 @@ const styles = {
   }
 };
 
-const SearchResult = ({ classes, pill, history }) => {
+const SearchResult = ({
+  classes,
+  pill,
+  history,
+  setPill,
+  setDosageDisplay
+}) => {
   return (
     <Card className={classes.card}>
       <CardContent className={classes.cardContent}>
@@ -32,10 +38,11 @@ const SearchResult = ({ classes, pill, history }) => {
     if (scheduled) {
       console.log(`Gonna send ${pill} to rems table`);
       // Needs to send user to scheduling component, but just pushing to dashboard for now
-      history.push('/addpill');
+      // history.push('/addpill');
+      setPill(pill);
+      setDosageDisplay(true);
     }
     console.log(`Gonna send ${pill} to meds table`);
-    history.push('/addpill');
   }
 };
 

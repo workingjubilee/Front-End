@@ -1,11 +1,15 @@
+import moment from 'moment';
+
 export const makeReminders = (
   startDate,
   endDate,
   frequency,
   date,
   day,
-  time
+  time,
+  instruction
 ) => {
+  console.log(instruction);
   let offset = new Date().getTimezoneOffset() / 60;
   startDate = startDate.split('');
   endDate = endDate.split('');
@@ -44,11 +48,19 @@ export const makeReminders = (
   while (timeOnDeck <= new Date(endDate.join('')).getTime()) {
     if (frequency === 'daily') {
       reminders.push(timeOnDeck);
+      let day = moment(timeOnDeck).format('LLLL')
+      // day = day.toString()
+      // day = `${day}`
+      // day = day.split(' ')
+      console.log(day)
+      // console.log(new Date(moment(timeOnDeck).format('LLLL')).getTime());
       timeOnDeck += 86400000;
     } else if (frequency === 'weekly') {
+      // console.log(moment.format(timeOnDeck));
       reminders.push(timeOnDeck);
       timeOnDeck += 604800000;
     } else if (frequency === 'monthly') {
+      // console.log(moment.format(timeOnDeck));
       reminders.push(timeOnDeck);
       timeOnDeck += 2419200000;
     }
