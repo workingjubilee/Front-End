@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 import { useInput } from '../../utilities/useInput';
 
 import { addDiary, editDiary, deleteDiary } from '../../actions';
+import DiaryEmojiGrid from './DiaryEmojiGrid';
 
 const styles = {
   card: {
@@ -106,6 +107,7 @@ const DiaryEntryDetail = ({
           value={diary_text.value}
           onChange={diary_text.updateValue}
         />
+        <DiaryEmojiGrid diary_emoji={diaryEntry.diary_emoji} />
       </CardContent>
       <CardActions className='diaryEntryButtons'>
         <Button onClick={handleClose} variant='contained' color='default'>
