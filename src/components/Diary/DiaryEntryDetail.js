@@ -41,19 +41,26 @@ const DiaryEntryDetail = ({
   dateTime
 }) => {
   const diary_text = useInput('');
+  const [diaryEmoji, setDiaryEmoji] = useState('0');
   const [entryDate, setEntryDate] = useState();
   const [newEntry, setNewEntry] = useState(true);
 
   useEffect(() => {
     if (diaryEntry) {
-      diary_text.setValue(diaryEntry.diary_text);
+      console.log('diaryEntry:', diaryEntry);
       setEntryDate(diaryEntry.diary_date);
+      setDiaryEmoji(diaryEntry.diary_emoji);
+      diary_text.setValue(diaryEntry.diary_text);
       setNewEntry(false);
     } else {
       setEntryDate(dateTime);
     }
     // eslint-disable-next-line
   }, [diaryEntry]);
+
+  const updateDiaryEmoji = emojiValue => {
+    setDiaryEmoji(emojiValue);
+  };
 
   const requestAddDiary = e => {
     e.preventDefault();
@@ -62,7 +69,7 @@ const DiaryEntryDetail = ({
       user_id: user_id,
       med_id: med_id,
       diary_date: entryDate,
-      diary_emoji: 4,
+      diary_emoji: diaryEmoji,
       diary_text: diary_text.value
     });
     handleClose();
@@ -71,7 +78,8 @@ const DiaryEntryDetail = ({
   const requestEditDiary = e => {
     e.preventDefault();
     editDiary(diaryEntry.id, {
-      diary_text: diary_text.value
+      diary_text: diary_text.value,
+      diary_emoji: diaryEmoji
     });
     handleClose();
   };
@@ -107,7 +115,10 @@ const DiaryEntryDetail = ({
           value={diary_text.value}
           onChange={diary_text.updateValue}
         />
-        <DiaryEmojiGrid diary_emoji={diaryEntry.diary_emoji} />
+        <DiaryEmojiGrid
+          diaryEmoji={diaryEmoji}
+          updateDiaryEmoji={updateDiaryEmoji}
+        />
       </CardContent>
       <CardActions className='diaryEntryButtons'>
         <Button onClick={handleClose} variant='contained' color='default'>
