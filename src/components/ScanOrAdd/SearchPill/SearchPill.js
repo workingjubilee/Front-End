@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import PhotoUpload from '../Scan/PhotoUpload';
 import { connect } from 'react-redux';
-import { useInput } from '../../utilities/useInput';
-import { shapes } from '../data/shapes';
-import { colors } from '../data/colors';
+import { useInput } from 'utilities/useInput';
+import { shapes } from 'data/shapes';
+import { colors } from 'data/colors';
 // import axios from 'axios';
 // import Typography from '@material-ui/core/Typography';
 // import Modal from '@material-ui/core/Modal';
@@ -85,8 +84,6 @@ const SearchPill = props => {
         margin='normal'
       />
 
-      <PhotoUpload />
-
       <TextField
         label='imprint'
         value={imprint.value}
@@ -131,7 +128,7 @@ const SearchPill = props => {
         onClose={close}
       >
         <div style={getModalStyle()} className={classes.paper}>
-          <Typography variant='h6' id='modal-title'>
+          <Typographjy variant='h6' id='modal-title'>
             Text in a modal
           </Typography>
           <Typography variant='subtitle1' id='simple-modal-description'>
