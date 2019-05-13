@@ -8,6 +8,7 @@ import PillsContainer from './components/PillsContainer/PillsContainer';
 import Landing from './components/Landing/Landing';
 import Loading from './components/Loading/Loading';
 import ScanOrAdd from 'components/ScanOrAdd/Container.js';
+import ErrorBoundary from 'components/ErrorBoundary/ErrorBoundary.js'
 
 import auth from './Auth';
 
@@ -16,14 +17,16 @@ function App() {
     <div className='App'>
       <header className='App-header'>
         <Navigation />
-        <Route exact path='/' component={Home} />
-        <Route exact path='/landing' component={Landing} />
-        <Route exact path='/onboard' component={Onboard} />
-        <Route exact path='/diary' component={Diary} />
-        <Route path={ ['/add', '/scan'] } component={ScanOrAdd} />
-        <Route exact path='/dashboard' component={Dashboard} />
-        <Route exact path='/pills' component={PillsContainer} />
-        <Route exact path='/loading' component={Loading} />
+        <ErrorBoundary>
+          <Route exact path='/' component={Home} />
+          <Route exact path='/landing' component={Landing} />
+          <Route exact path='/onboard' component={Onboard} />
+          <Route exact path='/diary' component={Diary} />
+          <Route path={ ['/add', '/scan'] } component={ScanOrAdd} />
+          <Route exact path='/dashboard' component={Dashboard} />
+          <Route exact path='/pills' component={PillsContainer} />
+          <Route exact path='/loading' component={Loading} />
+        </ErrorBoundary>
       </header>
     </div>
   );
