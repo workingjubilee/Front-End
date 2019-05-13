@@ -22,7 +22,7 @@ const Scan = ({state, dispatch}) => {
 
   return (
     <div>
-      <PhotoUpload />
+      <PhotoUpload state={state} dispatch={dispatch} />
     </div>
   );
 };

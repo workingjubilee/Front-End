@@ -3,7 +3,9 @@ import Camera, { IMAGE_TYPES } from 'react-html5-camera-photo';
 import 'react-html5-camera-photo/build/css/index.css';
  
 class ImageCapture extends Component {
+
   onTakePhoto (dataUri) {
+    // this.props.dispatch({ type: "takePhoto", payload: dataUri });
     console.log('takePhoto');
     console.log(dataUri)
   }
@@ -21,7 +23,6 @@ class ImageCapture extends Component {
   }
  
   render () {
-    console.log(navigator.mediaDevices.enumerateDevices());
     return (
       <div className="App">
         <Camera

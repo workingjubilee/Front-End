@@ -3,7 +3,7 @@ import ImageCapture from './ImageCapture.js';
 import axios from 'axios';
 import Button from '@material-ui/core/Button';
 
-const PhotoUpload = props => {
+const PhotoUpload = ({ state, dispatch }) => {
   const [photo, setPhoto] = useState(null);
 
   const [displayCamera, toggleDisplayCamera] = useState(false);
@@ -16,7 +16,7 @@ const PhotoUpload = props => {
     toggleDisplayCamera(!displayCamera);
   };
 
-  const photoUpload = () => {
+  const upload = () => {
     const photoEndpoint = `${process.env.REACT_APP_BACKEND}/api/upload`;
     const imgData = new FormData();
     imgData.append('image', photo);
@@ -41,8 +41,10 @@ const PhotoUpload = props => {
           Upload Picture?
         </Button>
       </label>
+      <Button onClick={upload}>Upload!</Button>
+      { photo && <img src={URL.createObjectURL(photo)} alt="upload preview" /> }
       <Button onClick={toggleCamera}>take photo</Button>
-      {displayCamera ? <ImageCapture /> : null}
+      {false ? <ImageCapture state={state} dispatch={dispatch} /> : null}
     </>
   );
 };
