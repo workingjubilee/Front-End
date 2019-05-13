@@ -44,7 +44,7 @@ const AddPill = props => {
     //   return null;
     // }
 
-    const userID = localStorage.getItem('userID');
+    // const userID = localStorage.getItem('userID');
     const reminderTimes = makeReminders(
       '2019-05-09T14:36:31.364Z',
       '2020-05-09T12:36:31.364Z',
