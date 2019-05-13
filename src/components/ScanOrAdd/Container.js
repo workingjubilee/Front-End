@@ -1,61 +1,32 @@
-import React, { useState } from 'react';
-import SearchPill from '../SearchPill/SearchPill';
-// import Scan from '../Scan/Scan.js';
-import SearchResults from '../Scan/SearchResults/';
-import AddDosage from '../AddDosage/AddDosage';
+import React, { useReducer } from 'react';
+import Scan from './Scan/Scan.js'; // Prioritizing the Scan component
+import scanReducer from './scanReducer.js';
+import Paper from '@material-ui/core/Paper';
+import Tabber from './Tabber.js';
+import Spinner from 'components/Spinner/Spinner.js'
 
-const AddOrScan = ({ location, history }) => {
-  const [status, setStatus] = useState('search');
+const SearchPill = React.lazy(() =>
+ import('./SearchPill/SearchPill')); // Lazy-loading only imports if it needs to
 
-  // const [add, setAdd] = useState(location.pathname === '/add' ? true : false);
+const init = location =>
+  location && location.pathname === '/add' 
+    ? { tab: 1 } 
+    : { tab: 0 }; // Used to set initial child render.
 
-  const [dosageDisplay, setDosageDisplay] = useState(false);
+export default function ScanOrAdd({ location, history }) {
+  const [state, dispatch] = useReducer(scanReducer, init(location));
 
-  const [searchResults, setSearchResults] = useState([]);
-
-  const [pill, setPill] = useState(null);
-
-  console.log(location);
-
-  console.log('in the container!');
-
-  if (dosageDisplay) {
-    return (
-      <AddDosage
-        name={pill.pillName}
-        // imprint={}
-        // color={}
-        // shape={}
-      />
-    );
-  }
-
-  if (searchResults.length > 0) {
-    return (
-      <SearchResults
-        setPill={setPill}
-        searchResults={searchResults}
-        setDosageDisplay={setDosageDisplay}
-      />
-    );
-  }
+  console.log(state); // purely for debugging
 
   return (
-    <section>
-      {/* {add === false ? (
-        <Scan add={add} setAdd={setAdd} />
-      ) : ( */}
-      <SearchPill
-        status={status}
-        setStatus={setStatus}
-        history={history}
-        setSearchResults={setSearchResults}
-        setDosageDisplay={setDosageDisplay}
-      />
-      {/* )}
-      {add ? '*' : ''} */}
-    </section>
+    <Paper square>
+      <Tabber state={state} dispatch={dispatch} />
+      <React.Suspense fallback={<Spinner />}>
+        { state.tab === 0
+          ? <Scan state={state} dispatch={dispatch} />
+          : <SearchPill state={state} dispatch={dispatch} />
+        }
+      </React.Suspense>
+    </Paper>
   );
 };
-
-export default AddOrScan;
