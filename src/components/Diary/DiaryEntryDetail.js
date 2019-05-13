@@ -97,7 +97,7 @@ const DiaryEntryDetail = ({
           {newEntry ? medName : diaryEntry.med_name}
         </Typography>
         <Typography className={classes.subheader}>
-          {moment(entryDate).format('ddd M/D/YY h:mma')}
+          {moment(parseInt(entryDate)).format('ddd M/D/YY h:mma')}
         </Typography>
         <TextField
           id='outlined-full-width'

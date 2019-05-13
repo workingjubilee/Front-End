@@ -22,7 +22,9 @@ const styles = {
 };
 
 const DiaryEntry = ({ classes, diaryEntry }) => {
-  const entryDate = moment(diaryEntry.diary_date).format('ddd M/D/YY h:mma');
+  const entryDate = moment(parseInt(diaryEntry.diary_date)).format(
+    'ddd M/D/YY h:mma'
+  );
   return (
     <Card className={classes.card}>
       <CardContent>
