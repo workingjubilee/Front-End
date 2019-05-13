@@ -40,37 +40,40 @@ const AddPill = props => {
     setStep(step - 1);
   };
   const handleAddPill = () => {
-    // if (!dosageFrequency) {
-    //   return null;
-    // }
+    if (!dosageFrequency) {
+      return null;
+    }
 
-    // const userID = localStorage.getItem('userID');
+    const userID = localStorage.getItem('userID');
     const reminderTimes = makeReminders(
-      '2019-05-09T14:36:31.364Z',
-      '2020-05-09T12:36:31.364Z',
-      3,
-      'monthly',
-      [7, 14, 21],
-      ['Monday,', 'Wednesday,', 'Friday,'],
-      ['23:15', '12:30', '00:00']
+      {
+        frequency: dosageFrequency,
+        startDate: '2019-05-09T14:36:31.364Z',
+        endDate: '2020-05-09T12:36:31.364Z',
+        doses: 3,
+        date: [7, 14, 21],
+        weekday: ['Monday,', 'Wednesday,', 'Friday,'],
+        time: ['23:15', '12:30', '00:00']
+      }
       // customInstruction.value || dosageInstruction || null
     );
+    console.log(reminderTimes);
     console.log(reminderTimes.map(time => new Date(time)));
-    // const reminders = reminderTimes.map(time => {
-    //   return {
-    //     user_id: userID,
-    //     med_id: 1,
-    //     rem_type: 'admin',
-    //     rem_notes: null,
-    //     rem_date: time
-    //   };
-    // });
+    const reminders = reminderTimes.map(time => {
+      return {
+        user_id: userID,
+        med_id: 1,
+        rem_type: 'admin',
+        rem_notes: null,
+        rem_date: time
+      };
+    });
 
-    // const medData = {
-    //   // data collected from here that will be used to update the med table row
-    // };
-    // props.addRems(reminders);
-    // console.log(reminders);
+    const medData = {
+      // data collected from here that will be used to update the med table row
+    };
+    props.addRems(reminders);
+    console.log(reminders);
     // send user to dashboard
   };
   const steps = [
