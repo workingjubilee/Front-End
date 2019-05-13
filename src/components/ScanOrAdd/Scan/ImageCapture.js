@@ -21,6 +21,7 @@ class ImageCapture extends Component {
   }
  
   render () {
+    console.log(navigator.mediaDevices.enumerateDevices());
     return (
       <div className="App">
         <Camera
@@ -28,7 +29,6 @@ class ImageCapture extends Component {
           onCameraError = { (error) => { this.onCameraError(error); } }
           idealResolution = {{width: 640, height: 480}}
           imageType = {IMAGE_TYPES.PNG}
-          imageCompression = {0.97}
           isMaxResolution = {false}
           isImageMirror = {false}
           isSilentMode = {true}

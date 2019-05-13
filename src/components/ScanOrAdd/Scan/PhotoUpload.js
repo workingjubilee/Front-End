@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ImageCapture from './ImageCapture.js';
 import axios from 'axios';
+import Button from '@material-ui/core/Button';
 
 const PhotoUpload = props => {
   const [photo, setPhoto] = useState(null);
@@ -19,11 +20,7 @@ const PhotoUpload = props => {
     const photoEndpoint = `${process.env.REACT_APP_BACKEND}/api/upload`;
     const imgData = new FormData();
     imgData.append('image', photo);
-    // const axiosConfig = {
-    //   headers: {
-    //     'Content-Type': 'multipart/form-data'
-    //   }
-    // };
+
     axios.post(photoEndpoint, imgData)
       .then(data => console.log(data))
       .catch(error => console.log(error));
@@ -31,13 +28,20 @@ const PhotoUpload = props => {
 
   return (
     <>
-      <input
-        type='file'
-        accepts='image/*'
-        onChange={photoSelect}
-      />
-      <button onClick={photoUpload}>Upload Picture?</button>
-      <button onClick={toggleCamera}>take photo</button>
+      <label htmlFor="upload-image-button">
+        <input
+          type='file'
+          accept='image/*'
+          onChange={photoSelect}
+          style={{ display: 'none' }}
+          id="upload-image-button"
+          multiple
+        />
+        <Button component="span">
+          Upload Picture?
+        </Button>
+      </label>
+      <Button onClick={toggleCamera}>take photo</Button>
       {displayCamera ? <ImageCapture /> : null}
     </>
   );

@@ -1,17 +1,12 @@
 import React, { useReducer } from 'react';
 import Scan from './Scan/Scan.js'; // Prioritizing the Scan component
-import scanReducer from './scanReducer.js';
+import scanReducer, { init } from './scanReducer.js';
 import Paper from '@material-ui/core/Paper';
 import Tabber from './Tabber.js';
 import Spinner from 'components/Spinner/Spinner.js'
 
 const SearchPill = React.lazy(() =>
  import('./SearchPill/SearchPill')); // Lazy-loading only imports if it needs to
-
-const init = location =>
-  location && location.pathname === '/add' 
-    ? { tab: 1 } 
-    : { tab: 0 }; // Used to set initial child render.
 
 export default function ScanOrAdd({ location, history }) {
   const [state, dispatch] = useReducer(scanReducer, init(location));

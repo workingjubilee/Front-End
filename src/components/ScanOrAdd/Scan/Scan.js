@@ -1,14 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PhotoUpload from './PhotoUpload';
 
 // Mount PhotoUpload here?
 
-const Scan = ({ add, setAdd }) => {
+// if enumerateDevices, then
+
+const Scan = ({state, dispatch}) => {
+
+  useEffect(() => {
+    const checkVideo = async () => {
+      let devices = await navigator.mediaDevices.enumerateDevices();
+      dispatch({
+        type: "hasVideo",
+        payload: devices.filter(device => device.kind === "videoinput")
+          ? true
+          : false
+      })
+    };
+    checkVideo();
+  }, [dispatch]);
+
   return (
     <div>
       <PhotoUpload />
-      { add ? "!" : "" }
-      <button onClick={() => setAdd(true)}>Test Me!</button>
     </div>
   );
 };
