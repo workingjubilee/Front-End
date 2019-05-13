@@ -11,6 +11,8 @@ export default function reducer(state, action) {
       return { ...state, tab: action.payload };
     case 'hasVideo':
       return { ...state, hasVideo: action.payload };
+    case 'takePhoto':
+      return { ...state, photo: action.payload }
     default:
       throw new Error();
   }
