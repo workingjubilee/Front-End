@@ -31,6 +31,9 @@ const SearchPill = props => {
   const handleShapeChange = e => {
     setShape(e.target.value);
   };
+  const handleAddPill = e => {
+    e.preventDefault()
+  };
   const handleSubmit = e => {
     e.preventDefault();
 
@@ -119,7 +122,7 @@ const SearchPill = props => {
       {props.status === 'search' ? (
         <Button type='submit'>Search</Button>
       ) : (
-        <Button type='submit'>Add</Button>
+        <Button onClick={handleAddPill}>Add</Button>
       )}
       {/* <Modal
         aria-labelledby='simple-modal-title'

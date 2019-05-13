@@ -96,7 +96,6 @@ const StepThree = props => {
           <Button onClick={() => props.setStep(0)}>Edit</Button>
         </CardActions>
       </Card>
-      )}
       <CardActions>
         <Button onClick={() => props.handleAddPill()}>Add Pill</Button>
       </CardActions>
