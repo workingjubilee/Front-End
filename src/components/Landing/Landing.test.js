@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Landing from './Landing';
-import { MemoryRouter } from 'react-router-dom'; // Wrap router components to make them testable
+import AppWrapper from 'AppWrapper';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(
-    <MemoryRouter>
+    <AppWrapper>
       <Landing />
-    </MemoryRouter>,
+    </AppWrapper>,
     div
   );
   ReactDOM.unmountComponentAtNode(div);

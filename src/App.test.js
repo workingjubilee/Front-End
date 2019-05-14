@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { MemoryRouter } from 'react-router-dom'; // Wrap router components to make them unit-testable
+import AppWrapper from 'AppWrapper';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>,
+    <AppWrapper>
+        <App />
+    </AppWrapper>,
     div
   );
   ReactDOM.unmountComponentAtNode(div);
