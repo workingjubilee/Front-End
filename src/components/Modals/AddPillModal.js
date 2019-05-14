@@ -17,32 +17,27 @@ const styles = theme => ({
   }
 });
 
-const AddPillModal = ({ classes, pill, addPill, open, setOpen }) => {
+const AddPillModal = ({
+  classes,
+  pill,
+  open,
+  handleClose,
+  handleAddPill,
+  handleAddPillReminders
+}) => {
   return (
     <Modal
       aria-labelledby='simple-modal-title'
       aria-describedby='simple-modal-description'
       open={open}
-      onClose={() => {
-        setOpen(false);
-      }}
+      onClose={handleClose}
     >
       <div className={classes.paper}>
         <Typography variant='h6' id='modal-title'>
-          Would you like to add {pill.pillName} ?
+          Would you like to add {pill.med_name}?
         </Typography>
-        <Button
-          onClick={() => {
-            addPill(false);
-          }}
-        >
-          Add to medication list
-        </Button>
-        <Button
-          onClick={() => {
-            addPill(true);
-          }}
-        >
+        <Button onClick={handleAddPill}>Add to medication list</Button>
+        <Button onClick={handleAddPillReminders}>
           Add to medication list with reminder
         </Button>
       </div>
