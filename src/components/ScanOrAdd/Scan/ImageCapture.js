@@ -7,7 +7,7 @@ class ImageCapture extends Component {
   onTakePhoto (dataUri) {
     // this.props.dispatch({ type: "takePhoto", payload: dataUri });
     console.log('takePhoto');
-    console.log(dataUri)
+    this.props.setPhoto(dataUri);
   }
  
   onCameraError (error) {
