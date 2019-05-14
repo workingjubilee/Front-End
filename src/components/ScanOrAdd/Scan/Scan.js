@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
-import PhotoUpload from './PhotoUpload';
+import ScanImage from './ScanImage';
 
-// Mount PhotoUpload here?
+// Mount ScanImage here?
 
 // if enumerateDevices, then
 
 const Scan = ({state, dispatch}) => {
-
   useEffect(() => {
     const checkVideo = async () => {
       let devices = await navigator.mediaDevices.enumerateDevices();
@@ -22,7 +21,7 @@ const Scan = ({state, dispatch}) => {
 
   return (
     <div>
-      <PhotoUpload state={state} dispatch={dispatch} />
+      <ScanImage state={state} dispatch={dispatch} />
     </div>
   );
 };

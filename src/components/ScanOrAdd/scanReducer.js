@@ -13,6 +13,8 @@ export default function reducer(state, action) {
       return { ...state, hasVideo: action.payload };
     case 'takePhoto':
       return { ...state, photo: action.payload }
+    case 'analysisResults':
+      return { ...state, analysis: [...action.payload] }
     default:
       throw new Error();
   }
