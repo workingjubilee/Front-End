@@ -13,6 +13,7 @@ export default function ScanOrAdd({ location, history }) {
     <Paper square>
       <Scan state={state} dispatch={dispatch} />
       <SearchPill state={state} dispatch={dispatch} />
+      <p>Add Manually</p>
     </Paper>
   );
 }
