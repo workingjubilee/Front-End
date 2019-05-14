@@ -6,6 +6,26 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
+import moment from 'moment';
+
+const formatMomentDate = dateData => {
+  dateData = dateData.split('');
+  let date =
+    dateData[6] +
+    dateData[7] +
+    dateData[8] +
+    dateData[9] +
+    '-' +
+    dateData[0] +
+    dateData[1] +
+    '-' +
+    dateData[3] +
+    dateData[4];
+
+  return date;
+};
+
+const todaysDate = formatMomentDate(moment(Date.now()).format('L'));
 
 const StepTwo = props => {
   const handleIncrementCapsulesPerDose = () => {
@@ -38,6 +58,19 @@ const StepTwo = props => {
       props.updateDosageInstruction(value);
     }
   };
+
+  const handleStartDateChange = e => {
+    props.setStartDate(e.target.value);
+    // let date = moment(e.target.value).format('L');
+    // date = date.split('');
+    // date[2] = '-';
+    // date[5] = '-';
+    // date = date.join('');
+    // let newDate = moment(Date.now()).format('L');
+    // console.log(newDate);
+    // console.log(date);
+  };
+  const formattedStartDate = date => {};
   // const handlePrevStep = () => {
   //   props.prevStep();
   // };
@@ -49,10 +82,10 @@ const StepTwo = props => {
   // };
   return (
     <form>
-      <Card style={{ display: 'flex' }}>
+      <CardContent style={{ display: 'flex' }}>
         <Typography component='p'>Dosage Quantity</Typography>
         <Card style={{ display: 'flex' }}>
-          <Typography component='p'>number of capsules per dose</Typography>
+          <Typography component='p'>Number of Capsules per dose</Typography>
 
           <Button onClick={handleDecrementCapsulesPerDose}>
             <RemoveIcon />
@@ -64,8 +97,7 @@ const StepTwo = props => {
             <AddIcon />
           </Button>
         </Card>
-      </Card>
-
+      </CardContent>
       <CardContent>
         Length of Dosage
         <Button
@@ -96,7 +128,6 @@ const StepTwo = props => {
           3x - Thrice
         </Button>
       </CardContent>
-
       <CardContent>
         Dosage Frequency
         <Button
@@ -127,7 +158,6 @@ const StepTwo = props => {
           Monthly
         </Button>
       </CardContent>
-
       <CardContent>
         How will you take this pill?
         <Button
@@ -178,20 +208,89 @@ const StepTwo = props => {
           margin='normal'
         />
       </CardContent>
+      <CardContent>Dosage Time of Day</CardContent>
+      <CardContent>
+        Start Date
+        <Button
+          style={{
+            background: props.startDate === todaysDate ? '#2D90F5' : '',
+            color: props.startDate === todaysDate ? 'white' : ''
+          }}
+          onClick={() => props.setStartDate(todaysDate)}
+        >
+          today
+        </Button>
+        <Button
+          style={{
+            background:
+              props.startDate ===
+              formatMomentDate(
+                moment(todaysDate)
+                  .add(1, 'days')
+                  .format('L')
+              )
+                ? '#2D90F5'
+                : '',
+            color:
+              props.startDate ===
+              formatMomentDate(
+                moment(todaysDate)
+                  .add(1, 'days')
+                  .format('L')
+              )
+                ? 'white'
+                : ''
+          }}
+          onClick={() =>
+            props.setStartDate(
+              formatMomentDate(
+                moment(todaysDate)
+                  .add(1, 'days')
+                  .format('L')
+              )
+            )
+          }
+        >
+          tomorrow
+        </Button>
+        <TextField
+          id='date'
+          label='Birthday'
+          type='date'
+          value={props.startDate}
+          onChange={handleStartDateChange}
+          // className={classes.textField}
+          InputLabelProps={{
+            shrink: true
+          }}
+        />
+      </CardContent>
+      <CardContent style={{ display: 'flex' }}>
+        <Typography component='p'>Dosage Duration</Typography>
+        <Card style={{ display: 'flex' }}>
+          <Typography component='p'>Number of days</Typography>
 
-      <Typography>Dosage Time of Day</Typography>
+          <Button
+            onClick={
+              props.dosageDuration > 0
+                ? () => props.setDosageDuration(props.dosageDuration - 1)
+                : null
+            }
+          >
+            <RemoveIcon />
+          </Button>
 
-      <Typography>End Date</Typography>
+          <Typography component='p'>{props.dosageDuration}</Typography>
 
-      <Typography>Start Date</Typography>
-
-      <Typography>Text Reminder</Typography>
-
+          <Button onClick={() => props.setDosageDuration(props.dosageDuration + 1)}>
+            <AddIcon />
+          </Button>
+        </Card>
+      </CardContent>
+      <CardContent>Text Reminder</CardContent>
       {/* <Button onClick={handlePrevStep}>Back</Button> */}
-
-      <Button onClick={handleConfirmDosage}>Confirm Dosage</Button>
-
-x    </form>
+      <Button onClick={handleConfirmDosage}>Confirm Dosage</Button>x{' '}
+    </form>
   );
 };
 
