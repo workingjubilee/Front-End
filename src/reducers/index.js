@@ -55,6 +55,8 @@ const initialState = {
   editingMed: false,
   deletingMed: false,
   meds: [],
+  activeMeds: [],
+  inactiveMeds: [],
   med: {},
   fetchingDiary: false,
   addingDiary: false,
@@ -133,7 +135,13 @@ export default (state = initialState, action) => {
       return {
         ...state,
         fetchingMeds: false,
-        meds: action.payload
+        meds: action.payload,
+        activeMeds: action.payload.filter(med => {
+          return med.med_active;
+        }),
+        inactiveMeds: action.payload.filter(med => {
+          return !med.med_active;
+        })
       };
     case FETCH_MEDS_FAILURE:
       return {
