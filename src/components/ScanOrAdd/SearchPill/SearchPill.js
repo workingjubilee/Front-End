@@ -17,9 +17,8 @@ const SearchPill = props => {
   const imprint = useInput();
   const [color, setColor] = useState(0);
   const [shape, setShape] = useState(0);
-  useEffect(() => {
-    console.log(shapes[shape].name, colors[color].name);
-  }, [color, shape]);
+  console.log(name.value, imprint.value, color, shape);
+  useEffect(() => {}, [color, shape]);
   const handleColorChange = e => {
     setColor(e.target.value);
   };
@@ -27,7 +26,7 @@ const SearchPill = props => {
     setShape(e.target.value);
   };
   const handleAddPill = e => {
-    e.preventDefault()
+    e.preventDefault();
   };
   const handleSubmit = e => {
     e.preventDefault();
@@ -43,24 +42,6 @@ const SearchPill = props => {
   };
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-        <button
-          onClick={e => {
-            e.preventDefault();
-            props.setStatus('search');
-          }}
-        >
-          search pill
-        </button>
-        <button
-          onClick={e => {
-            e.preventDefault();
-            props.setStatus('add');
-          }}
-        >
-          add manually
-        </button>
-      </div>
       <TextField
         label='pill name'
         value={name.value}
@@ -77,10 +58,10 @@ const SearchPill = props => {
 
       <FormControl>
         <InputLabel>color</InputLabel>
-        <Select value={`${colors[color].name}`} onChange={handleColorChange}>
+        <Select value={color} onChange={handleColorChange}>
           {colors.map(color => {
             return (
-              <MenuItem key={color.id} value={color.id}>
+              <MenuItem key={color.id} value={color.name}>
                 {color.name}
               </MenuItem>
             );
@@ -90,21 +71,17 @@ const SearchPill = props => {
 
       <FormControl>
         <InputLabel>shape</InputLabel>
-        <Select value={`${shapes[shape].name}`} onChange={handleShapeChange}>
+        <Select value={shape} onChange={handleShapeChange}>
           {shapes.map(shape => {
             return (
-              <MenuItem key={shape.id} value={shape.id}>
+              <MenuItem key={shape.id} value={shape.name}>
                 {shape.name}
               </MenuItem>
             );
           })}
         </Select>
       </FormControl>
-      {props.status === 'search' ? (
-        <Button type='submit'>Search</Button>
-      ) : (
-        <Button onClick={handleAddPill}>Add</Button>
-      )}
+      <Button onClick={handleAddPill}>Add</Button>
     </form>
   );
 };
