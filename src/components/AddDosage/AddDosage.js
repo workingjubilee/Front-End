@@ -6,15 +6,32 @@ import StepOne from './AddDosageSteps/StepOne';
 import StepTwo from './AddDosageSteps/StepTwo';
 import { makeReminders } from './helper';
 import { addRems } from '../../actions';
+import moment from 'moment';
 
 // '/adddosage/:id'
+let dateData = moment(Date.now()).format('L');
+dateData = dateData.split('');
+let date =
+  dateData[6] +
+  dateData[7] +
+  dateData[8] +
+  dateData[9] +
+  '-' +
+  dateData[0] +
+  dateData[1] +
+  '-' +
+  dateData[3] +
+  dateData[4];
 
-const AddPill = props => {
+const AddPill = ({ med,addRems, }) => {
   const [capsulesPerDose, setCapsulesPerDose] = useState(0);
   const [lengthOfDosage, setLenghOfDosage] = useState(0);
   const [dosageFrequency, setDosageFrequency] = useState('');
   const [dosageInstruction, setDosageInstruction] = useState('');
   const customInstruction = useInput();
+  const [startDate, setStartDate] = useState(date);
+  const [dosageDuration, setDosageDuration] = useState(0);
+  const [endDate, setEndDate] = useState(date);
   const updateCapsulesPerDose = amount => {
     setCapsulesPerDose(amount);
   };
@@ -29,9 +46,13 @@ const AddPill = props => {
   };
   const [step, setStep] = useState(0);
   useEffect(() => {
-    console.log('name: ', props.name);
-    console.log(step);
-  }, [step, props.name]);
+    setEndDate(
+      moment(startDate)
+        .add(dosageDuration, 'days')
+        .format('L')
+    );
+    console.log(endDate);
+  }, [dosageDuration, endDate]);
 
   const nextStep = () => {
     setStep(step + 1);
@@ -62,7 +83,7 @@ const AddPill = props => {
     const reminders = reminderTimes.map(time => {
       return {
         user_id: userID,
-        med_id: 1,
+        med_id: med.id,
         rem_type: 'admin',
         rem_notes: null,
         rem_date: time
@@ -72,7 +93,7 @@ const AddPill = props => {
     const medData = {
       // data collected from here that will be used to update the med table row
     };
-    props.addRems(reminders);
+    addRems(reminders);
     console.log(reminders);
     // send user to dashboard
   };
@@ -87,11 +108,14 @@ const AddPill = props => {
       dosageInstruction={dosageInstruction}
       customInstruction={customInstruction}
       updateDosageInstruction={updateDosageInstruction}
-      prevStep={prevStep}
+      startDate={startDate}
+      setStartDate={setStartDate}
+      dosageDuration={dosageDuration}
+      setDosageDuration={setDosageDuration}
       nextStep={nextStep}
     />,
     <StepTwo
-      name={props.name}
+      name={med.med_name}
       // imprint={props.imprint}
       // color={props.color}
       // shape={props.shape}
@@ -107,11 +131,13 @@ const AddPill = props => {
   return <Card>{steps[step]}</Card>;
 };
 
-// const mapStateToProps = state => {
-//   return {};
-// };
+const mapStateToProps = state => {
+  return {
+    med: state.med
+  };
+};
 
 export default connect(
-  null,
+  mapStateToProps,
   { addRems }
 )(AddPill);
