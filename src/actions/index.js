@@ -99,7 +99,7 @@ export const ADD_MED_FAILURE = 'ADD_MED_FAILURE';
 
 export const addMed = newMed => dispatch => {
   dispatch({ type: ADD_MED_REQUEST });
-  axios
+  return axios
     .post(`${endpoint}/api/meds/`, newMed)
     .then(res => {
       dispatch({ type: ADD_MED_SUCCESS, payload: res.data });
