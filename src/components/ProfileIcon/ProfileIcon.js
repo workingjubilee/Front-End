@@ -55,5 +55,5 @@ const StyledProfileIcon = withStyles(styles)(ProfileIcon);
 
 export default connect(
   mapStateToProps,
-  {}
+  null
 )(StyledProfileIcon);
