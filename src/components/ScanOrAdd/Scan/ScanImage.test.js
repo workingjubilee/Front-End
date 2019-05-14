@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import PhotoUpload from './PhotoUpload';
+import ScanImage from './ScanImage';
 
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(
-      <PhotoUpload />,
+      <ScanImage />,
     div
   );
   ReactDOM.unmountComponentAtNode(div);
