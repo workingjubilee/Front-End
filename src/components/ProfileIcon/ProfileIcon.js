@@ -24,31 +24,34 @@ const styles = theme => ({
     color: '#2d90f5'
   },
   avatar: {
-    width: '6rem',
-    height: '6rem'
+    width: '3rem',
+    height: '3rem'
   }
 });
 
-const Profile = ({ classes, user }) => {
+const ProfileIcon = ({ classes, user, meds }) => {
   const { username } = user;
   return (
     <Card className={classes.paper}>
       <div className={classes.alignLeft}>
         <Typography className={classes.text}>Hello {username} </Typography>
         <Card>
-          <Typography className={classes.lowerText}> pills today</Typography>
+          <Typography className={classes.lowerText}>
+            {meds.length} pills today
+          </Typography>
         </Card>
       </div>
-      <Avatar alt={user.username} />
+      <Avatar className={classes.avatar} alt={user.username} />
     </Card>
   );
 };
 
 const mapStateToProps = state => ({
-  user: state.user
+  user: state.user,
+  meds: state.meds
 });
 
-const StyledProfileIcon = withStyles(styles)(Profile);
+const StyledProfileIcon = withStyles(styles)(ProfileIcon);
 
 export default connect(
   mapStateToProps,
