@@ -2,17 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { MemoryRouter } from 'react-router-dom';
 import Navigation from './Navigation';
-import { Provider } from 'react-redux';
-import store from 'store';
+import AppWrapper from 'AppWrapper';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(
-    <Provider store={store}>
-      <MemoryRouter>
+    <AppWrapper>
         <Navigation />
-      </MemoryRouter>
-    </Provider>,
+    </AppWrapper>,
     div
   );
   ReactDOM.unmountComponentAtNode(div);

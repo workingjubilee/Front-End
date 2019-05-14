@@ -1,15 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Onboard from './Onboard';
-import { Provider } from 'react-redux';
-import store from '../../store';
+import AppWrapper from 'AppWrapper';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(
-    <Provider store={store}>
+    <AppWrapper>
       <Onboard />
-    </Provider>,
+    </AppWrapper>,
     div
   );
   ReactDOM.unmountComponentAtNode(div);
