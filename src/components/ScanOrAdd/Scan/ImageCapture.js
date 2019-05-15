@@ -3,11 +3,29 @@ import Camera, { IMAGE_TYPES } from 'react-html5-camera-photo';
 import 'react-html5-camera-photo/build/css/index.css';
  
 class ImageCapture extends Component {
+  state = {
+
+  };
 
   onTakePhoto (dataUri) {
     // this.props.dispatch({ type: "takePhoto", payload: dataUri });
-    console.log('takePhoto');
-    this.props.setPhoto(dataUri);
+    
+    let byteString;
+    if (dataUri.split(',')[0].indexOf('base64') < 0) {
+      throw new Error("I have no idea what just happened.")
+    } else {
+      byteString = atob(dataUri.split(',')[1]);
+    }
+
+    let bufferArray = new Uint8Array(byteString.length);
+
+    for(let i = 0; i < byteString.length; i++) {
+        bufferArray[i] = byteString.charCodeAt(i);
+    };
+
+    let madeBlob = new Blob([bufferArray], { type: 'image/png' });
+
+    this.props.setPhoto(madeBlob);
   }
  
   onCameraError (error) {
@@ -28,6 +46,7 @@ class ImageCapture extends Component {
         <Camera
           onTakePhoto = { (dataUri) => { this.onTakePhoto(dataUri); } }
           onCameraError = { (error) => { this.onCameraError(error); } }
+
           idealResolution = {{width: 640, height: 480}}
           imageType = {IMAGE_TYPES.PNG}
           isMaxResolution = {false}
@@ -39,6 +58,8 @@ class ImageCapture extends Component {
           onCameraStart = { (stream) => { this.onCameraStart(stream); } }
           onCameraStop = { () => { this.onCameraStop(); } }
         />
+        { this.state.dataUri && <img src={this.state.dataUri} alt="testing" /> }
+        { this.state.testBlob && <img src={URL.createObjectURL(this.state.testBlob)} alt="argh" /> }
       </div>
     );
   }

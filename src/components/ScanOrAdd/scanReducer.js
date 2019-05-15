@@ -12,7 +12,7 @@ export default function reducer(state, action) {
     case 'takePhoto':
       return { ...state, photo: action.payload };
     case 'analysisResults':
-      return { ...state, analysis: [...action.payload] };
+      return { ...state, analysis: action.payload };
     default:
       throw new Error();
   }

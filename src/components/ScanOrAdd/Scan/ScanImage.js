@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-// import ImageCapture from './ImageCapture.js';
-// ImageCapture is not yet ready.
+import ImageCapture from './ImageCapture.js';
+
 import axios from 'axios';
 import Button from '@material-ui/core/Button';
 
@@ -13,6 +13,10 @@ const PhotoUpload = ({ state, dispatch }) => {
     setPhoto(event.target.files[0]);
   };
 
+  React.useEffect(() => {
+    console.log(photo);
+  }, [photo])
+
   const toggleCamera = () => {
     toggleDisplayCamera(!displayCamera);
   };
@@ -20,7 +24,9 @@ const PhotoUpload = ({ state, dispatch }) => {
   const upload = () => {
     const photoEndpoint = `${process.env.REACT_APP_BACKEND}/api/upload`;
     const imgData = new FormData();
-    imgData.append('image', photo);
+    imgData.append('image', photo, photo.filename);
+
+    console.log("beginning!");
 
     axios.post(photoEndpoint, imgData)
       .then(response => {
@@ -53,7 +59,7 @@ const PhotoUpload = ({ state, dispatch }) => {
         { photo && <img src={URL.createObjectURL(photo)} alt="upload preview" style={{maxWidth: "400px"}} /> }
       </div>
 
-      {/*displayCamera ? <ImageCapture setPhoto={setPhoto} state={state} dispatch={dispatch} /> : null */}
+      {displayCamera ? <ImageCapture setPhoto={setPhoto} state={state} dispatch={dispatch} /> : null }
     </>
   );
 };
