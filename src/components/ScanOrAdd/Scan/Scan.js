@@ -2,20 +2,21 @@ import React, { useEffect } from 'react';
 import ScanImage from './ScanImage';
 import ErrorBoundary from 'components/ErrorBoundary/ErrorBoundary.js'
 
-// Mount ScanImage here?
-
-// if enumerateDevices, then
-
-const Scan = ({state, dispatch}) => {
+export default function Scan({state, dispatch}) {
   useEffect(() => {
     const checkVideo = async () => {
-      let devices = await navigator.mediaDevices.enumerateDevices();
-      dispatch({
-        type: "hasVideo",
-        payload: devices.filter(device => device.kind === "videoinput")
-          ? true
-          : false
-      })
+      let devices;
+      try {
+        devices = await navigator.mediaDevices.enumerateDevices();
+        dispatch({
+          type: "hasVideo",
+          payload: devices.filter(device => device.kind === "videoinput")
+            ? true
+            : false
+        })
+      } catch(error) {
+        console.error(error);
+      }
     };
     checkVideo();
   }, [dispatch]);
@@ -26,5 +27,3 @@ const Scan = ({state, dispatch}) => {
     </ErrorBoundary>
   );
 };
-
-export default Scan;
