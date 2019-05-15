@@ -52,9 +52,11 @@ function DiaryEntryPanel({ classes, diaryEntry }) {
         <Typography className={classNames(classes.heading)}>
           {moment(parseInt(diaryEntry.diary_date)).format('ddd M/D/YY h:mma')}
         </Typography>
-        <Typography className={classNames(classes.secondaryHeading)}>
-          <DiaryEntryModal diaryEntry={diaryEntry} newEntry={false} />
-        </Typography>
+        <DiaryEntryModal
+          className={classNames(classes.secondaryHeading)}
+          diaryEntry={diaryEntry}
+          newEntry={false}
+        />
       </ExpansionPanelSummary>
     </div>
   );

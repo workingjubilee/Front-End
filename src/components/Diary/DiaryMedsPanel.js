@@ -10,18 +10,11 @@ import classNames from 'classnames';
 
 import DiaryEntriesPanels from './DiaryEntriesPanels';
 
-const Chip = withStyles({
-  root: {
-    border: 'none'
-  }
-})(props => <MuiChip {...props} />);
+const Chip = withStyles({})(props => <MuiChip {...props} />);
 
 Chip.muiName = 'Chip';
 
 const ExpansionPanel = withStyles({
-  root: {
-    border: 'none'
-  },
   expanded: {
     '&$expanded': {
       marginBottom: '20px'

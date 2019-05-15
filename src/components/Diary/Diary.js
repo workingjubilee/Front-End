@@ -12,9 +12,7 @@ const Diary = ({ fetchDiary, user_id }) => {
   return (
     <div className='diary'>
       <div className='diaryTitle'>
-        <div>
-          <h1>Diary</h1>
-        </div>
+        <h1>Diary</h1>
       </div>
       <div className='diaryBody'>
         <DiaryMedsPanels />
