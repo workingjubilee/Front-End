@@ -23,7 +23,7 @@ function App() {
           <Route exact path='/landing' component={Landing} />
           <Route exact path='/onboard' component={Onboard} />
           <Route exact path='/diary' component={Diary} />
-          <Route path={'/scan'} component={ScanOrAdd} />
+          <Route path='/scan' component={ScanOrAdd} />
           <Route exact path='/dashboard' component={Dashboard} />
           <Route path='/pills' component={PillsContainer} />
           <Route exact path='/loading' component={Loading} />
