@@ -73,14 +73,14 @@ const SearchResult = ({ classes, result }) => {
     </Card>
   );
 
-  function addPill(scheduled) {
-    if (scheduled) {
-      console.log(`Gonna sendto rems table`);
-      // Needs to send user to scheduling component, but just pushing to dashboard for now
-      // history.push('/addpill');
-    }
-    console.log(`Gonna send to meds table`);
-  }
+  // function addPill(scheduled) {
+  //   if (scheduled) {
+  //     console.log(`Gonna sendto rems table`);
+  //     // Needs to send user to scheduling component, but just pushing to dashboard for now
+  //     // history.push('/addpill');
+  //   }
+  //   console.log(`Gonna send to meds table`);
+  // }
 };
 
 export default withStyles(styles)(SearchResult);
