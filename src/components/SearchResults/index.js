@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-
+import AdditionalSearchInfo from './';
 import SearchResult from './SearchResult';
 
 const SearchResults = ({ history, searchResults }) => {
@@ -10,11 +10,16 @@ const SearchResults = ({ history, searchResults }) => {
     // err ^^^ maybe not
   });
 
+  const style = {};
+
   return (
-    <div>
-      {searchResults.map(result => {
-        return <SearchResult history={history} result={result} />;
-      })}
+    <div style={style}>
+      <div>
+        {searchResults.map(result => {
+          return <SearchResult history={history} result={result} />;
+        })}
+      </div>
+      <AdditionalSearchInfo />
     </div>
   );
 };
