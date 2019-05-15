@@ -5,7 +5,7 @@ import Card from '@material-ui/core/Card';
 import StepOne from './AddDosageSteps/StepOne';
 import StepTwo from './AddDosageSteps/StepTwo';
 import { makeReminders } from './helper';
-import { addRems } from '../../actions';
+import { addRems, editMed } from '../../actions';
 import moment from 'moment';
 
 // '/adddosage/:id'
@@ -23,7 +23,7 @@ let date =
   dateData[3] +
   dateData[4];
 
-const AddPill = ({ med,addRems, }) => {
+const AddPill = ({ med, addRems, editMed, history }) => {
   const [capsulesPerDose, setCapsulesPerDose] = useState(0);
   const [lengthOfDosage, setLenghOfDosage] = useState(0);
   const [dosageFrequency, setDosageFrequency] = useState('');
@@ -69,8 +69,8 @@ const AddPill = ({ med,addRems, }) => {
     const reminderTimes = makeReminders(
       {
         frequency: dosageFrequency,
-        startDate: '2019-05-09T14:36:31.364Z',
-        endDate: '2020-05-09T12:36:31.364Z',
+        startDate: startDate,
+        endDate: endDate,
         doses: 3,
         date: [7, 14, 21],
         weekday: ['Monday,', 'Wednesday,', 'Friday,'],
@@ -91,11 +91,18 @@ const AddPill = ({ med,addRems, }) => {
     });
 
     const medData = {
-      // data collected from here that will be used to update the med table row
+      ...med,
+      med_admin_start_date: startDate,
+      med_admin_end_date: endDate,
+      med_directions: JSON.stringify(
+        customInstruction.value || dosageInstruction || null
+      )
     };
+    editMed(medData);
     addRems(reminders);
+    console.log(medData);
     console.log(reminders);
-    // send user to dashboard
+    // history.push('/dashboard');
   };
   const steps = [
     <StepOne
@@ -139,5 +146,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { addRems }
+  { addRems, editMed }
 )(AddPill);
