@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import DiaryMed from './DiaryMed';
+import DiaryMedsPanel from './DiaryMedsPanel';
 
-const DiaryMeds = ({ fetchingMeds, meds, changeFocus, diaryFocus }) => {
+function DiaryMedsPanels({ fetchingMeds, meds, changeFocus }) {
   return (
     <div className='diaryMeds'>
       {fetchingMeds === true ? (
@@ -14,16 +14,22 @@ const DiaryMeds = ({ fetchingMeds, meds, changeFocus, diaryFocus }) => {
           record a diary entry.
         </h2>
       ) : (
-        <div>
-          <h2>Meds</h2>
-          {meds.map(med => (
-            <DiaryMed key={med.id} changeFocus={changeFocus} med={med} />
-          ))}
+        <div className='diaryMeds'>
+          <h2>Sort-by pull-down here</h2>
+          {meds.map((med, index) =>
+            index <= 3 ? (
+              <DiaryMedsPanel
+                key={med.id}
+                changeFocus={changeFocus}
+                med={med}
+              />
+            ) : null
+          )}
         </div>
       )}
     </div>
   );
-};
+}
 
 const mapStateToProps = state => ({
   fetchingMed: state.fetchingMeds,
@@ -33,4 +39,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   null
-)(DiaryMeds);
+)(DiaryMedsPanels);
