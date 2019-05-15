@@ -52,15 +52,15 @@ const AddPill = ({ med, addRems, editMed, history }) => {
         .format('L')
     );
     console.log(endDate);
-  }, [dosageDuration, endDate]);
+  }, [dosageDuration, endDate, startDate]);
 
   const nextStep = () => {
     setStep(step + 1);
   };
-  const prevStep = () => {
-    setStep(step - 1);
-  };
-  const handleAddPill = () => {
+  // const prevStep = () => {
+  //   setStep(step - 1);
+  // };
+  const handleAddPill = async () => {
     if (!dosageFrequency) {
       return null;
     }
@@ -98,8 +98,8 @@ const AddPill = ({ med, addRems, editMed, history }) => {
         customInstruction.value || dosageInstruction || null
       )
     };
-    editMed(medData);
-    addRems(reminders);
+    await editMed(medData);
+    await addRems(reminders);
     console.log(medData);
     console.log(reminders);
     history.push('/dashboard');
