@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 
 const styles = {
   card: {
+    width: '100%',
     margin: 10,
     padding: '0 10 0 10',
     display: 'flex',

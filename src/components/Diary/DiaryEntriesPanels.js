@@ -1,16 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import CardActions from '@material-ui/core/CardActions';
-import Card from '@material-ui/core/Card';
 import MuiExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-import DiaryEntry from './DiaryEntry';
+import DiaryEntryPanel from './DiaryEntryPanel';
 import DiaryEntryModal from './DiaryEntryModal';
 
 const ExpansionPanelSummary = withStyles({
+  root: {
+    padding: '0px'
+  },
   content: {
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
+    margin: '6px 0 6px 0'
   }
 })(props => <MuiExpansionPanelSummary {...props} />);
 
@@ -18,11 +20,21 @@ ExpansionPanelSummary.muiName = 'ExpansionPanelSummary';
 
 const styles = {
   newEntryPanel: {
-    border: '1px dashed red'
+    display: 'flex',
+    alignItems: 'center'
+  },
+  bigplus: {
+    fontSize: 40,
+    margin: '0px'
+  },
+  viewAllPanel: {
+    display: 'flex',
+    justifyContent: 'center',
+    background: 'white'
   }
 };
 
-const DiaryEntries = ({ classes, diary, diaryFocus, meds }) => {
+const DiaryEntriesPanels = ({ classes, diary, diaryFocus, meds }) => {
   const filteredDiary = diary.filter(diaryEntry => {
     return diaryEntry.med_id === diaryFocus;
   });
@@ -36,22 +48,28 @@ const DiaryEntries = ({ classes, diary, diaryFocus, meds }) => {
 
   return (
     <div className='diaryEntries'>
-      <ExpansionPanelSummary className={classes.newEntryPanel}>
-        <DiaryEntryModal
-          className={classes.newEntryPanel}
-          newEntry={true}
-          medName={medName}
-          med_id={diaryFocus}
-        />
+      <ExpansionPanelSummary>
+        <div className={classes.newEntryPanel}>
+          <p className={classes.bigplus}>+</p>
+          <DiaryEntryModal
+            newEntry={true}
+            medName={medName}
+            med_id={diaryFocus}
+          />
+        </div>
       </ExpansionPanelSummary>
-
       {filteredDiary.length === 0 ? (
         <p>You have no diary entries for {medName}.</p>
       ) : (
-        filteredDiary.map(diaryEntry => (
-          <DiaryEntry key={diaryEntry.id} diaryEntry={diaryEntry} />
-        ))
+        filteredDiary.map((diaryEntry, index) =>
+          index <= 3 ? (
+            <DiaryEntryPanel key={diaryEntry.id} diaryEntry={diaryEntry} />
+          ) : null
+        )
       )}
+      <div className={classes.viewAllPanel}>
+        <p>View all button here</p>
+      </div>
     </div>
   );
 };
@@ -64,4 +82,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   null
-)(withStyles(styles)(DiaryEntries));
+)(withStyles(styles)(DiaryEntriesPanels));
