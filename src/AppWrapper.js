@@ -10,7 +10,7 @@ export default function TestWrapper(props) {
     <Provider store={store}>
       <Router>
         <Themer theme={theme}>
-          {props.children}
+          { props.children }
         </Themer>
       </Router>
     </Provider>
