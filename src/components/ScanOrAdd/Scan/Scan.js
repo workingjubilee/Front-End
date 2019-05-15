@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import ScanImage from './ScanImage';
+import ErrorBoundary from 'components/ErrorBoundary/ErrorBoundary.js'
 
 // Mount ScanImage here?
 
@@ -20,9 +21,9 @@ const Scan = ({state, dispatch}) => {
   }, [dispatch]);
 
   return (
-    <div>
+    <ErrorBoundary>
       <ScanImage state={state} dispatch={dispatch} />
-    </div>
+    </ErrorBoundary>
   );
 };
 

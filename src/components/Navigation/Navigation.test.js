@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { MemoryRouter } from 'react-router-dom';
 import Navigation from './Navigation';
 import AppWrapper from 'AppWrapper';
 
