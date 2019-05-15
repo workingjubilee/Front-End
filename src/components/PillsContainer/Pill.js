@@ -14,6 +14,7 @@ const Pill = ({ med, classes, openDialog }) => {
     med_dose_unit,
     med_color,
     med_shape,
+    med_active,
     id
     //med_dose_freq,
     //med_admin_times
@@ -28,7 +29,15 @@ const Pill = ({ med, classes, openDialog }) => {
         />
         <CardActions className={classes.actions} disableActionSpacing>
           <Button>View Pill Details</Button>
-          <Button onClick={() => openDialog(id)}>Discontinue Pill</Button>
+          {med_active ? (
+            <Button onClick={() => openDialog('discontinue', id, med)}>
+              Discontinue Pill
+            </Button>
+          ) : (
+            <Button onClick={() => openDialog('delete', id)}>
+              Delete Pill
+            </Button>
+          )}
         </CardActions>
       </Card>
     </div>
