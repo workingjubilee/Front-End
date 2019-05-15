@@ -24,7 +24,7 @@ function App() {
           <Route exact path='/diary' component={Diary} />
           <Route path='/scan' component={ScanOrAdd} />
           <Route exact path='/dashboard' component={Dashboard} />
-          <Route exact path='/pills' component={PillsContainer} />
+          <Route path='/pills' component={PillsContainer} />
           <Route exact path='/loading' component={Loading} />
         </ErrorBoundary>
       </header>

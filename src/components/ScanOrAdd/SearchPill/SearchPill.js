@@ -81,7 +81,9 @@ const SearchPill = props => {
           })}
         </Select>
       </FormControl>
-      <Button onClick={handleAddPill}>Add</Button>
+      <Button onClick={handleAddPill} variant='contained'>
+        Identify Pill
+      </Button>
     </form>
   );
 };

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import PillsNav from './PillsNav';
+import ActivePills from './ActivePills';
+import InactivePills from './InactivePills';
 import Card from '@material-ui/core/Card';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { connect } from 'react-redux';
 import { fetchMeds } from '../../actions';
-import Pill from './Pill';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 class PillsList extends Component {
@@ -32,7 +34,14 @@ class PillsList extends Component {
   }
 
   render() {
-    const { fetchingMeds, classes, meds, openDialog } = this.props;
+    const {
+      fetchingMeds,
+      classes,
+      activeMeds,
+      inactiveMeds,
+      openDialog,
+      location
+    } = this.props;
     if (fetchingMeds) {
       return (
         <div className={classes.loading}>
@@ -49,12 +58,17 @@ class PillsList extends Component {
     } else {
       return (
         <Card className={classes.card}>
-          <h2>Your medications</h2>
-          <div className={classes.meds}>
-            {meds.map(med => (
-              <Pill key={med.id} med={med} openDialog={openDialog} />
-            ))}
-          </div>
+          <h2>Your list of medications</h2>
+          <PillsNav />
+          {location.pathname === '/pills/active' ||
+          location.pathname === '/pills' ? (
+            <ActivePills activeMeds={activeMeds} openDialog={openDialog} />
+          ) : location.pathname === '/pills/inactive' ? (
+            <InactivePills
+              inactiveMeds={inactiveMeds}
+              openDialog={openDialog}
+            />
+          ) : null}
         </Card>
       );
     }
@@ -69,10 +83,6 @@ const styles = theme => ({
     maxWidth: 1100,
     margin: '0 auto'
   },
-  meds: {
-    display: 'flex',
-    flexWrap: 'wrap'
-  },
   loading: {
     margin: '0 auto',
     width: 500
@@ -81,6 +91,8 @@ const styles = theme => ({
 
 const mapStateToProps = state => ({
   meds: state.meds,
+  activeMeds: state.activeMeds,
+  inactiveMeds: state.inactiveMeds,
   fetchingMeds: state.fetchingMeds,
   error: state.error
 });

@@ -10,7 +10,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-const PillsContainer = ({ fetchUser, user, deleteMed }) => {
+const PillsContainer = ({ fetchUser, user, deleteMed, history, location }) => {
   const { username } = user;
   const userID = user.id ? user.id : localStorage.getItem('userID');
   useEffect(() => {
@@ -65,7 +65,14 @@ const PillsContainer = ({ fetchUser, user, deleteMed }) => {
           </Button>
         </DialogActions>
       </Dialog>
-      {username ? <PillsList user_id={userID} openDialog={openDialog} /> : null}
+      {username ? (
+        <PillsList
+          user_id={userID}
+          openDialog={openDialog}
+          history={history}
+          location={location}
+        />
+      ) : null}
     </div>
   );
 };
