@@ -47,8 +47,8 @@ const ProfileIcon = ({ classes, user, meds }) => {
 };
 
 const mapStateToProps = state => ({
-  user: state.user,
-  meds: state.meds
+  user: state.user.user,
+  meds: state.meds.meds
 });
 
 const StyledProfileIcon = withStyles(styles)(ProfileIcon);

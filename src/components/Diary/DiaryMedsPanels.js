@@ -44,9 +44,9 @@ function DiaryMedsPanels({ fetchingMeds, meds, diary }) {
 }
 
 const mapStateToProps = state => ({
-  fetchingMed: state.fetchingMeds,
-  meds: state.meds,
-  diary: state.diary
+  fetchingMed: state.meds.fetchingMeds,
+  meds: state.meds.meds,
+  diary: state.diary.diary
 });
 
 export default connect(
