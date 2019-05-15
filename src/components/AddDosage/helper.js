@@ -9,20 +9,12 @@ export const makeReminders = ({
   weekday,
   time
 }) => {
-  startDate = moment(startDate).format('LLLL');
-  endDate = moment(endDate).format('LLLL');
-
-  startDate = startDate.split(' ');
-  endDate = endDate.split(' ');
-
-  startDate[4] = '12:00';
-  startDate[5] = 'AM';
-
-  endDate[4] = '11:59';
-  endDate[5] = 'PM';
-
-  startDate = startDate.join(' ');
-  endDate = endDate.join(' ');
+  startDate = moment(startDate)
+    .startOf('day')
+    .format('LLLL');
+  endDate = moment(endDate)
+    .endOf('day')
+    .format('LLLL');
 
   let lastRem = new Date(startDate).getTime();
 
