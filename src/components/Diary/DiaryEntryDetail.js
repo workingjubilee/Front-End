@@ -18,7 +18,8 @@ const styles = {
   card: {
     margin: 10,
     padding: '0 10 0 10',
-    width: 500
+    maxWidth: '500px',
+    minWidth: '350px'
   },
   header: {
     fontSize: 25
