@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 // import axios from 'axios';
 import { connect } from 'react-redux';
-import { logIn } from '../../actions';
+import { logIn } from 'actions';
 
-import auth from '../../Auth';
+import Auth from 'Auth';
 
 const Loading = ({ history, logIn }) => {
-  auth.lock.on('authenticated', function(authResult) {
+  Auth.lock.on('authenticated', function(authResult) {
     localStorage.setItem('token', authResult.idToken);
     console.log("it's authenticated");
     logIn()
@@ -22,7 +22,7 @@ const Loading = ({ history, logIn }) => {
       });
   });
   useEffect(() => {
-    auth.lock.resumeAuth(history.location.hash, function(error, authResult) {
+    Auth.lock.resumeAuth(history.location.hash, function(error, authResult) {
       if (error) {
         alert('Could not parse hash');
       }

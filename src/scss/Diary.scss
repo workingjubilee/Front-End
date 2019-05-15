@@ -1,17 +1,20 @@
 .diary {
-  border: 2px dashed red;
+  max-width: 800px;
+  min-width: 460px;
+  margin: 40px auto 20px auto;
 }
 
 .diaryBody {
   display: flex;
+  justify-content: space-around;
 }
 
 .diaryMeds {
-  display: flex;
+  width: 100%;
 }
 
 .diaryEntries {
-  display: flex;
+  width: 100%;
 }
 
 .diaryEntriesHeader {

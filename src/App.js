@@ -1,18 +1,23 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import Navigation from './components/Navigation/Navigation';
-import Diary from './components/Diary/Diary';
-import Onboard from './components/Onboard/Onboard';
-import Dashboard from './components/Dashboard/Dashboard';
-import PillsContainer from './components/PillsContainer/PillsContainer';
-import Landing from './components/Landing/Landing';
-import Loading from './components/Loading/Loading';
-import ScanOrAdd from 'components/ScanOrAdd/Container.js';
 import ErrorBoundary from 'components/ErrorBoundary/ErrorBoundary.js';
-import AddDosage from 'components/AddDosage/AddDosage';
-import SearchResults from 'components/SearchResults';
+import Spinner from 'components/Spinner/Spinner';
 
-import auth from './Auth';
+import Auth from 'Auth';
+
+const Diary = React.lazy(() => import('./components/Diary/Diary'));
+const Onboard = React.lazy(() => import('./components/Onboard/Onboard'));
+const Dashboard = React.lazy(() => import('./components/Dashboard/Dashboard'));
+const PillsContainer = React.lazy(() =>
+  import('./components/PillsContainer/PillsContainer')
+);
+const Landing = React.lazy(() => import('./components/Landing/Landing'));
+const Loading = React.lazy(() => import('./components/Loading/Loading'));
+const ScanOrAdd = React.lazy(() =>
+  import('./components/ScanOrAdd/Container.js')
+);
+const AddDosage = React.lazy(() => import('./components/AddDosage/AddDosage'));
 
 function App() {
   return (
@@ -20,16 +25,17 @@ function App() {
       <header className='App-header'>
         <Navigation />
         <ErrorBoundary>
-          <Route exact path='/' component={Home} />
-          <Route exact path='/landing' component={Landing} />
-          <Route exact path='/onboard' component={Onboard} />
-          <Route exact path='/diary' component={Diary} />
-          <Route path={['/add', '/scan']} component={ScanOrAdd} />
-          <Route exact path='/dashboard' component={Dashboard} />
-          <Route path='/pills' component={PillsContainer} />
-          <Route exact path='/loading' component={Loading} />
-          <Route exact path='/adddosage' component={AddDosage} />
-          <Route exact path='/searchresults' component={SearchResults} />
+          <React.Suspense fallback={Spinner}>
+            <Route exact path='/' component={Home} />
+            <Route exact path='/landing' component={Landing} />
+            <Route exact path='/onboard' component={Onboard} />
+            <Route exact path='/loading' component={Loading} />
+            <Route path='/diary' component={Diary} />
+            <Route path='/scan' component={ScanOrAdd} />
+            <Route path='/dashboard' component={Dashboard} />
+            <Route path='/pills' component={PillsContainer} />
+            <Route path='/adddosage' component={AddDosage} />
+          </React.Suspense>
         </ErrorBoundary>
       </header>
     </div>
@@ -47,7 +53,7 @@ function Home() {
       <button
         onClick={event => {
           event.preventDefault();
-          auth.lock.show();
+          Auth.lock.show();
         }}
       >
         Login or Register

@@ -1,49 +1,12 @@
-// import actions
-import {
-  LOGIN_REQUEST,
-  LOGIN_SUCCESS,
-  LOGIN_FAILURE,
-  EDIT_USER_REQUEST,
-  EDIT_USER_SUCCESS,
-  EDIT_USER_FAILURE,
-  FETCH_USER_REQUEST,
-  FETCH_USER_SUCCESS,
-  FETCH_USER_FAILURE,
-  FETCH_MEDS_REQUEST,
-  FETCH_MEDS_SUCCESS,
-  FETCH_MEDS_FAILURE,
-  ADD_MED_REQUEST,
-  ADD_MED_SUCCESS,
-  ADD_MED_FAILURE,
-  EDIT_MED_REQUEST,
-  EDIT_MED_SUCCESS,
-  EDIT_MED_FAILURE,
-  DELETE_MED_REQUEST,
-  DELETE_MED_SUCCESS,
-  DELETE_MED_FAILURE,
-  FETCH_DIARY_REQUEST,
-  FETCH_DIARY_SUCCESS,
-  FETCH_DIARY_FAILURE,
-  ADD_DIARY_REQUEST,
-  ADD_DIARY_SUCCESS,
-  ADD_DIARY_FAILURE,
-  EDIT_DIARY_REQUEST,
-  EDIT_DIARY_SUCCESS,
-  EDIT_DIARY_FAILURE,
-  DELETE_DIARY_REQUEST,
-  DELETE_DIARY_SUCCESS,
-  DELETE_DIARY_FAILURE,
-  FETCH_REMS_REQUEST,
-  FETCH_REMS_SUCCESS,
-  FETCH_REMS_FAILURE,
-  ADD_REMS_REQUEST,
-  ADD_REMS_SUCCESS,
-  ADD_REMS_FAILURE
-} from '../actions';
-// import Auth from '../Auth/Auth';
+import userReducer from './userReducer.js';
+import medsReducer from './medsReducer.js';
+import diaryReducer from './diaryReducer.js';
+import remsReducer from './remsReducer.js';
+import { combineReducers } from 'redux';
 
-// const auth = new Auth();
+const rootReducer = combineReducers({ userReducer, medsReducer, diaryReducer, remsReducer });
 
+<<<<<<< HEAD
 const initialState = {
   loggingIn: false,
   loggedIn: false,
@@ -373,3 +336,6 @@ export default (state = initialState, action) => {
       return state;
   }
 };
+=======
+export default rootReducer;
+>>>>>>> bdbd422f1ed4411975e22cde35b96ad1e603cf9e

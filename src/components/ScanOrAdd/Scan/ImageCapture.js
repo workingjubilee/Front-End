@@ -1,47 +1,42 @@
-import React, { Component } from 'react';
-import Camera, { IMAGE_TYPES } from 'react-html5-camera-photo';
+import React from 'react';
+import Camera, { IMAGE_TYPES, FACING_MODES } from 'react-html5-camera-photo';
 import 'react-html5-camera-photo/build/css/index.css';
- 
-class ImageCapture extends Component {
 
-  onTakePhoto (dataUri) {
-    // this.props.dispatch({ type: "takePhoto", payload: dataUri });
-    console.log('takePhoto');
-    this.props.setPhoto(dataUri);
-  }
- 
-  onCameraError (error) {
-    console.error('onCameraError', error);
-  }
- 
-  onCameraStart (stream) {
-    console.log('onCameraStart');
-  }
- 
-  onCameraStop () {
-    console.log('onCameraStop');
-  }
- 
-  render () {
-    return (
-      <div className="App">
-        <Camera
-          onTakePhoto = { (dataUri) => { this.onTakePhoto(dataUri); } }
-          onCameraError = { (error) => { this.onCameraError(error); } }
-          idealResolution = {{width: 640, height: 480}}
-          imageType = {IMAGE_TYPES.PNG}
-          isMaxResolution = {false}
-          isImageMirror = {false}
-          isSilentMode = {true}
-          isDisplayStartCameraError = {true}
-          isFullscreen = {false}
-          sizeFactor = {1}
-          onCameraStart = { (stream) => { this.onCameraStart(stream); } }
-          onCameraStop = { () => { this.onCameraStop(); } }
-        />
-      </div>
-    );
-  }
+export default function ImageCapture({ setPhoto, state, dispatch }) {
+  const onTakePhoto = dataURI => {
+    let data = dataURI.split(',');
+    let byteString; // initializes without declaring!
+
+    if (data[0].includes('base64')) {
+      byteString = atob(data[1]);
+    } else {
+      throw new Error('Not a base64 dataURI!');
+    } // verifies working with base64
+
+    let bufferArray = new Uint8Array(byteString.length);
+    for (let byte = 0; byte < byteString.length; byte++) {
+      bufferArray[byte] = byteString.charCodeAt(byte);
+    } // reads char codes, not literal values!
+
+    let blob = new Blob([bufferArray], { type: 'image/png' }); // binary => image
+    setPhoto(blob); // sets data in state
+  };
+
+  const onCameraError = error => console.error('onCameraError', error);
+
+  return (
+    <Camera
+      onTakePhoto={dataURI => {
+        onTakePhoto(dataURI);
+      }}
+      onCameraError={error => {
+        onCameraError(error);
+      }}
+      imageType={IMAGE_TYPES.PNG}
+      idealFacingModes={FACING_MODES.ENVIRONMENT}
+      isImageMirror={false}
+      isSilentMode={false}
+      isDisplayStartCameraError={true}
+    />
+  );
 }
- 
-export default ImageCapture;

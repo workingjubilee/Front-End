@@ -15,7 +15,7 @@ const styles = () => ({
     overflow: 'hidden'
   },
   gridList: {
-    width: 500,
+    maxWidth: 500,
     height: 165
   },
   tile: { background: 'white,', color: 'black' },

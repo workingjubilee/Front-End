@@ -119,7 +119,6 @@ export const EDIT_MED_SUCCESS = 'EDIT_MED_SUCCESS';
 export const EDIT_MED_FAILURE = 'EDIT_MED_FAILURE';
 
 export const editMed = editedMed => dispatch => {
-  
   dispatch({ type: EDIT_MED_REQUEST });
   axios
     .put(`${endpoint}/api/meds/${editedMed.id}`, editedMed)
@@ -129,6 +128,27 @@ export const editMed = editedMed => dispatch => {
     .catch(err => {
       dispatch({
         type: EDIT_MED_FAILURE,
+        payload: err.response
+          ? `${err.message}. ${err.response.data.message}`
+          : err.message
+      });
+    });
+};
+
+export const DISCONTINUE_MED_REQUEST = 'DISCONTINUE_MED_REQUEST';
+export const DISCONTINUE_MED_SUCCESS = 'DISCONTINUE_MED_SUCCESS';
+export const DISCONTINUE_MED_FAILURE = 'DISCONTINUE_MED_FAILURE';
+
+export const discontinueMed = editedMed => dispatch => {
+  dispatch({ type: DISCONTINUE_MED_REQUEST });
+  axios
+    .put(`${endpoint}/api/meds/${editedMed.id}`, editedMed)
+    .then(res => {
+      dispatch({ type: DISCONTINUE_MED_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({
+        type: DISCONTINUE_MED_FAILURE,
         payload: err.response
           ? `${err.message}. ${err.response.data.message}`
           : err.message
@@ -279,4 +299,14 @@ export const addRems = remsList => dispatch => {
           : err.message
       });
     });
+};
+
+export const FILTER_REMINDERS = 'FILTER_REMINDERS';
+
+export const filterReminders = (startDate, endDate) => {
+  return {
+    type: FILTER_REMINDERS,
+    startDate,
+    endDate
+  };
 };

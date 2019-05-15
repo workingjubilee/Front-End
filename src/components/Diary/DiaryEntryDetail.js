@@ -18,7 +18,8 @@ const styles = {
   card: {
     margin: 10,
     padding: '0 10 0 10',
-    width: 500
+    maxWidth: '500px',
+    minWidth: '350px'
   },
   header: {
     fontSize: 25
@@ -148,8 +149,8 @@ const DiaryEntryDetail = ({
 };
 
 const mapStateToProps = state => ({
-  user_id: state.user.id,
-  meds: state.meds
+  user_id: state.userReducer.user.id,
+  meds: state.medsReducer.meds
 });
 
 export default connect(

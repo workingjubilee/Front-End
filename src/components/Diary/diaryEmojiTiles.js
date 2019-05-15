@@ -37,9 +37,9 @@ const diaryEmojiTiles = [
   },
   {
     value: '6',
-    title: 'Worst Possible Pain',
+    title: 'Worst Pain Possible',
     img: painFace6,
-    text: 'Worst Possible Pain',
+    text: 'Worst Pain Possible',
     number: '10'
   }
 ];

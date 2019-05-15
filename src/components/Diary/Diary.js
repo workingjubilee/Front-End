@@ -1,21 +1,13 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-
-import { useInput } from '../../utilities/useInput';
 import { fetchDiary } from '../../actions';
-import DiaryEntries from '../Diary/DiaryEntries';
-import DiaryMeds from './DiaryMeds';
 
-const Diary = ({ fetchDiary, user_id, meds }) => {
+import DiaryMedsPanels from './DiaryMedsPanels';
+
+const Diary = ({ fetchDiary, user_id }) => {
   useEffect(() => {
     fetchDiary(user_id);
   }, [user_id, fetchDiary]);
-
-  const diaryFocus = useInput(null);
-
-  const changeFocus = id => {
-    diaryFocus.setValue(id);
-  };
 
   return (
     <div className='diary'>
@@ -23,18 +15,17 @@ const Diary = ({ fetchDiary, user_id, meds }) => {
         <h1>Diary</h1>
       </div>
       <div className='diaryBody'>
-        <DiaryMeds changeFocus={changeFocus} diaryFocus={diaryFocus.value} />
-        <DiaryEntries diaryFocus={diaryFocus.value} />
+        <DiaryMedsPanels />
       </div>
     </div>
   );
 };
 
 const mapStateToProps = state => ({
-  user_id: state.user.id,
-  meds: state.meds,
-  fetchingDiary: state.fetchingDiary,
-  error: state.error
+  user_id: state.userReducer.user.id,
+  meds: state.medsReducer.meds,
+  fetchingDiary: state.diaryReducer.fetchingDiary,
+  error: state.diaryReducer.error
 });
 
 export default connect(

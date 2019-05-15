@@ -32,7 +32,7 @@ class Meds extends Component {
   }
 
   render() {
-    const { fetchingRems, classes, rems } = this.props;
+    const { fetchingRems, classes, rems, filteredRems } = this.props;
     if (fetchingRems) {
       return (
         <div className={classes.loading}>
@@ -46,12 +46,14 @@ class Meds extends Component {
       );
     } else if (this.state.noRems) {
       return <h1>You do not have any reminders saved yet.</h1>;
+    } else if (rems.length > 0 && filteredRems.length === 0) {
+      return <h1>You do not have any reminders saved for this date.</h1>;
     } else {
       return (
         <Card className={classes.card}>
           <h2>Your scheduled medications for today</h2>
           <div className={classes.rems}>
-            {rems.map(med => (
+            {filteredRems.map(med => (
               <Med key={med.id} med={med} />
             ))}
           </div>
@@ -80,9 +82,10 @@ const styles = theme => ({
 });
 
 const mapStateToProps = state => ({
-  rems: state.rems,
-  fetchingRems: state.fetchingRems,
-  error: state.error
+  rems: state.remsReducer.rems,
+  filteredRems: state.remsReducer.filteredRems,
+  fetchingRems: state.remsReducer.fetchingRems,
+  error: state.remsReducer.error
 });
 
 const StyledMeds = withStyles(styles)(Meds);

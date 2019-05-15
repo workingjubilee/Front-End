@@ -15,6 +15,10 @@ const styles = {
   },
   date: {
     fontSize: 25
+  },
+  label: {
+    textTransform: 'capitalize',
+    textAlign: 'center'
   }
 };
 
@@ -51,7 +55,7 @@ DiaryModal.propTypes = {
   selectedValue: PropTypes.string
 };
 
-function DiaryEntryModal({ diaryEntry, newEntry, medName, med_id }) {
+function DiaryEntryModal({ classes, diaryEntry, newEntry, medName, med_id }) {
   const [open, setOpen] = React.useState(false);
   const [dateTime, setDateTime] = React.useState();
 
@@ -65,9 +69,14 @@ function DiaryEntryModal({ diaryEntry, newEntry, medName, med_id }) {
   };
 
   return (
-    <div>
-      <Button variant='contained' color='primary' onClick={handleClickOpen}>
-        {newEntry ? 'New Entry' : 'View Entry'}
+    <div className='diaryEntryModal'>
+      <Button
+        className={classes.label}
+        variant='text'
+        color='primary'
+        onClick={handleClickOpen}
+      >
+        {newEntry ? 'Add New Diary Entry' : 'View/Edit'}
       </Button>
       <DiaryModal
         open={open}

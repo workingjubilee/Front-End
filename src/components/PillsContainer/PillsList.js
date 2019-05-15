@@ -16,6 +16,9 @@ class PillsList extends Component {
     if (this.props.meds.length === 0) {
       this.props.fetchMeds(this.props.user_id);
     }
+    if (this.props.location.pathname === '/pills') {
+      this.props.history.push('/pills/active');
+    }
   }
 
   componentDidUpdate(prevProps) {
@@ -90,11 +93,11 @@ const styles = theme => ({
 });
 
 const mapStateToProps = state => ({
-  meds: state.meds,
-  activeMeds: state.activeMeds,
-  inactiveMeds: state.inactiveMeds,
-  fetchingMeds: state.fetchingMeds,
-  error: state.error
+  meds: state.medsReducer.meds,
+  activeMeds: state.medsReducer.activeMeds,
+  inactiveMeds: state.medsReducer.inactiveMeds,
+  fetchingMeds: state.medsReducer.fetchingMeds,
+  error: state.medsReducer.error
 });
 
 const StyledPillsList = withStyles(styles)(PillsList);
