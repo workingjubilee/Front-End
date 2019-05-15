@@ -37,6 +37,13 @@ class PillInfoModal extends Component {
   };
   render() {
     const { open, handleClose, handleConfirm } = this.props;
+    const {
+      med_name,
+      med_color,
+      med_shape,
+      med_strength,
+      med_strength_unit
+    } = this.state.pill;
     return (
       <Dialog
         aria-labelledby='add-pill'
@@ -52,13 +59,13 @@ class PillInfoModal extends Component {
             name='med_name'
             label='Pill Name'
             onChange={this.changeHandler}
-            value={this.state.pill.med_name}
+            value={med_name}
             required
             fullWidth
           />
-          <InputLabel>color</InputLabel>
+          <InputLabel>Color</InputLabel>
           <Select
-            value={this.state.pill.med_color}
+            value={med_color}
             onChange={this.changeHandler}
             name='med_color'
           >
@@ -70,9 +77,9 @@ class PillInfoModal extends Component {
               );
             })}
           </Select>
-          <InputLabel>shape</InputLabel>
+          <InputLabel>Shape</InputLabel>
           <Select
-            value={this.state.pill.med_shape}
+            value={med_shape}
             onChange={this.changeHandler}
             name='med_shape'
           >
@@ -90,19 +97,19 @@ class PillInfoModal extends Component {
             label='Med Strength'
             type='number'
             onChange={this.changeHandler}
-            value={this.state.pill.med_strength}
+            value={med_strength}
             required
             fullWidth
           />
-          <TextField
-            margin='normal'
-            name='med_strength_unit'
-            label='Med Strength Unit'
+          <InputLabel>Med Strength Unit</InputLabel>
+          <Select
+            value={med_strength_unit}
             onChange={this.changeHandler}
-            value={this.state.pill.med_strength_unit}
-            required
-            fullWidth
-          />
+            name='med_strength_unit'
+          >
+            <MenuItem value='mg'>{'mg'}</MenuItem>
+            <MenuItem value={'g'}>{'g'}</MenuItem>
+          </Select>
         </DialogContent>
         <DialogActions>
           <Button color='primary' onClick={handleClose}>
