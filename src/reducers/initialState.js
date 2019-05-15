@@ -7,6 +7,7 @@ export const initialState = {
   fetchingMeds: false,
   addingMed: false,
   editingMed: false,
+  discontinuingMed: false,
   deletingMed: false,
   meds: [],
   activeMeds: [],
