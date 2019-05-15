@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import DiaryMedsPanel from './DiaryMedsPanel';
 
-function DiaryMedsPanels({ fetchingMeds, meds, changeFocus }) {
+function DiaryMedsPanels({ fetchingMeds, meds, diary, changeFocus }) {
   return (
     <div className='diaryMeds'>
       {fetchingMeds === true ? (
@@ -19,6 +19,11 @@ function DiaryMedsPanels({ fetchingMeds, meds, changeFocus }) {
           {meds.map((med, index) =>
             index <= 3 ? (
               <DiaryMedsPanel
+                diaryCount={
+                  diary.filter(diaryEntry => {
+                    return diaryEntry.med_id === med.id;
+                  }).length
+                }
                 key={med.id}
                 changeFocus={changeFocus}
                 med={med}
@@ -33,7 +38,8 @@ function DiaryMedsPanels({ fetchingMeds, meds, changeFocus }) {
 
 const mapStateToProps = state => ({
   fetchingMed: state.fetchingMeds,
-  meds: state.meds
+  meds: state.meds,
+  diary: state.diary
 });
 
 export default connect(
