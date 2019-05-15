@@ -10,8 +10,7 @@ import Loading from './components/Loading/Loading';
 import ScanOrAdd from 'components/ScanOrAdd/Container.js';
 import ErrorBoundary from 'components/ErrorBoundary/ErrorBoundary.js';
 import AddDosage from 'components/AddDosage/AddDosage';
-
-import auth from './Auth';
+import Auth from 'Auth';
 
 function App() {
   return (
@@ -45,7 +44,7 @@ function Home() {
       <button
         onClick={event => {
           event.preventDefault();
-          auth.lock.show();
+          Auth.lock.show();
         }}
       >
         Login or Register

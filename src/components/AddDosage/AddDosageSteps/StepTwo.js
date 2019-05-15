@@ -13,12 +13,8 @@ const StepThree = props => {
       <Card>
         <CardContent>
           <div style={{ display: 'flex' }}>
-            <Typography component='div'>
-              Pill Name
-            </Typography>
-            <Typography component='div'>
-              {props.name}
-            </Typography>
+            <Typography component='div'>Pill Name</Typography>
+            <Typography component='div'>{props.name}</Typography>
           </div>
           {/* <div style={{ display: 'flex' }}>
             <Typography component='div'>
@@ -60,36 +56,20 @@ const StepThree = props => {
       <Card>
         <CardContent>
           <div style={{ display: 'flex' }}>
-            <Typography component='div'>
-              Capsules Per Dose
-            </Typography>
-            <Typography component='div'>
-              {props.capsulesPerDose}
-            </Typography>
+            <Typography component='div'>Capsules Per Dose</Typography>
+            <Typography component='div'>{props.capsulesPerDose}</Typography>
           </div>
           <div style={{ display: 'flex' }}>
-            <Typography component='div'>
-              Length of Dosage
-            </Typography>
-            <Typography component='div'>
-              {props.lengthOfDosage}
-            </Typography>
+            <Typography component='div'>Length of Dosage</Typography>
+            <Typography component='div'>{props.lengthOfDosage}</Typography>
           </div>
           <div style={{ display: 'flex' }}>
-            <Typography component='div'>
-              Dosage Frequency
-            </Typography>
-            <Typography component='div'>
-              {props.dosageFrequency}
-            </Typography>
+            <Typography component='div'>Dosage Frequency</Typography>
+            <Typography component='div'>{props.dosageFrequency}</Typography>
           </div>
           <div style={{ display: 'flex' }}>
-            <Typography component='div'>
-              Dosage Instruction
-            </Typography>
-            <Typography component='div'>
-              {props.dosageInstruction}
-            </Typography>
+            <Typography component='div'>Dosage Instruction</Typography>
+            <Typography component='div'>{props.dosageInstruction}</Typography>
           </div>
         </CardContent>
         <CardActions>

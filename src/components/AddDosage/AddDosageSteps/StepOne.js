@@ -282,7 +282,9 @@ const StepTwo = props => {
 
           <Typography component='p'>{props.dosageDuration}</Typography>
 
-          <Button onClick={() => props.setDosageDuration(props.dosageDuration + 1)}>
+          <Button
+            onClick={() => props.setDosageDuration(props.dosageDuration + 1)}
+          >
             <AddIcon />
           </Button>
         </Card>
