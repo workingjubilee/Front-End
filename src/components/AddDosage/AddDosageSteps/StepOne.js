@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import RemoveIcon from '@material-ui/icons/Remove';
 import AddIcon from '@material-ui/icons/Add';
@@ -9,6 +9,11 @@ import TextField from '@material-ui/core/TextField';
 import moment from 'moment';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import Checkbox from '@material-ui/core/Checkbox';
+import FormLabel from '@material-ui/core/FormLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 const formatMomentDate = dateData => {
   dateData = dateData.split('');
@@ -29,7 +34,7 @@ const formatMomentDate = dateData => {
 
 const todaysDate = formatMomentDate(moment(Date.now()).format('L'));
 
-const StepTwo = props => {
+const StepOne = props => {
   const handleIncrementCapsulesPerDose = () => {
     props.updateCapsulesPerDose(props.capsulesPerDose + 1);
   };
@@ -50,6 +55,46 @@ const StepTwo = props => {
       props.updateDosageFrequency('');
     } else {
       props.updateDosageFrequency(value);
+    }
+  };
+  const [weekdays, setWeekdays] = useState({
+    sunday: false,
+    monday: false,
+    tuesday: false,
+    wednesday: false,
+    thursday: false,
+    friday: false,
+    saturday: false
+  });
+  const [selectedDays, setSelectedDays] = useState([]);
+  const {
+    sunday,
+    monday,
+    tuesday,
+    wednesday,
+    thursday,
+    friday,
+    saturday
+  } = weekdays;
+  useEffect(() => {
+    const days = [];
+    for (let day in weekdays) {
+      if (weekdays[day]) {
+        days.push(day);
+        setSelectedDays(days);
+      }
+    }
+    console.log(selectedDays);
+  }, [weekdays]);
+  const handleWeekdayChange = weekday => e => {
+    if (
+      Object.values(weekdays).filter(value => value).length <
+      props.lengthOfDosage
+    ) {
+      setWeekdays({ ...weekdays, [weekday]: e.target.checked });
+      // console.log(Object.values(weekdays).filter(value => value));
+    } else {
+      setWeekdays({ ...weekdays, [weekday]: false });
     }
   };
   const handleDosageInstructionChange = value => {
@@ -161,26 +206,90 @@ const StepTwo = props => {
           Monthly
         </Button>
         {props.dosageFrequency === 'weekly' ? (
-          <Select
-            value={'test'}
-            // onChange={this.handleChange}
-            inputProps={{
-              name: 'age',
-              id: 'age-simple'
-            }}
+          // <Select
+          //   value={'test'}
+          //   // onChange={this.handleChange}
+          //   inputProps={{
+          //     name: 'age',
+          //     id: 'age-simple'
+          //   }}
+          // >
+          <FormGroup
+            style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}
           >
-            <MenuItem value=''>
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={10}>Sunday</MenuItem>
-            <MenuItem value={20}>Monday</MenuItem>
-            <MenuItem value={30}>Tuesday</MenuItem>
-            <MenuItem value={10}>Wednesday</MenuItem>
-            <MenuItem value={20}>Thursday</MenuItem>
-            <MenuItem value={30}>Friday</MenuItem>
-            <MenuItem value={10}>Saturday</MenuItem>
-          </Select>
-        ) : null}
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={sunday}
+                  onChange={handleWeekdayChange('sunday')}
+                  value='sunday'
+                />
+              }
+              label='sunday'
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={monday}
+                  onChange={handleWeekdayChange('monday')}
+                  value='monday'
+                />
+              }
+              label='monday'
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={tuesday}
+                  onChange={handleWeekdayChange('tuesday')}
+                  value='tuesday'
+                />
+              }
+              label='tuesday'
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={wednesday}
+                  onChange={handleWeekdayChange('wednesday')}
+                  value='wednesday'
+                />
+              }
+              label='wednesday'
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={thursday}
+                  onChange={handleWeekdayChange('thursday')}
+                  value='thursday'
+                />
+              }
+              label='thursday'
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={friday}
+                  onChange={handleWeekdayChange('friday')}
+                  value='friday'
+                />
+              }
+              label='friday'
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={saturday}
+                  onChange={handleWeekdayChange('saturday')}
+                  value='saturday'
+                />
+              }
+              label='saturday'
+            />
+          </FormGroup>
+        ) : // </Select>
+        null}
         {props.dosageFrequency === 'monthly' ? (
           <div>
             <p>choose a date</p>
@@ -331,4 +440,4 @@ const StepTwo = props => {
   );
 };
 
-export default StepTwo;
+export default StepOne;
