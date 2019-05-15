@@ -1,10 +1,31 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import withStyles from '@material-ui/core/styles/withStyles';
 
 import DiaryMedsPanel from './DiaryMedsPanel';
 
-function DiaryMedsPanels({ fetchingMeds, meds, diary }) {
+const styles = {
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap'
+  },
+  formControl: {
+    minWidth: 120,
+    margin: '0px'
+  },
+  selectEmpty: {}
+};
+
+function DiaryMedsPanels({ classes, fetchingMeds, meds, diary }) {
   const [diaryFocus, setDiaryFocus] = React.useState(null);
+  const [sort, setSort] = React.useState('alph');
+
+  const changeSort = newSort => {
+    setSort(newSort);
+  };
 
   const changeFocus = med_id => {
     setDiaryFocus(med_id);
@@ -21,7 +42,17 @@ function DiaryMedsPanels({ fetchingMeds, meds, diary }) {
         </h2>
       ) : (
         <div className='diaryMeds'>
-          <h2>Sort-by pull-down here</h2>
+          <div className='sortSelect'>
+            <h2>Sort by:</h2>
+            <FormControl className={classes.formControl}>
+              <Select value={sort} onChange={changeSort} name='sort'>
+                <MenuItem value={'alpha'}>A-Z</MenuItem>
+                <MenuItem value={'revAlpha'}>Z-A</MenuItem>
+                <MenuItem value={'chron'}>Newest First</MenuItem>
+                <MenuItem value={'revChron'}>Oldest First</MenuItem>
+              </Select>
+            </FormControl>
+          </div>
           {meds.map((med, index) =>
             index <= 3 ? (
               <DiaryMedsPanel
@@ -52,4 +83,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   null
-)(DiaryMedsPanels);
+)(withStyles(styles)(DiaryMedsPanels));
