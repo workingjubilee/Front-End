@@ -89,10 +89,10 @@ const styles = theme => ({
 const StyledDashboard = withStyles(styles)(Dashboard);
 
 const mapStateToProps = state => ({
-  user: state.user,
-  fetchingUser: state.fetchingUser,
-  error: state.error,
-  rems: state.rems
+  user: state.userReducer.user,
+  fetchingUser: state.userReducer.fetchingUser,
+  error: state.userReducer.error,
+  rems: state.remsReducer.rems
 });
 
 export default connect(

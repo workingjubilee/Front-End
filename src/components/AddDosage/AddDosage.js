@@ -140,7 +140,7 @@ const AddPill = ({ med, addRems, editMed, history }) => {
 
 const mapStateToProps = state => {
   return {
-    med: state.med
+    med: state.medsReducer.med
   };
 };
 
