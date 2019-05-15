@@ -67,6 +67,38 @@ const initialState = {
   addingRems: false,
   rems: [],
   filteredRems: [],
+  searchResults: [
+    {
+      author: 'Merck Sharp & Dohme Corp.',
+      imprint: 'MSD;117;SINGULAIR',
+      image_id: '000069117.jpg',
+      medicine_name: 'SINGULAIR',
+      pill_strength: '100mg',
+      match: '90%',
+      size: 8,
+      color_text: 'BROWN',
+      shape_text: 'SQUARE',
+      product_code: '153892',
+      DEA_schedule: '34391-3',
+      score: 1,
+      setid: '8c166755-7711-4df9-d689-8836a1a70885'
+    },
+    {
+      author: 'A Drug Company',
+      imprint: 'EDD;635;WIS',
+      image_id: '000069117.jpg',
+      medicine_name: 'Proliptol',
+      pill_strength: '60mg',
+      match: '80%',
+      size: 8,
+      color_text: 'BROWN',
+      shape_text: 'SQUARE',
+      product_code: '153892',
+      DEA_schedule: '34391-3',
+      score: 1,
+      setid: '8c166755-7711-4df9-d689-8836a1a70885'
+    }
+  ],
   error: null
 };
 

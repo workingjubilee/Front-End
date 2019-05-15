@@ -7,12 +7,12 @@ import CardMedia from '@material-ui/core/CardMedia';
 
 const styles = {
   card: {
-    maxWidth: '8rem'
+    maxWidth: '4rem',
+    boxShadow: 'none'
   },
-  // Not actually sure what this media class is doing
   media: {
-    height: '8rem',
-    width: '8rem'
+    height: '4rem',
+    width: '4rem'
   }
 };
 
@@ -20,11 +20,7 @@ const Image = ({ classes, imageLink }) => {
   return (
     <Card className={classes.card}>
       <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image={imageLink}
-          title='Contemplative Reptile'
-        />
+        <CardMedia className={classes.media} image={imageLink} />
         <CardContent />
       </CardActionArea>
     </Card>
