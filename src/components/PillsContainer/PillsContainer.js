@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { fetchUser, deleteMed } from '../../actions';
+import { fetchUser, deleteMed, discontinueMed } from '../../actions';
 import PillsList from './PillsList';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Button from '@material-ui/core/Button';
@@ -10,7 +10,14 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-const PillsContainer = ({ fetchUser, user, deleteMed, history, location }) => {
+const PillsContainer = ({
+  fetchUser,
+  user,
+  deleteMed,
+  discontinueMed,
+  history,
+  location
+}) => {
   const { username } = user;
   const userID = user.id ? user.id : localStorage.getItem('userID');
   useEffect(() => {
@@ -18,32 +25,76 @@ const PillsContainer = ({ fetchUser, user, deleteMed, history, location }) => {
       fetchUser(userID);
     }
   }, [user, fetchUser, userID]);
-  const [open, setOpen] = useState(false);
+  const [disOpen, setDisOpen] = useState(false);
+  const [delOpen, setDelOpen] = useState(false);
   const [medID, setMedID] = useState(null);
+  const [medication, setMedication] = useState(null);
 
-  function openDialog(id) {
-    handleClickOpen();
+  function openDialog(dialog, id, med) {
+    handleClickOpen(dialog, med);
     setMedID(id);
   }
 
-  function handleClickOpen() {
-    setOpen(true);
+  function handleClickOpen(dialog, inputMed) {
+    if (dialog === 'discontinue') {
+      setDisOpen(true);
+      setMedication({ ...inputMed });
+    } else {
+      setDelOpen(true);
+    }
   }
 
-  function handleClose() {
-    setOpen(false);
+  function handleClose(dialog) {
+    if (dialog === 'discontinue') {
+      setDisOpen(false);
+    } else {
+      setDelOpen(false);
+    }
   }
 
-  function handleDeleteMed() {
-    handleClose();
+  function handleDiscontinueMed(dialog) {
+    handleClose(dialog);
+    const editedMed = { ...medication };
+    editedMed.med_active = false;
+    editedMed.med_directions = editedMed.med_directions
+      ? JSON.stringify(editedMed.med_directions)
+      : editedMed.med_directions;
+    discontinueMed(editedMed);
+  }
+
+  function handleDeleteMed(dialog) {
+    handleClose(dialog);
     deleteMed(medID);
   }
 
   return (
     <div className='DashboardPage'>
       <Dialog
-        open={open}
-        onClose={handleClose}
+        open={disOpen}
+        onClose={() => handleClose('discontinue')}
+        aria-labelledby='delete-pill'
+        aria-describedby='alert-dialog-description'
+        keepMounted
+      >
+        <DialogTitle id='discontinue-pill'>
+          {'Are you sure you want to discontinue this medication?'}
+        </DialogTitle>
+        <DialogActions>
+          <Button onClick={() => handleClose('discontinue')} color='primary'>
+            No, keep this medication
+          </Button>
+          <Button
+            color='primary'
+            autoFocus
+            onClick={() => handleDiscontinueMed('discontinue')}
+          >
+            Discontinue this medication
+          </Button>
+        </DialogActions>
+      </Dialog>
+      <Dialog
+        open={delOpen}
+        onClose={() => handleClose('delete')}
         aria-labelledby='delete-pill'
         aria-describedby='alert-dialog-description'
         keepMounted
@@ -57,10 +108,14 @@ const PillsContainer = ({ fetchUser, user, deleteMed, history, location }) => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color='primary'>
+          <Button onClick={() => handleClose('delete')} color='primary'>
             No, keep this medication
           </Button>
-          <Button color='primary' autoFocus onClick={handleDeleteMed}>
+          <Button
+            color='primary'
+            autoFocus
+            onClick={() => handleDeleteMed('delete')}
+          >
             Delete this medication
           </Button>
         </DialogActions>
@@ -101,5 +156,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { fetchUser, deleteMed }
+  { fetchUser, deleteMed, discontinueMed }
 )(StyledPillsContainer);
