@@ -8,6 +8,8 @@ it('renders without crashing', () => {
   ReactDOM.render(
     <AppWrapper>
       <Meds />
-    </AppWrapper>, div);
+    </AppWrapper>,
+    div
+  );
   ReactDOM.unmountComponentAtNode(div);
 });
