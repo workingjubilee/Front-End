@@ -11,13 +11,27 @@ import ResultInfo from './ResultInfo';
 const styles = {
   card: {
     maxWidth: '40%',
-    border: '1px solid black'
+    border: '1px solid black',
+    margin: '2rem'
   },
   info: {
     display: 'flex'
   },
   buttons: {
-    display: 'flex'
+    display: 'flex',
+    justifyContent: 'space-between'
+  },
+  button: {
+    width: '30%',
+    height: '3.5rem',
+    fontSize: '.8rem',
+    color: 'white'
+  },
+  view: {
+    backgroundColor: '#5AAC49'
+  },
+  add: {
+    backgroundColor: '#2D90F5'
   }
 };
 
@@ -35,9 +49,15 @@ const SearchResult = ({ classes, result }) => {
           <ResultInfo result={result} />
         </CardContent>
         <CardContent className={classes.buttons}>
-          <Button>View Details</Button>
-          <Button>Add to Medication List</Button>
-          <Button>Add and Schedule Dosage</Button>
+          <Button className={`${classes.button} ${classes.view}`}>
+            View Details
+          </Button>
+          <Button className={`${classes.button} ${classes.add}`}>
+            Add to Medication List
+          </Button>
+          <Button className={`${classes.button} ${classes.add}`}>
+            Add and Schedule Dosage
+          </Button>
         </CardContent>
       </Paper>
     </Card>

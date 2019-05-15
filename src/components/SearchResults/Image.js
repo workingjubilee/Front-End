@@ -7,12 +7,11 @@ import CardMedia from '@material-ui/core/CardMedia';
 
 const styles = {
   card: {
-    maxWidth: '4rem',
     boxShadow: 'none'
   },
   media: {
     height: '4rem',
-    width: '4rem'
+    width: '5rem'
   }
 };
 

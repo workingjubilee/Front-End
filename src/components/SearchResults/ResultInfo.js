@@ -8,22 +8,24 @@ const styles = {
   card: {
     width: '50%',
     height: '100%',
-    border: '5px dotted yellow',
+    // border: '5px dotted yellow',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    margin: '10px',
+    marginLeft: '1.25rem',
     boxShadow: 'none'
   },
   static: {
     backgroundColor: '#F0F3F5',
     fontWeight: 'bold',
-    height: '2.5rem'
+    width: '9rem',
+    height: '1.5rem'
   },
   dynamic: {
     backgroundColor: 'white',
-    height: '2.5rem',
-    border: '3px solid #F0F3F5'
+    height: '1.5rem',
+    border: '3px solid #F0F3F5',
+    width: '100%'
   },
   row: {
     display: 'flex'
@@ -42,7 +44,7 @@ const ResultInfo = ({ classes, result }) => {
       <div className={classes.row}>
         <Typography className={classes.static}>Strength:</Typography>
         <Typography className={classes.dynamic}>
-          {result.medicine_name}
+          {result.pill_strength}
         </Typography>
       </div>
       <CardContent />
