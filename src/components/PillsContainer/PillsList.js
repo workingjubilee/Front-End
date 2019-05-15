@@ -90,11 +90,11 @@ const styles = theme => ({
 });
 
 const mapStateToProps = state => ({
-  meds: state.meds,
-  activeMeds: state.activeMeds,
-  inactiveMeds: state.inactiveMeds,
-  fetchingMeds: state.fetchingMeds,
-  error: state.error
+  meds: state.medsReducer.meds,
+  activeMeds: state.medsReducer.activeMeds,
+  inactiveMeds: state.medsReducer.inactiveMeds,
+  fetchingMeds: state.medsReducer.fetchingMeds,
+  error: state.medsReducer.error
 });
 
 const StyledPillsList = withStyles(styles)(PillsList);

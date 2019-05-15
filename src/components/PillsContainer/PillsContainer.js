@@ -149,7 +149,7 @@ const styles = theme => ({
 const StyledPillsContainer = withStyles(styles)(PillsContainer);
 
 const mapStateToProps = state => ({
-  user: state.user,
+  user: state.userReducer,
   fetchingUser: state.fetchingUser,
   error: state.error
 });
