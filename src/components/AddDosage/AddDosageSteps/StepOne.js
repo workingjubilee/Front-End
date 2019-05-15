@@ -70,7 +70,7 @@ const StepTwo = props => {
     // console.log(newDate);
     // console.log(date);
   };
-  const formattedStartDate = date => {};
+  // const formattedStartDate = date => {};
   // const handlePrevStep = () => {
   //   props.prevStep();
   // };

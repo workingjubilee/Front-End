@@ -47,7 +47,7 @@ const AddPill = ({ med, addRems, editMed, history }) => {
   const [step, setStep] = useState(0);
   useEffect(() => {
     setEndDate(
-      moment(startDate)
+      moment(startDate || date)
         .add(dosageDuration, 'days')
         .format('L')
     );
@@ -102,7 +102,7 @@ const AddPill = ({ med, addRems, editMed, history }) => {
     addRems(reminders);
     console.log(medData);
     console.log(reminders);
-    // history.push('/dashboard');
+    history.push('/dashboard');
   };
   const steps = [
     <StepOne
