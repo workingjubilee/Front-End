@@ -102,7 +102,7 @@ const AddPill = ({ med, addRems, editMed, history }) => {
     await addRems(reminders);
     console.log(medData);
     console.log(reminders);
-    history.push('/dashboard');
+    // history.push('/dashboard');
   };
   const steps = [
     <StepOne
