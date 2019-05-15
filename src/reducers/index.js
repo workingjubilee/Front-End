@@ -342,8 +342,7 @@ export default (state = initialState, action) => {
         ...state,
         filteredRems: state.rems.filter(rem => {
           return (
-            Number(rem.rem_date) > action.startDate &&
-            Number(rem.rem_date) < action.endDate
+            rem.rem_date > action.startDate && rem.rem_date < action.endDate
           );
         })
       };
