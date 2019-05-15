@@ -13,11 +13,6 @@ import DiaryEntriesPanels from './DiaryEntriesPanels';
 const Chip = withStyles({
   root: {
     border: 'none'
-  },
-  expanded: {
-    '&$expanded': {
-      marginBottom: '20px'
-    }
   }
 })(props => <MuiChip {...props} />);
 
@@ -40,12 +35,6 @@ const ExpansionPanelDetails = withStyles({
   root: {
     padding: '0',
     backgroundColor: 'rgba(0,0,0,.03)'
-  },
-  content: {
-    '&$expanded': {
-      margin: '12px 0'
-    },
-    justifyContent: 'space-between'
   }
 })(props => <MuiExpansionPanelDetails {...props} />);
 
@@ -108,7 +97,15 @@ function DiaryMedsPanel({ classes, med, changeFocus, diaryFocus, diaryCount }) {
 
   const handleChange = panel => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
+    changeFocus(med.id);
   };
+
+  React.useEffect(() => {
+    if (diaryFocus !== med.id) {
+      setExpanded(false);
+    }
+    // eslint-disable-next-line
+  }, [diaryFocus]);
 
   return (
     <div className={classes.root}>

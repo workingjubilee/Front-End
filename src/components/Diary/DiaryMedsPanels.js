@@ -3,7 +3,13 @@ import { connect } from 'react-redux';
 
 import DiaryMedsPanel from './DiaryMedsPanel';
 
-function DiaryMedsPanels({ fetchingMeds, meds, diary, changeFocus }) {
+function DiaryMedsPanels({ fetchingMeds, meds, diary }) {
+  const [diaryFocus, setDiaryFocus] = React.useState(null);
+
+  const changeFocus = med_id => {
+    setDiaryFocus(med_id);
+  };
+
   return (
     <div className='diaryMeds'>
       {fetchingMeds === true ? (
@@ -25,8 +31,9 @@ function DiaryMedsPanels({ fetchingMeds, meds, diary, changeFocus }) {
                   }).length
                 }
                 key={med.id}
-                changeFocus={changeFocus}
                 med={med}
+                changeFocus={changeFocus}
+                diaryFocus={diaryFocus}
               />
             ) : null
           )}
