@@ -7,7 +7,12 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
+import { shapes } from 'data/shapes';
+import { colors } from 'data/colors';
 
 class PillInfoModal extends Component {
   state = {
@@ -15,7 +20,9 @@ class PillInfoModal extends Component {
       user_id: localStorage.getItem('userID'),
       med_name: '',
       med_color: '',
-      med_shape: ''
+      med_shape: '',
+      med_strength: '',
+      med_strength_unit: 0
     }
   };
   changeHandler = e => {
@@ -30,6 +37,13 @@ class PillInfoModal extends Component {
   };
   render() {
     const { open, handleClose, handleConfirm } = this.props;
+    const {
+      med_name,
+      med_color,
+      med_shape,
+      med_strength,
+      med_strength_unit
+    } = this.state.pill;
     return (
       <Dialog
         aria-labelledby='add-pill'
@@ -45,28 +59,57 @@ class PillInfoModal extends Component {
             name='med_name'
             label='Pill Name'
             onChange={this.changeHandler}
-            value={this.state.pill.med_name}
+            value={med_name}
             required
             fullWidth
           />
-          <TextField
-            margin='normal'
+          <InputLabel>Color</InputLabel>
+          <Select
+            value={med_color}
+            onChange={this.changeHandler}
             name='med_color'
-            label='Pill Color'
+          >
+            {colors.map(color => {
+              return (
+                <MenuItem key={color.id} value={color.name}>
+                  {color.name}
+                </MenuItem>
+              );
+            })}
+          </Select>
+          <InputLabel>Shape</InputLabel>
+          <Select
+            value={med_shape}
             onChange={this.changeHandler}
-            value={this.state.pill.med_color}
-            required
-            fullWidth
-          />
+            name='med_shape'
+          >
+            {shapes.map(shape => {
+              return (
+                <MenuItem key={shape.id} value={shape.name}>
+                  {shape.name}
+                </MenuItem>
+              );
+            })}
+          </Select>
           <TextField
             margin='normal'
-            name='med_shape'
-            label='Pill Shape'
+            name='med_strength'
+            label='Med Strength'
+            type='number'
             onChange={this.changeHandler}
-            value={this.state.pill.med_shape}
+            value={med_strength}
             required
             fullWidth
           />
+          <InputLabel>Med Strength Unit</InputLabel>
+          <Select
+            value={med_strength_unit}
+            onChange={this.changeHandler}
+            name='med_strength_unit'
+          >
+            <MenuItem value='mg'>{'mg'}</MenuItem>
+            <MenuItem value={'g'}>{'g'}</MenuItem>
+          </Select>
         </DialogContent>
         <DialogActions>
           <Button color='primary' onClick={handleClose}>

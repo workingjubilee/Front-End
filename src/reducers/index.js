@@ -38,7 +38,8 @@ import {
   FETCH_REMS_FAILURE,
   ADD_REMS_REQUEST,
   ADD_REMS_SUCCESS,
-  ADD_REMS_FAILURE
+  ADD_REMS_FAILURE,
+  FILTER_REMINDERS
 } from '../actions';
 // import Auth from '../Auth/Auth';
 
@@ -335,6 +336,15 @@ export default (state = initialState, action) => {
         ...state,
         addingRems: false,
         error: action.payload
+      };
+    case FILTER_REMINDERS:
+      return {
+        ...state,
+        filteredRems: state.rems.filter(rem => {
+          return (
+            rem.rem_date > action.startDate && rem.rem_date < action.endDate
+          );
+        })
       };
 
     default:
