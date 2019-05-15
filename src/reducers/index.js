@@ -55,6 +55,7 @@ const initialState = {
   editingMed: false,
   deletingMed: false,
   meds: [],
+  med: {},
   fetchingDiary: false,
   addingDiary: false,
   editingDiary: false,
@@ -151,7 +152,8 @@ export default (state = initialState, action) => {
       return {
         ...state,
         addingMed: false,
-        meds: [...state.meds, action.payload]
+        meds: [...state.meds, action.payload],
+        med: action.payload
       };
     case ADD_MED_FAILURE:
       return {
