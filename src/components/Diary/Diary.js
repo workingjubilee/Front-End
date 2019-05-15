@@ -22,10 +22,10 @@ const Diary = ({ fetchDiary, user_id }) => {
 };
 
 const mapStateToProps = state => ({
-  user_id: state.user.id,
-  meds: state.meds,
-  fetchingDiary: state.fetchingDiary,
-  error: state.error
+  user_id: state.userReducer.user.id,
+  meds: state.medsReducer.meds,
+  fetchingDiary: state.diaryReducer.fetchingDiary,
+  error: state.diaryReducer.error
 });
 
 export default connect(

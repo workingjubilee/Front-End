@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addMed } from '../../actions';
+import { addMed } from 'actions';
 // import withStyles from '@material-ui/core/styles/withStyles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -128,7 +128,7 @@ class PillInfoModal extends Component {
 }
 
 const mapStateToProps = state => ({
-  error: state.error
+  error: state.medsReducer.error
 });
 
 export default connect(
