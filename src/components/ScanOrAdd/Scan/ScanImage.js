@@ -15,33 +15,41 @@ export default function ScanImage({ state, dispatch }) {
     const imgData = new FormData();
     imgData.append('image', photo, photo.filename);
 
-    const result = await axios.post(photoEndpoint, imgData).catch(err => console.error(err));
-    dispatch({ type: "analysisResults", payload: result.data })
+    const result = await axios
+      .post(photoEndpoint, imgData)
+      .catch(err => console.error(err));
+    dispatch({ type: 'analysisResults', payload: result.data });
   };
 
   return (
     <>
       <div>
-        <label htmlFor="upload-image-button">
+        <label htmlFor='upload-image-button'>
           <input
             type='file'
             accept='image/*'
             onChange={photoSelect}
             style={{ display: 'none' }}
-            id="upload-image-button"
+            id='upload-image-button'
             multiple
           />
-          <Button component="span">
-            Choose Image
-          </Button>
+          <Button component='span'>Choose Image</Button>
         </label>
         <Button onClick={upload}>Scan!</Button>
         <Button onClick={toggleCamera}>Take Photo</Button>
       </div>
       <div>
-        { photo && <img src={URL.createObjectURL(photo)} alt="upload preview" style={{maxWidth: "400px"}} /> }
+        {photo && (
+          <img
+            src={URL.createObjectURL(photo)}
+            alt='upload preview'
+            style={{ maxWidth: '400px' }}
+          />
+        )}
       </div>
-      {displayCamera ? <ImageCapture setPhoto={setPhoto} state={state} dispatch={dispatch} /> : null }
+      {displayCamera ? (
+        <ImageCapture setPhoto={setPhoto} state={state} dispatch={dispatch} />
+      ) : null}
     </>
   );
-};
+}
