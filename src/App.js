@@ -8,7 +8,8 @@ import PillsContainer from './components/PillsContainer/PillsContainer';
 import Landing from './components/Landing/Landing';
 import Loading from './components/Loading/Loading';
 import ScanOrAdd from 'components/ScanOrAdd/Container.js';
-import ErrorBoundary from 'components/ErrorBoundary/ErrorBoundary.js';
+import ErrorBoundary from 'components/ErrorBoundary/ErrorBoundary.js'
+import AddDosage from 'components/AddDosage/AddDosage'
 
 import auth from './Auth';
 
@@ -22,10 +23,11 @@ function App() {
           <Route exact path='/landing' component={Landing} />
           <Route exact path='/onboard' component={Onboard} />
           <Route exact path='/diary' component={Diary} />
-          <Route path='/scan' component={ScanOrAdd} />
+          <Route path={ ['/add', '/scan'] } component={ScanOrAdd} />
           <Route exact path='/dashboard' component={Dashboard} />
           <Route exact path='/pills' component={PillsContainer} />
           <Route exact path='/loading' component={Loading} />
+          <Route exact path='/adddosage' component={AddDosage} />
         </ErrorBoundary>
       </header>
     </div>
