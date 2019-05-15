@@ -4,6 +4,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Image from './Image';
 import ResultInfo from './ResultInfo';
@@ -11,8 +12,8 @@ import ResultInfo from './ResultInfo';
 const styles = {
   card: {
     maxWidth: '40%',
-    border: '1px solid black',
-    margin: '2rem'
+    border: '1px solid gray',
+    margin: '1rem'
   },
   info: {
     display: 'flex'
@@ -23,8 +24,8 @@ const styles = {
   },
   button: {
     width: '30%',
-    height: '3.5rem',
-    fontSize: '.8rem',
+    height: '3rem',
+    fontSize: '18px',
     color: 'white'
   },
   view: {
@@ -47,6 +48,15 @@ const SearchResult = ({ classes, result }) => {
             }`}
           />
           <ResultInfo result={result} />
+          <CircularProgress
+            style={{
+              marginLeft: '20px',
+              width: '100px',
+              height: '100px'
+            }}
+            variant='static'
+            value={result.match}
+          />
         </CardContent>
         <CardContent className={classes.buttons}>
           <Button className={`${classes.button} ${classes.view}`}>
@@ -56,7 +66,7 @@ const SearchResult = ({ classes, result }) => {
             Add to Medication List
           </Button>
           <Button className={`${classes.button} ${classes.add}`}>
-            Add and Schedule Dosage
+            Add with Reminder
           </Button>
         </CardContent>
       </Paper>
