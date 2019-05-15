@@ -8,13 +8,12 @@ import {
   FETCH_USER_REQUEST,
   FETCH_USER_SUCCESS,
   FETCH_USER_FAILURE
-} from 'actions'
+} from 'actions';
 
 import { initialState } from './initialState';
 
 export default function userReducer(state = initialState, action) {
   switch (action.type) {
-
     case LOGIN_REQUEST:
       return {
         ...state,
@@ -69,6 +68,6 @@ export default function userReducer(state = initialState, action) {
       };
 
     default:
-      return state
+      return state;
   }
 }

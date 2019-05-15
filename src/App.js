@@ -7,15 +7,17 @@ import Spinner from 'components/Spinner/Spinner';
 import Auth from 'Auth';
 
 const Diary = React.lazy(() => import('./components/Diary/Diary'));
-const Onboard = React.lazy(() => import('./components/Onboard/Onboard'))
-const Dashboard = React.lazy(() => import('./components/Dashboard/Dashboard'))
-const PillsContainer = React.lazy(() => import('./components/PillsContainer/PillsContainer'))
-const Landing = React.lazy(() => import('./components/Landing/Landing'))
-const Loading = React.lazy(() => import('./components/Loading/Loading'))
-const ScanOrAdd = React.lazy(() => import('./components/ScanOrAdd/Container.js'))
-const AddDosage = React.lazy(() => import('./components/AddDosage/AddDosage'))
-
-
+const Onboard = React.lazy(() => import('./components/Onboard/Onboard'));
+const Dashboard = React.lazy(() => import('./components/Dashboard/Dashboard'));
+const PillsContainer = React.lazy(() =>
+  import('./components/PillsContainer/PillsContainer')
+);
+const Landing = React.lazy(() => import('./components/Landing/Landing'));
+const Loading = React.lazy(() => import('./components/Loading/Loading'));
+const ScanOrAdd = React.lazy(() =>
+  import('./components/ScanOrAdd/Container.js')
+);
+const AddDosage = React.lazy(() => import('./components/AddDosage/AddDosage'));
 
 function App() {
   return (

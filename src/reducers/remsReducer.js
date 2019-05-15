@@ -12,7 +12,6 @@ import { initialState } from './initialState';
 
 export default function remsReducer(state = initialState, action) {
   switch (action.type) {
-
     case FETCH_REMS_REQUEST:
       return {
         ...state,
@@ -60,6 +59,6 @@ export default function remsReducer(state = initialState, action) {
       };
 
     default:
-      return state
+      return state;
   }
 }

@@ -11,14 +11,13 @@ import {
   DELETE_MED_REQUEST,
   DELETE_MED_SUCCESS,
   DELETE_MED_FAILURE
-} from 'actions'
+} from 'actions';
 
 import { initialState } from './initialState';
 
 export default function medsReducer(state = initialState, action) {
   switch (action.type) {
-
-  case FETCH_MEDS_REQUEST:
+    case FETCH_MEDS_REQUEST:
       return {
         ...state,
         fetchingMeds: true,
@@ -108,8 +107,8 @@ export default function medsReducer(state = initialState, action) {
         deletingMed: false,
         error: action.payload
       };
-      
+
     default:
-      return state
+      return state;
   }
 }

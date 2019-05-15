@@ -11,14 +11,13 @@ import {
   DELETE_DIARY_REQUEST,
   DELETE_DIARY_SUCCESS,
   DELETE_DIARY_FAILURE
-} from 'actions'
+} from 'actions';
 
 import { initialState } from './initialState';
 
 export default function diaryReducer(state = initialState, action) {
   switch (action.type) {
-
-        case FETCH_DIARY_REQUEST:
+    case FETCH_DIARY_REQUEST:
       return {
         ...state,
         fetchingDiary: true,
@@ -103,6 +102,6 @@ export default function diaryReducer(state = initialState, action) {
       };
 
     default:
-      return state
+      return state;
   }
 }
