@@ -90,7 +90,7 @@ const SearchPill = props => {
 
 const mapStateToProps = state => {
   return {
-    pillOnDeck: state.pillOnDeck
+    pillOnDeck: state.medsReducer.pillOnDeck
   };
 };
 

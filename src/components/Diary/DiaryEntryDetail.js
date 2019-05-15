@@ -149,8 +149,8 @@ const DiaryEntryDetail = ({
 };
 
 const mapStateToProps = state => ({
-  user_id: state.user.user.id,
-  meds: state.meds.meds
+  user_id: state.userReducer.user.id,
+  meds: state.medsReducer.meds
 });
 
 export default connect(

@@ -75,8 +75,8 @@ const DiaryEntriesPanels = ({ classes, diary, diaryFocus, meds }) => {
 };
 
 const mapStateToProps = state => ({
-  diary: state.diary.diary,
-  meds: state.meds.meds
+  diary: state.diaryReducer.diary,
+  meds: state.medsReducer.meds
 });
 
 export default connect(

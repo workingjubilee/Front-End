@@ -84,8 +84,8 @@ function ScanOrAdd({ location, history, addMed }) {
 }
 
 const mapStateToProps = state => ({
-  addingMed: state.meds.addingMed,
-  error: state.meds.error
+  addingMed: state.medsReducer.addingMed,
+  error: state.medsReducer.error
 });
 
 export default connect(

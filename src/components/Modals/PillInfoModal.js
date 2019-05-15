@@ -128,7 +128,7 @@ class PillInfoModal extends Component {
 }
 
 const mapStateToProps = state => ({
-  error: state.meds.error
+  error: state.medsReducer.error
 });
 
 export default connect(

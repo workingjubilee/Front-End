@@ -82,10 +82,10 @@ const styles = theme => ({
 });
 
 const mapStateToProps = state => ({
-  rems: state.rems.rems,
-  filteredRems: state.rems.filteredRems,
-  fetchingRems: state.rems.fetchingRems,
-  error: state.rems.error
+  rems: state.remsReducer.rems,
+  filteredRems: state.remsReducer.filteredRems,
+  fetchingRems: state.remsReducer.fetchingRems,
+  error: state.remsReducer.error
 });
 
 const StyledMeds = withStyles(styles)(Meds);
