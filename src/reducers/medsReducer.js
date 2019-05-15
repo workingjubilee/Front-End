@@ -53,6 +53,12 @@ export default function medsReducer(state = initialState, action) {
         ...state,
         addingMed: false,
         meds: [...state.meds, action.payload],
+        activeMeds: action.payload.med_active
+          ? [...state.activeMeds, action.payload]
+          : state.activeMeds,
+        inactiveMeds: !action.payload.med_active
+          ? [...state.inactiveMeds, action.payload]
+          : state.inactiveMeds,
         med: action.payload
       };
     case ADD_MED_FAILURE:
@@ -80,12 +86,70 @@ export default function medsReducer(state = initialState, action) {
           } else {
             return med;
           }
-        })
+        }),
+        activeMeds: action.payload.med_active
+          ? state.activeMeds.map(med => {
+              if (med.id === action.payload.id) {
+                return {
+                  ...action.payload
+                };
+              } else {
+                return med;
+              }
+            })
+          : state.activeMeds,
+        inactiveMeds: !action.payload.med_active
+          ? state.inactiveMeds.map(med => {
+              if (med.id === action.payload.id) {
+                return {
+                  ...action.payload
+                };
+              } else {
+                return med;
+              }
+            })
+          : state.inactiveMeds
       };
     case EDIT_MED_FAILURE:
       return {
         ...state,
         editingMed: false,
+        error: action.payload
+      };
+    case DISCONTINUE_MED_REQUEST:
+      return {
+        ...state,
+        discontinuingMed: true,
+        error: null
+      };
+    case DISCONTINUE_MED_SUCCESS:
+      return {
+        ...state,
+        discontinuingMed: false,
+        meds: state.meds.map(med => {
+          if (med.id === action.payload.id) {
+            return {
+              ...action.payload
+            };
+          } else {
+            return med;
+          }
+        }),
+        activeMeds: action.payload.med_active
+          ? [...state.activeMeds, action.payload]
+          : state.activeMeds.filter(med => {
+              return med.id !== action.payload.id;
+            }),
+        inactiveMeds: !action.payload.med_active
+          ? [...state.inactiveMeds, action.payload]
+          : state.inactiveMeds.filter(med => {
+              return med.id !== action.payload.id;
+            })
+      };
+    case DISCONTINUE_MED_FAILURE:
+      return {
+        ...state,
+        discontinuingMed: false,
         error: action.payload
       };
     case DELETE_MED_REQUEST:
