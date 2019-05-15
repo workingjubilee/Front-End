@@ -1,6 +1,7 @@
 import React, { useReducer, useState } from 'react';
 import { connect } from 'react-redux';
 import { addMed } from '../../actions';
+import Button from '@material-ui/core/Button';
 import Scan from './Scan/Scan.js'; // Prioritizing the Scan component
 import scanReducer, { init } from './scanReducer.js';
 import Paper from '@material-ui/core/Paper';
@@ -62,7 +63,9 @@ function ScanOrAdd({ location, history, addMed }) {
     <Paper square>
       <Scan state={state} dispatch={dispatch} />
       <SearchPill state={state} dispatch={dispatch} />
-      <p onClick={handleOpen}>Add Manually</p>
+      <Button onClick={handleOpen} variant='contained'>
+        Add Pill Manually
+      </Button>
       <PillInfoModal
         open={open}
         handleConfirm={handleConfirm}

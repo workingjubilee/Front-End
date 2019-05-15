@@ -15,8 +15,8 @@ import Button from '@material-ui/core/Button';
 const SearchPill = props => {
   const name = useInput();
   const imprint = useInput();
-  const [color, setColor] = useState(0);
-  const [shape, setShape] = useState(0);
+  const [color, setColor] = useState('');
+  const [shape, setShape] = useState('');
   console.log(name.value, imprint.value, color, shape);
   useEffect(() => {}, [color, shape]);
   const handleColorChange = e => {
@@ -81,7 +81,9 @@ const SearchPill = props => {
           })}
         </Select>
       </FormControl>
-      <Button onClick={handleAddPill}>Add</Button>
+      <Button onClick={handleAddPill} variant='contained'>
+        Identify Pill
+      </Button>
     </form>
   );
 };

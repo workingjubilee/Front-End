@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-export const makeReminders = (
+export const makeReminders = ({
   startDate,
   endDate,
   doses,
@@ -8,7 +8,7 @@ export const makeReminders = (
   date,
   weekday,
   time
-) => {
+}) => {
   startDate = moment(startDate).format('LLLL');
   endDate = moment(endDate).format('LLLL');
 
