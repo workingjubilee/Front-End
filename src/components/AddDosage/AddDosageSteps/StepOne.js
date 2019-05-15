@@ -7,11 +7,11 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import moment from 'moment';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
+// import Select from '@material-ui/core/Select';
+// import MenuItem from '@material-ui/core/MenuItem';
 import Checkbox from '@material-ui/core/Checkbox';
-import FormLabel from '@material-ui/core/FormLabel';
-import FormControl from '@material-ui/core/FormControl';
+// import FormLabel from '@material-ui/core/FormLabel';
+// import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
@@ -84,7 +84,6 @@ const StepOne = props => {
         setSelectedDays(days);
       }
     }
-    console.log(selectedDays);
   }, [weekdays]);
   const handleWeekdayChange = weekday => e => {
     if (
@@ -96,6 +95,7 @@ const StepOne = props => {
     } else {
       setWeekdays({ ...weekdays, [weekday]: false });
     }
+    console.log(selectedDays);
   };
   const handleDosageInstructionChange = value => {
     props.customInstruction.updateValue({ target: { value: '' } });
