@@ -7,6 +7,8 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import moment from 'moment';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 
 const formatMomentDate = dateData => {
   dateData = dateData.split('');
@@ -82,6 +84,7 @@ const StepTwo = props => {
   // };
   return (
     <form>
+      <Typography component='p'>Add Dosage</Typography>
       <CardContent style={{ display: 'flex' }}>
         <Typography component='p'>Dosage Quantity</Typography>
         <Card style={{ display: 'flex' }}>
@@ -128,7 +131,7 @@ const StepTwo = props => {
           3x - Thrice
         </Button>
       </CardContent>
-      <CardContent>
+      <CardContent style={{ display: 'flex' }}>
         Dosage Frequency
         <Button
           style={{
@@ -157,6 +160,32 @@ const StepTwo = props => {
         >
           Monthly
         </Button>
+        {props.dosageFrequency === 'weekly' ? (
+          <Select
+            value={'test'}
+            // onChange={this.handleChange}
+            inputProps={{
+              name: 'age',
+              id: 'age-simple'
+            }}
+          >
+            <MenuItem value=''>
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value={10}>Sunday</MenuItem>
+            <MenuItem value={20}>Monday</MenuItem>
+            <MenuItem value={30}>Tuesday</MenuItem>
+            <MenuItem value={10}>Wednesday</MenuItem>
+            <MenuItem value={20}>Thursday</MenuItem>
+            <MenuItem value={30}>Friday</MenuItem>
+            <MenuItem value={10}>Saturday</MenuItem>
+          </Select>
+        ) : null}
+        {props.dosageFrequency === 'monthly' ? (
+          <div>
+            <p>choose a date</p>
+          </div>
+        ) : null}
       </CardContent>
       <CardContent>
         How will you take this pill?
@@ -291,7 +320,13 @@ const StepTwo = props => {
       </CardContent>
       <CardContent>Text Reminder</CardContent>
       {/* <Button onClick={handlePrevStep}>Back</Button> */}
-      <Button onClick={handleConfirmDosage}>Confirm Dosage</Button>x{' '}
+      <Button style={{ background: 'black', color: 'white' }}>Cancel</Button>
+      <Button
+        style={{ background: '#40AB48', color: 'white' }}
+        onClick={handleConfirmDosage}
+      >
+        Confirm Dosage
+      </Button>
     </form>
   );
 };
