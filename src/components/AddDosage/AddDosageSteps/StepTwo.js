@@ -13,34 +13,34 @@ const StepThree = props => {
       <Card>
         <CardContent>
           <div style={{ display: 'flex' }}>
-            <Typography component='div' variant='title'>
+            <Typography component='div'>
               Pill Name
             </Typography>
-            <Typography component='div' variant='headline'>
+            <Typography component='div'>
               {props.name}
             </Typography>
           </div>
           {/* <div style={{ display: 'flex' }}>
-            <Typography component='div' variant='title'>
+            <Typography component='div'>
               Imprint
             </Typography>
-            <Typography component='div' variant='headline'>
+            <Typography component='div'>
               {props.imprint.value}
             </Typography>
           </div>
           <div style={{ display: 'flex' }}>
-            <Typography component='div' variant='title'>
+            <Typography component='div'>
               Color
             </Typography>
-            <Typography component='div' variant='headline'>
+            <Typography component='div'>
               {colors[props.color].name}
             </Typography>
           </div>
           <div style={{ display: 'flex' }}>
-            <Typography component='div' variant='title'>
+            <Typography component='div'>
               Shape
             </Typography>
-            <Typography component='div' variant='headline'>
+            <Typography component='div'>
               {shapes[props.shape].name}
             </Typography>
           </div> */}
@@ -60,34 +60,34 @@ const StepThree = props => {
       <Card>
         <CardContent>
           <div style={{ display: 'flex' }}>
-            <Typography component='div' variant='title'>
+            <Typography component='div'>
               Capsules Per Dose
             </Typography>
-            <Typography component='div' variant='headline'>
+            <Typography component='div'>
               {props.capsulesPerDose}
             </Typography>
           </div>
           <div style={{ display: 'flex' }}>
-            <Typography component='div' variant='title'>
+            <Typography component='div'>
               Length of Dosage
             </Typography>
-            <Typography component='div' variant='headline'>
+            <Typography component='div'>
               {props.lengthOfDosage}
             </Typography>
           </div>
           <div style={{ display: 'flex' }}>
-            <Typography component='div' variant='title'>
+            <Typography component='div'>
               Dosage Frequency
             </Typography>
-            <Typography component='div' variant='headline'>
+            <Typography component='div'>
               {props.dosageFrequency}
             </Typography>
           </div>
           <div style={{ display: 'flex' }}>
-            <Typography component='div' variant='title'>
+            <Typography component='div'>
               Dosage Instruction
             </Typography>
-            <Typography component='div' variant='headline'>
+            <Typography component='div'>
               {props.dosageInstruction}
             </Typography>
           </div>
