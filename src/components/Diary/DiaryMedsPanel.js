@@ -5,14 +5,16 @@ import MuiExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import MuiExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import MuiChip from '@material-ui/core/Chip';
 import classNames from 'classnames';
 
 import DiaryEntriesPanels from './DiaryEntriesPanels';
 
+const Chip = withStyles({})(props => <MuiChip {...props} />);
+
+Chip.muiName = 'Chip';
+
 const ExpansionPanel = withStyles({
-  root: {
-    border: 'none'
-  },
   expanded: {
     '&$expanded': {
       marginBottom: '20px'
@@ -26,12 +28,6 @@ const ExpansionPanelDetails = withStyles({
   root: {
     padding: '0',
     backgroundColor: 'rgba(0,0,0,.03)'
-  },
-  content: {
-    '&$expanded': {
-      margin: '12px 0'
-    },
-    justifyContent: 'space-between'
   }
 })(props => <MuiExpansionPanelDetails {...props} />);
 
@@ -78,15 +74,31 @@ const styles = {
   secondaryHeading: {
     fontSize: 18,
     color: 'secondary'
+  },
+  grey: {
+    background: 'DarkGrey',
+    color: 'white'
+  },
+  green: {
+    background: 'LimeGreen',
+    color: 'white'
   }
 };
 
-function DiaryMedsPanel({ classes, med, changeFocus, diaryFocus }) {
+function DiaryMedsPanel({ classes, med, changeFocus, diaryFocus, diaryCount }) {
   const [expanded, setExpanded] = React.useState(null);
 
   const handleChange = panel => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
+    changeFocus(med.id);
   };
+
+  React.useEffect(() => {
+    if (diaryFocus !== med.id) {
+      setExpanded(false);
+    }
+    // eslint-disable-next-line
+  }, [diaryFocus]);
 
   return (
     <div className={classes.root}>
@@ -98,6 +110,14 @@ function DiaryMedsPanel({ classes, med, changeFocus, diaryFocus }) {
           <Typography className={classNames(classes.heading)}>
             {med.med_name}
           </Typography>
+          <Chip
+            className={classNames(
+              expanded === med.id ? classes.green : classes.grey
+            )}
+            label={`${diaryCount} Diary ${
+              diaryCount === 1 ? 'Entry' : 'Entries'
+            }`}
+          />
           <Typography className={classNames(classes.secondaryHeading)}>
             View/Add Entries
           </Typography>

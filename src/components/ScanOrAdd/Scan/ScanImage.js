@@ -11,6 +11,10 @@ export default function ScanImage({ state, dispatch }) {
   const toggleCamera = () => toggleDisplayCamera(!displayCamera);
 
   const upload = async () => {
+    if (!photo) {
+      console.log("Need a photo!")
+      return
+    }
     const photoEndpoint = `${process.env.REACT_APP_BACKEND}/api/upload`;
     const imgData = new FormData();
     imgData.append('image', photo, photo.filename);
