@@ -55,9 +55,7 @@ const ResultInfo = ({ classes, result }) => {
         </div>
         <div className={classes.row}>
           <Typography className={classes.static}>Strength:</Typography>
-          <Typography className={classes.dynamic}>
-            {result.pill_strength}
-          </Typography>
+          <Typography className={classes.dynamic}>{result.strength}</Typography>
         </div>
       </CardContent>
     </Card>
