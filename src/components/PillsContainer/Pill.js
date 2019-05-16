@@ -29,7 +29,11 @@ const Pill = ({ med, classes, openDialog }) => {
         />
         <CardActions className={classes.actions} disableActionSpacing>
           <Button>View Pill Details</Button>
-          {!med_active ? <Button>Re-activate Pill</Button> : null}
+          {!med_active ? (
+            <Button onClick={() => openDialog('reactivate', id, med)}>
+              Re-activate Pill
+            </Button>
+          ) : null}
           {med_active ? (
             <Button onClick={() => openDialog('discontinue', id, med)}>
               Discontinue Pill

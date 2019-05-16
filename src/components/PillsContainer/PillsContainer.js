@@ -26,6 +26,7 @@ const PillsContainer = ({
     }
   }, [user, fetchUser, userID]);
   const [disOpen, setDisOpen] = useState(false);
+  const [actOpen, setActOpen] = useState(false);
   const [delOpen, setDelOpen] = useState(false);
   const [medID, setMedID] = useState(null);
   const [medication, setMedication] = useState(null);
@@ -39,6 +40,9 @@ const PillsContainer = ({
     if (dialog === 'discontinue') {
       setDisOpen(true);
       setMedication({ ...inputMed });
+    } else if (dialog === 'reactivate') {
+      setActOpen(true);
+      setMedication({ ...inputMed });
     } else {
       setDelOpen(true);
     }
@@ -47,6 +51,8 @@ const PillsContainer = ({
   function handleClose(dialog) {
     if (dialog === 'discontinue') {
       setDisOpen(false);
+    } else if (dialog === 'reactivate') {
+      setActOpen(false);
     } else {
       setDelOpen(false);
     }
@@ -56,6 +62,16 @@ const PillsContainer = ({
     handleClose(dialog);
     const editedMed = { ...medication };
     editedMed.med_active = false;
+    editedMed.med_directions = editedMed.med_directions
+      ? JSON.stringify(editedMed.med_directions)
+      : editedMed.med_directions;
+    discontinueMed(editedMed);
+  }
+
+  function handleReactivateMed(dialog) {
+    handleClose(dialog);
+    const editedMed = { ...medication };
+    editedMed.med_active = true;
     editedMed.med_directions = editedMed.med_directions
       ? JSON.stringify(editedMed.med_directions)
       : editedMed.med_directions;
@@ -72,8 +88,8 @@ const PillsContainer = ({
       <Dialog
         open={disOpen}
         onClose={() => handleClose('discontinue')}
-        aria-labelledby='delete-pill'
-        aria-describedby='alert-dialog-description'
+        aria-labelledby='discontinue-pill'
+        aria-describedby='this-dialog-discontinues-this-pill'
         keepMounted
       >
         <DialogTitle id='discontinue-pill'>
@@ -93,10 +109,33 @@ const PillsContainer = ({
         </DialogActions>
       </Dialog>
       <Dialog
+        open={actOpen}
+        onClose={() => handleClose('reactivate')}
+        aria-labelledby='reactivate-pill'
+        aria-describedby='this-dialog-reactivates-this-pill'
+        keepMounted
+      >
+        <DialogTitle id='reactivate-pill'>
+          {'Are you sure you want to reactivate this medication?'}
+        </DialogTitle>
+        <DialogActions>
+          <Button onClick={() => handleClose('reactivate')} color='primary'>
+            No, keep it inactive
+          </Button>
+          <Button
+            color='primary'
+            autoFocus
+            onClick={() => handleReactivateMed('reactivate')}
+          >
+            Reactivate this medication
+          </Button>
+        </DialogActions>
+      </Dialog>
+      <Dialog
         open={delOpen}
         onClose={() => handleClose('delete')}
         aria-labelledby='delete-pill'
-        aria-describedby='alert-dialog-description'
+        aria-describedby='this-dialog-deletes-this-pill'
         keepMounted
       >
         <DialogTitle id='delete-pill'>
