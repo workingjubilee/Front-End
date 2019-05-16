@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from 'react';
+import React, { useReducer } from 'react';
 import { connect } from 'react-redux';
 import { addMed } from 'actions';
 import { useToggle } from 'utilities/useToggle';

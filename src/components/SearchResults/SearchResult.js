@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -57,7 +57,7 @@ const SearchResult = ({
       result.strength &&
       result.strength[0] &&
       result.strength[0][1] &&
-      result.strength[0][1],
+      parseInt(result.strength[0][1]),
     med_dose_unit:
       result &&
       result.strength &&
@@ -65,7 +65,6 @@ const SearchResult = ({
       result.strength[0][2] &&
       result.strength[0][2]
   };
-  console.log(formattedPill);
 
   // function selectPill(e) {
   //   e.preventDefault();
@@ -127,15 +126,6 @@ const SearchResult = ({
       </Paper>
     </Card>
   );
-
-  // function addPill(scheduled) {
-  //   if (scheduled) {
-  //     console.log(`Gonna sendto rems table`);
-  //     // Needs to send user to scheduling component, but just pushing to dashboard for now
-  //     // history.push('/addpill');
-  //   }
-  //   console.log(`Gonna send to meds table`);
-  // }
 };
 
 export default withStyles(styles)(SearchResult);
