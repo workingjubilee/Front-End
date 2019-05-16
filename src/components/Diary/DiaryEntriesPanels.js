@@ -35,9 +35,13 @@ const styles = {
 };
 
 const DiaryEntriesPanels = ({ classes, diary, diaryFocus, meds }) => {
-  const filteredDiary = diary.filter(diaryEntry => {
-    return diaryEntry.med_id === diaryFocus;
-  });
+  const filteredDiary = diary
+    .filter(diaryEntry => {
+      return diaryEntry.med_id === diaryFocus;
+    })
+    .sort(function(a, b) {
+      return b.diary_date - a.diary_date;
+    });
 
   let medName;
   if (diaryFocus) {

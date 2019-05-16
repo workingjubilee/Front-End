@@ -85,7 +85,7 @@ const styles = {
   }
 };
 
-function DiaryMedsPanel({ classes, med, changeFocus, diaryFocus, diaryCount }) {
+function DiaryMedPanel({ classes, med, changeFocus, diaryFocus, diaryCount }) {
   const [expanded, setExpanded] = React.useState(null);
 
   const handleChange = panel => (event, isExpanded) => {
@@ -130,4 +130,4 @@ function DiaryMedsPanel({ classes, med, changeFocus, diaryFocus, diaryCount }) {
   );
 }
 
-export default withStyles(styles)(DiaryMedsPanel);
+export default withStyles(styles)(DiaryMedPanel);

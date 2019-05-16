@@ -5,7 +5,8 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-import DiaryMedsPanel from './DiaryMedsPanel';
+import DiaryMedPanel from './DiaryMedPanel';
+import { editUser } from '../../actions/index';
 
 const styles = {
   root: {
@@ -20,19 +21,23 @@ const styles = {
   selectEmpty: {}
 };
 
-function DiaryMedsPanels({ classes, fetchingMeds, meds, diary }) {
+function DiaryMedsPanels({
+  classes,
+  editUser,
+  user_id,
+  sort_diary_meds,
+  fetchingMeds,
+  meds,
+  diary
+}) {
   const [diaryFocus, setDiaryFocus] = React.useState(null);
-  const [sort, setSort] = React.useState('alpha');
 
-  // React.useEffect(() => {
-  //   if (diaryFocus !== med.id) {
-  //     setExpanded(false);
-  //   }
-  //   // eslint-disable-next-line
-  // }, [diaryFocus]);
-
-  const changeSort = e => {
-    setSort(e.target.value);
+  const requestEditUser = e => {
+    e.preventDefault();
+    editUser({
+      id: user_id,
+      sort_diary_meds: e.target.value
+    });
   };
 
   const changeFocus = med_id => {
@@ -53,7 +58,11 @@ function DiaryMedsPanels({ classes, fetchingMeds, meds, diary }) {
           <div className='sortSelect'>
             <h2>Sort by:</h2>
             <FormControl className={classes.formControl}>
-              <Select value={sort} onChange={changeSort} name='sort'>
+              <Select
+                value={sort_diary_meds}
+                onChange={requestEditUser}
+                name='sort_diary_meds'
+              >
                 <MenuItem value={'alpha'}>A-Z</MenuItem>
                 <MenuItem value={'revAlpha'}>Z-A</MenuItem>
                 <MenuItem value={'chron'}>Newest First</MenuItem>
@@ -63,7 +72,7 @@ function DiaryMedsPanels({ classes, fetchingMeds, meds, diary }) {
           </div>
           {meds.map((med, index) =>
             index <= 3 ? (
-              <DiaryMedsPanel
+              <DiaryMedPanel
                 diaryCount={
                   diary.filter(diaryEntry => {
                     return diaryEntry.med_id === med.id;
@@ -83,12 +92,14 @@ function DiaryMedsPanels({ classes, fetchingMeds, meds, diary }) {
 }
 
 const mapStateToProps = state => ({
+  user_id: state.userReducer.user.id,
   fetchingMed: state.medsReducer.fetchingMeds,
   meds: state.medsReducer.meds,
-  diary: state.diaryReducer.diary
+  diary: state.diaryReducer.diary,
+  sort_diary_meds: state.userReducer.user.sort_diary_meds
 });
 
 export default connect(
   mapStateToProps,
-  null
+  { editUser }
 )(withStyles(styles)(DiaryMedsPanels));
