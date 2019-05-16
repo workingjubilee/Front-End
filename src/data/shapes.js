@@ -1,6 +1,6 @@
 export const shapes = [
   { id: 0, name: 'Round' },
-  { id: 1, name: 'Capsole' },
+  { id: 1, name: 'Capsule' },
   { id: 2, name: 'Oval' },
   { id: 3, name: 'Egg' },
   { id: 4, name: 'Barrel' },
