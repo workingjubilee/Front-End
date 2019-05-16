@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import ImageCapture from './ImageCapture.js';
 import { useToggle } from 'utilities/useToggle';
-import axios from 'axios';
+// import axios from 'axios';
 import Button from '@material-ui/core/Button';
-import { connect } from 'react-redux';
-import { uploadImage } from 'actions';
 import rekogDummy from 'data/rekogDummy.json';
 import parseMedStrengths from 'utilities/parseMedStrengths';
 
@@ -36,7 +34,8 @@ function ScanImage({ state, dispatch, uploadImage, history }) {
     //   .post(photoEndpoint, imgData)
     //   .catch(err => console.error(err));
     // console.log('end');
-    dispatch({ type: 'analysisResults', payload: parseMedStrengths(rekogDummy) });
+    const parsedDummy = parseMedStrengths(rekogDummy);
+    dispatch({ type: 'analysisResults', payload: parsedDummy });
   };
 
   return (
