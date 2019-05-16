@@ -21,10 +21,10 @@ class PillInfoModal extends Component {
       med_name: '',
       med_color: '',
       med_shape: '',
-      med_strength: '',
-      med_strength_unit: 0,
+      med_strength: 0,
+      med_strength_unit: '',
       med_dose: 0,
-      med_dose_unit: 0
+      med_dose_unit: ''
     }
   };
   changeHandler = e => {
