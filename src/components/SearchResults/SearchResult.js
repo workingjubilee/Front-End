@@ -5,8 +5,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import CircularProgress from '@material-ui/core/CircularProgress';
-
-import Image from './Image';
+// import Image from './Image';
 import ResultInfo from './ResultInfo';
 
 const styles = {
@@ -42,11 +41,6 @@ const SearchResult = ({ classes, result }) => {
       {/* Paper might not be necessary here */}
       <Paper>
         <CardContent className={classes.info}>
-          <Image
-            imageLink={`https://s3.amazonaws.com/labs12-rxidstore/reference/${
-              result.image_id
-            }`}
-          />
           <ResultInfo result={result} />
           <CircularProgress
             style={{

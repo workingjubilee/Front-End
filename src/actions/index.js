@@ -310,3 +310,20 @@ export const filterReminders = (startDate, endDate) => {
     endDate
   };
 };
+
+export const UPLOAD_IMAGE_REQUEST = 'UPLOAD_IMAGE_REQUEST';
+export const UPLOAD_IMAGE_SUCCESS = 'UPLOAD_IMAGE_SUCCESS';
+export const UPLOAD_IMAGE_FAILURE = 'UPLOAD_IMAGE_FAILURE';
+
+export const uploadImage = imgData => dispatch => {
+  dispatch({ type: UPLOAD_IMAGE_REQUEST });
+  return axios
+    .post(`${endpoint}/api/upload`, imgData)
+    .then(res => {
+      dispatch({ type: UPLOAD_IMAGE_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      console.error(err.response);
+      dispatch({ type: UPLOAD_IMAGE_FAILURE, payload: err.message });
+    });
+};
