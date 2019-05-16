@@ -34,10 +34,10 @@ export const EDIT_USER_REQUEST = 'EDIT_USER_REQUEST';
 export const EDIT_USER_SUCCESS = 'EDIT_USER_SUCCESS';
 export const EDIT_USER_FAILURE = 'EDIT_USER_FAILURE';
 
-export const updateInfo = creds => dispatch => {
+export const editUser = edits => dispatch => {
   dispatch({ type: EDIT_USER_REQUEST });
   return axios
-    .put(`${endpoint}/api/users/${creds.id}/`, creds)
+    .put(`${endpoint}/api/users/${edits.id}/`, edits)
     .then(res => {
       dispatch({ type: EDIT_USER_SUCCESS, payload: res.data });
     })
@@ -309,4 +309,21 @@ export const filterReminders = (startDate, endDate) => {
     startDate,
     endDate
   };
+};
+
+export const UPLOAD_IMAGE_REQUEST = 'UPLOAD_IMAGE_REQUEST';
+export const UPLOAD_IMAGE_SUCCESS = 'UPLOAD_IMAGE_SUCCESS';
+export const UPLOAD_IMAGE_FAILURE = 'UPLOAD_IMAGE_FAILURE';
+
+export const uploadImage = imgData => dispatch => {
+  dispatch({ type: UPLOAD_IMAGE_REQUEST });
+  return axios
+    .post(`${endpoint}/api/upload`, imgData)
+    .then(res => {
+      dispatch({ type: UPLOAD_IMAGE_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      console.error(err.response);
+      dispatch({ type: UPLOAD_IMAGE_FAILURE, payload: err.message });
+    });
 };

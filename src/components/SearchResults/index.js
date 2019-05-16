@@ -1,34 +1,20 @@
-import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
-import AdditionalSearchInfo from './';
+import React from 'react';
+// import { connect } from 'react-redux';
+import AdditionalSearchInfo from './AdditionalSearchInfo';
 import SearchResult from './SearchResult';
 
-const SearchResults = ({ history, searchResults }) => {
-  useEffect(() => {
-    console.log('step 3');
-    // populate fields with data we get back from ds
-    // err ^^^ maybe not
-  });
-
+const SearchResults = ({ searchResults }) => {
   const style = {};
 
   return (
     <div style={style}>
       <div>
-        {searchResults.map(result => {
-          return <SearchResult history={history} result={result} />;
-        })}
+        {searchResults &&
+          searchResults.map(result => <SearchResult result={result} />)}
       </div>
       <AdditionalSearchInfo />
     </div>
   );
 };
 
-const mapStateToProps = state => ({
-  searchResults: state.searchResults
-});
-
-export default connect(
-  mapStateToProps,
-  null
-)(SearchResults);
+export default SearchResults;

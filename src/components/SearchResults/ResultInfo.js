@@ -50,12 +50,15 @@ const ResultInfo = ({ classes, result }) => {
         <div className={classes.row}>
           <Typography className={classes.static}>Pill Name:</Typography>
           <Typography className={classes.dynamic}>
-            {result.medicine_name}
+            {result.strength[0] && result.strength[0][0]}
           </Typography>
         </div>
         <div className={classes.row}>
           <Typography className={classes.static}>Strength:</Typography>
-          <Typography className={classes.dynamic}>{result.strength}</Typography>
+          <Typography className={classes.dynamic}>
+            {result.strength[0] && result.strength[0][1]}
+            {result.strength[0] && result.strength[0][2]}
+          </Typography>
         </div>
       </CardContent>
     </Card>

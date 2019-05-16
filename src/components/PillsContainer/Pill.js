@@ -10,8 +10,8 @@ import Button from '@material-ui/core/Button';
 const Pill = ({ med, classes, openDialog }) => {
   const {
     med_name,
-    med_dose,
-    med_dose_unit,
+    med_strength,
+    med_strength_unit,
     med_color,
     med_shape,
     med_active,
@@ -25,7 +25,7 @@ const Pill = ({ med, classes, openDialog }) => {
       <Card className={classes.card}>
         <CardHeader
           title={med_name}
-          subheader={`${med_dose} ${med_dose_unit} | ${med_color} | ${med_shape}`}
+          subheader={`${med_strength} ${med_strength_unit} | ${med_color} | ${med_shape}`}
         />
         <CardActions className={classes.actions} disableActionSpacing>
           <Button>View Pill Details</Button>

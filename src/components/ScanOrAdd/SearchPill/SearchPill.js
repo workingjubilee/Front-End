@@ -42,6 +42,7 @@ const SearchPill = props => {
   };
   return (
     <form onSubmit={handleSubmit}>
+      <h4>Option 2 - Identify by direct input</h4>
       <TextField
         label='pill name'
         value={name.value}
