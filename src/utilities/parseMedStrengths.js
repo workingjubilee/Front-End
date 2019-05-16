@@ -1,14 +1,16 @@
 module.exports = function parseMedStrengths(meds) {
+  const scaryRegex = /^(\D+)(\d+\.*\d*).+(mg|mcg|IU)/i
 
-  const mappedStrengths = array => 
-    array.map(med => {
-      med.strength = med.strength
-      ? med.strength.split(';')
-        .filter(Boolean)
-        .map(string => string.split(/^(\D+)(\d+\.*\d*).+(mg|mcg|IU)/i).filter(Boolean))
+  const regexStrength = (medStr,regex) => 
+    medStr.slice(0, -1).split(';').map(ingredient =>
+      ingredient.split(regex).filter(Boolean))
+
+  const mapToObject = array =>
+
+  return meds.map(med => {
+    med.strength = med.strength
+      ? regexStrength(med.strength, scaryRegex)
       : [ ["unknown", null, null] ]
     return med
   })
-
-  return mappedStrengths(meds)
 }
