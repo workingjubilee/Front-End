@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -35,36 +35,41 @@ const styles = {
   }
 };
 
-const SearchResult = ({ classes, result, setPill }) => {
-  // const pillTemplate = {
-  //   med_name: '',
-  //   med_color: '',
-  //   med_shape: '',
-  //   med_strength: 0,
-  //   med_strength_unit: '',
-  //   med_dose: 0,
-  //   med_dose_unit: ''
-  // };
+const SearchResult = ({
+  classes,
+  result,
+  setPill,
+  handleAddPill,
+  handleAddPillReminders
+}) => {
+  const formattedPill = {
+    user_id: localStorage.getItem('userID'),
+    med_name:
+      result && result.strength && result.strength[0] && result.strength[0][0],
+    med_color: result.color_text,
+    med_shape: result.shape_text,
+    med_strength: result.strength[0] && result.strength[0][1],
+    med_strength: result.strength[0] && result.strength[0][2]
+  };
+  console.log(formattedPill);
 
-  const [thisPill, setThisPill] = useState([]);
+  // function selectPill(e) {
+  //   e.preventDefault();
+  //   setPill({
+  //     user_id: localStorage.getItem('userID'),
+  //     med_name: thisPill.strength[0] && result.med_strength[0][0],
+  //     med_color: result.color_text,
+  //     med_shape: result.shape_text,
+  //     med_strength: result.strength[0] && result.strength[0][1],
+  //     med_strength: result.strength[0] && result.strength[0][2]
+  //   });
+  // }
 
-  function selectPill(e) {
-    e.preventDefault();
-    setPill({
-      user_id: localStorage.getItem('userID'),
-      med_name: thisPill.strength[0] && result.med_strength[0][0],
-      med_color: result.color_text,
-      med_shape: result.shape_text,
-      med_strength: result.strength[0] && result.strength[0][1],
-      med_strength: result.strength[0] && result.strength[0][2]
-    });
-  }
-
-  useEffect(() => {
-    console.log('RESULT: ', result.strength[0]);
-    setThisPill(result.strength[0]);
-    console.log('THIS PILL: ', thisPill);
-  }, [result, setThisPill, thisPill]);
+  // useEffect(() => {
+  //   console.log('RESULT: ', result.strength[0]);
+  //   setThisPill(result.strength[0]);
+  //   console.log('THIS PILL: ', thisPill);
+  // }, [result, setThisPill, thisPill]);
 
   return (
     <Card className={classes.card}>
@@ -83,13 +88,16 @@ const SearchResult = ({ classes, result, setPill }) => {
           />
         </CardContent>
         <CardContent className={classes.buttons}>
-          <Button
-            onClick={e => selectPill(e)}
-            className={`${classes.button} ${classes.view}`}
-          >
+          <Button className={`${classes.button} ${classes.view}`}>
             View Details
           </Button>
-          <Button className={`${classes.button} ${classes.add}`}>
+          <Button
+            onClick={e => {
+              e.preventDefault();
+              // handleAddPill(formattedPill);
+            }}
+            className={`${classes.button} ${classes.add}`}
+          >
             Add to Med List
           </Button>
           <Button className={`${classes.button} ${classes.add}`}>

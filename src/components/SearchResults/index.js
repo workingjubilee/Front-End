@@ -6,9 +6,9 @@ import SearchResult from './SearchResult';
 const SearchResults = ({
   searchResults,
   handleAddPill,
-  handleAddPillReminders,
-  setPill,
-  pill
+  handleAddPillReminders
+  // setPill,
+  // pill
 }) => {
   const style = {
     display: 'flex'
@@ -16,12 +16,19 @@ const SearchResults = ({
 
   return (
     <div style={style}>
-      <button>click ahaha</button>
       <div>
         {searchResults &&
-          searchResults.map(result => (
-            <SearchResult result={result} setPill={setPill} />
-          ))}
+          searchResults
+            .filter(result => {
+              return result && result.strength && result.strength[0] && result;
+            })
+            .map(result => (
+              <SearchResult
+                result={result}
+                handleAddPill={handleAddPill}
+                handleAddPillReminders={handleAddPillReminders}
+              />
+            ))}
       </div>
       <AdditionalSearchInfo />
     </div>

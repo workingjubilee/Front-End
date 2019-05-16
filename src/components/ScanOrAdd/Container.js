@@ -13,7 +13,7 @@ import Search from 'components/SearchResults';
 function ScanOrAdd({ location, history, addMed }) {
   const [state, dispatch] = useReducer(scanReducer, init(location));
   const [open, setOpen] = useToggle(false);
-  const [pill, setPill] = useState({});
+  // const [pill, setPill] = useState({});
 
   const handleAddPill = pillInfo => {
     addMed({ ...pillInfo, med_add_date: new Date().getTime() })
@@ -44,8 +44,8 @@ function ScanOrAdd({ location, history, addMed }) {
           searchResults={state.analysis}
           handleAddPill={handleAddPill}
           handleAddPillReminders={handleAddPillReminders}
-          setPill={setPill}
-          pill={pill}
+          // setPill={setPill}
+          // pill={pill}
         />
       ) : (
         <>
