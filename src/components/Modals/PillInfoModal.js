@@ -107,6 +107,8 @@ class PillInfoModal extends Component {
             onChange={this.changeHandler}
             name='med_strength_unit'
           >
+            <MenuItem value={'IU'}>{'IU'}</MenuItem>
+            <MenuItem value={'mcg'}>{'mcg'}</MenuItem>
             <MenuItem value='mg'>{'mg'}</MenuItem>
             <MenuItem value={'g'}>{'g'}</MenuItem>
           </Select>
