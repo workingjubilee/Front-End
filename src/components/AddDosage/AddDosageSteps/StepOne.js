@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import RemoveIcon from '@material-ui/icons/Remove';
 import AddIcon from '@material-ui/icons/Add';
@@ -7,6 +7,13 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import moment from 'moment';
+// import Select from '@material-ui/core/Select';
+// import MenuItem from '@material-ui/core/MenuItem';
+import Checkbox from '@material-ui/core/Checkbox';
+// import FormLabel from '@material-ui/core/FormLabel';
+// import FormControl from '@material-ui/core/FormControl';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 const formatMomentDate = dateData => {
   dateData = dateData.split('');
@@ -27,7 +34,7 @@ const formatMomentDate = dateData => {
 
 const todaysDate = formatMomentDate(moment(Date.now()).format('L'));
 
-const StepTwo = props => {
+const StepOne = props => {
   const handleIncrementCapsulesPerDose = () => {
     props.updateCapsulesPerDose(props.capsulesPerDose + 1);
   };
@@ -49,6 +56,46 @@ const StepTwo = props => {
     } else {
       props.updateDosageFrequency(value);
     }
+  };
+  const [weekdays, setWeekdays] = useState({
+    sunday: false,
+    monday: false,
+    tuesday: false,
+    wednesday: false,
+    thursday: false,
+    friday: false,
+    saturday: false
+  });
+  const [selectedDays, setSelectedDays] = useState([]);
+  const {
+    sunday,
+    monday,
+    tuesday,
+    wednesday,
+    thursday,
+    friday,
+    saturday
+  } = weekdays;
+  useEffect(() => {
+    const days = [];
+    for (let day in weekdays) {
+      if (weekdays[day]) {
+        days.push(day);
+        setSelectedDays(days);
+      }
+    }
+  }, [weekdays]);
+  const handleWeekdayChange = weekday => e => {
+    if (
+      Object.values(weekdays).filter(value => value).length <
+      props.lengthOfDosage
+    ) {
+      setWeekdays({ ...weekdays, [weekday]: e.target.checked });
+      // console.log(Object.values(weekdays).filter(value => value));
+    } else {
+      setWeekdays({ ...weekdays, [weekday]: false });
+    }
+    console.log(selectedDays);
   };
   const handleDosageInstructionChange = value => {
     props.customInstruction.updateValue({ target: { value: '' } });
@@ -82,6 +129,7 @@ const StepTwo = props => {
   // };
   return (
     <form>
+      <Typography component='p'>Add Dosage</Typography>
       <CardContent style={{ display: 'flex' }}>
         <Typography component='p'>Dosage Quantity</Typography>
         <Card style={{ display: 'flex' }}>
@@ -128,7 +176,7 @@ const StepTwo = props => {
           3x - Thrice
         </Button>
       </CardContent>
-      <CardContent>
+      <CardContent style={{ display: 'flex' }}>
         Dosage Frequency
         <Button
           style={{
@@ -157,6 +205,96 @@ const StepTwo = props => {
         >
           Monthly
         </Button>
+        {props.dosageFrequency === 'weekly' ? (
+          // <Select
+          //   value={'test'}
+          //   // onChange={this.handleChange}
+          //   inputProps={{
+          //     name: 'age',
+          //     id: 'age-simple'
+          //   }}
+          // >
+          <FormGroup
+            style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}
+          >
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={sunday}
+                  onChange={handleWeekdayChange('sunday')}
+                  value='sunday'
+                />
+              }
+              label='sunday'
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={monday}
+                  onChange={handleWeekdayChange('monday')}
+                  value='monday'
+                />
+              }
+              label='monday'
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={tuesday}
+                  onChange={handleWeekdayChange('tuesday')}
+                  value='tuesday'
+                />
+              }
+              label='tuesday'
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={wednesday}
+                  onChange={handleWeekdayChange('wednesday')}
+                  value='wednesday'
+                />
+              }
+              label='wednesday'
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={thursday}
+                  onChange={handleWeekdayChange('thursday')}
+                  value='thursday'
+                />
+              }
+              label='thursday'
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={friday}
+                  onChange={handleWeekdayChange('friday')}
+                  value='friday'
+                />
+              }
+              label='friday'
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={saturday}
+                  onChange={handleWeekdayChange('saturday')}
+                  value='saturday'
+                />
+              }
+              label='saturday'
+            />
+          </FormGroup>
+        ) : // </Select>
+        null}
+        {props.dosageFrequency === 'monthly' ? (
+          <div>
+            <p>choose a date</p>
+          </div>
+        ) : null}
       </CardContent>
       <CardContent>
         How will you take this pill?
@@ -291,9 +429,15 @@ const StepTwo = props => {
       </CardContent>
       <CardContent>Text Reminder</CardContent>
       {/* <Button onClick={handlePrevStep}>Back</Button> */}
-      <Button onClick={handleConfirmDosage}>Confirm Dosage</Button>x{' '}
+      <Button style={{ background: 'black', color: 'white' }}>Cancel</Button>
+      <Button
+        style={{ background: '#40AB48', color: 'white' }}
+        onClick={handleConfirmDosage}
+      >
+        Confirm Dosage
+      </Button>
     </form>
   );
 };
 
-export default StepTwo;
+export default StepOne;
