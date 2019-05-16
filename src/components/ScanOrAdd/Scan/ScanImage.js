@@ -72,7 +72,7 @@ function ScanImage({ state, dispatch, ...props }) {
                 Upload
               </Button>
             </label>
-            {state.hasVideo && (
+            {state && state.hasVideo && (
               <Button onClick={toggleCamera}>Take Photo</Button>
             )}
           </div>
