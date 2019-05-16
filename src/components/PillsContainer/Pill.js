@@ -8,7 +8,6 @@ import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 
 const Pill = ({ med, classes, openDialog }) => {
-  console.log('MED:', med);
   const {
     med_name,
     med_strength,

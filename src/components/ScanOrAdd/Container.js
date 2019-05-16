@@ -38,7 +38,7 @@ function ScanOrAdd({ location, history, addMed }) {
   };
 
   const handleAddPill = () => {
-    addMed(pill)
+    addMed({ ...pill, med_add_date: new Date().getTime() })
       .then(() => {
         history.push('/pills');
       })
@@ -48,7 +48,7 @@ function ScanOrAdd({ location, history, addMed }) {
   };
 
   const handleAddPillReminders = () => {
-    addMed(pill)
+    addMed({ ...pill, med_add_date: new Date().getTime() })
       .then(() => {
         history.push('/adddosage');
       })
