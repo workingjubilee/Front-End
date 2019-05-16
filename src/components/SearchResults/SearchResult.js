@@ -45,11 +45,25 @@ const SearchResult = ({
   const formattedPill = {
     user_id: localStorage.getItem('userID'),
     med_name:
-      result && result.strength && result.strength[0] && result.strength[0][0],
+      result &&
+      result.strength &&
+      result.strength[0] &&
+      result.strength[0][0] &&
+      result.strength[0][0],
     med_color: result.color_text,
     med_shape: result.shape_text,
-    med_strength: result.strength[0] && result.strength[0][1],
-    med_strength: result.strength[0] && result.strength[0][2]
+    med_dose:
+      result &&
+      result.strength &&
+      result.strength[0] &&
+      result.strength[0][1] &&
+      result.strength[0][1],
+    med_dose_unit:
+      result &&
+      result.strength &&
+      result.strength[0] &&
+      result.strength[0][2] &&
+      result.strength[0][2]
   };
   console.log(formattedPill);
 
@@ -94,13 +108,19 @@ const SearchResult = ({
           <Button
             onClick={e => {
               e.preventDefault();
-              // handleAddPill(formattedPill);
+              handleAddPill(formattedPill);
             }}
             className={`${classes.button} ${classes.add}`}
           >
             Add to Med List
           </Button>
-          <Button className={`${classes.button} ${classes.add}`}>
+          <Button
+            onClick={e => {
+              e.preventDefault();
+              handleAddPillReminders(formattedPill);
+            }}
+            className={`${classes.button} ${classes.add}`}
+          >
             Add with Reminder
           </Button>
         </CardContent>
