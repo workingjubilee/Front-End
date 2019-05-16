@@ -4,7 +4,9 @@ import AdditionalSearchInfo from './AdditionalSearchInfo';
 import SearchResult from './SearchResult';
 
 const SearchResults = ({ searchResults }) => {
-  const style = {};
+  const style = {
+    display: 'flex'
+  };
 
   return (
     <div style={style}>

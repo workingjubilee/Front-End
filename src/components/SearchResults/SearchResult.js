@@ -10,7 +10,7 @@ import ResultInfo from './ResultInfo';
 
 const styles = {
   card: {
-    maxWidth: '40%',
+    maxWidth: '80%',
     border: '1px solid gray',
     margin: '1rem'
   },
@@ -24,7 +24,7 @@ const styles = {
   button: {
     width: '30%',
     height: '3rem',
-    fontSize: '18px',
+    fontSize: '.6rem',
     color: 'white'
   },
   view: {
@@ -57,7 +57,7 @@ const SearchResult = ({ classes, result }) => {
             View Details
           </Button>
           <Button className={`${classes.button} ${classes.add}`}>
-            Add to Medication List
+            Add to Med List
           </Button>
           <Button className={`${classes.button} ${classes.add}`}>
             Add with Reminder
