@@ -1,6 +1,6 @@
 import React, { useReducer, useState } from 'react';
 // import { connect } from 'react-redux';
-// import { addMed } from 'actions';
+import { addMed } from 'actions';
 import { useToggle } from 'utilities/useToggle';
 import Button from '@material-ui/core/Button';
 import Scan from './Scan/Scan.js'; // Prioritizing the Scan component
@@ -11,7 +11,7 @@ import PillInfoModal from 'components/Modals/PillInfoModal';
 import AddPillModal from 'components/Modals/AddPillModal';
 import Search from 'components/SearchResults';
 
-export default function ScanOrAdd({ location, history, addMed }) {
+export default function ScanOrAdd({ location, history }) {
   const [state, dispatch] = useReducer(scanReducer, init(location));
   const [pill, setPill] = useState({});
   const [open, setOpen] = useToggle(false);
