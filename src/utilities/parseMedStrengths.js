@@ -5,8 +5,6 @@ module.exports = function parseMedStrengths(meds) {
     medStr.slice(0, -1).split(';').map(ingredient =>
       ingredient.split(regex).filter(Boolean))
 
-  const mapToObject = array =>
-
   return meds.map(med => {
     med.strength = med.strength
       ? regexStrength(med.strength, scaryRegex)
