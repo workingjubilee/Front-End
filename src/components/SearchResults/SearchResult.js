@@ -10,7 +10,7 @@ import ResultInfo from './ResultInfo';
 
 const styles = {
   card: {
-    maxWidth: '40%',
+    maxWidth: '80%',
     border: '1px solid gray',
     margin: '1rem'
   },
