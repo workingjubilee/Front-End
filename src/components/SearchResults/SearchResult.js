@@ -57,7 +57,7 @@ const SearchResult = ({ classes, result }) => {
             View Details
           </Button>
           <Button className={`${classes.button} ${classes.add}`}>
-            Add to Medication List
+            Add to Med List
           </Button>
           <Button className={`${classes.button} ${classes.add}`}>
             Add with Reminder
