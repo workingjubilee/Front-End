@@ -4,11 +4,20 @@ import Card from '@material-ui/core/Card';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
-import { fetchUser, fetchMeds, fetchRems } from 'actions';
+import { fetchUser, fetchMeds, fetchRems, filterReminders } from 'actions';
+import moment from 'moment';
 
 class ProfileIcon extends Component {
   componentDidMount() {
-    const { user, fetchUser, fetchMeds, fetchRems, meds, rems } = this.props;
+    const {
+      user,
+      fetchUser,
+      fetchMeds,
+      fetchRems,
+      meds,
+      rems,
+      filterReminders
+    } = this.props;
     const userID = user.id ? user.id : localStorage.getItem('userID');
 
     if (!user.username && userID) {
@@ -18,7 +27,15 @@ class ProfileIcon extends Component {
       fetchMeds(userID);
     }
     if (rems.length === 0 && userID) {
-      fetchRems(userID);
+      fetchRems(userID).then(res => {
+        const startDate = moment(new Date())
+          .startOf('day')
+          ._d.getTime();
+        const endDate = moment(new Date())
+          .endOf('day')
+          ._d.getTime();
+        filterReminders(startDate, endDate);
+      });
     }
   }
   render() {
@@ -75,5 +92,5 @@ const StyledProfileIcon = withStyles(styles)(ProfileIcon);
 
 export default connect(
   mapStateToProps,
-  { fetchUser, fetchMeds, fetchRems }
+  { fetchUser, fetchMeds, fetchRems, filterReminders }
 )(StyledProfileIcon);
