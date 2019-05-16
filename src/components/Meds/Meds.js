@@ -10,11 +10,6 @@ class Meds extends Component {
   state = {
     noRems: false
   };
-  componentDidMount() {
-    if (this.props.rems.length === 0) {
-      this.props.fetchRems(this.props.user_id);
-    }
-  }
 
   componentDidUpdate(prevProps) {
     if (

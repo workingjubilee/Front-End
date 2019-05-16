@@ -24,9 +24,6 @@ const Dashboard = ({ fetchUser, user, classes, filterReminders, rems }) => {
   );
   const userID = user.id ? user.id : localStorage.getItem('userID');
   useEffect(() => {
-    if (!user.auth_id) {
-      fetchUser(userID);
-    }
     if (rems.length > 0) {
       filterReminders(startDate, endDate);
     }
