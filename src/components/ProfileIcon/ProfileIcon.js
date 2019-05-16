@@ -29,7 +29,7 @@ const styles = theme => ({
   }
 });
 
-const ProfileIcon = ({ classes, user, meds }) => {
+const ProfileIcon = ({ classes, user, filteredRems }) => {
   const { username } = user;
   return (
     <Card className={classes.paper}>
@@ -37,7 +37,7 @@ const ProfileIcon = ({ classes, user, meds }) => {
         <Typography className={classes.text}>Hello {username} </Typography>
         <Card>
           <Typography className={classes.lowerText}>
-            {meds.length} pills today
+            {filteredRems.length} pills today
           </Typography>
         </Card>
       </div>
@@ -48,7 +48,7 @@ const ProfileIcon = ({ classes, user, meds }) => {
 
 const mapStateToProps = state => ({
   user: state.userReducer.user,
-  meds: state.medsReducer.meds
+  filteredRems: state.medsReducer.filteredRems
 });
 
 const StyledProfileIcon = withStyles(styles)(ProfileIcon);
