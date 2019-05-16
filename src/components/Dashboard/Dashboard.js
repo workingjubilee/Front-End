@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { fetchUser, filterReminders } from '../../actions';
+import { filterReminders } from '../../actions';
 import Rems from '../Rems/Rems';
 import Datetime from 'react-datetime';
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -9,7 +9,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import moment from 'moment';
 
-const Dashboard = ({ fetchUser, user, classes, filterReminders, rems }) => {
+const Dashboard = ({ user, classes, filterReminders, rems }) => {
   const { username } = user;
   const [date, setDate] = useState(new Date());
   const [startDate, setStartDate] = useState(
@@ -27,16 +27,7 @@ const Dashboard = ({ fetchUser, user, classes, filterReminders, rems }) => {
     if (rems.length > 0) {
       filterReminders(startDate, endDate);
     }
-  }, [
-    user,
-    fetchUser,
-    userID,
-    date,
-    startDate,
-    endDate,
-    filterReminders,
-    rems
-  ]);
+  }, [startDate, endDate, filterReminders, rems]);
   const changeDate = newDate => {
     setDate(newDate._d);
     setStartDate(
@@ -94,5 +85,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { fetchUser, filterReminders }
+  { filterReminders }
 )(StyledDashboard);
