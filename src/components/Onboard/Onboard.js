@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { updateInfo } from 'actions';
+import { editUser } from 'actions';
 import { useInput } from 'utilities/useInput';
 
-const Onboard = ({ history, updateInfo }) => {
+const Onboard = ({ history, editUser }) => {
   const firstName = useInput();
   const lastName = useInput();
   const phone = useInput();
@@ -12,7 +12,7 @@ const Onboard = ({ history, updateInfo }) => {
 
   const handleUpdate = e => {
     e.preventDefault();
-    updateInfo({
+    editUser({
       id: localStorage.getItem('userID'),
       username: username.value,
       first_name: firstName.value,
@@ -76,5 +76,5 @@ const Onboard = ({ history, updateInfo }) => {
 
 export default connect(
   null,
-  { updateInfo }
+  { editUser }
 )(Onboard);

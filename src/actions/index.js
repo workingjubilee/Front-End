@@ -34,10 +34,10 @@ export const EDIT_USER_REQUEST = 'EDIT_USER_REQUEST';
 export const EDIT_USER_SUCCESS = 'EDIT_USER_SUCCESS';
 export const EDIT_USER_FAILURE = 'EDIT_USER_FAILURE';
 
-export const updateInfo = creds => dispatch => {
+export const editUser = edits => dispatch => {
   dispatch({ type: EDIT_USER_REQUEST });
   return axios
-    .put(`${endpoint}/api/users/${creds.id}/`, creds)
+    .put(`${endpoint}/api/users/${edits.id}/`, edits)
     .then(res => {
       dispatch({ type: EDIT_USER_SUCCESS, payload: res.data });
     })
