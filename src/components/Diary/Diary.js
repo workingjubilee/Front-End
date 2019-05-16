@@ -6,7 +6,8 @@ import DiaryMedsPanels from './DiaryMedsPanels';
 
 const Diary = ({ fetchDiary, user_id }) => {
   useEffect(() => {
-    fetchDiary(user_id);
+    const userID = user_id ? user_id : localStorage.getItem('userID');
+    fetchDiary(userID);
   }, [user_id, fetchDiary]);
 
   return (

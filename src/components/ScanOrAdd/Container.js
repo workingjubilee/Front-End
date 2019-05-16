@@ -15,7 +15,11 @@ function ScanOrAdd({ location, history, addMed }) {
   const [open, setOpen] = useToggle(false);
 
   const handleAddPill = pillInfo => {
-    addMed({ ...pillInfo, med_add_date: new Date().getTime() })
+    addMed({
+      ...pillInfo,
+      med_add_date: new Date().getTime(),
+      med_active: false
+    })
       .then(() => {
         history.push('/pills');
       })
@@ -25,7 +29,11 @@ function ScanOrAdd({ location, history, addMed }) {
   };
 
   const handleAddPillReminders = pillInfo => {
-    addMed({ ...pillInfo, med_add_date: new Date().getTime() })
+    addMed({
+      ...pillInfo,
+      med_add_date: new Date().getTime(),
+      med_active: true
+    })
       .then(() => {
         history.push('/adddosage');
       })

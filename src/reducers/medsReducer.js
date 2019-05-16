@@ -169,6 +169,12 @@ export default function medsReducer(state = initialState, action) {
         ...state,
         deletingMed: false,
         meds: state.meds.filter(med => med.id !== action.payload.id),
+        activeMeds: action.payload.med_active
+          ? state.activeMeds.filter(med => med.id !== action.payload.id)
+          : state.activeMeds,
+        inactiveMeds: !action.payload.med_active
+          ? state.inactiveMeds.filter(med => med.id !== action.payload.id)
+          : state.inactiveMeds,
         rems: state.rems.filter(rem => rem.med_id !== action.payload.id)
       };
     case DELETE_MED_FAILURE:

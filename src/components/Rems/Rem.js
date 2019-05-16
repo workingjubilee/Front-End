@@ -7,7 +7,7 @@ import CardActions from '@material-ui/core/CardActions';
 // import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
-const Med = ({ med, classes }) => {
+const Rem = ({ rem, classes }) => {
   const {
     med_name,
     med_dose,
@@ -16,7 +16,7 @@ const Med = ({ med, classes }) => {
     med_shape
     //med_dose_freq,
     //med_admin_times
-  } = med;
+  } = rem;
   return (
     <div className='med'>
       <Card className={classes.card}>
@@ -52,4 +52,4 @@ const styles = theme => ({
   }
 });
 
-export default withStyles(styles)(Med);
+export default withStyles(styles)(Rem);
