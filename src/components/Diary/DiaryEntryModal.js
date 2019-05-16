@@ -18,7 +18,8 @@ const styles = {
   },
   label: {
     textTransform: 'capitalize',
-    textAlign: 'center'
+    textAlign: 'center',
+    fontSize: '1.1em'
   }
 };
 

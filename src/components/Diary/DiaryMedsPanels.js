@@ -2,11 +2,19 @@ import React from 'react';
 import { connect } from 'react-redux';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
+import MuiSelect from '@material-ui/core/Select';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 import DiaryMedPanel from './DiaryMedPanel';
 import { editUser } from '../../actions/index';
+
+const Select = withStyles({
+  root: {
+    marginTop: '.25em'
+  }
+})(props => <MuiSelect {...props} />);
+
+Select.muiName = 'Select';
 
 const styles = {
   root: {
