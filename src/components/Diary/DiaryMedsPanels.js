@@ -79,7 +79,6 @@ function DiaryMedsPanels({
       id: user_id,
       sort_diary_meds: e.target.value
     });
-    console.log('sortedMeds: ', sortedMeds);
   };
 
   const changeFocus = med_id => {
