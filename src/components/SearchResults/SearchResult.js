@@ -24,7 +24,7 @@ const styles = {
   button: {
     width: '30%',
     height: '3rem',
-    fontSize: '18px',
+    fontSize: '.6rem',
     color: 'white'
   },
   view: {
