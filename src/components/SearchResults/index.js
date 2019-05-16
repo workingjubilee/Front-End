@@ -3,29 +3,25 @@ import React, { useState } from 'react';
 import AdditionalSearchInfo from './AdditionalSearchInfo';
 import SearchResult from './SearchResult';
 
-const SearchResults = ({ searchResults }) => {
+const SearchResults = ({
+  searchResults,
+  handleAddPill,
+  handleAddPillReminders,
+  setPill,
+  pill
+}) => {
   const style = {
     display: 'flex'
   };
 
-  const pillTemplate = {
-    user_id: localStorage.getItem('userID'),
-    med_name: '',
-    med_color: '',
-    med_shape: '',
-    med_strength: 0,
-    med_strength_unit: '',
-    med_dose: 0,
-    med_dose_unit: ''
-  };
-
-  const [pill, setPill] = useState(pillTemplate);
-
   return (
     <div style={style}>
+      <button>click ahaha</button>
       <div>
         {searchResults &&
-          searchResults.map(result => <SearchResult result={result} />)}
+          searchResults.map(result => (
+            <SearchResult result={result} setPill={setPill} />
+          ))}
       </div>
       <AdditionalSearchInfo />
     </div>

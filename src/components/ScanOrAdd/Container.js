@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useState, useReducer } from 'react';
 import { connect } from 'react-redux';
 import { addMed } from 'actions';
 import { useToggle } from 'utilities/useToggle';
@@ -13,6 +13,7 @@ import Search from 'components/SearchResults';
 function ScanOrAdd({ location, history, addMed }) {
   const [state, dispatch] = useReducer(scanReducer, init(location));
   const [open, setOpen] = useToggle(false);
+  const [pill, setPill] = useState({});
 
   const handleAddPill = pillInfo => {
     addMed({ ...pillInfo, med_add_date: new Date().getTime() })
@@ -39,7 +40,13 @@ function ScanOrAdd({ location, history, addMed }) {
   return (
     <Paper square>
       {state && state.analysis ? (
-        <Search searchResults={state.analysis} />
+        <Search
+          searchResults={state.analysis}
+          handleAddPill={handleAddPill}
+          handleAddPillReminders={handleAddPillReminders}
+          setPill={setPill}
+          pill={pill}
+        />
       ) : (
         <>
           <Scan state={state} dispatch={dispatch} history={history} />
