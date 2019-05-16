@@ -38,7 +38,12 @@ class PillInfoModal extends Component {
     });
   };
   render() {
-    const { open, handleClose, handleConfirm } = this.props;
+    const {
+      open,
+      handleClose,
+      handleAddPill,
+      handleAddPillReminders
+    } = this.props;
     const {
       med_name,
       med_color,
@@ -144,9 +149,15 @@ class PillInfoModal extends Component {
           </Button>
           <Button
             color='primary'
-            onClick={() => handleConfirm(this.state.pill)}
+            onClick={() => handleAddPill(this.state.pill)}
           >
-            Confirm Pill
+            Add Pill
+          </Button>
+          <Button
+            color='primary'
+            onClick={() => handleAddPillReminders(this.state.pill)}
+          >
+            Add Pill With Reminders
           </Button>
         </DialogActions>
       </Dialog>
