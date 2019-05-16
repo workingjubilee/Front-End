@@ -91,9 +91,16 @@ const styles = {
 function DiaryMedPanel({ classes, med, changeFocus, diaryFocus, diaryCount }) {
   const [expanded, setExpanded] = React.useState(null);
 
+  const [viewAll, setViewAll] = React.useState(false);
+
   const handleChange = panel => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
     changeFocus(med.id);
+    setViewAll(false);
+  };
+
+  const toggleViewAll = () => {
+    setViewAll(!viewAll);
   };
 
   React.useEffect(() => {
@@ -126,7 +133,11 @@ function DiaryMedPanel({ classes, med, changeFocus, diaryFocus, diaryCount }) {
           </Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-          <DiaryEntriesPanels diaryFocus={med.id} />
+          <DiaryEntriesPanels
+            toggleViewAll={toggleViewAll}
+            viewAll={viewAll}
+            diaryFocus={med.id}
+          />
         </ExpansionPanelDetails>
       </ExpansionPanel>
     </div>
