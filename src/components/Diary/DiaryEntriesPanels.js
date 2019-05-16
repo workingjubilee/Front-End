@@ -35,7 +35,7 @@ const styles = {
 };
 
 const DiaryEntriesPanels = ({ classes, diary, diaryFocus, meds }) => {
-  const filteredDiary = diary
+  const filteredSortedDiary = diary
     .filter(diaryEntry => {
       return diaryEntry.med_id === diaryFocus;
     })
@@ -62,10 +62,10 @@ const DiaryEntriesPanels = ({ classes, diary, diaryFocus, meds }) => {
           />
         </div>
       </ExpansionPanelSummary>
-      {filteredDiary.length === 0 ? (
+      {filteredSortedDiary.length === 0 ? (
         <p>You have no diary entries for {medName}.</p>
       ) : (
-        filteredDiary.map((diaryEntry, index) =>
+        filteredSortedDiary.map((diaryEntry, index) =>
           index <= 3 ? (
             <DiaryEntryPanel key={diaryEntry.id} diaryEntry={diaryEntry} />
           ) : null

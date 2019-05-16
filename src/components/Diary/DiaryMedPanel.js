@@ -15,6 +15,9 @@ const Chip = withStyles({})(props => <MuiChip {...props} />);
 Chip.muiName = 'Chip';
 
 const ExpansionPanel = withStyles({
+  root: {
+    marginBottom: 5
+  },
   expanded: {
     '&$expanded': {
       marginBottom: '20px'

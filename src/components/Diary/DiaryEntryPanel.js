@@ -12,7 +12,7 @@ const ExpansionPanelSummary = withStyles({
     padding: '0px 20px 0px 20px',
     backgroundColor: 'rgba(0,0,0,.03)',
     borderBottom: '1px solid rgba(0,0,0,.125)',
-    marginBottom: -1,
+    marginBottom: 3,
     minHeight: 56
   },
   content: {
