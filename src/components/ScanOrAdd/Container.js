@@ -61,7 +61,7 @@ function ScanOrAdd({ location, history, addMed }) {
 
   return (
     <Paper square>
-      <Scan state={state} dispatch={dispatch} />
+      <Scan state={state} dispatch={dispatch} history={history} />
       <SearchPill state={state} dispatch={dispatch} />
       <Button onClick={handleOpen} variant='contained'>
         Add Pill Manually
