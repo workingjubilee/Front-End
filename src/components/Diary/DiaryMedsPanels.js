@@ -14,17 +14,25 @@ const styles = {
   },
   formControl: {
     minWidth: 120,
-    margin: '0px'
+    marginLeft: '10px',
+    justifyContent: 'center'
   },
   selectEmpty: {}
 };
 
 function DiaryMedsPanels({ classes, fetchingMeds, meds, diary }) {
   const [diaryFocus, setDiaryFocus] = React.useState(null);
-  const [sort, setSort] = React.useState('alph');
+  const [sort, setSort] = React.useState('alpha');
 
-  const changeSort = newSort => {
-    setSort(newSort);
+  // React.useEffect(() => {
+  //   if (diaryFocus !== med.id) {
+  //     setExpanded(false);
+  //   }
+  //   // eslint-disable-next-line
+  // }, [diaryFocus]);
+
+  const changeSort = e => {
+    setSort(e.target.value);
   };
 
   const changeFocus = med_id => {
