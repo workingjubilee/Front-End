@@ -1877,7 +1877,7 @@ auth0-js@^9.10.2:
     url-join "^4.0.0"
     winchan "^0.2.1"
 
-auth0-lock@^11.15.0:
+auth0-lock@~11.15.0:
   version "11.15.0"
   resolved "https://registry.yarnpkg.com/auth0-lock/-/auth0-lock-11.15.0.tgz#8dd6a0a3e82ed39760695a14d66f7d881116ae34"
   integrity sha512-VvPTTHpOAMdQuvxcWwAiskZiUBCLJh1RGAb8oBsmk4f7yOwdeVpUmu1e74yIJdEjDtyvm8kj8IblGZ3os+Wt6w==
