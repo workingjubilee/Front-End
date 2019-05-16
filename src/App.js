@@ -22,7 +22,7 @@ const AddDosage = React.lazy(() => import('./components/AddDosage/AddDosage'));
 function App() {
   return (
     <div className='App'>
-      <header className='App-header'>
+      <div className='container'>
         <Navigation />
         <ErrorBoundary>
           <React.Suspense fallback={<Spinner />}>
@@ -37,7 +37,7 @@ function App() {
             <Route path='/adddosage' component={AddDosage} />
           </React.Suspense>
         </ErrorBoundary>
-      </header>
+      </div>
     </div>
   );
 }
