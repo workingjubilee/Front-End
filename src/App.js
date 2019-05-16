@@ -25,7 +25,7 @@ function App() {
       <header className='App-header'>
         <Navigation />
         <ErrorBoundary>
-          <React.Suspense fallback={Spinner}>
+          <React.Suspense fallback={<Spinner />}>
             <Route exact path='/' component={Home} />
             <Route exact path='/landing' component={Landing} />
             <Route exact path='/onboard' component={Onboard} />

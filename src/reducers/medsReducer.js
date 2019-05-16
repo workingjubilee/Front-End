@@ -13,7 +13,10 @@ import {
   DISCONTINUE_MED_FAILURE,
   DELETE_MED_REQUEST,
   DELETE_MED_SUCCESS,
-  DELETE_MED_FAILURE
+  DELETE_MED_FAILURE,
+  UPLOAD_IMAGE_REQUEST,
+  UPLOAD_IMAGE_SUCCESS,
+  UPLOAD_IMAGE_FAILURE
 } from 'actions';
 
 import { initialState } from './initialState';
@@ -172,6 +175,24 @@ export default function medsReducer(state = initialState, action) {
       return {
         ...state,
         deletingMed: false,
+        error: action.payload
+      };
+    case UPLOAD_IMAGE_REQUEST:
+      return {
+        ...state,
+        searchingMed: true,
+        error: null
+      };
+    case UPLOAD_IMAGE_SUCCESS:
+      return {
+        ...state,
+        searchingMed: false,
+        searchResults: action.payload
+      };
+    case UPLOAD_IMAGE_FAILURE:
+      return {
+        ...state,
+        searchingMed: false,
         error: action.payload
       };
 

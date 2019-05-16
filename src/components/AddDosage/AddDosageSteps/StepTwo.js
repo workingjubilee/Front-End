@@ -34,7 +34,7 @@ const StepThree = props => {
           alignItems: 'center'
         }}
       >
-        <Typography style={{  justifyContent: 'flex-start' }} component='p'>
+        <Typography style={{ justifyContent: 'flex-start' }} component='p'>
           Confirm Dosage Schedule
         </Typography>
         <Card style={{ width: '80%' }}>
