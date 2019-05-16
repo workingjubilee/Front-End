@@ -1,4 +1,4 @@
-module.exports = function parseMedStrengths(meds) {
+export default function parseMedStrengths(meds) {
   const scaryRegex = /^(\D+)(\d+\.*\d*).+(mg|mcg|IU)/i
 
   const regexStrength = (medStr,regex) => 

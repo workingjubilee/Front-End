@@ -5,6 +5,8 @@ import axios from 'axios';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import { uploadImage } from 'actions';
+import rekogDummy from 'data/rekogDummy.json';
+import parseMedStrengths from 'utilities/parseMedStrengths';
 
 function ScanImage({ state, dispatch, uploadImage, history }) {
   const [photo, setPhoto] = useState(null);
@@ -12,13 +14,13 @@ function ScanImage({ state, dispatch, uploadImage, history }) {
   const photoSelect = event => setPhoto(event.target.files[0]);
 
   const upload = async () => {
-    if (!photo) {
-      console.log('Need a photo!');
-      return;
-    }
-    const photoEndpoint = `${process.env.REACT_APP_BACKEND}/api/upload`;
-    const imgData = new FormData();
-    imgData.append('image', photo, photo.filename);
+    // if (!photo) {
+    //   console.log('Need a photo!');
+    //   return;
+    // }
+    // const photoEndpoint = `${process.env.REACT_APP_BACKEND}/api/upload`;
+    // const imgData = new FormData();
+    // imgData.append('image', photo, photo.filename);
 
     // uploadImage(imgData)
     //   .then(() => {
@@ -29,12 +31,12 @@ function ScanImage({ state, dispatch, uploadImage, history }) {
     //     alert(`Image upload failed. ${err}.`);
     //   });
     // Not sure if you still need this so I'll leave it
-    console.log('start');
-    const result = await axios
-      .post(photoEndpoint, imgData)
-      .catch(err => console.error(err));
-    console.log('end');
-    dispatch({ type: 'analysisResults', payload: result.data });
+    // console.log('start');
+    // const result = await axios
+    //   .post(photoEndpoint, imgData)
+    //   .catch(err => console.error(err));
+    // console.log('end');
+    dispatch({ type: 'analysisResults', payload: parseMedStrengths(rekogDummy) });
   };
 
   return (
