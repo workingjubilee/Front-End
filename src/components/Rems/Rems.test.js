@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Rems from './Meds';
+import Rems from './Rems';
 import AppWrapper from 'AppWrapper';
 
 it('renders without crashing', () => {
