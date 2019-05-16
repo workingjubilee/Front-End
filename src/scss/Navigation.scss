@@ -1,4 +1,7 @@
 $primary: #2d90f5;
+$secondary: #40ab47;
+$navborder: #d6d8dd;
+$pillborder: #ebecee;
 
 .title {
   color: white;
@@ -13,11 +16,17 @@ $primary: #2d90f5;
   align-items: center;
 
   .tab {
-    border: 1px solid black;
+    border-right: 1px solid $navborder;
+    border-top: 1px solid $navborder;
+    border-bottom: 1px solid $navborder;
     width: 200px;
     display: flex;
     justify-content: center;
     text-decoration: none;
+  }
+
+  .tab.edge {
+    border-left: 1px solid $navborder;
   }
 
   .active-tab {
@@ -36,7 +45,6 @@ $primary: #2d90f5;
   align-items: center;
 
   .tab {
-    border: 1px solid black;
     width: 200px;
     display: flex;
     justify-content: center;
@@ -44,8 +52,18 @@ $primary: #2d90f5;
     color: black;
   }
 
+  .tab.a {
+    border: 1px solid $pillborder;
+  }
+
+  .tab.b {
+    border-top: 1px solid $pillborder;
+    border-right: 1px solid $pillborder;
+    border-bottom: 1px solid $pillborder;
+  }
+
   .active-tab {
-    background-color: $primary;
+    background-color: $secondary;
     h5 {
       color: white;
     }

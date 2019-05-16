@@ -147,7 +147,7 @@ class Navigation extends Component {
           {renderMobileMenu}
         </div>
         <nav className='tab-navigator'>
-          <NavLink to='/scan' className='tab' activeClassName='active-tab'>
+          <NavLink to='/scan' className='tab edge' activeClassName='active-tab'>
             <Typography component='h5'>Scan / Add Pill</Typography>
           </NavLink>
           <NavLink to='/pills' className='tab' activeClassName='active-tab'>
