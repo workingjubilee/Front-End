@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PillsNav from './PillsNav';
 import ActivePills from './ActivePills';
 import InactivePills from './InactivePills';
-import Card from '@material-ui/core/Card';
+// import Card from '@material-ui/core/Card';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { connect } from 'react-redux';
 import { fetchMeds } from '../../actions';

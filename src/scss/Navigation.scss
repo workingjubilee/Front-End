@@ -68,6 +68,7 @@ $pillborder: #ebecee;
 
   .active-tab {
     background-color: $secondary;
+    border: 1px solid $secondary;
     h5 {
       color: white;
     }

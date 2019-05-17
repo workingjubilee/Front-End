@@ -14,9 +14,9 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import ProfileIcon from '../ProfileIcon/ProfileIcon';
-import ArrowIcon from '@material-ui/icons/CompareArrows';
-import DiaryIcon from '@material-ui/icons/QuestionAnswer';
-import ScanIcon from '@material-ui/icons/CenterFocusStrong';
+// import ArrowIcon from '@material-ui/icons/CompareArrows';
+// import DiaryIcon from '@material-ui/icons/QuestionAnswer';
+// import ScanIcon from '@material-ui/icons/CenterFocusStrong';
 import { Link, NavLink } from 'react-router-dom';
 
 import { mobile } from 'scss/mediaVariables';
