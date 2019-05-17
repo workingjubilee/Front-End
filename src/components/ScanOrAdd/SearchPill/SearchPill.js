@@ -10,7 +10,7 @@ import parseMedStrengths from 'utilities/parseMedStrengths';
 
 // import AddPillButton from '../Scan/SearchResults/AddPillButton';
 
-const SearchPill = ({dispatch, ...rest}) => {
+const SearchPill = ({ dispatch, setData, ...rest }) => {
   const [name, setName] = useState('');
   const [imprint, setImprint] = useState('');
   const [color, setColor] = useState('');
@@ -19,10 +19,10 @@ const SearchPill = ({dispatch, ...rest}) => {
   const textEndpoint = `${process.env.REACT_APP_DATA_SCIENCE}/rxdata`;
 
   // useEffect(() => {}, [color, shape]);
-  const search = async (e) => {
+  const search = async e => {
     e.preventDefault();
     const query = {
-      "pill_name": name,
+      pill_name: name,
       imprint,
       shape,
       color
@@ -31,10 +31,10 @@ const SearchPill = ({dispatch, ...rest}) => {
     try {
       const results = await axios.post(textEndpoint, query);
       const parsedResults = parseMedStrengths(results.data);
-      dispatch({ 'type': 'analysisResults', payload: parsedResults })
-    } catch(error) {
+      setData(parsedResults);
+    } catch (error) {
       console.error(error);
-    };
+    }
     // Search for pill
   };
   return (
@@ -43,19 +43,29 @@ const SearchPill = ({dispatch, ...rest}) => {
       <TextField
         label='pill name'
         value={name}
-        onChange={(e) => setName(e.target.value)}
+        onChange={e => setName(e.target.value)}
         margin='normal'
       />
 
       <TextField
         label='imprint'
         value={imprint}
-        onChange={(e) => setImprint(e.target.value)}
+        onChange={e => setImprint(e.target.value)}
         margin='normal'
       />
 
-      <Dropdown itemName="color" itemList={colors} item={color} setItem={setColor} />
-      <Dropdown itemName="shape" itemList={shapes} item={shape} setItem={setShape} />
+      <Dropdown
+        itemName='color'
+        itemList={colors}
+        item={color}
+        setItem={setColor}
+      />
+      <Dropdown
+        itemName='shape'
+        itemList={shapes}
+        item={shape}
+        setItem={setShape}
+      />
 
       <Button onClick={search} variant='contained'>
         Identify Pill
