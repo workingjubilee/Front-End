@@ -14,6 +14,14 @@ import Checkbox from '@material-ui/core/Checkbox';
 // import FormControl from '@material-ui/core/FormControl';
 // import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+// import Input from '@material-ui/core/Input';
+import Chip from '@material-ui/core/Chip';
+import Dialog from '@material-ui/core/Dialog';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+// import FormControl from '@material-ui/core/FormControl';
+import DialogActions from '@material-ui/core/DialogActions';
+// import InputLabel from '@material-ui/core/InputLabel';
 
 const formatMomentDate = dateData => {
   dateData = dateData.split('');
@@ -68,29 +76,73 @@ const StepOne = props => {
   });
   const datesObj = {};
   for (let i = 1; i < 32; i++) {
-    datesObj[`${i}`] = false;
+    let date = i.toString();
+    date = date.split('');
+    if (date[date.length - 2] === '1') {
+      date.push('th');
+    } else if (date[date.length - 1] === '1') {
+      date.push('st');
+    } else if (date[date.length - 1] === '2') {
+      date.push('nd');
+    } else if (date[date.length - 1] === '3') {
+      date.push('rd');
+    } else {
+      date.push('th');
+    }
+    date = date.join('');
+    datesObj[`${date}`] = false;
   }
   const [dates, setDates] = useState(datesObj);
-  console.log(dates);
   const [selectedDays, setSelectedDays] = useState([]);
-  const {
-    sunday,
-    monday,
-    tuesday,
-    wednesday,
-    thursday,
-    friday,
-    saturday
-  } = weekdays;
+  const [selectedDates, setSelectedDates] = useState([]);
+  // const [reminderData, setReminderData] = useState([]);
+  const [dosageDialogueOppenness, setDosageDialogueOppenness] = useState(false);
   useEffect(() => {
     const days = [];
+    const newDates = [];
     for (let day in weekdays) {
       if (weekdays[day]) {
         days.push(day);
-        setSelectedDays(days);
       }
     }
-  }, [weekdays]);
+    for (let date in dates) {
+      if (dates[date]) {
+        newDates.push(date);
+      }
+    }
+    for (let i = 0; i < props.lengthOfDosage; i++) {}
+    setSelectedDays(days);
+    setSelectedDates(newDates);
+  }, [weekdays, dates, props.lengthOfDosage]);
+  useEffect(() => {
+    const newReminderData = [];
+    if (props.dosageFrequency === 'weekly') {
+      for (let i = 0; i < props.lengthOfDosage; i++) {
+        newReminderData.push({
+          value: selectedDays[i],
+          time: '12:00'
+        });
+      }
+    } else if (props.dosageFrequency === 'monthly') {
+      for (let i = 0; i < props.lengthOfDosage; i++) {
+        newReminderData.push({
+          value: selectedDates[i],
+          time: '12:00'
+        });
+      }
+    } else if (props.dosageFrequency === 'daily') {
+      for (let i = 0; i < props.lengthOfDosage; i++) {
+        newReminderData.push({
+          value: null,
+          time: '12:00'
+        });
+      }
+    }
+    console.log(newReminderData);
+    console.log('its working');
+    props.setReminderData(newReminderData);
+  }, [selectedDays, selectedDates, props.dosageFrequency]);
+  // useEffect(null, [reminderData]);
   const handleWeekdayChange = weekday => e => {
     if (
       Object.values(weekdays).filter(value => value).length <
@@ -101,7 +153,21 @@ const StepOne = props => {
     } else {
       setWeekdays({ ...weekdays, [weekday]: false });
     }
+    console.log(weekdays);
     console.log(selectedDays);
+  };
+  const handleDateChange = date => e => {
+    if (
+      Object.values(dates).filter(value => value).length < props.lengthOfDosage
+    ) {
+      console.log(date);
+      setDates({ ...dates, [date]: e.target.checked });
+      // console.log(Object.values(weekdays).filter(value => value));
+    } else {
+      setDates({ ...dates, [date]: false });
+    }
+    console.log(dates);
+    console.log(selectedDates);
   };
   const handleDosageInstructionChange = value => {
     props.customInstruction.updateValue({ target: { value: '' } });
@@ -110,6 +176,16 @@ const StepOne = props => {
     } else {
       props.updateDosageInstruction(value);
     }
+  };
+
+  const handleDosageTimeChange = (e, index) => {
+    const newData = props.reminderData;
+    newData[index].time = e.target.value;
+    // = {
+    //   value: reminderData[index].value,
+    //   time: e.target.value
+    // };
+    props.setReminderData(newData);
   };
 
   const handleStartDateChange = e => {
@@ -200,109 +276,84 @@ const StepOne = props => {
           <Select
             multiple
             value={selectedDays}
+            // input={<Input />}
             style={{
+              height: '36px',
               display: 'flex',
               flexDirection: 'column',
               flexWrap: 'wrap'
             }}
+            renderValue={selected => (
+              <div
+              // className={classes.chips}
+              >
+                {selected.map(value => (
+                  <Chip
+                    key={value}
+                    label={value}
+                    // className={classes.chip}
+                  />
+                ))}
+              </div>
+            )}
           >
-            <MenuItem>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={sunday}
-                    onChange={handleWeekdayChange('sunday')}
-                    value='sunday'
-                    color='primary'
-                  />
-                }
-                label='sunday'
-              />
-            </MenuItem>
-            <MenuItem>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={monday}
-                    onChange={handleWeekdayChange('monday')}
-                    value='monday'
-                    color='primary'
-                  />
-                }
-                label='monday'
-              />
-            </MenuItem>
-            <MenuItem>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={tuesday}
-                    onChange={handleWeekdayChange('tuesday')}
-                    value='tuesday'
-                    color='primary'
-                  />
-                }
-                label='tuesday'
-              />
-            </MenuItem>
-            <MenuItem>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={wednesday}
-                    onChange={handleWeekdayChange('wednesday')}
-                    value='wednesday'
-                    color='primary'
-                  />
-                }
-                label='wednesday'
-              />
-            </MenuItem>
-            <MenuItem>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={thursday}
-                    onChange={handleWeekdayChange('thursday')}
-                    value='thursday'
-                    color='primary'
-                  />
-                }
-                label='thursday'
-              />
-            </MenuItem>
-            <MenuItem>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={friday}
-                    onChange={handleWeekdayChange('friday')}
-                    value='friday'
-                    color='primary'
-                  />
-                }
-                label='friday'
-              />
-            </MenuItem>
-            <MenuItem>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={saturday}
-                    onChange={handleWeekdayChange('saturday')}
-                    value='saturday'
-                    color='primary'
-                  />
-                }
-                label='saturday'
-              />
-            </MenuItem>
+            {Object.entries(weekdays).map(day => (
+              <MenuItem key={day[0]}>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={day[1]}
+                      onChange={handleWeekdayChange(day[0])}
+                      value={day[0]}
+                      color='primary'
+                    />
+                  }
+                  label={day[0]}
+                />
+              </MenuItem>
+            ))}
           </Select>
         ) : null}
         {props.dosageFrequency === 'monthly' ? (
-          <div>
-            <p>choose a date</p>
-          </div>
+          <Select
+            multiple
+            value={selectedDates}
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              flexWrap: 'wrap',
+              height: '36px'
+            }}
+            renderValue={selected => (
+              <div
+              // className={classes.chips}
+              >
+                {selected.map(value => (
+                  <Chip
+                    key={value}
+                    label={value}
+                    // className={classes.chip}
+                  />
+                ))}
+              </div>
+            )}
+          >
+            {Object.entries(dates).map(date => (
+              <MenuItem key={date[0]}>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={date[1]}
+                      onChange={handleDateChange(date[0])}
+                      value={date[0]}
+                      color='primary'
+                    />
+                  }
+                  label={date[0]}
+                />
+              </MenuItem>
+            ))}
+          </Select>
         ) : null}
       </CardContent>
       <CardContent>
@@ -355,7 +406,75 @@ const StepOne = props => {
           margin='normal'
         />
       </CardContent>
-      <CardContent>Dosage Time of Day</CardContent>
+
+      <CardContent>
+        <Button onClick={() => setDosageDialogueOppenness(true)}>
+          Open to Select Dosage Time of Day
+        </Button>
+        <Dialog
+          disableBackdropClick
+          disableEscapeKeyDown
+          open={dosageDialogueOppenness}
+          onClose={() => setDosageDialogueOppenness(false)}
+        >
+          <DialogTitle>Fill the form</DialogTitle>
+          <DialogContent>
+            {props.reminderData.length
+              ? props.reminderData.map(data => (
+                  <div key={props.reminderData.indexOf(data)}>
+                    {data.value}
+                    <TextField
+                      id='time'
+                      label='Alarm clock'
+                      type='time'
+                      defaultValue={
+                        props.reminderData[props.reminderData.indexOf(data)]
+                          .time
+                      }
+                      onChange={e =>
+                        handleDosageTimeChange(
+                          e,
+                          props.reminderData.indexOf(data)
+                        )
+                      }
+                      // e => {
+                      // const newData = reminderData;
+                      // newData[reminderData.indexOf(data)] = {
+                      //   value: reminderData[reminderData.indexOf(data)].value,
+                      //   time: e.target.value
+                      // };
+                      // setReminderData(newData);
+                      // console.log(reminderData);
+                      // }
+                      // }
+                      InputLabelProps={{
+                        shrink: true
+                      }}
+                      inputProps={{
+                        step: 300 // 5 min
+                      }}
+                    />
+                  </div>
+                ))
+              : null}
+          </DialogContent>
+          <DialogActions>
+            <Button
+              onClick={() => setDosageDialogueOppenness(false)}
+              color='primary'
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={() => setDosageDialogueOppenness(false)}
+              color='primary'
+            >
+              Ok
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </CardContent>
+
       <CardContent>
         Start Date
         <Button
