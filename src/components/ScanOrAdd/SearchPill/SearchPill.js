@@ -23,7 +23,7 @@ const SearchPill = ({dispatch, ...rest}) => {
   const search = async (e) => {
     e.preventDefault();
     const query = {
-      "pill_name": name
+      "pill_name": name,
       imprint,
       shape,
       color
