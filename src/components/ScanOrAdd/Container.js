@@ -5,8 +5,6 @@ import { useToggle } from 'utilities/useToggle';
 import Button from '@material-ui/core/Button';
 import Scan from './Scan/Scan.js'; // Prioritizing the Scan component
 import scanReducer, { init } from './scanReducer.js';
-import Paper from '@material-ui/core/Paper';
-// import CloudIcon from '@material-ui/icons/CloudUpload';
 import SearchPill from './SearchPill/SearchPill';
 import PillInfoModal from 'components/Modals/PillInfoModal';
 import Search from 'components/SearchResults';
@@ -45,15 +43,16 @@ function ScanOrAdd({ location, history, addMed }) {
   console.log(state); // purely for debugging
 
   return (
-    <Paper square>
-      { state && state.analysis ? (
+    <>
+      {state && state.analysis ? (
         <Search
           searchResults={state.analysis}
           handleAddPill={handleAddPill}
           handleAddPillReminders={handleAddPillReminders}
         />
       ) : (
-        <>
+        <section className='scan-container'>
+          <h2>Identify your Pill before scheduling</h2>
           <Scan state={state} dispatch={dispatch} history={history} />
           <SearchPill state={state} dispatch={dispatch} />
           <Button onClick={setOpen} variant='contained'>
@@ -65,9 +64,9 @@ function ScanOrAdd({ location, history, addMed }) {
             handleAddPillReminders={handleAddPillReminders}
             handleClose={setOpen}
           />
-        </>
-      ) }
-    </Paper>
+        </section>
+      )}
+    </>
   );
 }
 
