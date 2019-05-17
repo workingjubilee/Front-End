@@ -42,27 +42,44 @@ const formatMomentDate = dateData => {
 
 const todaysDate = formatMomentDate(moment(Date.now()).format('L'));
 
-const StepOne = props => {
+const StepOne = ({
+  capsulesPerDose,
+  updateCapsulesPerDose,
+  lengthOfDosage,
+  updateLengthOfDosage,
+  dosageFrequency,
+  updateDosageFrequency,
+  reminderData,
+  setReminderData,
+  customInstruction,
+  dosageInstruction,
+  updateDosageInstruction,
+  setStartDate,
+  nextStep,
+  startDate,
+  dosageDuration,
+  setDosageDuration
+}) => {
   const handleIncrementCapsulesPerDose = () => {
-    props.updateCapsulesPerDose(props.capsulesPerDose + 1);
+    updateCapsulesPerDose(capsulesPerDose + 1);
   };
   const handleDecrementCapsulesPerDose = () => {
-    if (props.capsulesPerDose > 0) {
-      props.updateCapsulesPerDose(props.capsulesPerDose - 1);
+    if (capsulesPerDose > 0) {
+      updateCapsulesPerDose(capsulesPerDose - 1);
     }
   };
   const handleLengthOfDosageChange = value => {
-    if (props.lengthOfDosage === value) {
-      props.updateLengthOfDosage(0);
+    if (lengthOfDosage === value) {
+      updateLengthOfDosage(0);
     } else {
-      props.updateLengthOfDosage(value);
+      updateLengthOfDosage(value);
     }
   };
   const handleDosageFrequencyChange = value => {
-    if (props.dosageFrequency === value) {
-      props.updateDosageFrequency('');
+    if (dosageFrequency === value) {
+      updateDosageFrequency('');
     } else {
-      props.updateDosageFrequency(value);
+      updateDosageFrequency(value);
     }
   };
   const [weekdays, setWeekdays] = useState({
@@ -110,28 +127,28 @@ const StepOne = props => {
         newDates.push(date);
       }
     }
-    for (let i = 0; i < props.lengthOfDosage; i++) {}
+    for (let i = 0; i < lengthOfDosage; i++) {}
     setSelectedDays(days);
     setSelectedDates(newDates);
-  }, [weekdays, dates, props.lengthOfDosage]);
+  }, [weekdays, dates, lengthOfDosage]);
   useEffect(() => {
     const newReminderData = [];
-    if (props.dosageFrequency === 'weekly') {
-      for (let i = 0; i < props.lengthOfDosage; i++) {
+    if (dosageFrequency === 'weekly') {
+      for (let i = 0; i < lengthOfDosage; i++) {
         newReminderData.push({
           value: selectedDays[i],
           time: '12:00'
         });
       }
-    } else if (props.dosageFrequency === 'monthly') {
-      for (let i = 0; i < props.lengthOfDosage; i++) {
+    } else if (dosageFrequency === 'monthly') {
+      for (let i = 0; i < lengthOfDosage; i++) {
         newReminderData.push({
           value: selectedDates[i],
           time: '12:00'
         });
       }
-    } else if (props.dosageFrequency === 'daily') {
-      for (let i = 0; i < props.lengthOfDosage; i++) {
+    } else if (dosageFrequency === 'daily') {
+      for (let i = 0; i < lengthOfDosage; i++) {
         newReminderData.push({
           value: null,
           time: '12:00'
@@ -140,13 +157,12 @@ const StepOne = props => {
     }
     console.log(newReminderData);
     console.log('its working');
-    props.setReminderData(newReminderData);
-  }, [selectedDays, selectedDates, props.dosageFrequency]);
+    setReminderData(newReminderData);
+  }, [selectedDays, selectedDates, dosageFrequency]);
   // useEffect(null, [reminderData]);
   const handleWeekdayChange = weekday => e => {
     if (
-      Object.values(weekdays).filter(value => value).length <
-      props.lengthOfDosage
+      Object.values(weekdays).filter(value => value).length < lengthOfDosage
     ) {
       setWeekdays({ ...weekdays, [weekday]: e.target.checked });
       // console.log(Object.values(weekdays).filter(value => value));
@@ -157,9 +173,7 @@ const StepOne = props => {
     console.log(selectedDays);
   };
   const handleDateChange = date => e => {
-    if (
-      Object.values(dates).filter(value => value).length < props.lengthOfDosage
-    ) {
+    if (Object.values(dates).filter(value => value).length < lengthOfDosage) {
       console.log(date);
       setDates({ ...dates, [date]: e.target.checked });
       // console.log(Object.values(weekdays).filter(value => value));
@@ -170,29 +184,29 @@ const StepOne = props => {
     console.log(selectedDates);
   };
   const handleDosageInstructionChange = value => {
-    props.customInstruction.updateValue({ target: { value: '' } });
-    if (props.dosageInstruction === value) {
-      props.updateDosageInstruction('');
+    customInstruction.updateValue({ target: { value: '' } });
+    if (dosageInstruction === value) {
+      updateDosageInstruction('');
     } else {
-      props.updateDosageInstruction(value);
+      updateDosageInstruction(value);
     }
   };
 
   const handleDosageTimeChange = (e, index) => {
-    const newData = props.reminderData;
+    const newData = reminderData;
     newData[index].time = e.target.value;
     // = {
     //   value: reminderData[index].value,
     //   time: e.target.value
     // };
-    props.setReminderData(newData);
+    setReminderData(newData);
   };
 
   const handleStartDateChange = e => {
-    props.setStartDate(e.target.value);
+    setStartDate(e.target.value);
   };
   const handleConfirmDosage = () => {
-    props.nextStep();
+    nextStep();
   };
   return (
     <form>
@@ -206,7 +220,7 @@ const StepOne = props => {
             <RemoveIcon />
           </Button>
 
-          <Typography component='p'>{props.capsulesPerDose}</Typography>
+          <Typography component='p'>{capsulesPerDose}</Typography>
 
           <Button onClick={handleIncrementCapsulesPerDose}>
             <AddIcon />
@@ -217,8 +231,8 @@ const StepOne = props => {
         Length of Dosage
         <Button
           style={{
-            background: props.lengthOfDosage === 1 ? '#2D90F5' : '',
-            color: props.lengthOfDosage === 1 ? 'white' : ''
+            background: lengthOfDosage === 1 ? '#2D90F5' : '',
+            color: lengthOfDosage === 1 ? 'white' : ''
           }}
           onClick={() => handleLengthOfDosageChange(1)}
         >
@@ -226,8 +240,8 @@ const StepOne = props => {
         </Button>
         <Button
           style={{
-            background: props.lengthOfDosage === 2 ? '#2D90F5' : '',
-            color: props.lengthOfDosage === 2 ? 'white' : ''
+            background: lengthOfDosage === 2 ? '#2D90F5' : '',
+            color: lengthOfDosage === 2 ? 'white' : ''
           }}
           onClick={() => handleLengthOfDosageChange(2)}
         >
@@ -235,8 +249,8 @@ const StepOne = props => {
         </Button>
         <Button
           style={{
-            background: props.lengthOfDosage === 3 ? '#2D90F5' : '',
-            color: props.lengthOfDosage === 3 ? 'white' : ''
+            background: lengthOfDosage === 3 ? '#2D90F5' : '',
+            color: lengthOfDosage === 3 ? 'white' : ''
           }}
           onClick={() => handleLengthOfDosageChange(3)}
         >
@@ -247,8 +261,8 @@ const StepOne = props => {
         Dosage Frequency
         <Button
           style={{
-            background: props.dosageFrequency === 'daily' ? '#2D90F5' : '',
-            color: props.dosageFrequency === 'daily' ? 'white' : ''
+            background: dosageFrequency === 'daily' ? '#2D90F5' : '',
+            color: dosageFrequency === 'daily' ? 'white' : ''
           }}
           onClick={() => handleDosageFrequencyChange('daily')}
         >
@@ -256,8 +270,8 @@ const StepOne = props => {
         </Button>
         <Button
           style={{
-            background: props.dosageFrequency === 'weekly' ? '#2D90F5' : '',
-            color: props.dosageFrequency === 'weekly' ? 'white' : ''
+            background: dosageFrequency === 'weekly' ? '#2D90F5' : '',
+            color: dosageFrequency === 'weekly' ? 'white' : ''
           }}
           onClick={() => handleDosageFrequencyChange('weekly')}
         >
@@ -265,14 +279,14 @@ const StepOne = props => {
         </Button>
         <Button
           style={{
-            background: props.dosageFrequency === 'monthly' ? '#2D90F5' : '',
-            color: props.dosageFrequency === 'monthly' ? 'white' : ''
+            background: dosageFrequency === 'monthly' ? '#2D90F5' : '',
+            color: dosageFrequency === 'monthly' ? 'white' : ''
           }}
           onClick={() => handleDosageFrequencyChange('monthly')}
         >
           Monthly
         </Button>
-        {props.dosageFrequency === 'weekly' ? (
+        {dosageFrequency === 'weekly' ? (
           <Select
             multiple
             value={selectedDays}
@@ -314,7 +328,7 @@ const StepOne = props => {
             ))}
           </Select>
         ) : null}
-        {props.dosageFrequency === 'monthly' ? (
+        {dosageFrequency === 'monthly' ? (
           <Select
             multiple
             value={selectedDates}
@@ -360,9 +374,8 @@ const StepOne = props => {
         How will you take this pill?
         <Button
           style={{
-            background:
-              props.dosageInstruction === 'Before Meal' ? '#2D90F5' : '',
-            color: props.dosageInstruction === 'Before Meal' ? 'white' : ''
+            background: dosageInstruction === 'Before Meal' ? '#2D90F5' : '',
+            color: dosageInstruction === 'Before Meal' ? 'white' : ''
           }}
           onClick={() => handleDosageInstructionChange('Before Meal')}
         >
@@ -370,9 +383,8 @@ const StepOne = props => {
         </Button>
         <Button
           style={{
-            background:
-              props.dosageInstruction === 'With Meal' ? '#2D90F5' : '',
-            color: props.dosageInstruction === 'With Meal' ? 'white' : ''
+            background: dosageInstruction === 'With Meal' ? '#2D90F5' : '',
+            color: dosageInstruction === 'With Meal' ? 'white' : ''
           }}
           onClick={() => handleDosageInstructionChange('With Meal')}
         >
@@ -380,9 +392,8 @@ const StepOne = props => {
         </Button>
         <Button
           style={{
-            background:
-              props.dosageInstruction === 'After Meal' ? '#2D90F5' : '',
-            color: props.dosageInstruction === 'After Meal' ? 'white' : ''
+            background: dosageInstruction === 'After Meal' ? '#2D90F5' : '',
+            color: dosageInstruction === 'After Meal' ? 'white' : ''
           }}
           onClick={() => handleDosageInstructionChange('After Meal')}
         >
@@ -390,9 +401,8 @@ const StepOne = props => {
         </Button>
         <Button
           style={{
-            background:
-              props.dosageInstruction === 'Without Meal' ? '#2D90F5' : '',
-            color: props.dosageInstruction === 'Without Meal' ? 'white' : ''
+            background: dosageInstruction === 'Without Meal' ? '#2D90F5' : '',
+            color: dosageInstruction === 'Without Meal' ? 'white' : ''
           }}
           onClick={() => handleDosageInstructionChange('Without Meal')}
         >
@@ -400,9 +410,9 @@ const StepOne = props => {
         </Button>
         <TextField
           label='custom instruction'
-          value={props.customInstruction.value}
+          value={customInstruction.value}
           onClick={() => handleDosageInstructionChange('')}
-          onChange={props.customInstruction.updateValue}
+          onChange={customInstruction.updateValue}
           margin='normal'
         />
       </CardContent>
@@ -419,23 +429,19 @@ const StepOne = props => {
         >
           <DialogTitle>Fill the form</DialogTitle>
           <DialogContent>
-            {props.reminderData.length
-              ? props.reminderData.map(data => (
-                  <div key={props.reminderData.indexOf(data)}>
+            {reminderData.length
+              ? reminderData.map(data => (
+                  <div key={reminderData.indexOf(data)}>
                     {data.value}
                     <TextField
                       id='time'
                       label='Alarm clock'
                       type='time'
                       defaultValue={
-                        props.reminderData[props.reminderData.indexOf(data)]
-                          .time
+                        reminderData[reminderData.indexOf(data)].time
                       }
                       onChange={e =>
-                        handleDosageTimeChange(
-                          e,
-                          props.reminderData.indexOf(data)
-                        )
+                        handleDosageTimeChange(e, reminderData.indexOf(data))
                       }
                       // e => {
                       // const newData = reminderData;
@@ -479,17 +485,17 @@ const StepOne = props => {
         Start Date
         <Button
           style={{
-            background: props.startDate === todaysDate ? '#2D90F5' : '',
-            color: props.startDate === todaysDate ? 'white' : ''
+            background: startDate === todaysDate ? '#2D90F5' : '',
+            color: startDate === todaysDate ? 'white' : ''
           }}
-          onClick={() => props.setStartDate(todaysDate)}
+          onClick={() => setStartDate(todaysDate)}
         >
           today
         </Button>
         <Button
           style={{
             background:
-              props.startDate ===
+              startDate ===
               formatMomentDate(
                 moment(todaysDate)
                   .add(1, 'days')
@@ -498,7 +504,7 @@ const StepOne = props => {
                 ? '#2D90F5'
                 : '',
             color:
-              props.startDate ===
+              startDate ===
               formatMomentDate(
                 moment(todaysDate)
                   .add(1, 'days')
@@ -508,7 +514,7 @@ const StepOne = props => {
                 : ''
           }}
           onClick={() =>
-            props.setStartDate(
+            setStartDate(
               formatMomentDate(
                 moment(todaysDate)
                   .add(1, 'days')
@@ -523,7 +529,7 @@ const StepOne = props => {
           id='date'
           label='Birthday'
           type='date'
-          value={props.startDate}
+          value={startDate}
           onChange={handleStartDateChange}
           // className={classes.textField}
           InputLabelProps={{
@@ -538,19 +544,17 @@ const StepOne = props => {
 
           <Button
             onClick={
-              props.dosageDuration > 0
-                ? () => props.setDosageDuration(props.dosageDuration - 1)
+              dosageDuration > 0
+                ? () => setDosageDuration(dosageDuration - 1)
                 : null
             }
           >
             <RemoveIcon />
           </Button>
 
-          <Typography component='p'>{props.dosageDuration}</Typography>
+          <Typography component='p'>{dosageDuration}</Typography>
 
-          <Button
-            onClick={() => props.setDosageDuration(props.dosageDuration + 1)}
-          >
+          <Button onClick={() => setDosageDuration(dosageDuration + 1)}>
             <AddIcon />
           </Button>
         </Card>
