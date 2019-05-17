@@ -44,6 +44,7 @@
             width: 220px;
             color: white;
             background-color: #969696;
+            text-transform: capitalize;
           }
           p {
             font-size: 0.8rem;
@@ -59,6 +60,7 @@
           align-self: flex-end;
           position: relative;
           bottom: 28px;
+          text-transform: capitalize;
         }
       }
     }
