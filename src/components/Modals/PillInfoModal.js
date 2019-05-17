@@ -11,8 +11,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
-import { shapes } from 'data/shapes';
-import { colors } from 'data/colors';
+import { valid_shapes as shapes } from 'data/rxdata.json';
+import { valid_colors as colors } from 'data/rxdata.json';
 
 class PillInfoModal extends Component {
   state = {
@@ -78,10 +78,10 @@ class PillInfoModal extends Component {
             onChange={this.changeHandler}
             name='med_color'
           >
-            {colors.map(color => {
+            {colors.map((color,index) => {
               return (
-                <MenuItem key={color.id} value={color.name}>
-                  {color.name}
+                <MenuItem key={index} value={color}>
+                  {color}
                 </MenuItem>
               );
             })}
@@ -92,10 +92,10 @@ class PillInfoModal extends Component {
             onChange={this.changeHandler}
             name='med_shape'
           >
-            {shapes.map(shape => {
+            {shapes.map((shape,index) => {
               return (
-                <MenuItem key={shape.id} value={shape.name}>
-                  {shape.name}
+                <MenuItem key={index} value={shape}>
+                  {shape}
                 </MenuItem>
               );
             })}

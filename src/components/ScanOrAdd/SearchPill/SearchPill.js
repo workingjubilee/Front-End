@@ -1,88 +1,63 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import { connect } from 'react-redux';
-import { useInput } from 'utilities/useInput';
-import { shapes } from 'data/shapes';
-import { colors } from 'data/colors';
+import { valid_shapes as shapes } from 'data/rxdata.json';
+import { valid_colors as colors } from 'data/rxdata.json';
 import TextField from '@material-ui/core/TextField';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
+import Dropdown from './Dropdown';
+import parseMedStrengths from 'utilities/parseMedStrengths';
 
 // import AddPillButton from '../Scan/SearchResults/AddPillButton';
 
-const SearchPill = props => {
-  const name = useInput();
-  const imprint = useInput();
+const SearchPill = ({dispatch, ...rest}) => {
+  const [name, setName] = useState('');
+  const [imprint, setImprint] = useState('');
   const [color, setColor] = useState('');
   const [shape, setShape] = useState('');
-  console.log(name.value, imprint.value, color, shape);
-  useEffect(() => {}, [color, shape]);
-  const handleColorChange = e => {
-    setColor(e.target.value);
-  };
-  const handleShapeChange = e => {
-    setShape(e.target.value);
-  };
-  const handleAddPill = e => {
-    e.preventDefault();
-  };
-  const handleSubmit = e => {
-    e.preventDefault();
 
-    props.setSearchResults([
-      {
-        pillName: name.value,
-        imageLink:
-          'https://www.drugs.com/images/pills/mmx/t110118f/tizanidine-hydrochloride.jpg'
-      }
-    ]);
+  const textEndpoint = `${process.env.REACT_APP_DATA_SCIENCE}/rxdata`;
+
+  // useEffect(() => {}, [color, shape]);
+  const search = async (e) => {
+    e.preventDefault();
+    const query = {
+      "pill_name": name,
+      imprint,
+      shape,
+      color
+    };
+    console.log(query);
+    try {
+      const results = await axios.post(textEndpoint, query);
+      const parsedResults = parseMedStrengths(results.data);
+      dispatch({ 'type': 'analysisResults', payload: parsedResults })
+    } catch(error) {
+      console.error(error);
+    };
     // Search for pill
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={search}>
       <h4>Option 2 - Identify by direct input</h4>
       <TextField
         label='pill name'
-        value={name.value}
-        onChange={name.updateValue}
+        value={name}
+        onChange={(e) => setName(e.target.value)}
         margin='normal'
       />
 
       <TextField
         label='imprint'
-        value={imprint.value}
-        onChange={imprint.updateValue}
+        value={imprint}
+        onChange={(e) => setImprint(e.target.value)}
         margin='normal'
       />
 
-      <FormControl>
-        <InputLabel>color</InputLabel>
-        <Select value={color} onChange={handleColorChange}>
-          {colors.map(color => {
-            return (
-              <MenuItem key={color.id} value={color.name}>
-                {color.name}
-              </MenuItem>
-            );
-          })}
-        </Select>
-      </FormControl>
+      <Dropdown itemName="color" itemList={colors} item={color} setItem={setColor} />
+      <Dropdown itemName="shape" itemList={shapes} item={shape} setItem={setShape} />
 
-      <FormControl>
-        <InputLabel>shape</InputLabel>
-        <Select value={shape} onChange={handleShapeChange}>
-          {shapes.map(shape => {
-            return (
-              <MenuItem key={shape.id} value={shape.name}>
-                {shape.name}
-              </MenuItem>
-            );
-          })}
-        </Select>
-      </FormControl>
-      <Button onClick={handleAddPill} variant='contained'>
+      <Button onClick={search} variant='contained'>
         Identify Pill
       </Button>
     </form>
