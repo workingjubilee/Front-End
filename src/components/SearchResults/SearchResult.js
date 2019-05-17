@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -7,12 +7,12 @@ import Paper from '@material-ui/core/Paper';
 import CircularProgress from '@material-ui/core/CircularProgress';
 // import Image from './Image';
 import ResultInfo from './ResultInfo';
+import ViewDetails from './ViewDetails';
 
 const styles = {
   card: {
-    maxWidth: '80%',
     border: '1px solid gray',
-    margin: '1rem'
+    margin: '2%'
   },
   info: {
     display: 'flex'
@@ -25,7 +25,8 @@ const styles = {
     width: '30%',
     height: '3rem',
     fontSize: '.6rem',
-    color: 'white'
+    color: 'white',
+    textTransform: 'Capitalize'
   },
   view: {
     backgroundColor: '#5AAC49'
@@ -38,7 +39,6 @@ const styles = {
 const SearchResult = ({
   classes,
   result,
-  setPill,
   handleAddPill,
   handleAddPillReminders
 }) => {
@@ -65,6 +65,8 @@ const SearchResult = ({
       result.strength[0][2] &&
       result.strength[0][2]
   };
+
+  const [open, setOpen] = useState(false);
 
   // function selectPill(e) {
   //   e.preventDefault();
@@ -101,7 +103,15 @@ const SearchResult = ({
           />
         </CardContent>
         <CardContent className={classes.buttons}>
-          <Button className={`${classes.button} ${classes.view}`}>
+          <Button
+            onClick={e => {
+              e.preventDefault();
+              console.log(open);
+              setOpen(!open);
+              console.log(open);
+            }}
+            className={`${classes.button} ${classes.view}`}
+          >
             View Details
           </Button>
           <Button
@@ -122,6 +132,7 @@ const SearchResult = ({
           >
             Add with Reminder
           </Button>
+          <ViewDetails open={open} setOpen={setOpen} />
         </CardContent>
       </Paper>
     </Card>

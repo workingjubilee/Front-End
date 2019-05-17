@@ -3,13 +3,18 @@ import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 
+import { tablet } from 'scss/mediaVariables';
+
 const styles = {
   card: {
     boxShadow: 'none',
-    textAlign: 'center'
+    textAlign: 'center',
+    [`${tablet}`]: {
+      display: 'none'
+    }
   },
   header: {
-    margin: '2rem'
+    margin: '5%'
   }
 };
 
@@ -27,7 +32,7 @@ const AdditionalSearchInfo = ({ classes }) => {
         Steps to Identify a Pill
       </Typography>
       <Card>
-        <ol>
+        <ol className={'steps'}>
           <li>1. Enter the pill name (optional)</li>
           <li>2. Upload image of the pill (optional)</li>
           <li>

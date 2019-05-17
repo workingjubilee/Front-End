@@ -53,8 +53,6 @@ function ScanOrAdd({ location, history, addMed }) {
           searchResults={state.analysis}
           handleAddPill={handleAddPill}
           handleAddPillReminders={handleAddPillReminders}
-          // setPill={setPill}
-          // pill={pill}
         />
       ) : (
         <>
