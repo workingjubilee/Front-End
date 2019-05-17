@@ -1,0 +1,20 @@
+{ "valid_shapes": [
+    "ROUND", "OVAL", "CAPSULE", "DIAMOND", "TRIANGLE",
+    "PENTAGON (5 SIDED)", "HEXAGON (6 SIDED)", "RECTANGLE", "BULLET",
+    "FREEFORM", "SQUARE", "OCTAGON (8 SIDED)", "TRAPEZOID",
+    "DOUBLE CIRCLE", "TEAR", "SEMI-CIRCLE", "CLOVER"
+],
+  "valid_colors": [
+    "WHITE",
+    "BLUE",
+    "BROWN",
+    "BLACK",
+    "GRAY",
+    "GREEN",
+    "ORANGE",
+    "PINK",
+    "PURPLE",
+    "RED",
+    "TURQUOISE",
+    "YELLOW"
+]}
