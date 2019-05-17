@@ -3,7 +3,13 @@ import React from 'react';
 import AdditionalSearchInfo from './AdditionalSearchInfo';
 import SearchResult from './SearchResult';
 
-const SearchResults = ({ searchResults }) => {
+const SearchResults = ({
+  searchResults,
+  handleAddPill,
+  handleAddPillReminders
+  // setPill,
+  // pill
+}) => {
   const style = {
     display: 'flex'
   };
@@ -12,7 +18,17 @@ const SearchResults = ({ searchResults }) => {
     <div style={style}>
       <div>
         {searchResults &&
-          searchResults.map(result => <SearchResult result={result} />)}
+          searchResults
+            .filter(result => {
+              return result && result.strength && result.strength[0] && result;
+            })
+            .map(result => (
+              <SearchResult
+                result={result}
+                handleAddPill={handleAddPill}
+                handleAddPillReminders={handleAddPillReminders}
+              />
+            ))}
       </div>
       <AdditionalSearchInfo />
     </div>

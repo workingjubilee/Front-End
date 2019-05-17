@@ -35,7 +35,55 @@ const styles = {
   }
 };
 
-const SearchResult = ({ classes, result }) => {
+const SearchResult = ({
+  classes,
+  result,
+  setPill,
+  handleAddPill,
+  handleAddPillReminders
+}) => {
+  const formattedPill = {
+    user_id: localStorage.getItem('userID'),
+    med_name:
+      result &&
+      result.strength &&
+      result.strength[0] &&
+      result.strength[0][0] &&
+      result.strength[0][0],
+    med_color: result.color_text,
+    med_shape: result.shape_text,
+    med_dose:
+      result &&
+      result.strength &&
+      result.strength[0] &&
+      result.strength[0][1] &&
+      parseInt(result.strength[0][1]),
+    med_dose_unit:
+      result &&
+      result.strength &&
+      result.strength[0] &&
+      result.strength[0][2] &&
+      result.strength[0][2]
+  };
+
+  // function selectPill(e) {
+  //   e.preventDefault();
+  //   setPill({
+  //     user_id: localStorage.getItem('userID'),
+  //     med_name: thisPill.strength[0] && result.med_strength[0][0],
+  //     med_color: result.color_text,
+  //     med_shape: result.shape_text,
+  //     med_strength: result.strength[0] && result.strength[0][1],
+  //     med_strength: result.strength[0] && result.strength[0][2]
+  //   });
+  // }
+
+  // useEffect(() => {
+  //   console.log('RESULT: ', result.strength[0]);
+  //   setThisPill(result.strength[0]);
+  //   console.log('THIS PILL: ', thisPill);
+  // }, [result, setThisPill, thisPill]);
+
   return (
     <Card className={classes.card}>
       {/* Paper might not be necessary here */}
@@ -44,37 +92,40 @@ const SearchResult = ({ classes, result }) => {
           <ResultInfo result={result} />
           <CircularProgress
             style={{
-              marginLeft: '20px',
-              width: '100px',
-              height: '100px'
+              marginLeft: '2rem',
+              width: '3rem',
+              height: '3rem'
             }}
             variant='static'
-            value={result.match}
+            value={90}
           />
         </CardContent>
         <CardContent className={classes.buttons}>
           <Button className={`${classes.button} ${classes.view}`}>
             View Details
           </Button>
-          <Button className={`${classes.button} ${classes.add}`}>
+          <Button
+            onClick={e => {
+              e.preventDefault();
+              handleAddPill(formattedPill);
+            }}
+            className={`${classes.button} ${classes.add}`}
+          >
             Add to Med List
           </Button>
-          <Button className={`${classes.button} ${classes.add}`}>
+          <Button
+            onClick={e => {
+              e.preventDefault();
+              handleAddPillReminders(formattedPill);
+            }}
+            className={`${classes.button} ${classes.add}`}
+          >
             Add with Reminder
           </Button>
         </CardContent>
       </Paper>
     </Card>
   );
-
-  // function addPill(scheduled) {
-  //   if (scheduled) {
-  //     console.log(`Gonna sendto rems table`);
-  //     // Needs to send user to scheduling component, but just pushing to dashboard for now
-  //     // history.push('/addpill');
-  //   }
-  //   console.log(`Gonna send to meds table`);
-  // }
 };
 
 export default withStyles(styles)(SearchResult);
