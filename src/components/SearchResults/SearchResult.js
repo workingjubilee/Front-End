@@ -25,7 +25,8 @@ const styles = {
     width: '30%',
     height: '3rem',
     fontSize: '.6rem',
-    color: 'white'
+    color: 'white',
+    textTransform: 'Capitalize'
   },
   view: {
     backgroundColor: '#5AAC49'

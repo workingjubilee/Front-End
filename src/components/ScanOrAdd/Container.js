@@ -51,10 +51,16 @@ function ScanOrAdd({ location, history, addMed }) {
       {state && state.analysis ? (
         <Search
           searchResults={state.analysis}
+<<<<<<< Updated upstream
           handleAddPill={handleAddPill}
           handleAddPillReminders={handleAddPillReminders}
           // setPill={setPill}
           // pill={pill}
+=======
+          setPill={setPill}
+          handleAddPill={handleAddPill}
+          handleAddPillReminders={handleAddPillReminders}
+>>>>>>> Stashed changes
         />
       ) : (
         <>
