@@ -48,8 +48,8 @@
             height: 34px;
             width: 220px;
             color: white;
-            background-color: #969696;
-            text-transform: capitalize;
+            background-color: $secondary;
+            text-transform: none;
           }
           p {
             font-size: 0.8rem;
@@ -59,7 +59,7 @@
         }
         .identify-button {
           color: white;
-          background-color: #969696;
+          background-color: $primary;
           height: 42px;
           width: 150px;
           align-self: flex-end;
