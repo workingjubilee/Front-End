@@ -8,6 +8,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MuiChip from '@material-ui/core/Chip';
 import classNames from 'classnames';
 
+import { mobile } from 'scss/mediaVariables';
 import DiaryEntriesPanels from './DiaryEntriesPanels';
 
 const Chip = withStyles({})(props => <MuiChip {...props} />);
@@ -44,13 +45,25 @@ const ExpansionPanelSummary = withStyles({
     minHeight: 56,
     '&$expanded': {
       minHeight: 56
+    },
+    [`${mobile}`]: {
+      display: 'flex',
+      flexDirection: 'column'
     }
   },
   content: {
     '&$expanded': {
       margin: '12px 0'
     },
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    [`${mobile}`]: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      '&> :last-child': {
+        padding: '0px'
+      }
+    }
   },
   expanded: {
     margin: '20px 0 20px 0',
@@ -77,6 +90,11 @@ const styles = {
   secondaryHeading: {
     fontSize: 18,
     color: 'secondary'
+  },
+  chip: {
+    [`${mobile}`]: {
+      margin: '10px 0'
+    }
   },
   grey: {
     background: 'DarkGrey',
@@ -122,6 +140,7 @@ function DiaryMedPanel({ classes, med, changeFocus, diaryFocus, diaryCount }) {
           </Typography>
           <Chip
             className={classNames(
+              classes.chip,
               expanded === med.id ? classes.green : classes.grey
             )}
             label={`${diaryCount} Diary ${
