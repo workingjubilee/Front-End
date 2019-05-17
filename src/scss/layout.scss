@@ -13,56 +13,12 @@ html {
   box-sizing: inherit;
 } /* Allows usage of border-box across app, easier to style. */
 
-$primary: #2d90f5;
-
-.title {
-  color: white;
-  text-decoration: none;
+body {
+  background-color: #f9f9fa;
 }
 
-.tab-navigator {
-  max-width: 1000px;
-  display: flex;
-  margin: 20px auto;
-  justify-content: center;
-  align-items: center;
-
-  .tab {
-    border: 1px solid black;
-    width: 200px;
-    display: flex;
-    justify-content: center;
-    text-decoration: none;
-  }
-
-  .active-tab {
-    background-color: $primary;
-    h5 {
-      color: white;
-    }
-  }
-}
-
-.pill-navigator {
-  max-width: 1000px;
-  display: flex;
-  margin: 20px auto;
-  justify-content: center;
-  align-items: center;
-
-  .tab {
-    border: 1px solid black;
-    width: 200px;
-    display: flex;
-    justify-content: center;
-    text-decoration: none;
-    color: black;
-  }
-
-  .active-tab {
-    background-color: $primary;
-    h5 {
-      color: white;
-    }
-  }
+.App {
+  max-width: 1440px;
+  background-color: white;
+  margin: 0 auto;
 }

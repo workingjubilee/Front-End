@@ -19,7 +19,8 @@ const ActivePills = ({ classes, activeMeds, openDialog }) => {
 const styles = theme => ({
   meds: {
     display: 'flex',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    justifyContent: 'space-evenly'
   }
 });
 

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { fetchUser, deleteMed, discontinueMed } from '../../actions';
+import { deleteMed, discontinueMed } from '../../actions';
 import PillsList from './PillsList';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Button from '@material-ui/core/Button';
@@ -11,7 +11,6 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 const PillsContainer = ({
-  fetchUser,
   user,
   deleteMed,
   discontinueMed,
@@ -19,12 +18,6 @@ const PillsContainer = ({
   location
 }) => {
   const { username } = user;
-  const userID = user.id ? user.id : localStorage.getItem('userID');
-  useEffect(() => {
-    if (!user.auth_id) {
-      fetchUser(userID);
-    }
-  }, [user, fetchUser, userID]);
   const [disOpen, setDisOpen] = useState(false);
   const [actOpen, setActOpen] = useState(false);
   const [delOpen, setDelOpen] = useState(false);
@@ -84,7 +77,7 @@ const PillsContainer = ({
   }
 
   return (
-    <div className='DashboardPage'>
+    <div className='pills-container'>
       <Dialog
         open={disOpen}
         onClose={() => handleClose('discontinue')}
@@ -161,7 +154,6 @@ const PillsContainer = ({
       </Dialog>
       {username ? (
         <PillsList
-          user_id={userID}
           openDialog={openDialog}
           history={history}
           location={location}
@@ -195,5 +187,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { fetchUser, deleteMed, discontinueMed }
+  { deleteMed, discontinueMed }
 )(StyledPillsContainer);

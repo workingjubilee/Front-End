@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PillsNav from './PillsNav';
 import ActivePills from './ActivePills';
 import InactivePills from './InactivePills';
-import Card from '@material-ui/core/Card';
+// import Card from '@material-ui/core/Card';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { connect } from 'react-redux';
 import { fetchMeds } from '../../actions';
@@ -57,8 +57,8 @@ class PillsList extends Component {
       return <h1>You do not have any meds saved yet.</h1>;
     } else {
       return (
-        <Card className={classes.card}>
-          <h2>Your list of medications</h2>
+        <div className='pill-list'>
+          <h2>Your List of Medications</h2>
           <PillsNav />
           {location.pathname === '/pills/active' ||
           location.pathname === '/pills' ? (
@@ -69,7 +69,7 @@ class PillsList extends Component {
               openDialog={openDialog}
             />
           ) : null}
-        </Card>
+        </div>
       );
     }
   }

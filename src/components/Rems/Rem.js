@@ -18,15 +18,19 @@ const Rem = ({ rem, classes }) => {
     //med_admin_times
   } = rem;
   return (
-    <div className='med'>
+    <div className='reminder'>
       <Card className={classes.card}>
         <CardHeader
           title={med_name}
           subheader={`${med_dose} ${med_dose_unit} | ${med_color} | ${med_shape}`}
         />
         <CardActions className={classes.actions} disableActionSpacing>
-          <Button>View Pill Details</Button>
-          <Button>Add Note</Button>
+          <Button className={classes.buttons} variant='outlined'>
+            View Pill Details
+          </Button>
+          <Button className={classes.buttons} variant='outlined'>
+            Add Note
+          </Button>
         </CardActions>
       </Card>
     </div>
@@ -44,11 +48,14 @@ const styles = theme => ({
     marginRight: theme.spacing.unit
   },
   card: {
-    width: 500,
-    margin: '20px 20px'
+    width: '446px'
   },
   actions: {
-    display: 'flex'
+    display: 'flex',
+    justifyContent: 'space-evenly'
+  },
+  buttons: {
+    borderRadius: '0px'
   }
 });
 
