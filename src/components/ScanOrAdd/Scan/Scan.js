@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import ScanImage from './ScanImage';
 import ErrorBoundary from 'components/ErrorBoundary/ErrorBoundary.js';
 
-export default function Scan({ state, dispatch, history }) {
+export default function Scan({ state, dispatch, history, setData }) {
   useEffect(() => {
     const checkVideo = async () => {
       let devices;
@@ -25,7 +25,12 @@ export default function Scan({ state, dispatch, history }) {
 
   return (
     <ErrorBoundary>
-      <ScanImage state={state} dispatch={dispatch} history={history} />
+      <ScanImage
+        state={state}
+        dispatch={dispatch}
+        history={history}
+        setData={setData}
+      />
     </ErrorBoundary>
   );
 }

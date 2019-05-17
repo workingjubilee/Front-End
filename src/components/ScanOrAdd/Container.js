@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useState } from 'react';
 import { connect } from 'react-redux';
 import { addMed } from 'actions';
 import { useToggle } from 'utilities/useToggle';
@@ -12,6 +12,7 @@ import Search from 'components/SearchResults';
 function ScanOrAdd({ location, history, addMed }) {
   const [state, dispatch] = useReducer(scanReducer, init(location));
   const [open, setOpen] = useToggle(false);
+  const [data, setData] = useState();
   // const [pill, setPill] = useState({});
 
   const handleAddPill = pillInfo => {
@@ -44,17 +45,22 @@ function ScanOrAdd({ location, history, addMed }) {
 
   return (
     <>
-      {state && state.analysis ? (
+      {data ? (
         <Search
-          searchResults={state.analysis}
+          searchResults={data}
           handleAddPill={handleAddPill}
           handleAddPillReminders={handleAddPillReminders}
         />
       ) : (
         <section className='scan-container'>
           <h2>Identify your Pill before scheduling</h2>
-          <Scan state={state} dispatch={dispatch} history={history} />
-          <SearchPill state={state} dispatch={dispatch} />
+          <Scan
+            state={state}
+            dispatch={dispatch}
+            history={history}
+            setData={setData}
+          />
+          <SearchPill state={state} dispatch={dispatch} setData={setData} />
           <Button onClick={setOpen} variant='contained'>
             Add Pill Manually
           </Button>
