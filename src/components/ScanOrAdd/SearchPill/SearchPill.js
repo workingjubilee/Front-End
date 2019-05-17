@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useInput } from 'utilities/useInput';
-import { shapes } from 'data/shapes';
-import { colors } from 'data/colors';
+import { valid_shapes as shapes } from 'data';
+import { valid_colors as colors } from 'data';
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
