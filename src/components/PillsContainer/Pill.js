@@ -28,10 +28,13 @@ const Pill = ({ med, classes, openDialog }) => {
           subheader={`${med_strength} ${med_strength_unit} | ${med_color} | ${med_shape}`}
         />
         <CardActions className={classes.actions} disableActionSpacing>
-          <Button variant='outlined'>View Pill Details</Button>
+          <Button variant='outlined' className={classes.buttons}>
+            View Pill Details
+          </Button>
           {!med_active ? (
             <Button
               variant='outlined'
+              className={classes.buttons}
               onClick={() => openDialog('reactivate', id, med)}
             >
               Re-activate Pill
@@ -40,12 +43,17 @@ const Pill = ({ med, classes, openDialog }) => {
           {med_active ? (
             <Button
               variant='outlined'
+              className={classes.buttons}
               onClick={() => openDialog('discontinue', id, med)}
             >
               Discontinue Pill
             </Button>
           ) : (
-            <Button variant='outlined' onClick={() => openDialog('delete', id)}>
+            <Button
+              variant='outlined'
+              className={classes.buttons}
+              onClick={() => openDialog('delete', id)}
+            >
               Delete Pill
             </Button>
           )}
@@ -72,6 +80,9 @@ const styles = theme => ({
   actions: {
     display: 'flex',
     justifyContent: 'space-evenly'
+  },
+  buttons: {
+    borderRadius: '0px'
   }
 });
 
