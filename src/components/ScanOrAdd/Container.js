@@ -46,7 +46,7 @@ function ScanOrAdd({ location, history, addMed }) {
 
   return (
     <Paper square>
-      {state && state.analysis ? (
+      { state && state.analysis ? (
         <Search
           searchResults={state.analysis}
           handleAddPill={handleAddPill}
@@ -66,7 +66,7 @@ function ScanOrAdd({ location, history, addMed }) {
             handleClose={setOpen}
           />
         </>
-      )}
+      ) }
     </Paper>
   );
 }
