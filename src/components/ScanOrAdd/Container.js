@@ -54,7 +54,12 @@ function ScanOrAdd({ location, history, addMed }) {
       ) : (
         <section className='scan-container'>
           <h2>Identify your Pill before scheduling</h2>
-          <Scan state={state} dispatch={dispatch} history={history} />
+          <Scan
+            state={state}
+            dispatch={dispatch}
+            history={history}
+            setData={setData}
+          />
           <SearchPill state={state} dispatch={dispatch} setData={setData} />
           <Button onClick={setOpen} variant='contained'>
             Add Pill Manually

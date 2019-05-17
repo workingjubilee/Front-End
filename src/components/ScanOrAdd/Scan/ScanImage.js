@@ -7,7 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import parseMedStrengths from 'utilities/parseMedStrengths';
 
-function ScanImage({ state, dispatch, ...props }) {
+function ScanImage({ state, dispatch, setData, ...props }) {
   const [photo, setPhoto] = useState(null);
   const [camera, toggleCamera] = useToggle(false);
   const photoSelect = event => setPhoto(event.target.files[0]);
@@ -32,7 +32,8 @@ function ScanImage({ state, dispatch, ...props }) {
     try {
       const results = await axios.post(photoEndpoint, imgData);
       const parsedResults = parseMedStrengths(results.data);
-      return dispatch({ type: 'analysisResults', payload: parsedResults });
+      setData(parsedResults);
+      // return dispatch({ type: 'analysisResults', payload: parsedResults });
     } catch (error) {
       console.error(error);
     }
