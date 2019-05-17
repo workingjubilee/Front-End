@@ -10,14 +10,14 @@ const PillsNav = props => {
         className='tab a'
         activeClassName='active-tab'
       >
-        <Typography component='h5'>Active Meds</Typography>
+        <Typography component='h5'>Active Medications</Typography>
       </NavLink>
       <NavLink
         to='/pills/inactive'
         className='tab b'
         activeClassName='active-tab'
       >
-        <Typography component='h5'>Inactive Meds</Typography>
+        <Typography component='h5'>Inactive Medications</Typography>
       </NavLink>
     </nav>
   );

@@ -77,7 +77,7 @@ const PillsContainer = ({
   }
 
   return (
-    <div className='DashboardPage'>
+    <div className='pills-container'>
       <Dialog
         open={disOpen}
         onClose={() => handleClose('discontinue')}
