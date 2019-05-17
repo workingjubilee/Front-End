@@ -16,6 +16,8 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import ProfileIcon from '../ProfileIcon/ProfileIcon';
 import { Link, NavLink } from 'react-router-dom';
 
+import { mobile } from 'scss/mediaVariables';
+
 class Navigation extends Component {
   state = {
     anchorEl: null,
@@ -89,7 +91,7 @@ class Navigation extends Component {
     return (
       <>
         <div className={classes.root}>
-          <AppBar position='static'>
+          <AppBar className={classes.media} position='static'>
             <Toolbar>
               <Typography
                 className={classes.title}
@@ -98,7 +100,7 @@ class Navigation extends Component {
                 noWrap
               >
                 <Link to='/' className='title'>
-                  <span>rxID</span> Pill Identifier
+                  <span>RxID</span> Pill Identifier
                 </Link>
               </Typography>
               <div className='searchBar'>
@@ -166,8 +168,17 @@ class Navigation extends Component {
 }
 
 const styles = theme => ({
+  // To make styling easier, the bar turns red when the mobile breakpoint is hit:
+  media: {
+    [`${mobile}`]: {
+      background: 'red'
+    }
+  },
   root: {
-    width: '100%'
+    width: '100%',
+    [`${mobile}`]: {
+      background: 'red'
+    }
   },
   grow: {
     flexGrow: 1
