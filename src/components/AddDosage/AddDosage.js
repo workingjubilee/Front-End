@@ -29,6 +29,7 @@ const AddPill = ({ med, addRems, editMed, history }) => {
   const [dosageFrequency, setDosageFrequency] = useState('');
   const [dosageInstruction, setDosageInstruction] = useState('');
   const customInstruction = useInput();
+  const [reminderData, setReminderData] = useState([]);
   const [startDate, setStartDate] = useState(date);
   const [dosageDuration, setDosageDuration] = useState(0);
   const [endDate, setEndDate] = useState(date);
@@ -61,20 +62,29 @@ const AddPill = ({ med, addRems, editMed, history }) => {
   //   setStep(step - 1);
   // };
   const handleAddPill = async () => {
-    if (!dosageFrequency) {
-      return null;
-    }
+    // if (!dosageFrequency) {
+    //   return null;
+    // }
 
     const userID = localStorage.getItem('userID');
     const reminderTimes = makeReminders(
+      // console.log(
       {
         frequency: dosageFrequency,
         startDate: startDate,
         endDate: endDate,
-        doses: 3,
-        date: [7, 14, 21],
-        weekday: ['Monday,', 'Wednesday,', 'Friday,'],
-        time: ['23:15', '12:30', '00:00']
+        doses: lengthOfDosage,
+        data: reminderData
+        // frequency: 'monthly',
+        // startDate: '2019-05-17',
+        // endDate: '08/28/2019',
+        // doses: 1,
+        // data: [
+        //   {
+        //     value: '13th',
+        //     time: '15:00'
+        //   }
+        // ]
       }
       // customInstruction.value || dosageInstruction || null
     );
@@ -102,7 +112,7 @@ const AddPill = ({ med, addRems, editMed, history }) => {
     await addRems(reminders);
     console.log(medData);
     console.log(reminders);
-    // history.push('/dashboard');
+    history.push('/dashboard');
   };
   const steps = [
     <StepOne
@@ -120,6 +130,8 @@ const AddPill = ({ med, addRems, editMed, history }) => {
       dosageDuration={dosageDuration}
       setDosageDuration={setDosageDuration}
       nextStep={nextStep}
+      reminderData={reminderData}
+      setReminderData={setReminderData}
     />,
     <StepTwo
       name={med.med_name}

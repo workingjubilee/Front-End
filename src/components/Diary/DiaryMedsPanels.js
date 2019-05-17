@@ -25,8 +25,7 @@ const styles = {
     minWidth: 120,
     marginLeft: '10px',
     justifyContent: 'center'
-  },
-  selectEmpty: {}
+  }
 };
 
 function DiaryMedsPanels({
@@ -79,7 +78,6 @@ function DiaryMedsPanels({
       id: user_id,
       sort_diary_meds: e.target.value
     });
-    console.log('sortedMeds: ', sortedMeds);
   };
 
   const changeFocus = med_id => {
