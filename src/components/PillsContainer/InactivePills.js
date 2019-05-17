@@ -23,7 +23,8 @@ const InactivePills = ({ classes, inactiveMeds, openDialog }) => {
 const styles = theme => ({
   meds: {
     display: 'flex',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    justifyContent: 'space-evenly'
   }
 });
 

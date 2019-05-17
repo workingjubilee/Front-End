@@ -22,22 +22,20 @@ const AddDosage = React.lazy(() => import('./components/AddDosage/AddDosage'));
 function App() {
   return (
     <div className='App'>
-      <header className='App-header'>
-        <Navigation />
-        <ErrorBoundary>
-          <React.Suspense fallback={<Spinner />}>
-            <Route exact path='/' component={Home} />
-            <Route exact path='/landing' component={Landing} />
-            <Route exact path='/onboard' component={Onboard} />
-            <Route exact path='/loading' component={Loading} />
-            <Route path='/diary' component={Diary} />
-            <Route path='/scan' component={ScanOrAdd} />
-            <Route path='/dashboard' component={Dashboard} />
-            <Route path='/pills' component={PillsContainer} />
-            <Route path='/adddosage' component={AddDosage} />
-          </React.Suspense>
-        </ErrorBoundary>
-      </header>
+      <Navigation />
+      <ErrorBoundary>
+        <React.Suspense fallback={<Spinner />}>
+          <Route exact path='/' component={Home} />
+          <Route exact path='/landing' component={Landing} />
+          <Route exact path='/onboard' component={Onboard} />
+          <Route exact path='/loading' component={Loading} />
+          <Route path='/diary' component={Diary} />
+          <Route path='/scan' component={ScanOrAdd} />
+          <Route path='/dashboard' component={Dashboard} />
+          <Route path='/pills' component={PillsContainer} />
+          <Route path='/adddosage' component={AddDosage} />
+        </React.Suspense>
+      </ErrorBoundary>
     </div>
   );
 }
