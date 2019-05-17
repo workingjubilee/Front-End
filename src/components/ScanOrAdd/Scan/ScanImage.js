@@ -55,7 +55,7 @@ function ScanImage({ state, dispatch, ...props }) {
         <h4>Option 1 - Identify by uploading pill image</h4>
         <div className='image-upload'>
           <h5>Pill Image Upload</h5>
-          <div className='upload-button'>
+          <div className='upload-button-container'>
             <CloudIcon />
             <label htmlFor='image-upload-button'>
               <input
@@ -67,7 +67,7 @@ function ScanImage({ state, dispatch, ...props }) {
               />
               <Button
                 variant='contained'
-                className={classes.button}
+                className='upload-button'
                 onKeyDown={magicClicker}
               >
                 Upload front image of pill
@@ -78,7 +78,7 @@ function ScanImage({ state, dispatch, ...props }) {
           {/* commenting out for now, not sure where this goes in design{state && state.hasVideo && (
             <Button onClick={toggleCamera}>Take Photo</Button>
           )} */}
-          <Button onClick={upload} className={classes.button}>
+          <Button onClick={upload} className='identify-button'>
             Identify Pill
           </Button>
         </div>
@@ -118,10 +118,6 @@ function ScanImage({ state, dispatch, ...props }) {
 }
 
 const styles = theme => ({
-  button: {
-    color: 'white',
-    backgroundColor: '#969696'
-  },
   input: {
     display: 'none'
   }
