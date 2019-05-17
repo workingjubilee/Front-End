@@ -103,7 +103,8 @@ class Navigation extends Component {
                   color='inherit'
                   noWrap
                 >
-                  <strong>RxID</strong> Pill Identifier
+                  <strong className={classes.strong}>RxID</strong> Pill
+                  Identifier
                 </Typography>
               </Link>
               <div className='searchBar'>
@@ -157,7 +158,7 @@ class Navigation extends Component {
             <Typography component='h5'>Scan / Add Pill</Typography>
           </NavLink>
           <NavLink to='/pills' className='tab' activeClassName='active-tab'>
-            <Typography component='h5'>Pill List</Typography>
+            <Typography component='h5'>List of Medications</Typography>
           </NavLink>
           <NavLink to='/dashboard' className='tab' activeClassName='active-tab'>
             {/* <ArrowIcon className={classes.icons} /> */}
@@ -182,6 +183,7 @@ const styles = theme => ({
   },
   root: {
     width: '100%',
+    height: '400px',
     [`${mobile}`]: {
       background: 'red'
     }
@@ -190,13 +192,16 @@ const styles = theme => ({
     flexGrow: 1
   },
   title: {
-    fontSize: '2rem',
+    fontSize: '1.2rem',
     fontWeight: 'light',
     fontFamily: 'Roboto',
     [mobile]: {
       display: 'block',
       fontSize: '1.4rem'
     }
+  },
+  strong: {
+    fontSize: '2.5rem'
   },
   search: {
     position: 'relative',
