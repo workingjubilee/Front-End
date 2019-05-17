@@ -67,13 +67,13 @@ function ScanImage({ state, dispatch, ...props }) {
               />
               <Button
                 variant='contained'
-                component='span'
                 className={classes.button}
                 onKeyDown={magicClicker}
               >
                 Upload front image of pill
               </Button>
             </label>
+            <p>or drag and drop them here</p>
           </div>
           {/* commenting out for now, not sure where this goes in design{state && state.hasVideo && (
             <Button onClick={toggleCamera}>Take Photo</Button>
@@ -119,7 +119,6 @@ function ScanImage({ state, dispatch, ...props }) {
 
 const styles = theme => ({
   button: {
-    margin: theme.spacing.unit,
     color: 'white',
     backgroundColor: '#969696',
     margin: '0 auto'

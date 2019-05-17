@@ -17,6 +17,7 @@
         padding: 7px 0;
       }
       .image-upload {
+        display: flex;
         margin-top: 16px;
         border: 1px solid #d6d8dd;
         border-radius: 6px;
@@ -29,11 +30,22 @@
           background-color: #f7f7f7;
           svg {
             width: 200px;
-            margin: 0 auto;
+            margin: 40px auto auto auto;
           }
-          label {
-            margin: 0 auto;
+          button {
+            margin: 18px auto auto auto;
+            height: 34px;
+            width: 220px;
           }
+          p {
+            font-size: 0.8rem;
+            text-align: center;
+            margin-top: 18px;
+          }
+        }
+        button {
+          height: 42px;
+          width: 150px;
         }
       }
     }
