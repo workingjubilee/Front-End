@@ -120,8 +120,7 @@ function ScanImage({ state, dispatch, ...props }) {
 const styles = theme => ({
   button: {
     color: 'white',
-    backgroundColor: '#969696',
-    margin: '0 auto'
+    backgroundColor: '#969696'
   },
   input: {
     display: 'none'
