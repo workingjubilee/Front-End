@@ -11,8 +11,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
-import { valid_shapes as shapes } from 'data';
-import { valid_colors as colors } from 'data';
+import { valid_shapes as shapes } from 'data/rxdata.json';
+import { valid_colors as colors } from 'data/rxdata.json';
 
 class PillInfoModal extends Component {
   state = {

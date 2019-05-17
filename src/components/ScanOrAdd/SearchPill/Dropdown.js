@@ -1,5 +1,4 @@
 import React from 'react';
-import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
@@ -10,7 +9,7 @@ const Dropdown = ({ itemName, itemList, item, setItem, }) => {
 return (
       <FormControl>
         <InputLabel>{itemName}</InputLabel>
-        <Select value={item} onChange={setItem}>
+        <Select value={item} onChange={(event) => setItem(event.target.value)}>
           {itemList.map((item,index) => {
             return (
               <MenuItem key={index} value={item}>
