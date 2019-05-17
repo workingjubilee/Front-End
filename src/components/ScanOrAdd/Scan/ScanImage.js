@@ -67,9 +67,11 @@ function ScanImage({ state, dispatch, ...props }) {
             </label>
             <p>or drag and drop them here</p>
           </div>
-          {/* commenting out for now, not sure where this goes in design{state && state.hasVideo && (
-            <Button onClick={toggleCamera}>Take Photo</Button>
-          )} */}
+          {state && state.hasVideo && (
+            <Button style={{ display: 'none' }} onClick={toggleCamera}>
+              Take Photo
+            </Button>
+          )}
           <Button onClick={upload} className='identify-button'>
             Identify Pill
           </Button>
