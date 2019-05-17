@@ -29,7 +29,7 @@ const StepThree = props => {
         style={{
           display: 'flex',
           flexDirection: 'column',
-          width: '50%',
+          width: '60%',
           justifyContent: 'center',
           alignItems: 'center'
         }}
@@ -39,7 +39,14 @@ const StepThree = props => {
         </Typography>
         <Card style={{ width: '80%' }}>
           <Card
-            style={{ width: '90%', margin: '10px auto', background: '#F0F3F5' }}
+            style={{
+              width: '80%',
+              height: '50px',
+              margin: '20px auto',
+              background: '#F0F3F5',
+              borderRadius: '5px',
+              boxShadow: 'none'
+            }}
           >
             <CardContent>
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -72,7 +79,7 @@ const StepThree = props => {
           </div> */}
             </CardContent>
           </Card>
-          <Card style={{ width: '80%', margin: '0 auto', boxShadow: 'none' }}>
+          <Card style={{ width: '65%', margin: '0 auto', boxShadow: 'none' }}>
             <Typography
               style={{
                 height: '50px',
@@ -129,7 +136,7 @@ const StepThree = props => {
           </Card>
         </Card>
       </section>
-      <section style={{ width: '50%', justifyContent: 'center' }}>
+      <section style={{ width: '40%', justifyContent: 'center' }}>
         <Card style={{ width: '80%' }}>more stuff here</Card>
       </section>
     </div>

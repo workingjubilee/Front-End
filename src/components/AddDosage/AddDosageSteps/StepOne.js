@@ -10,18 +10,12 @@ import moment from 'moment';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import Checkbox from '@material-ui/core/Checkbox';
-// import FormLabel from '@material-ui/core/FormLabel';
-// import FormControl from '@material-ui/core/FormControl';
-// import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-// import Input from '@material-ui/core/Input';
 import Chip from '@material-ui/core/Chip';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-// import FormControl from '@material-ui/core/FormControl';
 import DialogActions from '@material-ui/core/DialogActions';
-// import InputLabel from '@material-ui/core/InputLabel';
 
 const formatMomentDate = dateData => {
   dateData = dateData.split('');
@@ -112,7 +106,6 @@ const StepOne = ({
   const [dates, setDates] = useState(datesObj);
   const [selectedDays, setSelectedDays] = useState([]);
   const [selectedDates, setSelectedDates] = useState([]);
-  // const [reminderData, setReminderData] = useState([]);
   const [dosageDialogueOppenness, setDosageDialogueOppenness] = useState(false);
   useEffect(() => {
     const days = [];
@@ -165,13 +158,11 @@ const StepOne = ({
     lengthOfDosage,
     setReminderData
   ]);
-  // useEffect(null, [reminderData]);
   const handleWeekdayChange = weekday => e => {
     if (
       Object.values(weekdays).filter(value => value).length < lengthOfDosage
     ) {
       setWeekdays({ ...weekdays, [weekday]: e.target.checked });
-      // console.log(Object.values(weekdays).filter(value => value));
     } else {
       setWeekdays({ ...weekdays, [weekday]: false });
     }
@@ -182,7 +173,6 @@ const StepOne = ({
     if (Object.values(dates).filter(value => value).length < lengthOfDosage) {
       console.log(date);
       setDates({ ...dates, [date]: e.target.checked });
-      // console.log(Object.values(weekdays).filter(value => value));
     } else {
       setDates({ ...dates, [date]: false });
     }
@@ -201,10 +191,6 @@ const StepOne = ({
   const handleDosageTimeChange = (e, index) => {
     const newData = reminderData;
     newData[index].time = e.target.value;
-    // = {
-    //   value: reminderData[index].value,
-    //   time: e.target.value
-    // };
     setReminderData(newData);
   };
 
@@ -296,7 +282,6 @@ const StepOne = ({
           <Select
             multiple
             value={selectedDays}
-            // input={<Input />}
             style={{
               height: '36px',
               display: 'flex',
@@ -304,15 +289,9 @@ const StepOne = ({
               flexWrap: 'wrap'
             }}
             renderValue={selected => (
-              <div
-              // className={classes.chips}
-              >
+              <div>
                 {selected.map(value => (
-                  <Chip
-                    key={value}
-                    label={value}
-                    // className={classes.chip}
-                  />
+                  <Chip key={value} label={value} />
                 ))}
               </div>
             )}
@@ -345,15 +324,9 @@ const StepOne = ({
               height: '36px'
             }}
             renderValue={selected => (
-              <div
-              // className={classes.chips}
-              >
+              <div>
                 {selected.map(value => (
-                  <Chip
-                    key={value}
-                    label={value}
-                    // className={classes.chip}
-                  />
+                  <Chip key={value} label={value} />
                 ))}
               </div>
             )}
@@ -428,7 +401,6 @@ const StepOne = ({
           Open to Select Dosage Time of Day
         </Button>
         <Dialog
-          disableBackdropClick
           disableEscapeKeyDown
           open={dosageDialogueOppenness}
           onClose={() => setDosageDialogueOppenness(false)}
@@ -449,21 +421,11 @@ const StepOne = ({
                       onChange={e =>
                         handleDosageTimeChange(e, reminderData.indexOf(data))
                       }
-                      // e => {
-                      // const newData = reminderData;
-                      // newData[reminderData.indexOf(data)] = {
-                      //   value: reminderData[reminderData.indexOf(data)].value,
-                      //   time: e.target.value
-                      // };
-                      // setReminderData(newData);
-                      // console.log(reminderData);
-                      // }
-                      // }
                       InputLabelProps={{
                         shrink: true
                       }}
                       inputProps={{
-                        step: 300 // 5 min
+                        step: 100
                       }}
                     />
                   </div>
@@ -537,7 +499,6 @@ const StepOne = ({
           type='date'
           value={startDate}
           onChange={handleStartDateChange}
-          // className={classes.textField}
           InputLabelProps={{
             shrink: true
           }}
@@ -566,7 +527,6 @@ const StepOne = ({
         </Card>
       </CardContent>
       <CardContent>Text Reminder</CardContent>
-      {/* <Button onClick={handlePrevStep}>Back</Button> */}
       <Button style={{ background: 'black', color: 'white' }}>Cancel</Button>
       <Button
         style={{ background: '#40AB48', color: 'white' }}
