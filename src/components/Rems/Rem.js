@@ -48,7 +48,8 @@ const styles = theme => ({
     marginRight: theme.spacing.unit
   },
   card: {
-    width: '446px'
+    width: '446px',
+    marginBottom: '28px'
   },
   actions: {
     display: 'flex',
