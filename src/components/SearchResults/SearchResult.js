@@ -11,7 +11,6 @@ import ViewDetails from './ViewDetails';
 
 const styles = {
   card: {
-    maxWidth: '80%',
     border: '1px solid gray',
     margin: '2%'
   },

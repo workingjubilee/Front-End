@@ -12,7 +12,7 @@ const SearchResults = ({
 }) => {
   const style = {
     display: 'flex',
-    maxWidth: '90%'
+    maxWidth: '99%'
   };
 
   return (

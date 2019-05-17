@@ -4,8 +4,6 @@ import Card from '@material-ui/core/Card';
 import MuiCardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 
-import { tablet } from 'scss/mediaVariables';
-
 const CardContent = withStyles({
   root: {
     display: 'flex',
@@ -22,10 +20,7 @@ const styles = {
     width: '80%',
     height: '100%',
     marginLeft: '3%',
-    boxShadow: 'none',
-    [`${tablet}`]: {
-      width: '85%'
-    }
+    boxShadow: 'none'
   },
   static: {
     backgroundColor: '#F0F3F5',
