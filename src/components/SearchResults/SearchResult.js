@@ -12,7 +12,7 @@ const styles = {
   card: {
     maxWidth: '80%',
     border: '1px solid gray',
-    margin: '1rem'
+    margin: '2%'
   },
   info: {
     display: 'flex'
@@ -38,7 +38,6 @@ const styles = {
 const SearchResult = ({
   classes,
   result,
-  setPill,
   handleAddPill,
   handleAddPillReminders
 }) => {

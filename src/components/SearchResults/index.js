@@ -11,7 +11,8 @@ const SearchResults = ({
   // pill
 }) => {
   const style = {
-    display: 'flex'
+    display: 'flex',
+    maxWidth: '90%'
   };
 
   return (
