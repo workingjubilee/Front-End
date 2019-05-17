@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { useInput } from 'utilities/useInput';
 import { valid_shapes as shapes } from 'data/rxdata.json';
 import { valid_colors as colors } from 'data/rxdata.json';
 import TextField from '@material-ui/core/TextField';
@@ -12,8 +11,8 @@ import parseMedStrengths from 'utilities/parseMedStrengths';
 // import AddPillButton from '../Scan/SearchResults/AddPillButton';
 
 const SearchPill = ({dispatch, ...rest}) => {
-  const name = useInput();
-  const imprint = useInput();
+  const [name, setName] = useState('');
+  const [imprint, setImprint] = useState('');
   const [color, setColor] = useState('');
   const [shape, setShape] = useState('');
 
@@ -43,15 +42,15 @@ const SearchPill = ({dispatch, ...rest}) => {
       <h4>Option 2 - Identify by direct input</h4>
       <TextField
         label='pill name'
-        value={name.value}
-        onChange={name.updateValue}
+        value={name}
+        onChange={(e) => setName(e.target.value)}
         margin='normal'
       />
 
       <TextField
         label='imprint'
-        value={imprint.value}
-        onChange={imprint.updateValue}
+        value={imprint}
+        onChange={(e) => setImprint(e.target.value)}
         margin='normal'
       />
 
