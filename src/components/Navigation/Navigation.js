@@ -14,6 +14,9 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import ProfileIcon from '../ProfileIcon/ProfileIcon';
+import ArrowIcon from '@material-ui/icons/CompareArrows';
+import DiaryIcon from '@material-ui/icons/QuestionAnswer';
+import ScanIcon from '@material-ui/icons/CenterFocusStrong';
 import { Link, NavLink } from 'react-router-dom';
 
 import { mobile } from 'scss/mediaVariables';
@@ -150,15 +153,18 @@ class Navigation extends Component {
         </div>
         <nav className='tab-navigator'>
           <NavLink to='/scan' className='tab edge' activeClassName='active-tab'>
+            {/* <ScanIcon className={classes.icons} /> */}
             <Typography component='h5'>Scan / Add Pill</Typography>
           </NavLink>
           <NavLink to='/pills' className='tab' activeClassName='active-tab'>
             <Typography component='h5'>Pill List</Typography>
           </NavLink>
           <NavLink to='/dashboard' className='tab' activeClassName='active-tab'>
+            {/* <ArrowIcon className={classes.icons} /> */}
             <Typography component='h5'>Scheduled Pills</Typography>
           </NavLink>
           <NavLink to='/diary' className='tab' activeClassName='active-tab'>
+            {/* <DiaryIcon className={classes.icons} /> */}
             <Typography component='h5'>Diary</Typography>
           </NavLink>
         </nav>
@@ -250,6 +256,9 @@ const styles = theme => ({
     '&:hover': {
       color: fade('#2c419b', 0.75)
     }
+  },
+  icons: {
+    color: 'black'
   }
 });
 
