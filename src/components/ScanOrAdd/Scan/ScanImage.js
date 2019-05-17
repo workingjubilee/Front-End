@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import ImageCapture from './ImageCapture.js';
 import { useToggle } from 'utilities/useToggle';
-// import axios from 'axios';
+import axios from 'axios';
 import CloudIcon from '@material-ui/icons/CloudUpload';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import rekogDummy from 'data/rekogDummy.json';
 import parseMedStrengths from 'utilities/parseMedStrengths';
 
 function ScanImage({ state, dispatch, ...props }) {
@@ -21,30 +20,23 @@ function ScanImage({ state, dispatch, ...props }) {
   };
 
   const upload = async () => {
-    // if (!photo) {
-    //   console.log('Need a photo!');
-    //   return;
-    // }
-    // const photoEndpoint = `${process.env.REACT_APP_BACKEND}/api/upload`;
-    // const imgData = new FormData();
-    // imgData.append('image', photo, photo.filename);
+    if (!photo) {
+      console.log('Need a photo!');
+      return;
+    }
+    const photoEndpoint = `${process.env.REACT_APP_BACKEND}/api/upload`;
+    const imgData = new FormData();
+    imgData.append('image', photo, photo.filename);
 
-    // uploadImage(imgData)
-    //   .then(() => {
-    //     history.push('/searchresults');
-    //   })
-    //   .catch(err => {
-    //     console.error(err);
-    //     alert(`Image upload failed. ${err}.`);
-    //   });
-    // Not sure if you still need this so I'll leave it
-    // console.log('start');
-    // const result = await axios
-    //   .post(photoEndpoint, imgData)
-    //   .catch(err => console.error(err));
-    // console.log('end');
-    const parsedDummy = parseMedStrengths(rekogDummy);
-    dispatch({ type: 'analysisResults', payload: parsedDummy });
+    console.log('start');
+    try {
+      const results = await axios.post(photoEndpoint, imgData);
+      const parsedResults = parseMedStrengths(results.data);
+      return dispatch({ type: 'analysisResults', payload: parsedResults });
+    } catch (error) {
+      console.error(error);
+    }
+    console.log('end');
   };
 
   const { classes } = props;
