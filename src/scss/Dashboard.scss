@@ -6,6 +6,17 @@
     h2 {
       font-size: 2rem;
     }
+    .attention {
+      border-top: 2px solid #f3f3f4;
+      padding: 20px;
+      h6 {
+        font-size: 1rem;
+      }
+      p {
+        font-size: 1rem;
+        color: #a2abbf;
+      }
+    }
   }
 
   .reminders-container {

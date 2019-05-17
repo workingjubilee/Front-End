@@ -51,7 +51,22 @@ const Dashboard = ({ user, classes, filterReminders, rems }) => {
             defaultValue={new Date()}
             input={false}
             onChange={changeDate}
+            className={classes.calendar}
           />
+          <article className='attention'>
+            <Typography component='h6'>ATTENTION</Typography>
+            <Typography component='p'>
+              Don't forget to log your pill reactions
+            </Typography>
+            <Typography component='p'>
+              Don't forget to log your allergies
+            </Typography>
+            <Typography component='p'>
+              Call your doctor if you notice adverse reactions after taking your
+              meds
+            </Typography>
+            <Typography component='p'>Call 911 for any emergencies</Typography>
+          </article>
         </Card>
       </section>
       {username ? <Rems user_id={userID} /> : null}
@@ -71,7 +86,12 @@ const styles = theme => ({
     paddingLeft: '0'
   },
   card: {
-    width: '260px'
+    width: '300px',
+    margin: '24px auto'
+  },
+  calendar: {
+    width: '260px',
+    margin: '0 auto'
   }
 });
 
