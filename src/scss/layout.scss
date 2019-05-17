@@ -8,11 +8,11 @@ html {
   box-sizing: inherit;
 } /* Allows usage of border-box across app, easier to style. */
 
-.App {
+body {
   background-color: #f9f9fa;
 }
 
-.container {
+.App {
   max-width: 1440px;
   background-color: white;
   margin: 0 auto;
