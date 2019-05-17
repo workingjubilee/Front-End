@@ -75,7 +75,7 @@ const styles = theme => ({
   },
   card: {
     width: '446px',
-    margin: '20px 0px'
+    marginTop: '28px'
   },
   actions: {
     display: 'flex',
