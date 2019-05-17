@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import CardContent from '@material-ui/core/CardContent';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
 import CapsulesPerDose from './components/CapsulesPerDose';
 import LengthOfDosage from './components/LengthOfDosage';
@@ -113,50 +115,58 @@ const StepOne = ({
     nextStep();
   };
   return (
-    <form>
-      <Typography component='p'>Add Dosage</Typography>
-      <CapsulesPerDose
-        updateCapsulesPerDose={updateCapsulesPerDose}
-        capsulesPerDose={capsulesPerDose}
-      />
-      <LengthOfDosage
-        lengthOfDosage={lengthOfDosage}
-        updateLengthOfDosage={updateLengthOfDosage}
-      />
-      <DosageFrequency
-        lengthOfDosage={lengthOfDosage}
-        dosageFrequency={dosageFrequency}
-        updateDosageFrequency={updateDosageFrequency}
-        selectedDays={selectedDays}
-        weekdays={weekdays}
-        setWeekdays={setWeekdays}
-        selectedDates={selectedDates}
-        dates={dates}
-        setDates={setDates}
-      />
-      <DosageInstructions
-        dosageInstruction={dosageInstruction}
-        customInstruction={customInstruction}
-        updateDosageInstruction={updateDosageInstruction}
-      />
-      <DosageTime
-        reminderData={reminderData}
-        setReminderData={setReminderData}
-      />
-      <StartDate startDate={startDate} setStartDate={setStartDate} />
-      <DosageDuration
-        dosageDuration={dosageDuration}
-        setDosageDuration={setDosageDuration}
-      />
-      <CardContent>Text Reminder</CardContent>
-      <Button style={{ background: 'black', color: 'white' }}>Cancel</Button>
-      <Button
-        style={{ background: '#40AB48', color: 'white' }}
-        onClick={handleConfirmDosage}
-      >
-        Confirm Dosage
-      </Button>
-    </form>
+    <div style={{ marginBottom: '2.5rem' }}>
+      <Typography style={{ fontSize: '2.5rem' }} component='p'>
+        Add Dosage
+      </Typography>
+      <Card style={{ width: '60%' }}>
+        <CapsulesPerDose
+          updateCapsulesPerDose={updateCapsulesPerDose}
+          capsulesPerDose={capsulesPerDose}
+        />
+        <LengthOfDosage
+          lengthOfDosage={lengthOfDosage}
+          updateLengthOfDosage={updateLengthOfDosage}
+        />
+        <DosageFrequency
+          lengthOfDosage={lengthOfDosage}
+          dosageFrequency={dosageFrequency}
+          updateDosageFrequency={updateDosageFrequency}
+          selectedDays={selectedDays}
+          weekdays={weekdays}
+          setWeekdays={setWeekdays}
+          selectedDates={selectedDates}
+          dates={dates}
+          setDates={setDates}
+        />
+        <DosageInstructions
+          dosageInstruction={dosageInstruction}
+          customInstruction={customInstruction}
+          updateDosageInstruction={updateDosageInstruction}
+        />
+        <DosageTime
+          reminderData={reminderData}
+          setReminderData={setReminderData}
+        />
+        <StartDate startDate={startDate} setStartDate={setStartDate} />
+        <DosageDuration
+          dosageDuration={dosageDuration}
+          setDosageDuration={setDosageDuration}
+        />
+        <CardContent>Text Reminder</CardContent>
+        <CardActions style={{ justifyContent: 'center' }}>
+          <Button style={{ background: 'black', color: 'white' }}>
+            Cancel
+          </Button>
+          <Button
+            style={{ background: '#40AB48', color: 'white' }}
+            onClick={handleConfirmDosage}
+          >
+            Confirm Dosage
+          </Button>
+        </CardActions>
+      </Card>
+    </div>
   );
 };
 

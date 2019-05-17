@@ -6,6 +6,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
 import CardContent from '@material-ui/core/CardContent';
 import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
 
 const DosageTime = ({ reminderData, setReminderData }) => {
   const [dosageDialogueOppenness, setDosageDialogueOppenness] = useState(false);
@@ -16,7 +17,11 @@ const DosageTime = ({ reminderData, setReminderData }) => {
   };
 
   return (
-    <CardContent>
+    <CardContent style={{ display: 'flex' }}>
+      <Typography style={{ width: '20%' }} component='p'>
+        Dosage Time(s) <br/> of day
+      </Typography>
+
       <Button onClick={() => setDosageDialogueOppenness(true)}>
         Open to Select Dosage Time of Day
       </Button>

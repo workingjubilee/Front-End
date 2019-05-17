@@ -18,18 +18,24 @@ const CapsulesPerDose = ({ updateCapsulesPerDose, capsulesPerDose }) => {
 
   return (
     <CardContent style={{ display: 'flex' }}>
-      <Typography component='p'>Dosage Quantity</Typography>
-      <Card style={{ display: 'flex' }}>
-        <Typography component='p'>Number of Capsules per dose</Typography>
+      <Typography style={{ width: '20%' }} component='p'>
+        Dosage Quantity
+      </Typography>
+      <Card style={{ display: 'flex', height: '40px', paddingLeft: '1rem' }}>
+        <Typography style={{ lineHeight: '40px' }} component='p'>
+          Number of Capsules per dose
+        </Typography>
 
         <Button onClick={handleDecrementCapsulesPerDose}>
-          <RemoveIcon />
+          <RemoveIcon style={{ color: '#2D90F5' }} />
         </Button>
 
-        <Typography component='p'>{capsulesPerDose}</Typography>
+        <Typography style={{ lineHeight: '40px' }} component='p'>
+          {capsulesPerDose}
+        </Typography>
 
         <Button onClick={handleIncrementCapsulesPerDose}>
-          <AddIcon />
+          <AddIcon style={{ color: '#2D90F5' }} />
         </Button>
       </Card>
     </CardContent>

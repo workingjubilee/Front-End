@@ -6,6 +6,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Chip from '@material-ui/core/Chip';
 import Button from '@material-ui/core/Button';
 import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
 
 const DosageFrequency = ({
   lengthOfDosage,
@@ -48,7 +49,9 @@ const DosageFrequency = ({
   };
   return (
     <CardContent style={{ display: 'flex', flexWrap: 'wrap' }}>
-      Dosage Frequency
+      <Typography style={{ width: '20%' }} component='p'>
+        Dosage Frequency
+      </Typography>
       <Button
         style={{
           background: dosageFrequency === 'daily' ? '#2D90F5' : '',

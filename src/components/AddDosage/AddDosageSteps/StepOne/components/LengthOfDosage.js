@@ -1,6 +1,7 @@
 import React from 'react';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 
 const LengthOfDosage = ({ lengthOfDosage, updateLengthOfDosage }) => {
   const handleLengthOfDosageChange = value => {
@@ -12,8 +13,10 @@ const LengthOfDosage = ({ lengthOfDosage, updateLengthOfDosage }) => {
   };
 
   return (
-    <CardContent>
-      Length of Dosage
+    <CardContent style={{ display: 'flex' }}>
+      <Typography style={{ width: '20%' }} component='p'>
+        Length of Dosage
+      </Typography>
       <Button
         style={{
           background: lengthOfDosage === 1 ? '#2D90F5' : '',

@@ -3,6 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import moment from 'moment';
 import Button from '@material-ui/core/Button';
 import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
 
 const StartDate = ({ startDate, setStartDate }) => {
   const formatMomentDate = dateData => {
@@ -29,8 +30,10 @@ const StartDate = ({ startDate, setStartDate }) => {
   };
 
   return (
-    <CardContent>
-      Start Date
+    <CardContent style={{ display: 'flex' }}>
+      <Typography style={{ width: '20%' }} component='p'>
+        Start Date
+      </Typography>
       <Button
         style={{
           background: startDate === todaysDate ? '#2D90F5' : '',
@@ -74,6 +77,9 @@ const StartDate = ({ startDate, setStartDate }) => {
         tomorrow
       </Button>
       <TextField
+        style={{
+          height: '36px'
+        }}
         id='date'
         label='Birthday'
         type='date'
