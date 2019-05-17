@@ -158,7 +158,13 @@ const StepOne = ({
     console.log(newReminderData);
     console.log('its working');
     setReminderData(newReminderData);
-  }, [selectedDays, selectedDates, dosageFrequency]);
+  }, [
+    selectedDays,
+    selectedDates,
+    dosageFrequency,
+    lengthOfDosage,
+    setReminderData
+  ]);
   // useEffect(null, [reminderData]);
   const handleWeekdayChange = weekday => e => {
     if (
