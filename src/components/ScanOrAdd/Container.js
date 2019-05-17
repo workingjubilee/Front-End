@@ -45,7 +45,7 @@ function ScanOrAdd({ location, history, addMed }) {
   console.log(state); // purely for debugging
 
   return (
-    <Paper square>
+    <>
       {state && state.analysis ? (
         <Search
           searchResults={state.analysis}
@@ -53,7 +53,8 @@ function ScanOrAdd({ location, history, addMed }) {
           handleAddPillReminders={handleAddPillReminders}
         />
       ) : (
-        <>
+        <section className='scan-container'>
+          <h2>Identify your Pill before scheduling</h2>
           <Scan state={state} dispatch={dispatch} history={history} />
           <SearchPill state={state} dispatch={dispatch} />
           <Button onClick={setOpen} variant='contained'>
@@ -65,9 +66,9 @@ function ScanOrAdd({ location, history, addMed }) {
             handleAddPillReminders={handleAddPillReminders}
             handleClose={setOpen}
           />
-        </>
+        </section>
       )}
-    </Paper>
+    </>
   );
 }
 

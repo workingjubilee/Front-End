@@ -49,11 +49,11 @@ function ScanImage({ state, dispatch, ...props }) {
   const { classes } = props;
 
   return (
-    <>
-      <div>
-        <h4>Option 1 - Identify by uploading an image</h4>
+    <section className='option1-container'>
+      <div className='image-container'>
+        <h4>Option 1 - Identify by uploading pill image</h4>
         <div>
-          <p>Image Upload</p>
+          <p>Pill Image Upload</p>
           <div>
             <label htmlFor='image-upload-button'>
               <input
@@ -92,7 +92,25 @@ function ScanImage({ state, dispatch, ...props }) {
       {camera ? (
         <ImageCapture setPhoto={setPhoto} state={state} dispatch={dispatch} />
       ) : null}
-    </>
+      <section className='directions'>
+        <h2>Steps To Identify Pill</h2>
+        <h3>OPTION - 1</h3>
+        <article>
+          <ol>
+            <li>
+              Upload front image of your pill displaying numbers and/or letters.
+            </li>
+            <li>
+              Upload back image of your pill <span>(optional).</span>
+            </li>
+            <li>
+              Click <strong>"Identify Pill"</strong> to get details about your
+              pill.
+            </li>
+          </ol>
+        </article>
+      </section>
+    </section>
   );
 }
 
