@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { fetchUser, filterReminders } from '../../actions';
-import Meds from '../Meds/Meds';
+import Rems from '../Rems/Rems';
 import Datetime from 'react-datetime';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
@@ -24,9 +24,6 @@ const Dashboard = ({ fetchUser, user, classes, filterReminders, rems }) => {
   );
   const userID = user.id ? user.id : localStorage.getItem('userID');
   useEffect(() => {
-    if (!user.auth_id) {
-      fetchUser(userID);
-    }
     if (rems.length > 0) {
       filterReminders(startDate, endDate);
     }
@@ -68,7 +65,7 @@ const Dashboard = ({ fetchUser, user, classes, filterReminders, rems }) => {
           />
         </Card>
       </FormControl>
-      {username ? <Meds user_id={userID} /> : null}
+      {username ? <Rems user_id={userID} /> : null}
     </div>
   );
 };

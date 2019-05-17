@@ -2,11 +2,19 @@ import React from 'react';
 import { connect } from 'react-redux';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
+import MuiSelect from '@material-ui/core/Select';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 import DiaryMedPanel from './DiaryMedPanel';
 import { editUser } from '../../actions/index';
+
+const Select = withStyles({
+  root: {
+    marginTop: '.25em'
+  }
+})(props => <MuiSelect {...props} />);
+
+Select.muiName = 'Select';
 
 const styles = {
   root: {
@@ -32,12 +40,46 @@ function DiaryMedsPanels({
 }) {
   const [diaryFocus, setDiaryFocus] = React.useState(null);
 
+  const sortedMeds =
+    // reverse alphabetical (Z-A)
+    sort_diary_meds === 'revAlpha'
+      ? meds.sort(function(a, b) {
+          if (a.med_name.toUpperCase() > b.med_name.toUpperCase()) {
+            return -1;
+          } else if (a.med_name.toUpperCase() < b.med_name.toUpperCase()) {
+            return 1;
+          } else {
+            return 0;
+          }
+        })
+      : // chronological (oldest first)
+      sort_diary_meds === 'chron'
+      ? meds.sort(function(a, b) {
+          return b.med_add_date - a.med_add_date;
+        })
+      : // reverse chronological (oldest first)
+      sort_diary_meds === 'revChron'
+      ? meds.sort(function(a, b) {
+          return a.med_add_date - b.med_add_date;
+        })
+      : // alphabetical (A-Z)
+        meds.sort(function(a, b) {
+          if (a.med_name.toUpperCase() < b.med_name.toUpperCase()) {
+            return -1;
+          } else if (a.med_name.toUpperCase() > b.med_name.toUpperCase()) {
+            return 1;
+          } else {
+            return 0;
+          }
+        });
+
   const requestEditUser = e => {
     e.preventDefault();
     editUser({
       id: user_id,
       sort_diary_meds: e.target.value
     });
+    console.log('sortedMeds: ', sortedMeds);
   };
 
   const changeFocus = med_id => {
@@ -70,21 +112,19 @@ function DiaryMedsPanels({
               </Select>
             </FormControl>
           </div>
-          {meds.map((med, index) =>
-            index <= 3 ? (
-              <DiaryMedPanel
-                diaryCount={
-                  diary.filter(diaryEntry => {
-                    return diaryEntry.med_id === med.id;
-                  }).length
-                }
-                key={med.id}
-                med={med}
-                changeFocus={changeFocus}
-                diaryFocus={diaryFocus}
-              />
-            ) : null
-          )}
+          {sortedMeds.map(med => (
+            <DiaryMedPanel
+              diaryCount={
+                diary.filter(diaryEntry => {
+                  return diaryEntry.med_id === med.id;
+                }).length
+              }
+              key={med.id}
+              med={med}
+              changeFocus={changeFocus}
+              diaryFocus={diaryFocus}
+            />
+          ))}
         </div>
       )}
     </div>

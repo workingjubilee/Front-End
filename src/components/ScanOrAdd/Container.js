@@ -1,5 +1,5 @@
-import React, { useReducer, useState } from 'react';
-// import { connect } from 'react-redux';
+import React, { useReducer } from 'react';
+import { connect } from 'react-redux';
 import { addMed } from 'actions';
 import { useToggle } from 'utilities/useToggle';
 import Button from '@material-ui/core/Button';
@@ -8,24 +8,19 @@ import scanReducer, { init } from './scanReducer.js';
 import Paper from '@material-ui/core/Paper';
 import SearchPill from './SearchPill/SearchPill';
 import PillInfoModal from 'components/Modals/PillInfoModal';
-import AddPillModal from 'components/Modals/AddPillModal';
 import Search from 'components/SearchResults';
 
-export default function ScanOrAdd({ location, history }) {
+function ScanOrAdd({ location, history, addMed }) {
   const [state, dispatch] = useReducer(scanReducer, init(location));
-  const [pill, setPill] = useState({});
   const [open, setOpen] = useToggle(false);
-  const [confirmOpen, setConfirmOpen] = useToggle(false);
-  console.log(pill);
+  // const [pill, setPill] = useState({});
 
-  const handleConfirm = pillInfo => {
-    setOpen();
-    setPill(pillInfo);
-    setConfirmOpen();
-  };
-
-  const handleAddPill = () => {
-    addMed({ ...pill, med_add_date: new Date().getTime() })
+  const handleAddPill = pillInfo => {
+    addMed({
+      ...pillInfo,
+      med_add_date: new Date().getTime(),
+      med_active: false
+    })
       .then(() => {
         history.push('/pills');
       })
@@ -34,8 +29,12 @@ export default function ScanOrAdd({ location, history }) {
       });
   };
 
-  const handleAddPillReminders = () => {
-    addMed({ ...pill, med_add_date: new Date().getTime() })
+  const handleAddPillReminders = pillInfo => {
+    addMed({
+      ...pillInfo,
+      med_add_date: new Date().getTime(),
+      med_active: true
+    })
       .then(() => {
         history.push('/adddosage');
       })
@@ -49,7 +48,13 @@ export default function ScanOrAdd({ location, history }) {
   return (
     <Paper square>
       {state && state.analysis ? (
-        <Search searchResults={state.analysis} />
+        <Search
+          searchResults={state.analysis}
+          handleAddPill={handleAddPill}
+          handleAddPillReminders={handleAddPillReminders}
+          // setPill={setPill}
+          // pill={pill}
+        />
       ) : (
         <>
           <Scan state={state} dispatch={dispatch} history={history} />
@@ -59,19 +64,17 @@ export default function ScanOrAdd({ location, history }) {
           </Button>
           <PillInfoModal
             open={open}
-            handleConfirm={handleConfirm}
-            handleClose={setOpen}
-            setPill={setPill}
-          />
-          <AddPillModal
-            open={confirmOpen}
-            pill={pill}
-            handleClose={setConfirmOpen}
             handleAddPill={handleAddPill}
             handleAddPillReminders={handleAddPillReminders}
+            handleClose={setOpen}
           />
         </>
       )}
     </Paper>
   );
 }
+
+export default connect(
+  null,
+  { addMed }
+)(ScanOrAdd);

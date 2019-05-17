@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import MuiExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import withStyles from '@material-ui/core/styles/withStyles';
+import Button from '@material-ui/core/Button';
 
 import DiaryEntryPanel from './DiaryEntryPanel';
 import DiaryEntryModal from './DiaryEntryModal';
@@ -30,12 +31,21 @@ const styles = {
   viewAllPanel: {
     display: 'flex',
     justifyContent: 'center',
-    background: 'white'
+    background: 'white',
+    fontSize: '1.1em',
+    textTransform: 'Capitalize'
   }
 };
 
-const DiaryEntriesPanels = ({ classes, diary, diaryFocus, meds }) => {
-  const filteredDiary = diary
+const DiaryEntriesPanels = ({
+  classes,
+  diary,
+  diaryFocus,
+  meds,
+  toggleViewAll,
+  viewAll
+}) => {
+  const filteredSortedDiary = diary
     .filter(diaryEntry => {
       return diaryEntry.med_id === diaryFocus;
     })
@@ -62,18 +72,38 @@ const DiaryEntriesPanels = ({ classes, diary, diaryFocus, meds }) => {
           />
         </div>
       </ExpansionPanelSummary>
-      {filteredDiary.length === 0 ? (
-        <p>You have no diary entries for {medName}.</p>
-      ) : (
-        filteredDiary.map((diaryEntry, index) =>
-          index <= 3 ? (
+      {viewAll
+        ? filteredSortedDiary.map((diaryEntry, index) => (
             <DiaryEntryPanel key={diaryEntry.id} diaryEntry={diaryEntry} />
-          ) : null
-        )
+          ))
+        : filteredSortedDiary.map((diaryEntry, index) =>
+            index <= 3 ? (
+              <DiaryEntryPanel key={diaryEntry.id} diaryEntry={diaryEntry} />
+            ) : null
+          )}
+      {filteredSortedDiary.length >= 5 && !viewAll ? (
+        <div className={classes.viewAllPanel}>
+          <Button
+            className={classes.viewAllPanel}
+            onClick={toggleViewAll}
+            color='primary'
+          >
+            View All Entries
+          </Button>
+        </div>
+      ) : filteredSortedDiary.length >= 5 && viewAll ? (
+        <div className={classes.viewAllPanel}>
+          <Button
+            className={classes.viewAllPanel}
+            onClick={toggleViewAll}
+            color='primary'
+          >
+            View Fewer Entries
+          </Button>
+        </div>
+      ) : (
+        <div />
       )}
-      <div className={classes.viewAllPanel}>
-        <p>View all button here</p>
-      </div>
     </div>
   );
 };

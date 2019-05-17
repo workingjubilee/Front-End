@@ -13,9 +13,6 @@ class PillsList extends Component {
     noMeds: false
   };
   componentDidMount() {
-    if (this.props.meds.length === 0) {
-      this.props.fetchMeds(this.props.user_id);
-    }
     if (this.props.location.pathname === '/pills') {
       this.props.history.push('/pills/active');
     }

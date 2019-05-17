@@ -265,7 +265,7 @@ export const FETCH_REMS_FAILURE = 'FETCH_REMS_FAILURE';
 
 export const fetchRems = user_id => dispatch => {
   dispatch({ type: FETCH_REMS_REQUEST });
-  axios
+  return axios
     .get(`${endpoint}/api/users/${user_id}/rems/`)
     .then(res => {
       dispatch({ type: FETCH_REMS_SUCCESS, payload: res.data });

@@ -40,7 +40,7 @@ export default function remsReducer(state = initialState, action) {
       return {
         ...state,
         addingRems: false,
-        rems: action.payload
+        rems: [...state.rems, action.payload]
       };
     case ADD_REMS_FAILURE:
       return {
