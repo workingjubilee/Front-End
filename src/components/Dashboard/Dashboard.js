@@ -5,8 +5,7 @@ import Rems from '../Rems/Rems';
 import Datetime from 'react-datetime';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
+import Typography from '@material-ui/core/Typography';
 import moment from 'moment';
 
 const Dashboard = ({ user, classes, filterReminders, rems }) => {
@@ -43,21 +42,35 @@ const Dashboard = ({ user, classes, filterReminders, rems }) => {
   };
 
   return (
-    <div className='DashboardPage'>
-      <InputLabel className={classes.label}>Date Picker</InputLabel>
-      <br />
-      <FormControl>
-        <Card>
+    <section className='dashboard'>
+      <section className='calendar'>
+        <Typography component='h2'>Your schedule for today</Typography>
+        <Card className={classes.card}>
           <Datetime
             timeFormat={false}
             defaultValue={new Date()}
             input={false}
             onChange={changeDate}
+            className={classes.calendar}
           />
+          <article className='attention'>
+            <Typography component='h6'>ATTENTION</Typography>
+            <Typography component='p'>
+              Don't forget to log your pill reactions
+            </Typography>
+            <Typography component='p'>
+              Don't forget to log your allergies
+            </Typography>
+            <Typography component='p'>
+              Call your doctor if you notice adverse reactions after taking your
+              meds
+            </Typography>
+            <Typography component='p'>Call 911 for any emergencies</Typography>
+          </article>
         </Card>
-      </FormControl>
+      </section>
       {username ? <Rems user_id={userID} /> : null}
-    </div>
+    </section>
   );
 };
 
@@ -71,6 +84,14 @@ const styles = theme => ({
     lineHeight: '1.428571429',
     fontWeight: '400',
     paddingLeft: '0'
+  },
+  card: {
+    width: '300px',
+    margin: '24px auto'
+  },
+  calendar: {
+    width: '260px',
+    margin: '0 auto'
   }
 });
 

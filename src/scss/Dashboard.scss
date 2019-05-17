@@ -1,0 +1,41 @@
+.dashboard {
+  display: flex;
+
+  .calendar {
+    margin: 0 auto;
+    h2 {
+      font-size: 2rem;
+    }
+    .attention {
+      border-top: 2px solid #f3f3f4;
+      padding: 20px;
+      h6 {
+        font-size: 1rem;
+      }
+      p {
+        font-size: 1rem;
+        color: #a2abbf;
+      }
+    }
+  }
+
+  .reminders-container {
+    margin: 0 auto;
+    width: 962px;
+    margin-top: 40px;
+    border: 1px solid #ebecee;
+    border-radius: 5px;
+    h2 {
+      text-align: center;
+      margin-top: 36px;
+      font-size: 1.3rem;
+      width: 100%;
+    }
+    .rems-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      margin-top: 28px;
+    }
+  }
+}
