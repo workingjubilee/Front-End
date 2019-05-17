@@ -1,0 +1,24 @@
+.scan-container {
+  margin: 48px auto auto auto;
+  max-width: 1262px;
+  h2 {
+    font-size: 2.2rem;
+  }
+  .option1-container {
+    display: flex;
+    margin-top: 88px;
+    justify-content: space-between;
+    .image-container {
+      width: 786px;
+      h4 {
+        width: 100%;
+        text-align: center;
+        background-color: #d6d8dd;
+        padding: 7px 0;
+      }
+    }
+    .directions {
+      width: 380px;
+    }
+  }
+}
