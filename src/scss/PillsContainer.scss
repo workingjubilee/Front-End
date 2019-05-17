@@ -1,0 +1,20 @@
+.pills-container {
+  border-top: 15px solid #f0f3f5;
+
+  .pill-list {
+    h2 {
+      font-size: 2.1rem;
+      margin: 42px 0px 0px 58px;
+    }
+    h3 {
+      font-size: 1.5rem;
+      margin-top: 38px;
+      margin: 38px auto 38px auto;
+      width: 100%;
+      text-align: center;
+    }
+    .pill-navigator {
+      margin-top: 38px;
+    }
+  }
+}
