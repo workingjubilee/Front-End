@@ -93,16 +93,16 @@ class Navigation extends Component {
         <div className={classes.root}>
           <AppBar className={classes.media} position='static'>
             <Toolbar>
-              <Typography
-                className={classes.title}
-                variant='h6'
-                color='inherit'
-                noWrap
-              >
-                <Link to='/' className='title'>
-                  <span>RxID</span> Pill Identifier
-                </Link>
-              </Typography>
+              <Link to='/' className='title'>
+                <Typography
+                  className={classes.title}
+                  variant='h2'
+                  color='inherit'
+                  noWrap
+                >
+                  <strong>RxID</strong> Pill Identifier
+                </Typography>
+              </Link>
               <div className='searchBar'>
                 <div className={classes.search}>
                   <div className={classes.searchIcon}>
@@ -184,9 +184,12 @@ const styles = theme => ({
     flexGrow: 1
   },
   title: {
-    display: 'none',
-    [theme.breakpoints.up('sm')]: {
-      display: 'block'
+    fontSize: '2rem',
+    fontWeight: 'light',
+    fontFamily: 'Roboto',
+    [mobile]: {
+      display: 'block',
+      fontSize: '1.4rem'
     }
   },
   search: {
