@@ -27,7 +27,7 @@ const AdditionalSearchInfo = ({ classes }) => {
         Steps to Identify a Pill
       </Typography>
       <Card>
-        <ol>
+        <ol className={'steps'}>
           <li>1. Enter the pill name (optional)</li>
           <li>2. Upload image of the pill (optional)</li>
           <li>
