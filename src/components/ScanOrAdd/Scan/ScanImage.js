@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ImageCapture from './ImageCapture.js';
 import { useToggle } from 'utilities/useToggle';
 // import axios from 'axios';
+import CloudIcon from '@material-ui/icons/CloudUpload';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import rekogDummy from 'data/rekogDummy.json';
@@ -52,9 +53,10 @@ function ScanImage({ state, dispatch, ...props }) {
     <section className='option1-container'>
       <div className='image-container'>
         <h4>Option 1 - Identify by uploading pill image</h4>
-        <div>
-          <p>Pill Image Upload</p>
-          <div>
+        <div className='image-upload'>
+          <h5>Pill Image Upload</h5>
+          <div className='upload-button'>
+            <CloudIcon />
             <label htmlFor='image-upload-button'>
               <input
                 accept='image/*'
@@ -69,16 +71,17 @@ function ScanImage({ state, dispatch, ...props }) {
                 className={classes.button}
                 onKeyDown={magicClicker}
               >
-                Upload
+                Upload front image of pill
               </Button>
             </label>
-            {state && state.hasVideo && (
-              <Button onClick={toggleCamera}>Take Photo</Button>
-            )}
           </div>
+          {/* commenting out for now, not sure where this goes in design{state && state.hasVideo && (
+            <Button onClick={toggleCamera}>Take Photo</Button>
+          )} */}
+          <Button onClick={upload} className={classes.button}>
+            Identify Pill
+          </Button>
         </div>
-
-        <Button onClick={upload}>Identify</Button>
       </div>
       <div>
         {photo && (
@@ -116,7 +119,10 @@ function ScanImage({ state, dispatch, ...props }) {
 
 const styles = theme => ({
   button: {
-    margin: theme.spacing.unit
+    margin: theme.spacing.unit,
+    color: 'white',
+    backgroundColor: '#969696',
+    margin: '0 auto'
   },
   input: {
     display: 'none'
