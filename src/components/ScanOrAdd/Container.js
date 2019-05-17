@@ -51,7 +51,6 @@ function ScanOrAdd({ location, history, addMed }) {
       {state && state.analysis ? (
         <Search
           searchResults={state.analysis}
-          setPill={setPill}
           handleAddPill={handleAddPill}
           handleAddPillReminders={handleAddPillReminders}
         />
