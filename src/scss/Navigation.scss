@@ -19,9 +19,11 @@ $pillborder: #ebecee;
     border-right: 1px solid $navborder;
     border-top: 1px solid $navborder;
     border-bottom: 1px solid $navborder;
-    width: 200px;
+    width: 220px;
+    height: 40px;
     display: flex;
     justify-content: center;
+    align-items: center;
     text-decoration: none;
   }
 
@@ -45,9 +47,11 @@ $pillborder: #ebecee;
   align-items: center;
 
   .tab {
-    width: 200px;
+    width: 220px;
+    height: 42px;
     display: flex;
     justify-content: center;
+    align-items: center;
     text-decoration: none;
     color: black;
   }
