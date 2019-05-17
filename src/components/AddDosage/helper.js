@@ -5,9 +5,7 @@ export const makeReminders = ({
   endDate,
   doses,
   frequency,
-  date,
-  weekday,
-  time
+  data
 }) => {
   startDate = moment(startDate)
     .startOf('day')
@@ -22,7 +20,7 @@ export const makeReminders = ({
 
   for (let i = 0; i < doses; i++) {
     const setRemTime = rem => {
-      rem[4] = time[i];
+      rem[4] = data[i].time;
       rem[4] = rem[4].split('');
 
       let hour = parseInt(rem[4][0] + rem[4][1]);
@@ -50,6 +48,19 @@ export const makeReminders = ({
       return rem;
     };
 
+    if (frequency === 'weekly') {
+      data[i].value = data[i].value.split('');
+      data[i].value[0] = data[i].value[0].toUpperCase();
+      data[i].value.push(',');
+      data[i].value = data[i].value.join('');
+    } else if (frequency === 'monthly') {
+      if (data[i].value.length === 3) {
+        data[i].value = parseInt(data[i].value[0]);
+      } else if (data[i].value.length === 4) {
+        data[i].value = parseInt(data[i].value[0] + data[i].value[1]);
+      }
+    }
+
     while (lastRem < new Date(endDate).getTime()) {
       if (frequency === 'daily') {
         let newRem = moment(lastRem).format('LLLL');
@@ -62,25 +73,25 @@ export const makeReminders = ({
       } else if (frequency === 'weekly') {
         let newRem = moment(lastRem).format('LLLL');
         newRem = newRem.split(' ');
-        if (newRem[2] === weekday[i]) {
+        if (newRem[0] === data[i].value) {
           newRem = setRemTime(newRem);
           newRem = newRem.join(' ');
+          newRem = new Date(newRem).getTime();
+          reminders.push(newRem);
         }
-        newRem = new Date(newRem).getTime();
-        reminders.push(newRem);
         lastRem += 86400000;
       } else if (frequency === 'monthly') {
         let newRem = moment(lastRem).format('LLLL');
         newRem = newRem.split(' ');
         if (newRem[2].length === 3) {
-          if (parseInt(newRem[2][0] + newRem[2][1]) === date[i]) {
+          if (parseInt(newRem[2][0] + newRem[2][1]) === data[i].value) {
             newRem = setRemTime(newRem);
             newRem = newRem.join(' ');
             newRem = new Date(newRem).getTime();
             reminders.push(newRem);
           }
         } else if (newRem[2].length === 2) {
-          if (parseInt(newRem[2][0]) === date[i]) {
+          if (parseInt(newRem[2][0]) === data[i].value) {
             newRem = setRemTime(newRem);
             newRem = newRem.join(' ');
             newRem = new Date(newRem).getTime();
