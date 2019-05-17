@@ -18,7 +18,7 @@ const Rem = ({ rem, classes }) => {
     //med_admin_times
   } = rem;
   return (
-    <div className='med'>
+    <div className='reminder'>
       <Card className={classes.card}>
         <CardHeader
           title={med_name}
@@ -44,8 +44,7 @@ const styles = theme => ({
     marginRight: theme.spacing.unit
   },
   card: {
-    width: 500,
-    margin: '20px 20px'
+    width: '446px'
   },
   actions: {
     display: 'flex'

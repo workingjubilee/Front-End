@@ -183,7 +183,6 @@ const styles = theme => ({
   },
   root: {
     width: '100%',
-    height: '400px',
     [`${mobile}`]: {
       background: 'red'
     }

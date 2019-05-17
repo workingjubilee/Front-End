@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Card from '@material-ui/core/Card';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { connect } from 'react-redux';
 import { fetchRems } from '../../actions';
@@ -45,14 +44,14 @@ class Rems extends Component {
       return <h1>You do not have any reminders saved for this date.</h1>;
     } else {
       return (
-        <Card className={classes.card}>
+        <section className='reminders-container'>
           <h2>Your scheduled medications for today</h2>
-          <div className={classes.rems}>
+          <div className='rems-list'>
             {filteredRems.map(rem => (
               <Rem key={rem.id} rem={rem} />
             ))}
           </div>
-        </Card>
+        </section>
       );
     }
   }
@@ -61,14 +60,6 @@ class Rems extends Component {
 const styles = theme => ({
   progress: {
     margin: theme.spacing.unit * 2
-  },
-  card: {
-    maxWidth: 1100,
-    margin: '0 auto'
-  },
-  rems: {
-    display: 'flex',
-    flexWrap: 'wrap'
   },
   loading: {
     margin: '0 auto',
