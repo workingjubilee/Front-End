@@ -7,10 +7,14 @@ import withStyles from '@material-ui/core/styles/withStyles';
 
 import DiaryMedPanel from './DiaryMedPanel';
 import { editUser } from '../../actions/index';
+import { mobile } from 'scss/mediaVariables';
 
 const Select = withStyles({
   root: {
-    marginTop: '.25em'
+    marginTop: '.25em',
+    [`${mobile}`]: {
+      color: 'red'
+    }
   }
 })(props => <MuiSelect {...props} />);
 
@@ -26,7 +30,11 @@ const styles = {
     marginLeft: '10px',
     justifyContent: 'center'
   },
-  selectEmpty: {}
+  mediaQueryExample: {
+    [`${mobile}`]: {
+      color: 'red'
+    }
+  }
 };
 
 function DiaryMedsPanels({
@@ -79,7 +87,6 @@ function DiaryMedsPanels({
       id: user_id,
       sort_diary_meds: e.target.value
     });
-    console.log('sortedMeds: ', sortedMeds);
   };
 
   const changeFocus = med_id => {
@@ -98,7 +105,7 @@ function DiaryMedsPanels({
       ) : (
         <div className='diaryMeds'>
           <div className='sortSelect'>
-            <h2>Sort by:</h2>
+            <h2 className={classes.mediaQueryExample}>Sort by:</h2>
             <FormControl className={classes.formControl}>
               <Select
                 value={sort_diary_meds}
