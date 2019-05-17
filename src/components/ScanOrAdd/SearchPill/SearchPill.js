@@ -9,6 +9,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
+import Dropdown from './Dropdown';
 
 // import AddPillButton from '../Scan/SearchResults/AddPillButton';
 
@@ -17,8 +18,8 @@ const SearchPill = props => {
   const imprint = useInput();
   const [color, setColor] = useState('');
   const [shape, setShape] = useState('');
-  console.log(name.value, imprint.value, color, shape);
-  useEffect(() => {}, [color, shape]);
+
+  // useEffect(() => {}, [color, shape]);
   const handleColorChange = e => {
     setColor(e.target.value);
   };
@@ -57,31 +58,9 @@ const SearchPill = props => {
         margin='normal'
       />
 
-      <FormControl>
-        <InputLabel>color</InputLabel>
-        <Select value={color} onChange={handleColorChange}>
-          {colors.map(color => {
-            return (
-              <MenuItem key={color.id} value={color.name}>
-                {color.name}
-              </MenuItem>
-            );
-          })}
-        </Select>
-      </FormControl>
+      <Dropdown itemName="color" itemList={colors} item={color} setItem={setColor} />
+      <Dropdown itemName="shape" itemList={shapes} item={shape} setItem={setShape} />
 
-      <FormControl>
-        <InputLabel>shape</InputLabel>
-        <Select value={shape} onChange={handleShapeChange}>
-          {shapes.map(shape => {
-            return (
-              <MenuItem key={shape.id} value={shape.name}>
-                {shape.name}
-              </MenuItem>
-            );
-          })}
-        </Select>
-      </FormControl>
       <Button onClick={handleAddPill} variant='contained'>
         Identify Pill
       </Button>
