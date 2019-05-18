@@ -25,6 +25,22 @@ $pillborder: #ebecee;
     justify-content: center;
     align-items: center;
     text-decoration: none;
+    .icon {
+      color: #494949;
+    }
+    .scanner {
+      width: 29px;
+      height: 29px;
+    }
+    .arrow {
+      width: 28px;
+      height: 28px;
+    }
+    .diary-icon {
+      color: #494949;
+      width: 24px;
+      height: 24px;
+    }
   }
 
   .tab.edge {
@@ -35,6 +51,10 @@ $pillborder: #ebecee;
     background-color: $primary;
     border: 1px solid $primary;
     h5 {
+      color: white;
+    }
+    .icon,
+    .diary-icon {
       color: white;
     }
   }
