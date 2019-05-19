@@ -60,6 +60,9 @@ function ScanImage({ state, dispatch, setData, ...props }) {
               />
               <Button
                 variant='contained'
+                /* If you think this span is merely stylistic... */
+                component='span'
+                /* ...think again. */
                 className='upload-button'
                 onKeyDown={magicClicker}
               >
