@@ -3,6 +3,8 @@ import React from 'react';
 import AdditionalSearchInfo from './AdditionalSearchInfo';
 import SearchResult from './SearchResult';
 
+import { tablet } from 'scss/mediaVariables';
+
 const SearchResults = ({
   searchResults,
   handleAddPill,
@@ -12,12 +14,21 @@ const SearchResults = ({
 }) => {
   const style = {
     display: 'flex',
-    maxWidth: '99%'
+    maxWidth: '99%',
+    justifyContent: 'space-between'
+  };
+
+  // This doesn't work for some reason, breakpoint does not want to activate
+  const leftStyle = {
+    width: '55%',
+    [`${tablet}`]: {
+      display: '85%'
+    }
   };
 
   return (
     <div style={style}>
-      <div>
+      <div style={leftStyle}>
         {searchResults &&
           searchResults
             .filter(result => {
