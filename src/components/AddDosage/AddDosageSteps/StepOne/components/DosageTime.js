@@ -8,21 +8,62 @@ import CardContent from '@material-ui/core/CardContent';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 
-const DosageTime = ({ reminderData, setReminderData }) => {
+const DosageTime = ({
+  reminderData,
+  setReminderData,
+  lengthOfDosage,
+  dosageFrequency,
+  selectedDays,
+  selectedDates
+}) => {
   const [dosageDialogueOppenness, setDosageDialogueOppenness] = useState(false);
+  const handleOpenDialogue = () => {
+    if (lengthOfDosage) {
+      if (dosageFrequency) {
+        if (dosageFrequency === 'weekly' && selectedDays < lengthOfDosage) {
+          alert('please select a day of the week for each dose');
+        } else if (
+          dosageFrequency === 'monthly' &&
+          selectedDates < lengthOfDosage
+        ) {
+          alert('please select a day of the month for each dose');
+        } else {
+          setDosageDialogueOppenness(true);
+        }
+      } else {
+        alert('please select a dosage frequency');
+      }
+    } else {
+      alert('please select a length of dosage');
+    }
+  };
   const handleDosageTimeChange = (e, index) => {
+    console.log(e.target.value);
     const newData = reminderData;
     newData[index].time = e.target.value;
     setReminderData(newData);
   };
-
+  const ordinalSuffixer = int => {
+    const j = int % 10,
+      k = int % 100;
+    if (j === 1 && k !== 11) {
+      return int + 'st';
+    }
+    if (j === 2 && k !== 12) {
+      return int + 'nd';
+    }
+    if (j === 3 && k !== 13) {
+      return int + 'rd';
+    }
+    return int + 'th';
+  };
   return (
     <CardContent style={{ display: 'flex' }}>
       <Typography style={{ width: '20%' }} component='p'>
-        Dosage Time(s) <br/> of day
+        Dosage Time(s) <br /> of day
       </Typography>
 
-      <Button onClick={() => setDosageDialogueOppenness(true)}>
+      <Button onClick={handleOpenDialogue}>
         Open to Select Dosage Time of Day
       </Button>
       <Dialog
@@ -35,7 +76,21 @@ const DosageTime = ({ reminderData, setReminderData }) => {
           {reminderData.length
             ? reminderData.map(data => (
                 <div key={reminderData.indexOf(data)}>
-                  {data.value}
+                  {reminderData.length > 1 ? (
+                    <span>
+                      {ordinalSuffixer(reminderData.indexOf(data) + 1)} reminder
+                      will occur{' '}
+                    </span>
+                  ) : null}
+                  every{' '}
+                  {dosageFrequency === 'daily' ? (
+                    <span>day</span>
+                  ) : dosageFrequency === 'weekly' ? (
+                    <span>{data.value}</span>
+                  ) : dosageFrequency === 'monthly' ? (
+                    <span>{data.value} of the month</span>
+                  ) : null}{' '}
+                  at
                   <TextField
                     id='time'
                     label='Alarm clock'
