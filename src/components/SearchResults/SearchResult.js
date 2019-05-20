@@ -58,13 +58,13 @@ const SearchResult = ({
       result.strength[0][0],
     med_color: result.color_text,
     med_shape: result.shape_text,
-    med_dose:
+    med_strength:
       result &&
       result.strength &&
       result.strength[0] &&
       result.strength[0][1] &&
       parseInt(result.strength[0][1]),
-    med_dose_unit:
+    med_strength_unit:
       result &&
       result.strength &&
       result.strength[0] &&
