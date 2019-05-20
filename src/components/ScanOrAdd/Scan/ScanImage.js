@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import ImageCapture from './ImageCapture.js';
-import { useToggle } from 'utilities/useToggle';
+// import ImageCapture from './ImageCapture.js';
+// import { useToggle } from 'utilities/useToggle';
 import axios from 'axios';
 import CloudIcon from '@material-ui/icons/CloudUpload';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import parseMedStrengths from 'utilities/parseMedStrengths';
 
-function ScanImage({ state, dispatch, setData, ...props }) {
+function ScanImage({ setData, classes, ...props }) {
   const [photo, setPhoto] = useState(null);
-  const [camera, toggleCamera] = useToggle(false);
+  // const [camera, toggleCamera] = useToggle(false);
   const photoSelect = event => setPhoto(event.target.files[0]);
 
   const magicClicker = event => {
@@ -40,8 +40,6 @@ function ScanImage({ state, dispatch, setData, ...props }) {
     console.log('end');
   };
 
-  const { classes } = props;
-
   return (
     <section className='option1-container'>
       <div className='image-container'>
@@ -71,11 +69,11 @@ function ScanImage({ state, dispatch, setData, ...props }) {
             </label>
             <p>or drag and drop them here</p>
           </div>
-          {state && state.hasVideo && (
+          {/*state && state.hasVideo && (
             <Button style={{ display: 'none' }} onClick={toggleCamera}>
               Take Photo
             </Button>
-          )}
+          )*/}
           <Button onClick={upload} className='identify-button'>
             Identify Pill
           </Button>
@@ -90,9 +88,9 @@ function ScanImage({ state, dispatch, setData, ...props }) {
           />
         )}
       </div>
-      {camera ? (
-        <ImageCapture setPhoto={setPhoto} state={state} dispatch={dispatch} />
-      ) : null}
+      {/*camera ? (
+        <ImageCapture setPhoto={setPhoto} />
+      ) : null*/}
       <section className='directions'>
         <h2>Steps To Identify Pill</h2>
         <h3>OPTION - 1</h3>
