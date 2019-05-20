@@ -73,4 +73,57 @@
       width: 380px;
     }
   }
+  .option2-container {
+    width: 786px;
+    margin-top: 40px;
+
+    h4 {
+      width: 100%;
+      text-align: center;
+      background-color: #d6d8dd;
+      padding: 7px 0;
+    }
+    .search-container {
+      margin-top: 16px;
+      border: 1px solid #d6d8dd;
+      border-radius: 6px;
+      height: 461px;
+
+      .form-container {
+        margin: 12px 0px 0px 30px;
+        width: 578px;
+        .field-container {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          height: 80px;
+          h5 {
+            font-size: 1.2rem;
+          }
+          .field {
+            width: 452px;
+          }
+        }
+        .button-container {
+          display: flex;
+          justify-content: space-between;
+          width: 300px;
+          .reset-button {
+            color: white;
+            background-color: #303030;
+            text-transform: none;
+            width: 120px;
+            height: 42px;
+          }
+          .id-button {
+            color: white;
+            background-color: $primary;
+            text-transform: capitalize;
+            width: 150px;
+            height: 42px;
+          }
+        }
+      }
+    }
+  }
 }
