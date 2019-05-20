@@ -41,11 +41,14 @@ const StepOne = ({
       alert('please input the amount of capsules per dose');
     } else if (lengthOfDosage) {
       if (dosageFrequency) {
-        if (dosageFrequency === 'weekly' && selectedDays < lengthOfDosage) {
+        if (
+          dosageFrequency === 'weekly' &&
+          selectedDays.length < lengthOfDosage
+        ) {
           alert('please select a day of the week for each dose');
         } else if (
           dosageFrequency === 'monthly' &&
-          selectedDates < lengthOfDosage
+          selectedDates.length < lengthOfDosage
         ) {
           alert('please select a day of the month for each dose');
         } else {
