@@ -39,15 +39,17 @@
           align-items: center;
           svg {
             width: 200px;
-            margin: 40px auto 0px auto;
+            height: 50px;
+            margin: 34px auto 0px auto;
+            color: #093e73;
           }
           .upload-button {
-            margin: 36px auto auto auto;
+            margin: 16px auto auto auto;
             height: 34px;
             width: 220px;
             color: white;
-            background-color: #969696;
-            text-transform: capitalize;
+            background-color: $secondary;
+            text-transform: none;
           }
           p {
             font-size: 0.8rem;
@@ -57,7 +59,7 @@
         }
         .identify-button {
           color: white;
-          background-color: #969696;
+          background-color: $primary;
           height: 42px;
           width: 150px;
           align-self: flex-end;
