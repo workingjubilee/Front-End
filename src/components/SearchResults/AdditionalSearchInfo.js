@@ -7,8 +7,10 @@ import { tablet } from 'scss/mediaVariables';
 
 const styles = {
   card: {
+    width: '40%',
     boxShadow: 'none',
     textAlign: 'center',
+    border: 'none',
     [`${tablet}`]: {
       display: 'none'
     }
