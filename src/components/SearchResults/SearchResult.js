@@ -48,6 +48,10 @@ const SearchResult = ({
   handleAddPill,
   handleAddPillReminders
 }) => {
+  const correctCasing = string => {
+    const lowerCasedString = string.toLowerCase();
+    return lowerCasedString[0].toUpperCase() + lowerCasedString.slice(1);
+  };
   const formattedPill = {
     user_id: localStorage.getItem('userID'),
     med_name:
@@ -56,8 +60,8 @@ const SearchResult = ({
       result.strength[0] &&
       result.strength[0][0] &&
       result.strength[0][0],
-    med_color: result.color_text,
-    med_shape: result.shape_text,
+    med_color: correctCasing(result.color_text),
+    med_shape: correctCasing(result.shape_text),
     med_strength:
       result &&
       result.strength &&
