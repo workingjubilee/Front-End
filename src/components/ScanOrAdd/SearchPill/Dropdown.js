@@ -6,11 +6,16 @@ import MenuItem from '@material-ui/core/MenuItem';
 const Dropdown = ({ itemName, itemList, item, setItem }) => {
   return (
     <FormControl>
-      <Select value={item} onChange={event => setItem(event.target.value)}>
+      <Select
+        variant='outlined'
+        value={item}
+        onChange={event => setItem(event.target.value)}
+      >
         {itemList.map((item, index) => {
+          const casedItem = item.toLowerCase();
           return (
             <MenuItem key={index} value={item}>
-              {item}
+              {casedItem[0].toUpperCase() + casedItem.slice(1)}
             </MenuItem>
           );
         })}
