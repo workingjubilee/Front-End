@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { editUser } from 'actions';
 import { useInput } from 'utilities/useInput';
 
-const Onboard = ({ history, editUser }) => {
+const UserProfile = ({ history, editUser }) => {
   const firstName = useInput();
   const lastName = useInput();
   const phone = useInput();
@@ -21,7 +21,7 @@ const Onboard = ({ history, editUser }) => {
       email: email.value
     })
       .then(() => {
-        history.push('/dashboard');
+        history.push('/reminders');
       })
       .catch(err => {
         console.error(err);
@@ -29,7 +29,7 @@ const Onboard = ({ history, editUser }) => {
   };
 
   return (
-    <div className='onboardpage'>
+    <div className='user-profile'>
       <form onSubmit={handleUpdate}>
         <input
           type='text'
@@ -77,4 +77,4 @@ const Onboard = ({ history, editUser }) => {
 export default connect(
   null,
   { editUser }
-)(Onboard);
+)(UserProfile);
