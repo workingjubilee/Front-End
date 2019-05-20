@@ -8,7 +8,7 @@ import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
 import moment from 'moment';
 
-const Dashboard = ({ user, classes, filterReminders, rems }) => {
+const Reminders = ({ user, classes, filterReminders, rems }) => {
   const { username } = user;
   const [date, setDate] = useState(new Date());
   const [startDate, setStartDate] = useState(
@@ -42,7 +42,7 @@ const Dashboard = ({ user, classes, filterReminders, rems }) => {
   };
 
   return (
-    <section className='dashboard'>
+    <section className='reminders'>
       <section className='calendar'>
         <Typography component='h2'>Your schedule for today</Typography>
         <Card className={classes.card}>
@@ -95,7 +95,7 @@ const styles = theme => ({
   }
 });
 
-const StyledDashboard = withStyles(styles)(Dashboard);
+const StyledReminders = withStyles(styles)(Reminders);
 
 const mapStateToProps = state => ({
   user: state.userReducer.user,
@@ -107,4 +107,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { filterReminders }
-)(StyledDashboard);
+)(StyledReminders);

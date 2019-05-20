@@ -10,7 +10,7 @@ const Diary = React.lazy(() => import('./components/Diary/Diary'));
 const UserProfile = React.lazy(() =>
   import('./components/UserProfile/UserProfile')
 );
-const Dashboard = React.lazy(() => import('./components/Dashboard/Dashboard'));
+const Reminders = React.lazy(() => import('./components/Reminders/Reminders'));
 const PillsContainer = React.lazy(() =>
   import('./components/PillsContainer/PillsContainer')
 );
@@ -33,7 +33,7 @@ function App() {
           <Route exact path='/loading' component={Loading} />
           <Route path='/diary' component={Diary} />
           <Route path='/scan' component={ScanOrAdd} />
-          <Route path='/dashboard' component={Dashboard} />
+          <Route path='/reminders' component={Reminders} />
           <Route path='/pills' component={PillsContainer} />
           <Route path='/adddosage' component={AddDosage} />
         </React.Suspense>

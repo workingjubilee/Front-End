@@ -21,7 +21,7 @@ const UserProfile = ({ history, editUser }) => {
       email: email.value
     })
       .then(() => {
-        history.push('/dashboard');
+        history.push('/reminders');
       })
       .catch(err => {
         console.error(err);
