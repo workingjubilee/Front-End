@@ -25,11 +25,13 @@ const Rem = ({ rem, classes }) => {
   return (
     <div className='reminder'>
       <Card className={classes.card}>
-        <CardHeader
-          title={med_name}
-          subheader={`${med_dose} ${med_dose_unit} | ${med_color} | ${med_shape}`}
-        />
-        <Typography component='p'>{reminderTime}</Typography>
+        <header>
+          <CardHeader
+            title={med_name}
+            subheader={`${med_dose} ${med_dose_unit} | ${med_color} | ${med_shape}`}
+          />
+          <Typography component='p'>{reminderTime}</Typography>
+        </header>
         <CardActions className={classes.actions} disableActionSpacing>
           <Button className={classes.buttons} variant='outlined'>
             View Pill Details
