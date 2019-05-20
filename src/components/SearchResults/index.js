@@ -22,7 +22,7 @@ const SearchResults = ({
   const leftStyle = {
     width: '55%',
     [`${tablet}`]: {
-      display: '85%'
+      width: '85%'
     }
   };
 

@@ -13,7 +13,7 @@ const styles = {
   card: {
     border: '1px solid gray',
     margin: '2%',
-    width: '100%'
+    width: '96%'
   },
   info: {
     display: 'flex'
@@ -28,7 +28,7 @@ const styles = {
     fontSize: '0.7rem',
     color: 'white',
     textTransform: 'Capitalize',
-    boxShadow: '.2rem .2rem .1rem grey'
+    boxShadow: '.1rem .1rem .1rem grey'
   },
   view: {
     backgroundColor: '#5AAC49'
