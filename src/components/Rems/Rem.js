@@ -1,10 +1,11 @@
 import React from 'react';
+import moment from 'moment';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 // import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
-// import Typography from '@material-ui/core/Typography';
+import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
 const Rem = ({ rem, classes }) => {
@@ -13,10 +14,13 @@ const Rem = ({ rem, classes }) => {
     med_dose,
     med_dose_unit,
     med_color,
-    med_shape
+    med_shape,
+    rem_date
     //med_dose_freq,
     //med_admin_times
   } = rem;
+
+  const reminderTime = moment(Number(rem_date)).format('LT');
 
   return (
     <div className='reminder'>
@@ -25,6 +29,7 @@ const Rem = ({ rem, classes }) => {
           title={med_name}
           subheader={`${med_dose} ${med_dose_unit} | ${med_color} | ${med_shape}`}
         />
+        <Typography component='p'>{reminderTime}</Typography>
         <CardActions className={classes.actions} disableActionSpacing>
           <Button className={classes.buttons} variant='outlined'>
             View Pill Details
