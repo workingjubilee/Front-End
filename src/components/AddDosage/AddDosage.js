@@ -172,6 +172,8 @@ const AddPill = ({ med, addRems, editMed, history }) => {
 
     const medData = {
       ...med,
+      med_dose: med.med_strength * capsulesPerDose,
+      med_dose_unit: med.med_strength_unit,
       med_admin_start_date: startDate,
       med_admin_end_date: endDate,
       med_directions: JSON.stringify(
