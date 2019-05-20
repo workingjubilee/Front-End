@@ -1,30 +1,25 @@
 import React from 'react';
-import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 
-const Dropdown = ({ itemName, itemList, item, setItem, }) => {
-
-return (
-      <FormControl>
-        <InputLabel>{itemName}</InputLabel>
-        <Select value={item} onChange={(event) => setItem(event.target.value)}>
-          {itemList.map((item,index) => {
-            return (
-              <MenuItem key={index} value={item}>
-                {item}
-              </MenuItem>
-            );
-          })}
-        </Select>
-      </FormControl>
-      )
-}
+const Dropdown = ({ itemName, itemList, item, setItem }) => {
+  return (
+    <FormControl>
+      <Select value={item} onChange={event => setItem(event.target.value)}>
+        {itemList.map((item, index) => {
+          return (
+            <MenuItem key={index} value={item}>
+              {item}
+            </MenuItem>
+          );
+        })}
+      </Select>
+    </FormControl>
+  );
+};
 
 export default Dropdown;
-
-
 
 // .wrapper-dropdown {
 //     position: relative;
