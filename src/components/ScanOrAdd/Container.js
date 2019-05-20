@@ -50,14 +50,17 @@ function ScanOrAdd({ location, history, addMed }) {
       ) : (
         <section className='scan-container'>
           <h2>Identify your Pill before scheduling</h2>
-          <Scan
-            history={history}
-            setData={setData}
-          />
+          <Scan history={history} setData={setData} />
           <SearchPill setData={setData} />
-          <Button onClick={setOpen} variant='contained'>
-            Add Pill Manually
-          </Button>
+          <section className='option3-container'>
+            <div className='label'>
+              <h5>Option 3 - </h5>
+              <p>Know your pill? Add it manually</p>
+            </div>
+            <Button onClick={setOpen} variant='contained'>
+              Add Pill Manually
+            </Button>
+          </section>
           <PillInfoModal
             open={open}
             handleAddPill={handleAddPill}
