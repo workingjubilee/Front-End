@@ -15,11 +15,11 @@ const styles = {
   }
 };
 
-const Image = ({ classes, imageLink }) => {
+const Image = ({ classes, image_id }) => {
   return (
     <Card className={classes.card}>
       <CardActionArea>
-        <CardMedia className={classes.media} image={imageLink} />
+        <CardMedia className={classes.media} image={image_id} />
         <CardContent />
       </CardActionArea>
     </Card>

@@ -17,7 +17,7 @@ CardContent.muiName = 'CardContent';
 
 const styles = {
   card: {
-    width: '80%',
+    width: '100%',
     height: '100%',
     marginLeft: '3%',
     boxShadow: 'none'
