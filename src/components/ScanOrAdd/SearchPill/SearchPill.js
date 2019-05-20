@@ -38,39 +38,61 @@ const SearchPill = ({ dispatch, setData, ...rest }) => {
     // Search for pill
   };
   return (
-    <form onSubmit={search}>
+    <section className='option2-container'>
       <h4>Option 2 - Identify by direct input</h4>
-      <TextField
-        label='pill name'
-        value={name}
-        onChange={e => setName(e.target.value)}
-        margin='normal'
-      />
-
-      <TextField
-        label='imprint'
-        value={imprint}
-        onChange={e => setImprint(e.target.value)}
-        margin='normal'
-      />
-
-      <Dropdown
-        itemName='color'
-        itemList={colors}
-        item={color}
-        setItem={setColor}
-      />
-      <Dropdown
-        itemName='shape'
-        itemList={shapes}
-        item={shape}
-        setItem={setShape}
-      />
-
-      <Button onClick={search} variant='contained'>
-        Identify Pill
-      </Button>
-    </form>
+      <div className='search-container'>
+        <form className='form-container' onSubmit={search}>
+          <div className='field-container'>
+            <h5>Pill Name</h5>
+            <TextField
+              value={name}
+              onChange={e => setName(e.target.value)}
+              margin='normal'
+              variant='outlined'
+              className='field'
+            />
+          </div>
+          <div className='field-container'>
+            <h5>Imprint</h5>
+            <TextField
+              value={imprint}
+              onChange={e => setImprint(e.target.value)}
+              margin='normal'
+              variant='outlined'
+              className='field'
+            />
+          </div>
+          <div className='field-container'>
+            <h5>Pill Color</h5>
+            <Dropdown
+              itemName='color'
+              itemList={colors}
+              item={color}
+              setItem={setColor}
+              className='field'
+            />
+          </div>
+          <div className='field-container'>
+            <h5>Pill Shape</h5>
+            <Dropdown
+              itemName='shape'
+              itemList={shapes}
+              item={shape}
+              setItem={setShape}
+              className='field'
+            />
+          </div>
+          <div className='button-container'>
+            <Button variant='contained' className='reset-button'>
+              Reset form
+            </Button>
+            <Button onClick={search} variant='contained' className='id-button'>
+              Identify Pill
+            </Button>
+          </div>
+        </form>
+      </div>
+    </section>
   );
 };
 
