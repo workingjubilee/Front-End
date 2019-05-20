@@ -143,13 +143,7 @@ const SearchResult = ({
           >
             Add with Reminder
           </Button>
-          <ViewDetails
-            open={open}
-            setOpen={setOpen}
-            handleAddPill={handleAddPill}
-            handleAddPillReminders={handleAddPillReminders}
-            result={result}
-          />
+          <ViewDetails open={open} setOpen={setOpen} result={result} />
         </CardContent>
       </Paper>
     </Card>

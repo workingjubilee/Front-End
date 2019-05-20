@@ -54,32 +54,23 @@ const styles = theme => ({
   }
 });
 
-const ViewDetails = ({
-  classes,
-  setOpen,
-  open,
-  handleAddPill,
-  handleAddPillReminders,
-  result
-}) => {
+const ViewDetails = ({ classes, setOpen, open, result }) => {
   console.log(result);
   return (
-    <div className={classes.paper}>
-      <Modal
-        open={open}
-        onClose={e => {
-          e.preventDefault();
-          setOpen(false);
-        }}
-      >
-        <img
-          className={classes.genericImage}
-          src={`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEtm2tJxpsgbyWcy36iZ6tPxSyg-wLQNBLOzRqbiNCaq1iAy5O`}
-        />
-        <Button className={classes.no}>Add Pill</Button>
-        <Button className={classes.yes}>Add pill with reminder</Button>
-      </Modal>
-    </div>
+    <Modal
+      open={open}
+      onClose={e => {
+        e.preventDefault();
+        setOpen(false);
+      }}
+    >
+      {/* <img
+        className={classes.genericImage}
+        src={`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEtm2tJxpsgbyWcy36iZ6tPxSyg-wLQNBLOzRqbiNCaq1iAy5O`}
+      /> */}
+      <Button className={classes.no}>Add Pill</Button>
+      <Button className={classes.yes}>Add pill with reminder</Button>
+    </Modal>
   );
 };
 
