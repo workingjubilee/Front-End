@@ -1,15 +1,16 @@
 import React from 'react';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
 import MenuItem from '@material-ui/core/MenuItem';
 
 const Dropdown = ({ itemName, itemList, item, setItem }) => {
   return (
-    <FormControl>
+    <FormControl variant='outlined' className='form-control'>
       <Select
-        variant='outlined'
         value={item}
         onChange={event => setItem(event.target.value)}
+        input={<OutlinedInput name={item} id={`outlined ${item}`} />}
       >
         {itemList.map((item, index) => {
           const casedItem = item.toLowerCase();
