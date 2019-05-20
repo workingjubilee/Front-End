@@ -14,11 +14,9 @@ const SearchResults = ({
 }) => {
   const style = {
     display: 'flex',
-    maxWidth: '99%',
-    justifyContent: 'space-between'
+    maxWidth: '99%'
   };
 
-  // This doesn't work for some reason, breakpoint does not want to activate
   const leftStyle = {
     width: '55%',
     [`${tablet}`]: {
