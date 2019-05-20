@@ -101,6 +101,7 @@ const SearchResult = ({
           <img
             className={classes.genericImage}
             src={`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEtm2tJxpsgbyWcy36iZ6tPxSyg-wLQNBLOzRqbiNCaq1iAy5O`}
+            alt='A drug'
           />
           <ResultInfo result={result} />
           {/* <CircularProgress
