@@ -8,7 +8,6 @@ import { makeReminders } from './helper';
 import { addRems, editMed } from '../../actions';
 import moment from 'moment';
 
-// '/adddosage/:id'
 let dateData = moment(Date.now()).format('L');
 dateData = dateData.split('');
 let date =
@@ -33,6 +32,88 @@ const AddPill = ({ med, addRems, editMed, history }) => {
   const [startDate, setStartDate] = useState(date);
   const [dosageDuration, setDosageDuration] = useState(0);
   const [endDate, setEndDate] = useState(date);
+  const [weekdays, setWeekdays] = useState({
+    sunday: false,
+    monday: false,
+    tuesday: false,
+    wednesday: false,
+    thursday: false,
+    friday: false,
+    saturday: false
+  });
+  const datesObj = {};
+  for (let i = 1; i < 32; i++) {
+    let date = i.toString();
+    date = date.split('');
+    if (date[date.length - 2] === '1') {
+      date.push('th');
+    } else if (date[date.length - 1] === '1') {
+      date.push('st');
+    } else if (date[date.length - 1] === '2') {
+      date.push('nd');
+    } else if (date[date.length - 1] === '3') {
+      date.push('rd');
+    } else {
+      date.push('th');
+    }
+    date = date.join('');
+    datesObj[`${date}`] = false;
+  }
+  const [dates, setDates] = useState(datesObj);
+  const [selectedDays, setSelectedDays] = useState([]);
+  const [selectedDates, setSelectedDates] = useState([]);
+  useEffect(() => {
+    const days = [];
+    const newDates = [];
+    for (let day in weekdays) {
+      if (weekdays[day]) {
+        days.push(day);
+      }
+    }
+    for (let date in dates) {
+      if (dates[date]) {
+        newDates.push(date);
+      }
+    }
+    for (let i = 0; i < lengthOfDosage; i++) {}
+    setSelectedDays(days);
+    setSelectedDates(newDates);
+  }, [weekdays, dates, lengthOfDosage]);
+  useEffect(() => {
+    const newReminderData = [];
+    if (dosageFrequency === 'weekly') {
+      for (let i = 0; i < lengthOfDosage; i++) {
+        newReminderData.push({
+          value: selectedDays[i],
+          time: '12:00'
+        });
+      }
+    } else if (dosageFrequency === 'monthly') {
+      for (let i = 0; i < lengthOfDosage; i++) {
+        newReminderData.push({
+          value: selectedDates[i],
+          time: '12:00'
+        });
+      }
+    } else if (dosageFrequency === 'daily') {
+      for (let i = 0; i < lengthOfDosage; i++) {
+        newReminderData.push({
+          value: null,
+          time: '12:00'
+        });
+      }
+    }
+    console.log(newReminderData);
+    console.log('its working');
+    setReminderData(newReminderData);
+  }, [
+    selectedDays,
+    selectedDates,
+    dosageFrequency,
+    lengthOfDosage,
+    setReminderData
+  ]);
+
   const updateCapsulesPerDose = amount => {
     setCapsulesPerDose(amount);
   };
@@ -75,18 +156,7 @@ const AddPill = ({ med, addRems, editMed, history }) => {
         endDate: endDate,
         doses: lengthOfDosage,
         data: reminderData
-        // frequency: 'monthly',
-        // startDate: '2019-05-17',
-        // endDate: '08/28/2019',
-        // doses: 1,
-        // data: [
-        //   {
-        //     value: '13th',
-        //     time: '15:00'
-        //   }
-        // ]
       }
-      // customInstruction.value || dosageInstruction || null
     );
     console.log(reminderTimes);
     console.log(reminderTimes.map(time => new Date(time)));
@@ -112,7 +182,7 @@ const AddPill = ({ med, addRems, editMed, history }) => {
     await addRems(reminders);
     console.log(medData);
     console.log(reminders);
-    history.push('/dashboard');
+    history.push('/reminders');
   };
   const steps = [
     <StepOne
@@ -130,6 +200,12 @@ const AddPill = ({ med, addRems, editMed, history }) => {
       dosageDuration={dosageDuration}
       setDosageDuration={setDosageDuration}
       nextStep={nextStep}
+      weekdays={weekdays}
+      selectedDays={selectedDays}
+      setWeekdays={setWeekdays}
+      dates={dates}
+      selectedDates={selectedDates}
+      setDates={setDates}
       reminderData={reminderData}
       setReminderData={setReminderData}
     />,

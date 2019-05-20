@@ -12,9 +12,9 @@ const Loading = ({ history, logIn }) => {
     logIn()
       .then(res => {
         if (res.newUser) {
-          history.push('/onboard');
+          history.push('/user');
         } else {
-          history.push('/dashboard');
+          history.push('/reminders');
         }
       })
       .catch(() => {

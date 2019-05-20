@@ -59,7 +59,7 @@ class Navigation extends Component {
         onClose={this.handleMenuClose}
       >
         <MenuItem onClick={this.handleMenuClose}>
-          <Link className={classes.profile} to={`/dashboard`}>
+          <Link className={classes.profile} to={`/reminders`}>
             Profile
           </Link>
         </MenuItem>
@@ -160,7 +160,7 @@ class Navigation extends Component {
           <NavLink to='/pills' className='tab' activeClassName='active-tab'>
             <Typography component='h5'>List of Medications</Typography>
           </NavLink>
-          <NavLink to='/dashboard' className='tab' activeClassName='active-tab'>
+          <NavLink to='/reminders' className='tab' activeClassName='active-tab'>
             <ArrowIcon className='arrow icon' />
             <Typography component='h5'>Scheduled Pills</Typography>
           </NavLink>

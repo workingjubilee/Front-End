@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Button from '@material-ui/core/Button';
 import CardContent from '@material-ui/core/CardContent';
 import Card from '@material-ui/core/Card';
@@ -19,6 +19,12 @@ const StepOne = ({
   updateLengthOfDosage,
   dosageFrequency,
   updateDosageFrequency,
+  weekdays,
+  selectedDays,
+  setWeekdays,
+  dates,
+  selectedDates,
+  setDates,
   reminderData,
   setReminderData,
   customInstruction,
@@ -30,89 +36,30 @@ const StepOne = ({
   dosageDuration,
   setDosageDuration
 }) => {
-  const [weekdays, setWeekdays] = useState({
-    sunday: false,
-    monday: false,
-    tuesday: false,
-    wednesday: false,
-    thursday: false,
-    friday: false,
-    saturday: false
-  });
-  const datesObj = {};
-  for (let i = 1; i < 32; i++) {
-    let date = i.toString();
-    date = date.split('');
-    if (date[date.length - 2] === '1') {
-      date.push('th');
-    } else if (date[date.length - 1] === '1') {
-      date.push('st');
-    } else if (date[date.length - 1] === '2') {
-      date.push('nd');
-    } else if (date[date.length - 1] === '3') {
-      date.push('rd');
-    } else {
-      date.push('th');
-    }
-    date = date.join('');
-    datesObj[`${date}`] = false;
-  }
-  const [dates, setDates] = useState(datesObj);
-  const [selectedDays, setSelectedDays] = useState([]);
-  const [selectedDates, setSelectedDates] = useState([]);
-  useEffect(() => {
-    const days = [];
-    const newDates = [];
-    for (let day in weekdays) {
-      if (weekdays[day]) {
-        days.push(day);
-      }
-    }
-    for (let date in dates) {
-      if (dates[date]) {
-        newDates.push(date);
-      }
-    }
-    for (let i = 0; i < lengthOfDosage; i++) {}
-    setSelectedDays(days);
-    setSelectedDates(newDates);
-  }, [weekdays, dates, lengthOfDosage]);
-  useEffect(() => {
-    const newReminderData = [];
-    if (dosageFrequency === 'weekly') {
-      for (let i = 0; i < lengthOfDosage; i++) {
-        newReminderData.push({
-          value: selectedDays[i],
-          time: '12:00'
-        });
-      }
-    } else if (dosageFrequency === 'monthly') {
-      for (let i = 0; i < lengthOfDosage; i++) {
-        newReminderData.push({
-          value: selectedDates[i],
-          time: '12:00'
-        });
-      }
-    } else if (dosageFrequency === 'daily') {
-      for (let i = 0; i < lengthOfDosage; i++) {
-        newReminderData.push({
-          value: null,
-          time: '12:00'
-        });
-      }
-    }
-    console.log(newReminderData);
-    console.log('its working');
-    setReminderData(newReminderData);
-  }, [
-    selectedDays,
-    selectedDates,
-    dosageFrequency,
-    lengthOfDosage,
-    setReminderData
-  ]);
   const handleConfirmDosage = () => {
-    nextStep();
+    if (!capsulesPerDose) {
+      alert('please input the amount of capsules per dose');
+    } else if (lengthOfDosage) {
+      if (dosageFrequency) {
+        if (
+          dosageFrequency === 'weekly' &&
+          selectedDays.length < lengthOfDosage
+        ) {
+          alert('please select a day of the week for each dose');
+        } else if (
+          dosageFrequency === 'monthly' &&
+          selectedDates.length < lengthOfDosage
+        ) {
+          alert('please select a day of the month for each dose');
+        } else {
+          nextStep();
+        }
+      } else {
+        alert('please select a dosage frequency');
+      }
+    } else {
+      alert('please select a length of dosage');
+    }
   };
   return (
     <div style={{ marginBottom: '2.5rem' }}>
@@ -147,6 +94,10 @@ const StepOne = ({
         <DosageTime
           reminderData={reminderData}
           setReminderData={setReminderData}
+          lengthOfDosage={lengthOfDosage}
+          dosageFrequency={dosageFrequency}
+          selectedDays={selectedDays}
+          selectedDates={selectedDates}
         />
         <StartDate startDate={startDate} setStartDate={setStartDate} />
         <DosageDuration
