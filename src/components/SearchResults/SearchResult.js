@@ -4,8 +4,8 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import Image from './Image';
+// import CircularProgress from '@material-ui/core/CircularProgress';
+// import Image from './Image';
 import ResultInfo from './ResultInfo';
 import ViewDetails from './ViewDetails';
 
