@@ -10,7 +10,9 @@ const Dropdown = ({ itemName, itemList, item, setItem }) => {
       <Select
         value={item}
         onChange={event => setItem(event.target.value)}
-        input={<OutlinedInput name={item} id={`outlined ${item}`} />}
+        input={
+          <OutlinedInput name={item} id={`outlined ${item}`} labelWidth={0} />
+        }
       >
         {itemList.map((item, index) => {
           const casedItem = item.toLowerCase();
