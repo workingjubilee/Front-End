@@ -1,7 +1,7 @@
 module.exports = function parseMedStrengths(meds) {
   const scaryRegex = /^(\D+)(\d+\.*\d*).+(mg|mcg|IU)/i;
 
-  console.log(meds);
+  console.log("Received as: ", meds);
 
   const regexStrength = (medStr, regex) =>
     medStr
@@ -10,7 +10,11 @@ module.exports = function parseMedStrengths(meds) {
 
   const typeCheck = (maybeJSON) => {
     if (maybeJSON instanceof Array) {
-      return maybeJSON
+      if (maybeJSON.length === 1)
+        return [JSON.parse(maybeJSON[0])];
+      else {
+        return maybeJSON;
+      }
     } else if (typeof maybeJSON === 'string') {
       if (maybeJSON.charAt(0) === '[') {
         return maybeJSON.split(',').flatMap(array => array)
