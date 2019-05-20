@@ -7,8 +7,10 @@ import Spinner from 'components/Spinner/Spinner';
 import Auth from 'Auth';
 
 const Diary = React.lazy(() => import('./components/Diary/Diary'));
-const Onboard = React.lazy(() => import('./components/Onboard/Onboard'));
-const Dashboard = React.lazy(() => import('./components/Dashboard/Dashboard'));
+const UserProfile = React.lazy(() =>
+  import('./components/UserProfile/UserProfile')
+);
+const Reminders = React.lazy(() => import('./components/Reminders/Reminders'));
 const PillsContainer = React.lazy(() =>
   import('./components/PillsContainer/PillsContainer')
 );
@@ -27,11 +29,11 @@ function App() {
         <React.Suspense fallback={<Spinner />}>
           <Route exact path='/' component={Home} />
           <Route exact path='/landing' component={Landing} />
-          <Route exact path='/onboard' component={Onboard} />
+          <Route exact path='/user' component={UserProfile} />
           <Route exact path='/loading' component={Loading} />
           <Route path='/diary' component={Diary} />
           <Route path='/scan' component={ScanOrAdd} />
-          <Route path='/dashboard' component={Dashboard} />
+          <Route path='/reminders' component={Reminders} />
           <Route path='/pills' component={PillsContainer} />
           <Route path='/adddosage' component={AddDosage} />
         </React.Suspense>
