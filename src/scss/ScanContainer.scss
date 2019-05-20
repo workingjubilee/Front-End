@@ -126,4 +126,18 @@
       }
     }
   }
+  .option3-container {
+    width: 700px;
+    height: 60px;
+    border: 1px solid #d6d8dd;
+    border-radius: 6px;
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    .label {
+      display: flex;
+      background-color: lightgray;
+      width: 372px;
+    }
+  }
 }
