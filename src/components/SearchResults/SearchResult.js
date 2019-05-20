@@ -4,7 +4,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
-import CircularProgress from '@material-ui/core/CircularProgress';
+// import CircularProgress from '@material-ui/core/CircularProgress';
 // import Image from './Image';
 import ResultInfo from './ResultInfo';
 import ViewDetails from './ViewDetails';
@@ -12,7 +12,8 @@ import ViewDetails from './ViewDetails';
 const styles = {
   card: {
     border: '1px solid gray',
-    margin: '2%'
+    margin: '2%',
+    width: '100%'
   },
   info: {
     display: 'flex'
@@ -23,16 +24,21 @@ const styles = {
   },
   button: {
     width: '30%',
-    height: '3rem',
-    fontSize: '.6rem',
+    height: '2rem',
+    fontSize: '0.7rem',
     color: 'white',
-    textTransform: 'Capitalize'
+    textTransform: 'Capitalize',
+    boxShadow: '.2rem .2rem .1rem grey'
   },
   view: {
     backgroundColor: '#5AAC49'
   },
   add: {
     backgroundColor: '#2D90F5'
+  },
+  genericImage: {
+    width: '100px',
+    height: '100px'
   }
 };
 
@@ -86,13 +92,19 @@ const SearchResult = ({
   //   console.log('THIS PILL: ', thisPill);
   // }, [result, setThisPill, thisPill]);
 
+  console.log(result);
   return (
     <Card className={classes.card}>
       {/* Paper might not be necessary here */}
       <Paper>
         <CardContent className={classes.info}>
+          <img
+            className={classes.genericImage}
+            src={`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEtm2tJxpsgbyWcy36iZ6tPxSyg-wLQNBLOzRqbiNCaq1iAy5O`}
+            alt='A drug'
+          />
           <ResultInfo result={result} />
-          <CircularProgress
+          {/* <CircularProgress
             style={{
               marginLeft: '2rem',
               width: '3rem',
@@ -100,7 +112,7 @@ const SearchResult = ({
             }}
             variant='static'
             value={90}
-          />
+          /> */}
         </CardContent>
         <CardContent className={classes.buttons}>
           <Button
@@ -132,7 +144,7 @@ const SearchResult = ({
           >
             Add with Reminder
           </Button>
-          <ViewDetails open={open} setOpen={setOpen} />
+          <ViewDetails open={open} setOpen={setOpen} result={result} />
         </CardContent>
       </Paper>
     </Card>
