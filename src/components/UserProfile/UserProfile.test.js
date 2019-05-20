@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Onboard from './Onboard';
+import UserProfile from './UserProfile';
 import AppWrapper from 'AppWrapper';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(
     <AppWrapper>
-      <Onboard />
+      <UserProfile />
     </AppWrapper>,
     div
   );
