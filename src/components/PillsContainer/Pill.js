@@ -20,12 +20,19 @@ const Pill = ({ med, classes, openDialog }) => {
     //med_admin_times
   } = med;
 
+  const correctCasing = string => {
+    const lowerCase = string.toLowerCase();
+    return lowerCase[0].toUpperCase() + lowerCase.slice(1);
+  };
+
   return (
     <div className='med'>
       <Card className={classes.card}>
         <CardHeader
           title={med_name}
-          subheader={`${med_strength} ${med_strength_unit} | ${med_color} | ${med_shape}`}
+          subheader={`${med_strength} ${med_strength_unit} | ${correctCasing(
+            med_color
+          )} | ${correctCasing(med_shape)}`}
         />
         <CardActions className={classes.actions} disableActionSpacing>
           <Button variant='outlined' className={classes.buttons}>

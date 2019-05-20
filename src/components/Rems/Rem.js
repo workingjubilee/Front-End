@@ -17,12 +17,20 @@ const Rem = ({ rem, classes }) => {
     //med_dose_freq,
     //med_admin_times
   } = rem;
+
+  const correctCasing = string => {
+    const lowerCase = string.toLowerCase();
+    return lowerCase[0].toUpperCase() + lowerCase.slice(1);
+  };
+
   return (
     <div className='reminder'>
       <Card className={classes.card}>
         <CardHeader
           title={med_name}
-          subheader={`${med_dose} ${med_dose_unit} | ${med_color} | ${med_shape}`}
+          subheader={`${med_dose} ${med_dose_unit} | ${correctCasing(
+            med_color
+          )} | ${correctCasing(med_shape)}`}
         />
         <CardActions className={classes.actions} disableActionSpacing>
           <Button className={classes.buttons} variant='outlined'>
