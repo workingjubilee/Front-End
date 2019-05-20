@@ -68,8 +68,8 @@ const ViewDetails = ({ classes, setOpen, open, result }) => {
         className={classes.genericImage}
         src={`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEtm2tJxpsgbyWcy36iZ6tPxSyg-wLQNBLOzRqbiNCaq1iAy5O`}
       /> */}
-      <Button className={classes.no}>Add Pill</Button>
-      <Button className={classes.yes}>Add pill with reminder</Button>
+      <Button>Add Pill</Button>
+      <Button>Add pill with reminder</Button>
     </Modal>
   );
 };
