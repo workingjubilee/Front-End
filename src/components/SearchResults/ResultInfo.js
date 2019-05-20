@@ -43,14 +43,14 @@ const styles = {
   }
 };
 
-const ResultInfo = ({ classes, result }) => {
+const ResultInfo = ({ classes, result, correctCasing }) => {
   return (
     <Card className={classes.card}>
       <CardContent>
         <div className={classes.row}>
           <Typography className={classes.static}>Pill Name:</Typography>
           <Typography className={classes.dynamic}>
-            {result.strength[0] && result.strength[0][0]}
+            {correctCasing(result.strength[0] && result.strength[0][0])}
           </Typography>
         </div>
         <div className={classes.row}>

@@ -54,12 +54,13 @@ const SearchResult = ({
   };
   const formattedPill = {
     user_id: localStorage.getItem('userID'),
-    med_name:
+    med_name: correctCasing(
       result &&
-      result.strength &&
-      result.strength[0] &&
-      result.strength[0][0] &&
-      result.strength[0][0],
+        result.strength &&
+        result.strength[0] &&
+        result.strength[0][0] &&
+        result.strength[0][0]
+    ),
     med_color: correctCasing(result.color_text),
     med_shape: correctCasing(result.shape_text),
     med_strength:
@@ -107,7 +108,7 @@ const SearchResult = ({
             src={`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEtm2tJxpsgbyWcy36iZ6tPxSyg-wLQNBLOzRqbiNCaq1iAy5O`}
             alt='A drug'
           />
-          <ResultInfo result={result} />
+          <ResultInfo result={result} correctCasing={correctCasing} />
           {/* <CircularProgress
             style={{
               marginLeft: '2rem',
