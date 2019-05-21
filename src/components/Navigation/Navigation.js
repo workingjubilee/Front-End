@@ -109,6 +109,10 @@ const styles = theme => ({
     '&:hover': {
       color: fade('#2c419b', 0.75)
     }
+  },
+  greyStripe: {
+    background: '#F0F3F5',
+    height: '20px'
   }
 });
 
@@ -196,6 +200,7 @@ class Navigation extends Component {
             <Typography component='h5'>Medication Diary</Typography>
           </NavLink>
         </nav>
+        <div className={classes.greyStripe} />
       </>
     );
   }
