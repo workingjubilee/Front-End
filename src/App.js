@@ -16,7 +16,7 @@ const PillsContainer = React.lazy(() =>
 );
 const Landing = React.lazy(() => import('./components/Landing/Landing'));
 const Loading = React.lazy(() => import('./components/Loading/Loading'));
-const ScanOrAdd = React.lazy(() => import('./components/Indentify'));
+const ScanOrAdd = React.lazy(() => import('./components/Identify'));
 const AddDosage = React.lazy(() => import('./components/AddDosage/AddDosage'));
 
 function App() {

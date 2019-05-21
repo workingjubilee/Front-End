@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { addMed } from 'actions';
 import { useToggle } from 'utilities/useToggle';
 import Button from '@material-ui/core/Button';
-import Scan from './ByImage/Scan'; // Prioritizing the Scan component
-import SearchPill from './ByForm/SearchPill';
+import Scan from './ByImage'; // Prioritizing the Scan component
+import SearchPill from './ByForm';
 import Search from 'components/SearchResults';
 import PillInfoModal from 'components/Modals/PillInfoModal';
 // import Pill from 'components/PillsContainer/Pill.js';
