@@ -36,7 +36,7 @@ const SearchResults = ({
             })
             .map(result => (
               <SearchResult
-                key={result.setid}
+                key={result.product_code + result.setid}
                 result={result}
                 handleAddPill={handleAddPill}
                 handleAddPillReminders={handleAddPillReminders}

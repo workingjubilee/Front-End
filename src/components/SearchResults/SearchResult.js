@@ -48,23 +48,28 @@ const SearchResult = ({
   handleAddPill,
   handleAddPillReminders
 }) => {
+  const correctCasing = string => {
+    const lowerCasedString = string.toLowerCase();
+    return lowerCasedString[0].toUpperCase() + lowerCasedString.slice(1);
+  };
   const formattedPill = {
     user_id: localStorage.getItem('userID'),
-    med_name:
+    med_name: correctCasing(
       result &&
-      result.strength &&
-      result.strength[0] &&
-      result.strength[0][0] &&
-      result.strength[0][0],
-    med_color: result.color_text,
-    med_shape: result.shape_text,
-    med_dose:
+        result.strength &&
+        result.strength[0] &&
+        result.strength[0][0] &&
+        result.strength[0][0]
+    ),
+    med_color: correctCasing(result.color_text),
+    med_shape: correctCasing(result.shape_text),
+    med_strength:
       result &&
       result.strength &&
       result.strength[0] &&
       result.strength[0][1] &&
       parseInt(result.strength[0][1]),
-    med_dose_unit:
+    med_strength_unit:
       result &&
       result.strength &&
       result.strength[0] &&
@@ -103,7 +108,7 @@ const SearchResult = ({
             src={`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEtm2tJxpsgbyWcy36iZ6tPxSyg-wLQNBLOzRqbiNCaq1iAy5O`}
             alt='A drug'
           />
-          <ResultInfo result={result} />
+          <ResultInfo result={result} correctCasing={correctCasing} />
           {/* <CircularProgress
             style={{
               marginLeft: '2rem',

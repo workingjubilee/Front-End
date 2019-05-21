@@ -18,6 +18,21 @@ const SearchPill = ({ dispatch, setData, ...rest }) => {
 
   const textEndpoint = `${process.env.REACT_APP_DATA_SCIENCE}/rxdata`;
 
+  const resetForm = () => {
+    if (name.length > 0) {
+      setName('');
+    }
+    if (imprint.length > 0) {
+      setImprint('');
+    }
+    if (color.length > 0) {
+      setColor('');
+    }
+    if (shape.length > 0) {
+      setShape('');
+    }
+  };
+
   // useEffect(() => {}, [color, shape]);
   const search = async e => {
     e.preventDefault();
@@ -83,7 +98,11 @@ const SearchPill = ({ dispatch, setData, ...rest }) => {
             />
           </div>
           <div className='button-container'>
-            <Button variant='contained' className='reset-button'>
+            <Button
+              variant='contained'
+              className='reset-button'
+              onClick={resetForm}
+            >
               Reset form
             </Button>
             <Button onClick={search} variant='contained' className='id-button'>
