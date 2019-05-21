@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { addMed } from 'actions';
 import { useToggle } from 'utilities/useToggle';
 import Button from '@material-ui/core/Button';
-import Scan from './ByImage'; // Prioritizing the Scan component
-import SearchPill from './ByForm';
-import Search from 'components/SearchResults';
+import ImageSearch from './ByImage'; // Prioritizing the Scan component
+import FormSearch from './ByForm';
+import SearchResults from './Results';
 import PillInfoModal from 'components/Modals/PillInfoModal';
 // import Pill from 'components/PillsContainer/Pill.js';
 
@@ -42,7 +42,7 @@ function ScanOrAdd({ location, history, addMed }) {
   return (
     <>
       {data ? (
-        <Search
+        <SearchResults
           searchResults={data}
           handleAddPill={handleAddPill}
           handleAddPillReminders={handleAddPillReminders}
@@ -51,8 +51,8 @@ function ScanOrAdd({ location, history, addMed }) {
       ) : (
         <section className='scan-container'>
           <h2>Identify your Pill before scheduling</h2>
-          <Scan history={history} setData={setData} />
-          <SearchPill setData={setData} />
+          <ImageSearch history={history} setData={setData} />
+          <FormSearch setData={setData} />
           <section className='option3-container'>
             <div className='label'>
               <h5>Option 3 -</h5>
