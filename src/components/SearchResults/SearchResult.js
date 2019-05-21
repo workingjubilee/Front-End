@@ -79,24 +79,6 @@ const SearchResult = ({
 
   const [open, setOpen] = useState(false);
 
-  // function selectPill(e) {
-  //   e.preventDefault();
-  //   setPill({
-  //     user_id: localStorage.getItem('userID'),
-  //     med_name: thisPill.strength[0] && result.med_strength[0][0],
-  //     med_color: result.color_text,
-  //     med_shape: result.shape_text,
-  //     med_strength: result.strength[0] && result.strength[0][1],
-  //     med_strength: result.strength[0] && result.strength[0][2]
-  //   });
-  // }
-
-  // useEffect(() => {
-  //   console.log('RESULT: ', result.strength[0]);
-  //   setThisPill(result.strength[0]);
-  //   console.log('THIS PILL: ', thisPill);
-  // }, [result, setThisPill, thisPill]);
-
   console.log(result);
   return (
     <Card className={classes.card}>
