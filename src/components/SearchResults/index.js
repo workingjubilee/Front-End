@@ -8,8 +8,9 @@ import { mobile, tablet } from 'scss/mediaVariables';
 const SearchResults = ({
   searchResults,
   handleAddPill,
-  handleAddPillReminders
-  // setPill,
+  handleAddPillReminders,
+  setPill,
+  history
   // pill
 }) => {
   const style = {
@@ -45,6 +46,8 @@ const SearchResults = ({
                 result={result}
                 handleAddPill={handleAddPill}
                 handleAddPillReminders={handleAddPillReminders}
+                setPill={setPill}
+                history={history}
               />
             ))}
       </div>

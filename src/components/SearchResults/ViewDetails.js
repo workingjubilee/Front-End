@@ -57,20 +57,7 @@ const styles = theme => ({
 const ViewDetails = ({ classes, setOpen, open, result }) => {
   return (
     <div>
-      {/* <Modal
-        open={open}
-        onClose={e => {
-          e.preventDefault();
-          setOpen(false);
-        }}
-      >
-        <img
-          className={classes.genericImage}
-          src={`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEtm2tJxpsgbyWcy36iZ6tPxSyg-wLQNBLOzRqbiNCaq1iAy5O`}
-        />
-        <Button>Add Pill</Button>
-        <Button>Add pill with reminder</Button>
-      </Modal> */}
+      <h2>More info!!!!</h2>
     </div>
   );
 };

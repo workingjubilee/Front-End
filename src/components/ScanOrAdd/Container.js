@@ -11,7 +11,7 @@ import Search from 'components/SearchResults';
 function ScanOrAdd({ location, history, addMed }) {
   const [open, setOpen] = useToggle(false);
   const [data, setData] = useState();
-  // const [pill, setPill] = useState({});
+  const [pill, setPill] = useState({});
 
   const handleAddPill = pillInfo => {
     addMed({
@@ -43,9 +43,11 @@ function ScanOrAdd({ location, history, addMed }) {
     <>
       {data ? (
         <Search
+          setPill={setPill}
           searchResults={data}
           handleAddPill={handleAddPill}
           handleAddPillReminders={handleAddPillReminders}
+          history={history}
         />
       ) : (
         <section className='scan-container'>
@@ -61,12 +63,12 @@ function ScanOrAdd({ location, history, addMed }) {
               Add Pill Manually
             </Button>
           </section>
-          <PillInfoModal
+          {/* <PillInfoModal
             open={open}
             handleAddPill={handleAddPill}
             handleAddPillReminders={handleAddPillReminders}
             handleClose={setOpen}
-          />
+          /> */}
         </section>
       )}
     </>

@@ -47,7 +47,9 @@ const SearchResult = ({
   classes,
   result,
   handleAddPill,
-  handleAddPillReminders
+  handleAddPillReminders,
+  setPill,
+  history
 }) => {
   const correctCasing = string => {
     const lowerCasedString = string.toLowerCase();
@@ -78,9 +80,6 @@ const SearchResult = ({
       result.strength[0][2]
   };
 
-  const [open, setOpen] = useState(false);
-
-  console.log(result);
   return (
     <Card className={classes.card}>
       {/* Paper might not be necessary here */}
@@ -106,9 +105,8 @@ const SearchResult = ({
           <Button
             onClick={e => {
               e.preventDefault();
-              console.log(open);
-              setOpen(!open);
-              console.log(open);
+              setPill(formattedPill);
+              history.push('/viewdetails');
             }}
             className={`${classes.button} ${classes.view}`}
           >
@@ -132,7 +130,6 @@ const SearchResult = ({
           >
             Add with Reminder
           </Button>
-          <ViewDetails open={open} setOpen={setOpen} result={result} />
         </CardContent>
       </Paper>
     </Card>
