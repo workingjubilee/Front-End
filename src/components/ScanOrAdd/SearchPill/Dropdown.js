@@ -4,6 +4,18 @@ import Select from '@material-ui/core/Select';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import MenuItem from '@material-ui/core/MenuItem';
 
+
+const Swatch = ({color}) => {
+  const swatchObject = {
+    background: `${color}`,
+    padding: '0 12px',
+    marginRight: '4px'
+  }
+  return (
+    <span style={swatchObject} />
+  );
+}
+
 const Dropdown = ({ itemName, itemList, item, setItem }) => {
   return (
     <FormControl variant='outlined' className='form-control'>
@@ -18,7 +30,7 @@ const Dropdown = ({ itemName, itemList, item, setItem }) => {
           const casedItem = item.toLowerCase();
           return (
             <MenuItem key={index} value={item}>
-              {casedItem[0].toUpperCase() + casedItem.slice(1)}
+              <Swatch color={item} /> {casedItem[0].toUpperCase() + casedItem.slice(1)}
             </MenuItem>
           );
         })}
@@ -28,67 +40,3 @@ const Dropdown = ({ itemName, itemList, item, setItem }) => {
 };
 
 export default Dropdown;
-
-// .wrapper-dropdown {
-//     position: relative;
-//     width: 200px;
-//     background: #FFF;
-//     color: #2e2e2e;
-//     outline: none;
-//     cursor: pointer;
-// }
-// .wrapper-dropdown > span {
-//   width: 100%;
-//   display: block;
-//   border: 1px solid #ababab;
-//   padding: 5px;
-// }
-// .wrapper-dropdown > span > span {
-//   padding: 0 12px;
-//   margin-right: 5px;
-// }
-// .wrapper-dropdown > span:after {
-//     content: "";
-//     width: 0;
-//     height: 0;
-//     position: absolute;
-//     right: 16px;
-//     top: calc(50% + 4px);
-//     margin-top: -6px;
-//     border-width: 6px 6px 0 6px;
-//     border-style: solid;
-//     border-color: #2e2e2e transparent;
-// }
-
-// .wrapper-dropdown .dropdown {
-//     position: absolute;
-//     z-index: 10;
-//     top: 100%;
-//     left: 0;
-//     right: 0;
-//     background: #fff;
-//     font-weight: normal;
-//     list-style-type: none;
-//     padding-left: 0;
-//     margin: 0;
-//     border: 1px solid #ababab;
-//     border-top: 0;
-// }
-
-// .wrapper-dropdown .dropdown li {
-//     display: block;
-//     text-decoration: none;
-//     color: #2e2e2e;
-//     padding: 5px;
-//     cursor: pointer;
-// }
-
-// .wrapper-dropdown .dropdown li > span {
-//   padding: 0 12px;
-//   margin-right: 5px;
-// }
-
-// .wrapper-dropdown .dropdown li:hover {
-//     background: #eee;
-//     cursor: pointer;
-// }
