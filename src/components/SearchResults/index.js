@@ -4,7 +4,7 @@ import AdditionalSearchInfo from './AdditionalSearchInfo';
 import SearchResult from './SearchResult';
 import ViewDetails from './ViewDetails';
 
-import { mobile, tablet } from 'scss/mediaVariables';
+import { tablet } from 'scss/mediaVariables';
 
 const SearchResults = ({
   searchResults,

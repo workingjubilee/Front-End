@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -7,7 +7,6 @@ import Paper from '@material-ui/core/Paper';
 // import CircularProgress from '@material-ui/core/CircularProgress';
 // import Image from './Image';
 import ResultInfo from './ResultInfo';
-import ViewDetails from './ViewDetails';
 
 const styles = {
   card: {
@@ -48,8 +47,7 @@ const SearchResult = ({
   result,
   handleAddPill,
   handleAddPillReminders,
-  setPill,
-  history
+  setPill
 }) => {
   const correctCasing = string => {
     const lowerCasedString = string.toLowerCase();
