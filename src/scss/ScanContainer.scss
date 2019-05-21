@@ -16,6 +16,12 @@ $lightgray: #d6d8dd;
     font-size: 1.6rem;
     text-align: center;
   }
+  h4,
+  p,
+  button,
+  span {
+    font-weight: 300;
+  }
   .option1-container {
     display: flex;
     margin-top: 80px;
@@ -222,6 +228,9 @@ $lightgray: #d6d8dd;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    h5 {
+      font-weight: 300;
+    }
     .label {
       display: flex;
       justify-content: center;
