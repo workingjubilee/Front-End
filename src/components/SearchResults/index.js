@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 // import { connect } from 'react-redux';
 import AdditionalSearchInfo from './AdditionalSearchInfo';
 import SearchResult from './SearchResult';
@@ -10,10 +10,10 @@ const SearchResults = ({
   searchResults,
   handleAddPill,
   handleAddPillReminders,
-  setPill,
-  history,
-  pill
+  history
 }) => {
+  const [pill, setPill] = useState(null);
+
   const style = {
     display: 'flex',
     margin: '0 5rem',
