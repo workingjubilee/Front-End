@@ -105,8 +105,8 @@ const SearchResult = ({
           <Button
             onClick={e => {
               e.preventDefault();
-              setPill(formattedPill);
-              history.push('/viewdetails');
+              setPill(result);
+              // history.push('/viewdetails');
             }}
             className={`${classes.button} ${classes.view}`}
           >
