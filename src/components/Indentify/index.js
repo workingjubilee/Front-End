@@ -3,15 +3,15 @@ import { connect } from 'react-redux';
 import { addMed } from 'actions';
 import { useToggle } from 'utilities/useToggle';
 import Button from '@material-ui/core/Button';
-import Scan from './Scan/Scan.js'; // Prioritizing the Scan component
-import SearchPill from './SearchPill/SearchPill';
-import PillInfoModal from 'components/Modals/PillInfoModal';
+import Scan from './ByImage/Scan'; // Prioritizing the Scan component
+import SearchPill from './ByForm/SearchPill';
 import Search from 'components/SearchResults';
+import PillInfoModal from 'components/Modals/PillInfoModal';
+// import Pill from 'components/PillsContainer/Pill.js';
 
 function ScanOrAdd({ location, history, addMed }) {
   const [open, setOpen] = useToggle(false);
   const [data, setData] = useState();
-  // const [pill, setPill] = useState({});
 
   const handleAddPill = pillInfo => {
     addMed({
@@ -46,6 +46,7 @@ function ScanOrAdd({ location, history, addMed }) {
           searchResults={data}
           handleAddPill={handleAddPill}
           handleAddPillReminders={handleAddPillReminders}
+          history={history}
         />
       ) : (
         <section className='scan-container'>
