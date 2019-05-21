@@ -1,6 +1,14 @@
+$red: #dc4250;
+$lightgray: #d6d8dd;
+
 .scan-container {
   margin: 48px auto auto auto;
   max-width: 1262px;
+
+  strong {
+    font-weight: 400;
+  }
+
   h2 {
     font-size: 2rem;
   }
@@ -17,14 +25,14 @@
       h4 {
         width: 100%;
         text-align: center;
-        background-color: #d6d8dd;
+        background-color: $lightgray;
         padding: 7px 0;
       }
       .image-upload {
         display: flex;
         justify-content: space-evenly;
         margin-top: 16px;
-        border: 1px solid #d6d8dd;
+        border: 1px solid $lightgray;
         border-radius: 6px;
         height: 320px;
 
@@ -75,12 +83,16 @@
     }
     .directions {
       width: 380px;
+      span {
+        color: $red;
+      }
       h2 {
         text-align: center;
         border: 1px dashed #e9e9e9;
         background-color: #f7f7f7;
         padding: 20px;
         font-weight: 300;
+        width: 350px;
       }
 
       h3 {
@@ -100,6 +112,7 @@
           list-style-type: decimal;
           li {
             font-size: 0.8rem;
+            font-weight: 300;
           }
         }
       }
@@ -115,12 +128,12 @@
       h4 {
         width: 100%;
         text-align: center;
-        background-color: #d6d8dd;
+        background-color: $lightgray;
         padding: 7px 0;
       }
       .search-container {
         margin-top: 16px;
-        border: 1px solid #d6d8dd;
+        border: 1px solid $lightgray;
         border-radius: 6px;
         height: 461px;
 
@@ -176,6 +189,9 @@
     }
     .directions {
       width: 380px;
+      span {
+        color: $red;
+      }
       article {
         height: 230px;
         border: 1px solid #ebecee;
@@ -191,6 +207,7 @@
           li {
             font-size: 0.8rem;
             width: 100%;
+            font-weight: 300;
           }
         }
       }
@@ -199,7 +216,7 @@
   .option3-container {
     width: 690px;
     height: 60px;
-    border: 1px solid #d6d8dd;
+    border: 1px solid $lightgray;
     border-radius: 6px;
     margin-top: 40px;
     display: flex;
