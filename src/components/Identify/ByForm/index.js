@@ -42,7 +42,7 @@ const SearchPill = ({ dispatch, setData, ...rest }) => {
       console.error(error);
     } // Search for pill
   };
-  
+
   return (
     <section className='option2-container'>
       <div className='identify-container'>
@@ -125,7 +125,6 @@ const SearchPill = ({ dispatch, setData, ...rest }) => {
             <li>
               Select the pill color <span>(optional)</span>
             </li>
-            <br />
             <li>Select the shape</li>
             <li>Click "Identify Pill" button</li>
             <li>Click "Reset" to re-enter search fields</li>
