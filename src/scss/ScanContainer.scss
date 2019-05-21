@@ -95,7 +95,8 @@
           display: flex;
           flex-wrap: wrap;
           align-content: space-between;
-          padding: 22px 30px 32px 30px;
+          padding: 22px 30px 32px 45px;
+          list-style-type: decimal;
           li {
             font-size: 0.8rem;
           }
@@ -184,7 +185,8 @@
           display: flex;
           flex-wrap: wrap;
           align-content: space-between;
-          padding: 22px 30px 32px 30px;
+          padding: 22px 30px 32px 45px;
+          list-style-type: decimal;
           li {
             font-size: 0.8rem;
             width: 100%;
