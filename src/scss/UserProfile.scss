@@ -22,7 +22,7 @@
 
 .user-profile-content {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   @media (max-width: 800px) {
     flex-direction: column;
   }
@@ -37,12 +37,15 @@
   width: 350px;
   min-width: 350px;
   height: 300px;
-  margin: 0 auto;
+  @media (max-width: 800px) {
+    margin: 0 auto;
+  }
 }
 
 .user-profile-inputs {
   display: flex;
   flex-direction: column;
+  margin: 0 auto;
 }
 
 .user-profile-input-label {
