@@ -6,24 +6,32 @@ const styles = {
   card: {
     width: '95%',
     height: '100%',
+    minHeight: '5rem',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
     marginLeft: '3%',
     boxShadow: 'none'
   },
   static: {
     backgroundColor: '#F0F3F5',
     fontWeight: 'bold',
-    fontSize: '16px',
+    fontSize: '1rem',
     width: '9rem',
-    height: '1.5rem',
-    padding: '5px'
+    height: '2.2rem',
+    padding: '5px',
+    display: 'flex',
+    alignItems: 'center'
   },
   dynamic: {
     backgroundColor: 'white',
-    height: '1.5rem',
-    fontSize: '16px',
+    height: '2.2rem',
+    fontSize: '.7rem',
     border: '3px solid #F0F3F5',
     width: '100%',
-    padding: '5px'
+    padding: '5px',
+    display: 'flex',
+    alignItems: 'center'
   },
   row: {
     display: 'flex'

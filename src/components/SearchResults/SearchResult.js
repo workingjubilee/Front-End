@@ -24,9 +24,10 @@ const styles = {
   },
   button: {
     width: '30%',
-    height: '2rem',
-    fontSize: '0.7rem',
+    height: '2.3rem',
+    fontSize: '0.5rem',
     color: 'white',
+    fontWeight: 'bold',
     textTransform: 'Capitalize',
     boxShadow: '.1rem .1rem .1rem grey'
   },

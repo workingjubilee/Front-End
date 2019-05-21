@@ -3,7 +3,7 @@ import React from 'react';
 import AdditionalSearchInfo from './AdditionalSearchInfo';
 import SearchResult from './SearchResult';
 
-import { tablet } from 'scss/mediaVariables';
+import { mobile, tablet } from 'scss/mediaVariables';
 
 const SearchResults = ({
   searchResults,
@@ -14,13 +14,20 @@ const SearchResults = ({
 }) => {
   const style = {
     display: 'flex',
-    maxWidth: '99%'
+    margin: '0 5rem',
+    [`${tablet}`]: {
+      display: 'none',
+      margin: 'none'
+    }
   };
 
+  // Okay, these media queries are not working. 'Display: none' is just to prove this point.
   const leftStyle = {
-    width: '55%',
+    maxWidth: '90%',
+    marginRight: '5rem',
     [`${tablet}`]: {
-      border: '1px solid blue'
+      display: 'none',
+      margin: 'none'
     }
   };
 
