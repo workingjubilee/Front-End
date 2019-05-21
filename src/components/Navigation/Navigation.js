@@ -17,17 +17,18 @@ import { tablet } from 'scss/mediaVariables';
 
 const Toolbar = withStyles({
   root: {
-    height: '60px',
+    height: '110px',
     justifyContent: 'space-between'
   },
   regular: {
     minHeight: '60px',
     [`${tablet}`]: {
-      minHeight: '60px'
+      minHeight: '60px',
+      height: '60px'
     }
   },
   gutters: {
-    padding: '0 10px 0 10px'
+    padding: '0 10px 0 40px'
   }
 })(props => <MuiToolbar {...props} />);
 
@@ -45,7 +46,11 @@ IconButton.muiName = 'IconButton';
 
 const styles = theme => ({
   root: {
-    width: '100%'
+    width: '100%',
+    borderBottom: '1px solid #3b3b3c'
+  },
+  bar: {
+    'box-shadow': 'none'
   },
   grow: {
     flexGrow: 1
@@ -57,12 +62,14 @@ const styles = theme => ({
     fontFamily: 'Roboto'
   },
   subTitle: {
+    fontWeight: 300,
     '@media (max-width: 350px)': {
       display: 'none'
     }
   },
   strong: {
-    fontSize: '2.5rem'
+    fontSize: '2.5rem',
+    fontWeight: 400
   },
   search: {
     display: 'flex',
@@ -141,7 +148,7 @@ class Navigation extends Component {
     return (
       <>
         <div className={classes.root}>
-          <AppBar position='static'>
+          <AppBar position='static' className={classes.bar}>
             <Toolbar>
               <Link to='/' className='title'>
                 <Typography
