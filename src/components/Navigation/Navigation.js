@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
+import { withRouter } from 'react-router-dom';
 import SearchIcon from '@material-ui/icons/Search';
 import ProfileIcon from '../ProfileIcon/ProfileIcon';
 import ArrowIcon from '@material-ui/icons/CompareArrows';
@@ -139,7 +140,9 @@ class Navigation extends Component {
     const { classes } = this.props;
 
     return (
-      <>
+      <div
+        style={{ display: this.props.location.pathname === '/' ? 'none' : '' }}
+      >
         <div className={classes.root}>
           <AppBar position='static'>
             <Toolbar>
@@ -196,11 +199,11 @@ class Navigation extends Component {
             <Typography component='h5'>Medication Diary</Typography>
           </NavLink>
         </nav>
-      </>
+      </div>
     );
   }
 }
 
-const StyledNavigation = withStyles(styles)(Navigation);
+const StyledNavigation = withStyles(styles)(withRouter(Navigation));
 
 export default StyledNavigation;
