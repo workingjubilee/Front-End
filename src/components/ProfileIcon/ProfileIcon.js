@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 import { fetchUser, fetchMeds, fetchRems, filterReminders } from 'actions';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 class ProfileIcon extends Component {
   componentDidMount() {
@@ -38,20 +39,28 @@ class ProfileIcon extends Component {
       });
     }
   }
+
   render() {
     const { classes, user, filteredRems } = this.props;
     const { username } = user;
     return (
       <Card className={classes.paper}>
-        <div className={classes.alignLeft}>
-          <Typography className={classes.text}>Hello {username} </Typography>
+        <div className={classes.profileText}>
+          <Link className={classes.link} to='/user'>
+            <Typography className={classes.text}>Hello {username} </Typography>
+          </Link>
           <Card>
-            <Typography className={classes.lowerText}>
-              {filteredRems.length} pills today
-            </Typography>
+            <Link className={classes.link} to='/reminders'>
+              <Typography className={classes.lowerText}>
+                {filteredRems.length}{' '}
+                {filteredRems.length === 1 ? 'med' : 'meds'} today
+              </Typography>
+            </Link>
           </Card>
         </div>
-        <Avatar className={classes.avatar} alt={user.username} />
+        <Link className={classes.link} to='/user'>
+          <Avatar className={classes.avatar} alt={user.username} />
+        </Link>
       </Card>
     );
   }
@@ -68,16 +77,27 @@ const styles = theme => ({
     fontSize: '1rem',
     color: 'white'
   },
-  alignLeft: {
-    textAlign: 'left'
+  profileText: {
+    textAlign: 'right',
+    paddingRight: '5px'
   },
   lowerText: {
     fontSize: '.8rem',
-    color: '#2d90f5'
+    color: '#2d90f5',
+    padding: '0 5px 0 5px',
+    '&:hover': {
+      background: 'lightGreen'
+    }
   },
   avatar: {
     width: '3rem',
-    height: '3rem'
+    height: '3rem',
+    '@media (max-width: 375px)': {
+      display: 'none'
+    }
+  },
+  link: {
+    textDecoration: 'none'
   }
 });
 

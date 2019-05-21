@@ -1,11 +1,12 @@
 module.exports = function parseMedStrengths(meds) {
-  const scaryRegex = /^(\D+)(\d+\.*\d*).+(mg|mcg|IU)/i;
+  const scaryRegex = /^([^0-9]*?)(\d*[.]?\d*)(\D*?)$/gi;
 
   console.log("Received as: ", meds);
 
   const regexStrength = (medStr, regex) =>
     medStr
       .split(';')
+      .filter(Boolean)
       .map(ingredient => ingredient.split(regex).filter(Boolean));
 
   const typeCheck = (maybeJSON) => {

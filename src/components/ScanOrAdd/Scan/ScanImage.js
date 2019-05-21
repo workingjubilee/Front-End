@@ -2,22 +2,15 @@ import React, { useState } from 'react';
 // import ImageCapture from './ImageCapture.js';
 // import { useToggle } from 'utilities/useToggle';
 import axios from 'axios';
-import CloudIcon from '@material-ui/icons/CloudUpload';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import parseMedStrengths from 'utilities/parseMedStrengths';
+import FileInput from './FileInput';
 
 function ScanImage({ setData, classes, ...props }) {
   const [photo, setPhoto] = useState(null);
   // const [camera, toggleCamera] = useToggle(false);
   const photoSelect = event => setPhoto(event.target.files[0]);
-
-  const magicClicker = event => {
-    if (event.which === 32 || event.which === 13) {
-      event.preventDefault();
-      document.querySelector('#image-upload-button').click();
-    }
-  };
 
   const upload = async () => {
     if (!photo) {
@@ -46,29 +39,7 @@ function ScanImage({ setData, classes, ...props }) {
         <h4>Option 1 - Identify by uploading pill image</h4>
         <div className='image-upload'>
           <h5>Pill Image Upload</h5>
-          <div className='upload-button-container'>
-            <CloudIcon />
-            <label htmlFor='image-upload-button'>
-              <input
-                accept='image/*'
-                className={classes.input}
-                id='image-upload-button'
-                onChange={photoSelect}
-                type='file'
-              />
-              <Button
-                variant='contained'
-                /* If you think this span is merely stylistic... */
-                component='span'
-                /* ...think again. */
-                className='upload-button'
-                onKeyDown={magicClicker}
-              >
-                Upload front image of pill
-              </Button>
-            </label>
-            <p>or drag and drop them here</p>
-          </div>
+          <FileInput classes={classes} photoSelect={photoSelect} />
           {/*state && state.hasVideo && (
             <Button style={{ display: 'none' }} onClick={toggleCamera}>
               Take Photo
