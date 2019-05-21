@@ -1,23 +1,10 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import MuiCardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-
-const CardContent = withStyles({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-    height: '100%',
-    justifyContent: 'space-between'
-  }
-})(props => <MuiCardContent {...props} />);
-
-CardContent.muiName = 'CardContent';
 
 const styles = {
   card: {
-    width: '100%',
+    width: '95%',
     height: '100%',
     marginLeft: '3%',
     boxShadow: 'none'
@@ -45,23 +32,21 @@ const styles = {
 
 const ResultInfo = ({ classes, result, correctCasing }) => {
   return (
-    <Card className={classes.card}>
-      <CardContent>
-        <div className={classes.row}>
-          <Typography className={classes.static}>Pill Name:</Typography>
-          <Typography className={classes.dynamic}>
-            {correctCasing(result.strength[0] && result.strength[0][0])}
-          </Typography>
-        </div>
-        <div className={classes.row}>
-          <Typography className={classes.static}>Strength:</Typography>
-          <Typography className={classes.dynamic}>
-            {result.strength[0] && result.strength[0][1]}
-            {result.strength[0] && result.strength[0][2]}
-          </Typography>
-        </div>
-      </CardContent>
-    </Card>
+    <div className={classes.card}>
+      <div className={classes.row}>
+        <Typography className={classes.static}>Pill Name:</Typography>
+        <Typography className={classes.dynamic}>
+          {correctCasing(result.strength[0] && result.strength[0][0])}
+        </Typography>
+      </div>
+      <div className={classes.row}>
+        <Typography className={classes.static}>Strength:</Typography>
+        <Typography className={classes.dynamic}>
+          {result.strength[0] && result.strength[0][1]}
+          {result.strength[0] && result.strength[0][2]}
+        </Typography>
+      </div>
+    </div>
   );
 };
 
