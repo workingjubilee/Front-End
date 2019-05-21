@@ -27,10 +27,9 @@ const Dropdown = ({ itemName, itemList, item, setItem }) => {
         }
       >
         {itemList.map((item, index) => {
-          const casedItem = item.toLowerCase();
           return (
             <MenuItem key={index} value={item}>
-              <Swatch color={item} /> {casedItem[0].toUpperCase() + casedItem.slice(1)}
+              <Swatch color={item} /> {item}
             </MenuItem>
           );
         })}
