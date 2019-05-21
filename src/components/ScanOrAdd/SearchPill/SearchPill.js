@@ -54,68 +54,89 @@ const SearchPill = ({ dispatch, setData, ...rest }) => {
   };
   return (
     <section className='option2-container'>
-      <h4>Option 2 - Identify by direct input</h4>
-      <div className='search-container'>
-        <form className='form-container' onSubmit={search}>
-          <div className='field-container'>
-            <h5>Pill Name</h5>
-            <TextField
-              value={name}
-              onChange={e => setName(e.target.value)}
-              margin='normal'
-              variant='outlined'
-              className='field'
-            />
-          </div>
-          <div className='field-container'>
-            <h5>Imprint</h5>
-            <TextField
-              value={imprint}
-              onChange={e => setImprint(e.target.value)}
-              margin='normal'
-              variant='outlined'
-              className='field'
-            />
-          </div>
-          <p>Numbers and/or Letters on the pill</p>
-          <div className='field-container'>
-            <h5>Pill Color</h5>
-            <Dropdown
-              itemName='color'
-              itemList={colors}
-              item={color}
-              setItem={setColor}
-              className='field'
-            />
-          </div>
-          <div className='field-container'>
-            <h5>Pill Shape</h5>
-            <Dropdown
-              itemName='shape'
-              itemList={shapes}
-              item={shape}
-              setItem={setShape}
-              className='field'
-            />
-          </div>
-          <div className='button-container'>
-            <Button
-              variant='contained'
-              className='reset-button'
-              onClick={resetForm}
-            >
-              Reset form
-            </Button>
-            <Button
-              onClick={search}
-              type='submit'
-              variant='contained'
-              className='id-button'
-            >
-              Identify Pill
-            </Button>
-          </div>
-        </form>
+      <div className='identify-container'>
+        <h4>Option 2 - Identify by direct input</h4>
+        <div className='search-container'>
+          <form className='form-container' onSubmit={search}>
+            <div className='field-container'>
+              <h5>Pill Name</h5>
+              <TextField
+                value={name}
+                onChange={e => setName(e.target.value)}
+                margin='normal'
+                variant='outlined'
+                className='field'
+              />
+            </div>
+            <div className='field-container'>
+              <h5>Imprint</h5>
+              <TextField
+                value={imprint}
+                onChange={e => setImprint(e.target.value)}
+                margin='normal'
+                variant='outlined'
+                className='field'
+              />
+            </div>
+            <p>Numbers and/or Letters on the pill</p>
+            <div className='field-container'>
+              <h5>Pill Color</h5>
+              <Dropdown
+                itemName='color'
+                itemList={colors}
+                item={color}
+                setItem={setColor}
+                className='field'
+              />
+            </div>
+            <div className='field-container'>
+              <h5>Pill Shape</h5>
+              <Dropdown
+                itemName='shape'
+                itemList={shapes}
+                item={shape}
+                setItem={setShape}
+                className='field'
+              />
+            </div>
+            <div className='button-container'>
+              <Button
+                variant='contained'
+                className='reset-button'
+                onClick={resetForm}
+              >
+                Reset form
+              </Button>
+              <Button
+                onClick={search}
+                type='submit'
+                variant='contained'
+                className='id-button'
+              >
+                Identify Pill
+              </Button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div className='directions'>
+        <h3>Option - 2</h3>
+        <article>
+          <ol>
+            <li>
+              Enter pill name <span>(optional)</span>
+            </li>
+            <li>
+              Enter the imprint (code, numbers and/or letters on the pill)
+            </li>
+            <li>
+              Select the pill color <span>(optional)</span>
+            </li>
+            <li>Select the shape</li>
+            <li>Click "Identify Pill" button</li>
+            <li>Click "Reset" to re-enter search fields</li>
+          </ol>
+        </article>
       </div>
     </section>
   );
