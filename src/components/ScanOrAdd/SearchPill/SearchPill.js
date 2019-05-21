@@ -55,7 +55,9 @@ const SearchPill = ({ dispatch, setData, ...rest }) => {
   return (
     <section className='option2-container'>
       <div className='identify-container'>
-        <h4>Option 2 - Identify by direct input</h4>
+        <h4>
+          Option 2 - Identify your pill by providing either pill name or imprint
+        </h4>
         <div className='search-container'>
           <form className='form-container' onSubmit={search}>
             <div className='field-container'>
@@ -120,7 +122,7 @@ const SearchPill = ({ dispatch, setData, ...rest }) => {
         </div>
       </div>
       <div className='directions'>
-        <h3>Option - 2</h3>
+        <h3>OPTION - 2</h3>
         <article>
           <ol>
             <li>
@@ -132,6 +134,7 @@ const SearchPill = ({ dispatch, setData, ...rest }) => {
             <li>
               Select the pill color <span>(optional)</span>
             </li>
+            <br />
             <li>Select the shape</li>
             <li>Click "Identify Pill" button</li>
             <li>Click "Reset" to re-enter search fields</li>
