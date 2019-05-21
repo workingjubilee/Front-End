@@ -55,8 +55,9 @@ function ScanOrAdd({ location, history, addMed }) {
           <FormSearch setData={setData} />
           <section className='option3-container'>
             <div className='label'>
-              <h5>Option 3 -</h5>
-              <p>Know your pill? Add it manually</p>
+              <h5>
+                <strong>Option 3</strong> - Know your pill? Add it manually
+              </h5>
             </div>
             <Button onClick={setOpen} variant='contained'>
               Add Pill Manually
