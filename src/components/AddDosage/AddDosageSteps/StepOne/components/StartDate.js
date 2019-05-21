@@ -81,7 +81,6 @@ const StartDate = ({ startDate, setStartDate }) => {
           height: '36px'
         }}
         id='date'
-        label='Birthday'
         type='date'
         value={startDate}
         onChange={handleStartDateChange}
