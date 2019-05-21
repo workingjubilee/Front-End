@@ -91,12 +91,12 @@
 
       .form-container {
         margin: 12px 0px 0px 30px;
-        width: 578px;
         .field-container {
           display: flex;
           justify-content: space-between;
           align-items: center;
           height: 80px;
+          width: 578px;
           h5 {
             font-size: 1.2rem;
           }
@@ -105,10 +105,22 @@
             width: 452px;
           }
         }
+        p {
+          font-size: 0.6rem;
+          text-align: left;
+          position: relative;
+          left: 127px;
+          margin-bottom: 16px;
+        }
         .button-container {
           display: flex;
           justify-content: space-between;
           width: 300px;
+          margin: 0 auto;
+          position: relative;
+          top: 30px;
+          left: 181px;
+
           .reset-button {
             color: white;
             background-color: #303030;

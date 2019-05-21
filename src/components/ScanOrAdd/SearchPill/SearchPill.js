@@ -77,6 +77,7 @@ const SearchPill = ({ dispatch, setData, ...rest }) => {
               className='field'
             />
           </div>
+          <p>Numbers and/or Letters on the pill</p>
           <div className='field-container'>
             <h5>Pill Color</h5>
             <Dropdown
@@ -105,7 +106,12 @@ const SearchPill = ({ dispatch, setData, ...rest }) => {
             >
               Reset form
             </Button>
-            <Button onClick={search} variant='contained' className='id-button'>
+            <Button
+              onClick={search}
+              type='submit'
+              variant='contained'
+              className='id-button'
+            >
               Identify Pill
             </Button>
           </div>
