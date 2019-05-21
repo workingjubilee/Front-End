@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Scan from './Scan';
+import Scan from './index.js';
 import AppWrapper from 'AppWrapper';
 
 it('renders without crashing', () => {

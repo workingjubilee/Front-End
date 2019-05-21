@@ -16,24 +16,15 @@ const SearchPill = ({ dispatch, setData, ...rest }) => {
   const [color, setColor] = useState('');
   const [shape, setShape] = useState('');
 
-  const textEndpoint = `${process.env.REACT_APP_DATA_SCIENCE}/rxdata`;
+  const formEndpoint = `${process.env.REACT_APP_DATA_SCIENCE}/rxdata`;
 
   const resetForm = () => {
-    if (name.length > 0) {
-      setName('');
-    }
-    if (imprint.length > 0) {
-      setImprint('');
-    }
-    if (color.length > 0) {
-      setColor('');
-    }
-    if (shape.length > 0) {
-      setShape('');
-    }
+    setName('');
+    setImprint('');
+    setColor('');
+    setShape('');
   };
 
-  // useEffect(() => {}, [color, shape]);
   const search = async e => {
     e.preventDefault();
     const query = {
@@ -44,14 +35,14 @@ const SearchPill = ({ dispatch, setData, ...rest }) => {
     };
     console.log(query);
     try {
-      const results = await axios.post(textEndpoint, query);
+      const results = await axios.post(formEndpoint, query);
       const parsedResults = parseMedStrengths(results.data);
       setData(parsedResults);
     } catch (error) {
       console.error(error);
-    }
-    // Search for pill
+    } // Search for pill
   };
+  
   return (
     <section className='option2-container'>
       <div className='identify-container'>

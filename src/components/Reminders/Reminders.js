@@ -56,16 +56,15 @@ const Reminders = ({ user, classes, filterReminders, rems }) => {
           <article className='attention'>
             <Typography component='h6'>ATTENTION</Typography>
             <Typography component='p'>
-              Don't forget to log your pill reactions
+              Dial 911 for any medical emergencies
             </Typography>
             <Typography component='p'>
-              Don't forget to log your allergies
+              Remember to log your allergies and reactions to your medications
             </Typography>
             <Typography component='p'>
-              Call your doctor if you notice adverse reactions after taking your
-              meds
+              Always consult your doctor regarding any unusual side effects from
+              taking a medication
             </Typography>
-            <Typography component='p'>Call 911 for any emergencies</Typography>
           </article>
         </Card>
       </section>

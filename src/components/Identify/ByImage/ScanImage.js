@@ -5,7 +5,7 @@ import axios from 'axios';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import parseMedStrengths from 'utilities/parseMedStrengths';
-import FileInput from './FileInput';
+import ImageUpload from 'components/ImageUpload';
 
 function ScanImage({ setData, classes, ...props }) {
   const [photo, setPhoto] = useState(null);
@@ -39,7 +39,7 @@ function ScanImage({ setData, classes, ...props }) {
         <h4>Option 1 - Identify by uploading pill image</h4>
         <div className='image-upload'>
           <h5>Pill Image Upload</h5>
-          <FileInput classes={classes} photoSelect={photoSelect} />
+          <ImageUpload classes={classes} photoSelect={photoSelect} uniqueID="image-scan-upload" />
           {/*state && state.hasVideo && (
             <Button style={{ display: 'none' }} onClick={toggleCamera}>
               Take Photo
