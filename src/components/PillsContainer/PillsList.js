@@ -45,7 +45,6 @@ class PillsList extends Component {
     if (fetchingMeds) {
       return (
         <div className={classes.loading}>
-          <h2>Loading Meds...</h2>
           <CircularProgress
             className={classes.progress}
             color='primary'
@@ -85,7 +84,10 @@ const styles = theme => ({
   },
   loading: {
     margin: '0 auto',
-    width: 500
+    width: 500,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -7,13 +7,12 @@ import Paper from '@material-ui/core/Paper';
 // import CircularProgress from '@material-ui/core/CircularProgress';
 // import Image from './Image';
 import ResultInfo from './ResultInfo';
-import ViewDetails from './ViewDetails';
 
 const styles = {
   card: {
     border: '1px solid gray',
     margin: '2%',
-    width: '100%'
+    width: '96%'
   },
   info: {
     display: 'flex'
@@ -24,11 +23,12 @@ const styles = {
   },
   button: {
     width: '30%',
-    height: '2rem',
-    fontSize: '0.7rem',
+    height: '2.3rem',
+    fontSize: '0.5rem',
     color: 'white',
+    fontWeight: 'bold',
     textTransform: 'Capitalize',
-    boxShadow: '.2rem .2rem .1rem grey'
+    boxShadow: '.1rem .1rem .1rem grey'
   },
   view: {
     backgroundColor: '#5AAC49'
@@ -46,7 +46,8 @@ const SearchResult = ({
   classes,
   result,
   handleAddPill,
-  handleAddPillReminders
+  handleAddPillReminders,
+  setPill
 }) => {
   const correctCasing = string => {
     const lowerCasedString = string.toLowerCase();
@@ -77,27 +78,6 @@ const SearchResult = ({
       result.strength[0][2]
   };
 
-  const [open, setOpen] = useState(false);
-
-  // function selectPill(e) {
-  //   e.preventDefault();
-  //   setPill({
-  //     user_id: localStorage.getItem('userID'),
-  //     med_name: thisPill.strength[0] && result.med_strength[0][0],
-  //     med_color: result.color_text,
-  //     med_shape: result.shape_text,
-  //     med_strength: result.strength[0] && result.strength[0][1],
-  //     med_strength: result.strength[0] && result.strength[0][2]
-  //   });
-  // }
-
-  // useEffect(() => {
-  //   console.log('RESULT: ', result.strength[0]);
-  //   setThisPill(result.strength[0]);
-  //   console.log('THIS PILL: ', thisPill);
-  // }, [result, setThisPill, thisPill]);
-
-  console.log(result);
   return (
     <Card className={classes.card}>
       {/* Paper might not be necessary here */}
@@ -123,9 +103,8 @@ const SearchResult = ({
           <Button
             onClick={e => {
               e.preventDefault();
-              console.log(open);
-              setOpen(!open);
-              console.log(open);
+              setPill(result);
+              // history.push('/viewdetails');
             }}
             className={`${classes.button} ${classes.view}`}
           >
@@ -149,7 +128,6 @@ const SearchResult = ({
           >
             Add with Reminder
           </Button>
-          <ViewDetails open={open} setOpen={setOpen} result={result} />
         </CardContent>
       </Paper>
     </Card>
