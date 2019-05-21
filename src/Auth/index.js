@@ -1,5 +1,6 @@
 import { httpsify } from '../utilities/httpsify';
 import Auth0Lock from 'auth0-lock';
+import logo from '../assets/logo.png';
 
 const Auth = (function() {
   let wm = new WeakMap();
@@ -14,6 +15,11 @@ const Auth = (function() {
           redirectUrl: httpsify(process.env.REACT_APP_AUTH_REDIRECT_URI),
           responseType: 'token id_token',
           autoParseHash: false
+        },
+        theme: {
+          logo,
+          primaryColor: '#2C90F5',
+          secondaryColor: '#5BAC48'
         }
       }
     );

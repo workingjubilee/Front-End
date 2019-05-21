@@ -1,20 +1,20 @@
 { "valid_shapes": [
-    "ROUND", "OVAL", "CAPSULE", "DIAMOND", "TRIANGLE",
-    "PENTAGON (5 SIDED)", "HEXAGON (6 SIDED)", "RECTANGLE", "BULLET",
-    "FREEFORM", "SQUARE", "OCTAGON (8 SIDED)", "TRAPEZOID",
-    "DOUBLE CIRCLE", "TEAR", "SEMI-CIRCLE", "CLOVER"
+    "Round", "Oval", "Capsule", "Diamond", "Triangle",
+    "Pentagon (5 sided)", "Hexagon (6 sided)", "Rectangle", "Bullet",
+    "Freeform", "Square", "Octagon (8 sided)", "Trapezoid",
+    "Double circle", "Tear", "Semi-circle", "Clover"
 ],
   "valid_colors": [
-    "WHITE",
-    "BLUE",
-    "BROWN",
-    "BLACK",
-    "GRAY",
-    "GREEN",
-    "ORANGE",
-    "PINK",
-    "PURPLE",
-    "RED",
-    "TURQUOISE",
-    "YELLOW"
+    "White",
+    "Blue",
+    "Brown",
+    "Black",
+    "Gray",
+    "Green",
+    "Orange",
+    "Pink",
+    "Purple",
+    "Red",
+    "Turquoise",
+    "Yellow"
 ]}
