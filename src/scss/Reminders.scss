@@ -36,6 +36,17 @@
       flex-wrap: wrap;
       justify-content: space-evenly;
       margin-top: 28px;
+      .reminder {
+        header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          p {
+            margin-right: 20px;
+            color: #0000008a;
+          }
+        }
+      }
     }
   }
 }

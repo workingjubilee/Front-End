@@ -5,7 +5,8 @@ import {
   ADD_REMS_REQUEST,
   ADD_REMS_SUCCESS,
   ADD_REMS_FAILURE,
-  FILTER_REMINDERS
+  FILTER_REMINDERS,
+  DELETE_MED_SUCCESS
 } from 'actions';
 
 import { initialState } from './initialState';
@@ -56,6 +57,11 @@ export default function remsReducer(state = initialState, action) {
             rem.rem_date > action.startDate && rem.rem_date < action.endDate
           );
         })
+      };
+    case DELETE_MED_SUCCESS:
+      return {
+        ...state,
+        rems: state.rems.filter(rem => rem.med_id !== action.payload.id)
       };
 
     default:

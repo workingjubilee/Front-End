@@ -78,10 +78,13 @@ class PillInfoModal extends Component {
             onChange={this.changeHandler}
             name='med_color'
           >
-            {colors.map((color,index) => {
+            {colors.map((color, index) => {
+              const lowerCasedColor = color.toLowerCase();
+              const finalColor =
+                lowerCasedColor[0].toUpperCase() + lowerCasedColor.slice(1);
               return (
-                <MenuItem key={index} value={color}>
-                  {color}
+                <MenuItem key={index} value={finalColor}>
+                  {finalColor}
                 </MenuItem>
               );
             })}
@@ -92,10 +95,13 @@ class PillInfoModal extends Component {
             onChange={this.changeHandler}
             name='med_shape'
           >
-            {shapes.map((shape,index) => {
+            {shapes.map((shape, index) => {
+              const lowerCasedShape = shape.toLowerCase();
+              const finalShape =
+                lowerCasedShape[0].toUpperCase() + lowerCasedShape.slice(1);
               return (
-                <MenuItem key={index} value={shape}>
-                  {shape}
+                <MenuItem key={index} value={finalShape}>
+                  {finalShape}
                 </MenuItem>
               );
             })}
