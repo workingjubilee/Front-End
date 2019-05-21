@@ -29,6 +29,18 @@
 }
 
 .user-image-upload {
+  @media (max-width: 800px) {
+    margin: 0 auto;
+  }
+}
+
+.user-image-upload-label {
+  padding-bottom: 15px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+
+.user-image-upload-component {
   border: 3px dashed red;
   display: flex;
   justify-content: center;
@@ -37,15 +49,14 @@
   width: 350px;
   min-width: 350px;
   height: 300px;
-  @media (max-width: 800px) {
-    margin: 0 auto;
-  }
 }
 
 .user-profile-inputs {
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
+  @media (max-width: 800px) {
+    margin: 20px auto;
+  }
 }
 
 .user-profile-input-label {
@@ -56,5 +67,10 @@
 .user-profile-buttons {
   display: flex;
   justify-content: space-between;
-  margin: 20px 0;
+  margin: 20px 24px;
+  @media (max-width: 800px) {
+    width: 350px;
+    margin: 20px auto;
+    padding: 0 10px;
+  }
 }
