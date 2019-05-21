@@ -2,6 +2,7 @@ import React from 'react';
 // import { connect } from 'react-redux';
 import AdditionalSearchInfo from './AdditionalSearchInfo';
 import SearchResult from './SearchResult';
+import ViewDetails from './ViewDetails';
 
 import { mobile, tablet } from 'scss/mediaVariables';
 
@@ -10,8 +11,8 @@ const SearchResults = ({
   handleAddPill,
   handleAddPillReminders,
   setPill,
-  history
-  // pill
+  history,
+  pill
 }) => {
   const style = {
     display: 'flex',
@@ -32,28 +33,40 @@ const SearchResults = ({
     }
   };
 
-  return (
-    <div style={style}>
-      <div style={leftStyle}>
-        {searchResults &&
-          searchResults
-            .filter(result => {
-              return result && result.strength && result.strength[0] && result;
-            })
-            .map(result => (
-              <SearchResult
-                key={result.product_code + result.setid}
-                result={result}
-                handleAddPill={handleAddPill}
-                handleAddPillReminders={handleAddPillReminders}
-                setPill={setPill}
-                history={history}
-              />
-            ))}
+  if (pill) {
+    return (
+      <ViewDetails
+        pill={pill}
+        handleAddPill={handleAddPill}
+        handleAddPillReminders={handleAddPillReminders}
+      />
+    );
+  } else {
+    return (
+      <div style={style}>
+        <div style={leftStyle}>
+          {searchResults &&
+            searchResults
+              .filter(result => {
+                return (
+                  result && result.strength && result.strength[0] && result
+                );
+              })
+              .map(result => (
+                <SearchResult
+                  key={result.product_code + result.setid}
+                  result={result}
+                  handleAddPill={handleAddPill}
+                  handleAddPillReminders={handleAddPillReminders}
+                  setPill={setPill}
+                  history={history}
+                />
+              ))}
+        </div>
+        <AdditionalSearchInfo />
       </div>
-      <AdditionalSearchInfo />
-    </div>
-  );
+    );
+  }
 };
 
 export default SearchResults;

@@ -45,13 +45,7 @@ function ScanOrAdd({ location, history, addMed }) {
     <>
       {/* <Route path='/viewdetails' component={ViewDetails} /> */}
       {/* ^^^ hmm. Using hacky workaround for testing. NEEDS fixed */}
-      {pill && (
-        <ViewDetails
-          pill={pill}
-          handleAddPill={handleAddPill}
-          handleAddPillReminders={handleAddPillReminders}
-        />
-      )}
+
       {data ? (
         <Search
           setPill={setPill}
@@ -59,6 +53,7 @@ function ScanOrAdd({ location, history, addMed }) {
           handleAddPill={handleAddPill}
           handleAddPillReminders={handleAddPillReminders}
           history={history}
+          pill={pill}
         />
       ) : (
         <section className='scan-container'>
