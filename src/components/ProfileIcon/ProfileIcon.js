@@ -43,11 +43,12 @@ class ProfileIcon extends Component {
     const { username } = user;
     return (
       <Card className={classes.paper}>
-        <div className={classes.alignLeft}>
+        <div className={classes.profileText}>
           <Typography className={classes.text}>Hello {username} </Typography>
           <Card>
             <Typography className={classes.lowerText}>
-              {filteredRems.length} pills today
+              {filteredRems.length} {filteredRems.length === 1 ? 'med' : 'meds'}{' '}
+              today
             </Typography>
           </Card>
         </div>
@@ -68,12 +69,14 @@ const styles = theme => ({
     fontSize: '1rem',
     color: 'white'
   },
-  alignLeft: {
-    textAlign: 'left'
+  profileText: {
+    textAlign: 'right',
+    paddingRight: '5px'
   },
   lowerText: {
     fontSize: '.8rem',
-    color: '#2d90f5'
+    color: '#2d90f5',
+    padding: '0 5px 0 5px'
   },
   avatar: {
     width: '3rem',
