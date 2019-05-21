@@ -1,29 +1,24 @@
 import React, { Component } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import MuiToolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
+import MuiIconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
-import Badge from '@material-ui/core/Badge';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import MoreIcon from '@material-ui/icons/MoreVert';
 import ProfileIcon from '../ProfileIcon/ProfileIcon';
 import ArrowIcon from '@material-ui/icons/CompareArrows';
 import DiaryIcon from '@material-ui/icons/QuestionAnswer';
 import ScanIcon from '@material-ui/icons/CenterFocusStrong';
 import { Link, NavLink } from 'react-router-dom';
 
-import { mobile, tablet } from 'scss/mediaVariables';
+import { tablet } from 'scss/mediaVariables';
 
 const Toolbar = withStyles({
   root: {
-    height: '60px'
+    height: '60px',
+    justifyContent: 'space-between'
   },
   regular: {
     minHeight: '60px',
@@ -32,19 +27,23 @@ const Toolbar = withStyles({
     }
   },
   gutters: {
-    padding: '0 16px 0 16px'
+    padding: '0 10px 0 10px'
   }
 })(props => <MuiToolbar {...props} />);
 
 Toolbar.muiName = 'Toolbar';
 
-const styles = theme => ({
-  // To make styling easier, the bar turns red when the mobile breakpoint is hit:
-  media: {
-    [mobile]: {
-      background: 'red'
+const IconButton = withStyles({
+  root: {
+    '&:hover': {
+      backgroundColor: 'transparent'
     }
-  },
+  }
+})(props => <MuiIconButton {...props} />);
+
+IconButton.muiName = 'IconButton';
+
+const styles = theme => ({
   root: {
     width: '100%'
   },
@@ -56,6 +55,11 @@ const styles = theme => ({
     fontSize: '1.2rem',
     fontWeight: 'light',
     fontFamily: 'Roboto'
+  },
+  subTitle: {
+    '@media (max-width: 350px)': {
+      display: 'none'
+    }
   },
   strong: {
     fontSize: '2.5rem'
@@ -96,16 +100,7 @@ const styles = theme => ({
     width: '100%'
   },
   sectionDesktop: {
-    display: 'flex',
-    '@media (max-width: 450px)': {
-      display: 'none'
-    }
-  },
-  sectionMobile: {
-    display: 'none',
-    '@media (max-width: 450px)': {
-      display: 'flex'
-    }
+    display: 'flex'
   },
   profile: {
     color: '#2c419b',
@@ -141,56 +136,12 @@ class Navigation extends Component {
   };
 
   render() {
-    const { anchorEl, mobileMoreAnchorEl } = this.state;
     const { classes } = this.props;
-    const isMenuOpen = Boolean(anchorEl);
-    const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
-    const renderMenu = (
-      <Menu
-        anchorEl={anchorEl}
-        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-        open={isMenuOpen}
-        onClose={this.handleMenuClose}
-      >
-        <MenuItem onClick={this.handleMenuClose}>
-          <Link className={classes.profile} to={`/reminders`}>
-            Profile
-          </Link>
-        </MenuItem>
-      </Menu>
-    );
-
-    const renderMobileMenu = (
-      <Menu
-        anchorEl={mobileMoreAnchorEl}
-        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-        open={isMobileMenuOpen}
-        onClose={this.handleMenuClose}
-      >
-        <MenuItem onClick={this.handleMobileMenuClose}>
-          <IconButton color='inherit'>
-            <Badge badgeContent={11} color='secondary'>
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
-          <p>Notifications</p>
-        </MenuItem>
-        <MenuItem onClick={this.handleProfileMenuOpen}>
-          <IconButton color='inherit'>
-            <AccountCircle />
-          </IconButton>
-          <p>Profile</p>
-        </MenuItem>
-      </Menu>
-    );
 
     return (
       <>
         <div className={classes.root}>
-          <AppBar className={classes.media} position='static'>
+          <AppBar position='static'>
             <Toolbar>
               <Link to='/' className='title'>
                 <Typography
@@ -203,6 +154,7 @@ class Navigation extends Component {
                   <span className={classes.subTitle}> Pill Identifier</span>
                 </Typography>
               </Link>
+
               <div className='searchBar'>
                 <div className={classes.search}>
                   <div className={classes.searchIcon}>
@@ -220,33 +172,12 @@ class Navigation extends Component {
                   </form>
                 </div>
               </div>
-              <div className={classes.grow} />
+
               <div className={classes.sectionDesktop}>
-                <div className='rightNav'>
-                  <IconButton
-                    aria-owns={isMenuOpen ? 'material-appbar' : undefined}
-                    aria-haspopup='true'
-                    onClick={this.handleProfileMenuOpen}
-                    color='inherit'
-                  >
-                    {/* <AccountCircle /> */}
-                    <ProfileIcon />
-                  </IconButton>
-                </div>
-              </div>
-              <div className={classes.sectionMobile}>
-                <IconButton
-                  aria-haspopup='true'
-                  onClick={this.handleMobileMenuOpen}
-                  color='inherit'
-                >
-                  <MoreIcon />
-                </IconButton>
+                <ProfileIcon />
               </div>
             </Toolbar>
           </AppBar>
-          {renderMenu}
-          {renderMobileMenu}
         </div>
         <nav className='tab-navigator'>
           <NavLink to='/scan' className='tab edge' activeClassName='active-tab'>
