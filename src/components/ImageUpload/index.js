@@ -14,7 +14,7 @@ const ImageUpload = ({ buttonText, subText, photo, setPhoto, ...props }) => {
   return (
     <Fragment>
       {camera ? (
-        <ImageCapture setPhoto={setPhoto} />
+        <ImageCapture toggleCamera={toggleCamera} setPhoto={setPhoto} />
       ) : !photo ? (
         <ImageInput
           buttonText={buttonText}
