@@ -8,7 +8,9 @@ import parseMedStrengths from 'utilities/parseMedStrengths';
 import SpinWhile from 'components/Spinner/SpinWhile';
 import ImageUploader from './ImageUpload';
 
-function ScanImage({ setData, classes, hasVideo, ...props }) {
+import ErrorBoundary from 'components/ErrorBoundary/ErrorBoundary.js';
+
+function ByImage({ setData, classes, hasVideo, ...props }) {
   const [photo, setPhoto] = useState(null);
   const [loading, setLoading] = useToggle(false);
 
@@ -39,20 +41,22 @@ function ScanImage({ setData, classes, hasVideo, ...props }) {
         <h4>
           <strong>Option 1 - </strong>Identify by uploading pill image
         </h4>
-        <div className='image-upload'>
-          <SpinWhile still={loading}>
-            <h5>Pill Image Upload</h5>
-            <ImageUploader
-              photo={photo}
-              setPhoto={setPhoto}
-              buttonText='front image of pill'
-              subText='or drag and drop them here'
-            />
-            <Button onClick={upload} className='identify-button'>
-              Identify Pill
-            </Button>
-          </SpinWhile>
-        </div>
+        <ErrorBoundary>
+          <div className='image-upload'>
+            <SpinWhile still={loading}>
+              <h5>Pill Image Upload</h5>
+              <ImageUploader
+                photo={photo}
+                setPhoto={setPhoto}
+                buttonText='front image of pill'
+                subText='or drag and drop them here'
+              />
+              <Button onClick={upload} className='identify-button'>
+                Identify Pill
+              </Button>
+            </SpinWhile>
+          </div>
+        </ErrorBoundary>
       </div>
       <section className='directions'>
         <h2>Steps To Identify Pill</h2>
@@ -76,4 +80,4 @@ function ScanImage({ setData, classes, hasVideo, ...props }) {
   );
 }
 
-export default withRouter(ScanImage);
+export default withRouter(ByImage);
