@@ -63,12 +63,7 @@ const styles = {
   }
 };
 
-const SearchResult = ({
-  classes,
-  result,
-  addPill,
-  setPill
-}) => {
+const SearchResult = ({ classes, result, addPill, setPill }) => {
   console.log('SEARCH RESULT: ', result);
   const correctCasing = string => {
     const lowerCasedString = string.toLowerCase();
