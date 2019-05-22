@@ -7,9 +7,7 @@ $lightgray: #d6d8dd;
   .faded {
     width: 1440px;
     height: 400px;
-    position: relative;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 2;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -17,7 +15,6 @@ $lightgray: #d6d8dd;
   .header-image {
     width: 1440px;
     height: 400px;
-
     background-image: url('/images/stretched.png');
     margin-bottom: 40px;
     h1,
@@ -44,11 +41,6 @@ $lightgray: #d6d8dd;
       text-transform: none;
       font-weight: 300;
       font-size: 1.2rem;
-    }
-    h1,
-    h4,
-    button {
-      z-index: 3;
     }
   }
 }
