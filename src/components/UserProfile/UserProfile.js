@@ -33,7 +33,7 @@ SaveButton.muiName = 'Button';
 const TextField = withStyles({
   root: {
     width: '350px',
-    marginBottom: '20px'
+    margin: '7px 0 20px 0'
   }
 })(props => <MuiTextField {...props} />);
 
@@ -42,7 +42,7 @@ TextField.muiName = 'TextField';
 const DisabledTextField = withStyles({
   root: {
     width: '350px',
-    marginBottom: '20px',
+    margin: '7px 0 20px 0',
     background: '#E6E7E8'
   }
 })(props => <MuiTextField {...props} />);
@@ -152,7 +152,7 @@ const UserProfile = ({ editUser, user, username }) => {
 };
 
 const mapStateToProps = state => ({
-  username: 'MSTP Placeholder',
+  username: state.userReducer.user.username,
   user: state.userReducer.user
 });
 
