@@ -4,7 +4,7 @@ import ArrowIcon from '@material-ui/icons/CompareArrows';
 import DiaryIcon from '@material-ui/icons/QuestionAnswer';
 import ScanIcon from '@material-ui/icons/CenterFocusStrong';
 import SvgIcon from '@material-ui/core/SvgIcon';
-// import '../../scss/Landing.scss';
+import { team } from './teamData';
 
 const LogoImg = () => <img src={require('../../assets/logo.png')} alt='logo' />;
 
@@ -132,6 +132,34 @@ const Landing = () => {
         </div>
       </section>
       {/* team */}
+      <section className='team'>
+        <h2>Our Team</h2>
+        <p>Meet the amazing team</p>
+        <div className='tiles'>
+          {team.map(teamMate => (
+            <div className='tile' key={team.indexOf(teamMate)}>
+              <img src={teamMate.image} alt={teamMate.name} />
+              <div>
+                <h3>{teamMate.name}</h3>
+                <p>{teamMate.role}</p>
+              </div>
+              <div className='links'>
+                {teamMate.medium ? (
+                  <a href={teamMate.medium} target='blank'>
+                    <i class='fab fa-medium' />
+                  </a>
+                ) : null}
+                <a href={teamMate.linkedIn} target='blank'>
+                  <i class='fab fa-linkedin' />
+                </a>
+                <a href={teamMate.gitHub} target='blank'>
+                  <i class='fab fa-github' />
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
       {/* footer */}
     </div>
   );
