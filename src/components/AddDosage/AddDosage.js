@@ -22,7 +22,7 @@ let date =
   dateData[3] +
   dateData[4];
 
-const AddPill = ({ med, addRems, editMed, history }) => {
+const AddPill = ({ med, addRems, editMed, user, history }) => {
   const [capsulesPerDose, setCapsulesPerDose] = useState(0);
   const [lengthOfDosage, setLenghOfDosage] = useState(0);
   const [dosageFrequency, setDosageFrequency] = useState('');
@@ -142,12 +142,12 @@ const AddPill = ({ med, addRems, editMed, history }) => {
   // const prevStep = () => {
   //   setStep(step - 1);
   // };
-  const handleAddPill = async () => {
+  const handleAddPill = () => {
     // if (!dosageFrequency) {
     //   return null;
     // }
 
-    const userID = localStorage.getItem('userID');
+    const userID = user.id ? user.id : localStorage.getItem('userID');
     const reminderTimes = makeReminders(
       // console.log(
       {
@@ -180,11 +180,17 @@ const AddPill = ({ med, addRems, editMed, history }) => {
         customInstruction.value || dosageInstruction || null
       )
     };
-    await editMed(medData);
-    await addRems(reminders);
+    editMed(medData)
+      .then(res => {
+        addRems(reminders).then(res => {
+          history.push('/reminders');
+        });
+      })
+      .catch(err => {
+        alert('Oops! Something went wrong. Please try again.');
+      });
     console.log(medData);
     console.log(reminders);
-    history.push('/reminders');
   };
   const steps = [
     <StepOne
@@ -230,7 +236,8 @@ const AddPill = ({ med, addRems, editMed, history }) => {
 
 const mapStateToProps = state => {
   return {
-    med: state.medsReducer.med
+    med: state.medsReducer.med,
+    user: state.userReducer.user
   };
 };
 

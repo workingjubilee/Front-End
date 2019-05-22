@@ -1,2 +1,2 @@
-export const mobile = '@media (maxWidth: 500px)';
-export const tablet = '@media (maxWidth: 800px)';
+export const mobile = '@media (max-width: 500px)';
+export const tablet = '@media (max-width: 800px)';

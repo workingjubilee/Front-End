@@ -120,7 +120,7 @@ export const EDIT_MED_FAILURE = 'EDIT_MED_FAILURE';
 
 export const editMed = editedMed => dispatch => {
   dispatch({ type: EDIT_MED_REQUEST });
-  axios
+  return axios
     .put(`${endpoint}/api/meds/${editedMed.id}`, editedMed)
     .then(res => {
       dispatch({ type: EDIT_MED_SUCCESS, payload: res.data });
@@ -286,7 +286,7 @@ export const ADD_REMS_FAILURE = 'ADD_REMS_FAILURE';
 
 export const addRems = remsList => dispatch => {
   dispatch({ type: ADD_REMS_REQUEST });
-  axios
+  return axios
     .post(`${endpoint}/api/rems/`, remsList)
     .then(res => {
       dispatch({ type: ADD_REMS_SUCCESS, payload: res.data });

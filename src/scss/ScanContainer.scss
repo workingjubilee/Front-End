@@ -2,7 +2,50 @@ $red: #dc4250;
 $lightgray: #d6d8dd;
 
 .scan-container {
-  margin: 48px auto auto auto;
+  max-width: 1440px;
+  margin-top: 38px;
+  .faded {
+    width: 1440px;
+    height: 400px;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .header-image {
+    width: 1440px;
+    height: 400px;
+    background-image: url('/images/stretched.png');
+    h1,
+    h4 {
+      color: white;
+      width: 100%;
+      text-align: center;
+    }
+    h1 {
+      font-size: 3.8rem;
+      line-height: 1.2;
+      margin-top: 40px;
+    }
+    h4 {
+      font-size: 1.3rem;
+      font-weight: 300;
+      line-height: 1.4;
+    }
+    button {
+      width: 180px;
+      height: 58px;
+      background-color: $primary;
+      color: white;
+      text-transform: none;
+      font-weight: 300;
+      font-size: 1.2rem;
+    }
+  }
+}
+
+.options-container {
+  margin: 30px auto auto auto;
   max-width: 1262px;
   padding-bottom: 64px;
 
@@ -23,9 +66,12 @@ $lightgray: #d6d8dd;
   span {
     font-weight: 300;
   }
+  .options-title {
+    margin-top: 50px;
+  }
   .option1-container {
     display: flex;
-    margin-top: 80px;
+    margin-top: 60px;
     justify-content: space-between;
     .image-container {
       width: 786px;
@@ -43,6 +89,27 @@ $lightgray: #d6d8dd;
         border-radius: 6px;
         height: 320px;
 
+        img,
+        .react-html5-camera-photo {
+          max-width: 300px;
+          max-height: 200px;
+          margin-top: 30px;
+        }
+
+        .display-error {
+          width: 100%;
+          text-align: center;
+        }
+
+        .camera {
+          width: 44px;
+          height: 44px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          align-self: center;
+        }
+
         h5 {
           align-self: center;
         }
@@ -56,6 +123,7 @@ $lightgray: #d6d8dd;
           display: flex;
           flex-direction: column;
           align-items: center;
+
           svg {
             width: 200px;
             height: 50px;
