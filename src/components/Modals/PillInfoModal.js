@@ -21,7 +21,7 @@ class PillInfoModal extends Component {
       med_name: '',
       med_color: '',
       med_shape: '',
-      med_strength: null,
+      med_strength: '',
       med_strength_unit: ''
     }
   };
