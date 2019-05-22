@@ -1,34 +1,55 @@
 import React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
+import MuiCardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 // import CircularProgress from '@material-ui/core/CircularProgress';
 // import Image from './Image';
 import ResultInfo from './ResultInfo';
 
+import { tablet } from 'scss/mediaVariables';
+
+const CardContent = withStyles({
+  root: {
+    padding: '0',
+    border: 'none'
+  }
+})(props => <MuiCardContent {...props} />);
+
+CardContent.muiName = 'CardContent';
+
 const styles = {
   card: {
     border: '1px solid gray',
     margin: '2%',
-    width: '96%'
+    width: '75%',
+    padding: '1rem',
+    [`${tablet}`]: {
+      width: '90%',
+      margin: '0 auto'
+    }
   },
   info: {
     display: 'flex'
   },
   buttons: {
     display: 'flex',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    marginTop: '.5rem'
   },
   button: {
     width: '30%',
     height: '2.3rem',
-    fontSize: '0.5rem',
+    fontSize: '0.8rem',
     color: 'white',
     fontWeight: 'bold',
     textTransform: 'Capitalize',
-    boxShadow: '.1rem .1rem .1rem grey'
+    boxShadow: '.1rem .1rem .1rem grey',
+    [`${tablet}`]: {
+      height: '4rem',
+      fontSize: '1rem'
+    }
   },
   view: {
     backgroundColor: '#5AAC49'
@@ -37,18 +58,18 @@ const styles = {
     backgroundColor: '#2D90F5'
   },
   genericImage: {
-    width: '100px',
-    height: '100px'
+    width: '85px',
+    height: '85px'
   }
 };
 
 const SearchResult = ({
   classes,
   result,
-  handleAddPill,
-  handleAddPillReminders,
+  addPill,
   setPill
 }) => {
+  console.log('SEARCH RESULT: ', result);
   const correctCasing = string => {
     const lowerCasedString = string.toLowerCase();
     return lowerCasedString[0].toUpperCase() + lowerCasedString.slice(1);
@@ -78,16 +99,17 @@ const SearchResult = ({
       result.strength[0][2]
   };
 
+  const imageSrc =
+    result.image_id !== null
+      ? `https://s3.amazonaws.com/labs12-rxidstore/reference/${result.image_id}`
+      : `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEtm2tJxpsgbyWcy36iZ6tPxSyg-wLQNBLOzRqbiNCaq1iAy5O`;
+
   return (
     <Card className={classes.card}>
       {/* Paper might not be necessary here */}
       <Paper>
         <CardContent className={classes.info}>
-          <img
-            className={classes.genericImage}
-            src={`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEtm2tJxpsgbyWcy36iZ6tPxSyg-wLQNBLOzRqbiNCaq1iAy5O`}
-            alt='A drug'
-          />
+          <img className={classes.genericImage} src={imageSrc} alt='A drug' />
           <ResultInfo result={result} correctCasing={correctCasing} />
           {/* <CircularProgress
             style={{
@@ -113,7 +135,7 @@ const SearchResult = ({
           <Button
             onClick={e => {
               e.preventDefault();
-              handleAddPill(formattedPill);
+              addPill(formattedPill);
             }}
             className={`${classes.button} ${classes.add}`}
           >
@@ -122,7 +144,7 @@ const SearchResult = ({
           <Button
             onClick={e => {
               e.preventDefault();
-              handleAddPillReminders(formattedPill);
+              addPill(formattedPill, 'adddosage');
             }}
             className={`${classes.button} ${classes.add}`}
           >

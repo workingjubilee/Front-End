@@ -5,7 +5,7 @@ import { MuiThemeProvider as Themer } from '@material-ui/core/styles';
 import store from 'store';
 import theme from 'theme';
 
-export default function TestWrapper(props) {
+export default function AppWrapper(props) {
   // prettier-ignore
   return (
     <Provider store={store}>

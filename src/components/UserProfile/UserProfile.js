@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import MuiButton from '@material-ui/core/Button';
 import MuiTextField from '@material-ui/core/TextField';
 import withStyles from '@material-ui/core/styles/withStyles';
+import ImageUpload from 'components/ImageUpload';
+import ErrorBoundary from 'components/ErrorBoundary/ErrorBoundary.js';
+// import axios from 'axios';
 
 import { editUser } from 'actions';
 import { useInput } from 'utilities/useInput';
@@ -47,6 +50,7 @@ const DisabledTextField = withStyles({
 DisabledTextField.muiName = 'TextField';
 
 const UserProfile = ({ editUser, user, username }) => {
+  const [photo, setPhoto] = useState();
   const firstName = useInput();
   const lastName = useInput();
   const phone = useInput();
@@ -74,6 +78,22 @@ const UserProfile = ({ editUser, user, username }) => {
     });
   };
 
+  // const upload = async () => {
+  //   if (!photo) {
+  //     console.log('Need a photo!');
+  //     return;
+  //   }
+  //   const photoEndpoint = `${process.env.REACT_APP_BACKEND}/api/upload`;
+  //   const postData = new FormData();
+  //   postData.append('image', photo);
+
+  //   try {
+  //     const results = await axios.post(photoEndpoint, postData);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
   return (
     <div className='user-profile'>
       <div className='user-profile-banner'>My Profile</div>
@@ -81,7 +101,9 @@ const UserProfile = ({ editUser, user, username }) => {
         <div className='user-image-upload'>
           <p className='user-image-upload-label'>User Image Upload</p>
           <div className='user-image-upload-component'>
-            User Image Upload Component Goes Here
+            <ErrorBoundary>
+              <ImageUpload photo={photo} setPhoto={setPhoto} />
+            </ErrorBoundary>
           </div>
         </div>
         <div className='user-profile-inputs'>

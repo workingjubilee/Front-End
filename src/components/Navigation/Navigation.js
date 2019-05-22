@@ -205,7 +205,11 @@ class Navigation extends Component {
           </AppBar>
         </div>
         <nav className='tab-navigator'>
-          <NavLink to='/scan' className='tab edge' activeClassName='active-tab'>
+          <NavLink
+            to='/identify'
+            className='tab edge'
+            activeClassName='active-tab'
+          >
             <ScanIcon className='scanner icon' />
             <Typography component='h5'>Scan / Add Pill</Typography>
           </NavLink>

@@ -16,7 +16,7 @@ const styles = {
   static: {
     backgroundColor: '#F0F3F5',
     fontWeight: 'bold',
-    fontSize: '1rem',
+    fontSize: '.7rem',
     width: '9rem',
     height: '2.2rem',
     padding: '5px',
@@ -26,7 +26,7 @@ const styles = {
   dynamic: {
     backgroundColor: 'white',
     height: '2.2rem',
-    fontSize: '.7rem',
+    fontSize: '1rem',
     border: '3px solid #F0F3F5',
     width: '100%',
     padding: '5px',
