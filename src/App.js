@@ -1,21 +1,19 @@
-import React from 'react';
+import React, { lazy } from 'react';
 import { Route } from 'react-router-dom';
 import Navigation from './components/Navigation/Navigation';
 import ErrorBoundary from 'components/ErrorBoundary/ErrorBoundary.js';
 import Spinner from 'components/Spinner/Spinner';
 
-const Diary = React.lazy(() => import('./components/Diary/Diary'));
-const UserProfile = React.lazy(() =>
-  import('./components/UserProfile/UserProfile')
-);
-const Reminders = React.lazy(() => import('./components/Reminders/Reminders'));
-const PillsContainer = React.lazy(() =>
+const Diary = lazy(() => import('./components/Diary/Diary'));
+const UserProfile = lazy(() => import('./components/UserProfile/UserProfile'));
+const Reminders = lazy(() => import('./components/Reminders/Reminders'));
+const PillsContainer = lazy(() =>
   import('./components/PillsContainer/PillsContainer')
 );
-const Landing = React.lazy(() => import('./components/Landing/Landing'));
-const Loading = React.lazy(() => import('./components/Loading/Loading'));
-const Identify = React.lazy(() => import('./components/Identify'));
-const AddDosage = React.lazy(() => import('./components/AddDosage/AddDosage'));
+const Landing = lazy(() => import('./components/Landing/Landing'));
+const Loading = lazy(() => import('./components/Loading/Loading'));
+const Identify = lazy(() => import('./components/Identify'));
+const AddDosage = lazy(() => import('./components/AddDosage/AddDosage'));
 
 function App() {
   return (

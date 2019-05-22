@@ -4,18 +4,15 @@ import Select from '@material-ui/core/Select';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import MenuItem from '@material-ui/core/MenuItem';
 
-
-const Swatch = ({color}) => {
+const Swatch = ({ color }) => {
   const swatchObject = {
     background: `${color}`,
     padding: '0 12px',
     marginRight: '4px',
     minHeight: '19px'
-  }
-  return (
-    <span style={swatchObject} />
-  );
-}
+  };
+  return <span style={swatchObject} />;
+};
 
 const Dropdown = ({ itemName, itemList, item, setItem }) => {
   return (
