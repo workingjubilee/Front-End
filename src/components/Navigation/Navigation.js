@@ -131,7 +131,7 @@ const styles = theme => ({
   },
   greyStripe: {
     background: '#F0F3F5',
-    height: '60px'
+    height: '15px'
   }
 });
 
