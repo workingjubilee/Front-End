@@ -14,7 +14,7 @@ const PillsContainer = React.lazy(() =>
 );
 const Landing = React.lazy(() => import('./components/Landing/Landing'));
 const Loading = React.lazy(() => import('./components/Loading/Loading'));
-const ScanOrAdd = React.lazy(() => import('./components/Identify'));
+const Identify = React.lazy(() => import('./components/Identify'));
 const AddDosage = React.lazy(() => import('./components/AddDosage/AddDosage'));
 
 function App() {
@@ -25,10 +25,10 @@ function App() {
         <React.Suspense fallback={<Spinner />}>
           <Route exact path='/' component={Landing} />
           <Route exact path='/landing' component={Landing} />
-          <Route exact path='/user' component={UserProfile} />
           <Route exact path='/loading' component={Loading} />
+          <Route path='/user' component={UserProfile} />
           <Route path='/diary' component={Diary} />
-          <Route path='/scan' component={ScanOrAdd} />
+          <Route path='/identify' component={Identify} />
           <Route path='/reminders' component={Reminders} />
           <Route path='/pills' component={PillsContainer} />
           <Route path='/adddosage' component={AddDosage} />
