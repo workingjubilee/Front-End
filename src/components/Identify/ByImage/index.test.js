@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ScanImage from './ScanImage';
+import ByImage from './index.js';
+import AppWrapper from 'AppWrapper.js';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<ScanImage />, div);
+  ReactDOM.render(<AppWrapper><ByImage /></AppWrapper>, div);
   ReactDOM.unmountComponentAtNode(div);
 });
