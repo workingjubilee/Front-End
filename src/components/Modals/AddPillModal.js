@@ -17,14 +17,8 @@ const styles = theme => ({
   }
 });
 
-const AddPillModal = ({
-  classes,
-  pill,
-  open,
-  handleClose,
-  handleAddPill,
-  handleAddPillReminders
-}) => {
+const AddPillModal = ({ classes, pill, open, handleClose, addPill }) => {
+  const addPillWithReminders = addPill('adddosage');
   return (
     <Modal
       aria-labelledby='simple-modal-title'
@@ -36,8 +30,8 @@ const AddPillModal = ({
         <Typography variant='h6' id='modal-title'>
           Would you like to add {pill.med_name}?
         </Typography>
-        <Button onClick={handleAddPill}>Add to medication list</Button>
-        <Button onClick={handleAddPillReminders}>
+        <Button onClick={addPill}>Add to medication list</Button>
+        <Button onClick={addPillWithReminders}>
           Add to medication list with reminder
         </Button>
       </div>
