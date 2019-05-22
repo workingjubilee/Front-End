@@ -36,7 +36,7 @@ function Identify({ match, location, history, addMed, ...props }) {
       <Route
         path={`${match.url}/results`}
         render={props => (
-          <SearchResults searchResults={data} addPill={addPill} />
+          <SearchResults searchResults={data} handleAddPill={addPill} />
         )}
       />
     </Suspense>
