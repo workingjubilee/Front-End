@@ -9,15 +9,17 @@ const IdentifyOptions = ({ addPill, setData, ...props }) => {
   return (
     <section className='scan-container'>
       <header className='header-image'>
-        <h1>
-          RxID <br /> Pill Identifier
-        </h1>
-        <h4>
-          Identify your medications based on their appearance and log each
-          <br />
-          medication and your experiences with them.
-        </h4>
-        <Button variant='contained'>Learn more</Button>
+        <div className='faded'>
+          <h1>
+            RxID <br /> Pill Identifier
+          </h1>
+          <h4>
+            Identify your medications based on their appearance and log each
+            <br />
+            medication and your experiences with them.
+          </h4>
+          <Button variant='contained'>Learn more</Button>
+        </div>
       </header>
       <section className='options-container'>
         <Tabs classes='tab-navigator' />
