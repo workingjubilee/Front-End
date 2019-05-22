@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { useToggle } from 'utilities/useToggle';
 import { withRouter } from 'react-router';
+import SpinWhile from 'components/Spinner/SpinWhile';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { valid_shapes as shapes } from 'data/rxdata.json';
@@ -12,6 +14,7 @@ import parseMedStrengths from 'utilities/parseMedStrengths';
 // import AddPillButton from '../Scan/SearchResults/AddPillButton';
 
 const SearchPill = ({ setData, ...props }) => {
+  const [loading, setLoading] = useToggle();
   const [name, setName] = useState('');
   const [imprint, setImprint] = useState('');
   const [color, setColor] = useState('');
@@ -35,12 +38,14 @@ const SearchPill = ({ setData, ...props }) => {
       color
     };
     console.log('SEARCH QUERY: ', query);
+    setLoading();
     try {
       const results = await axios.post(formEndpoint, query);
       const parsedResults = parseMedStrengths(results.data);
       setData(parsedResults);
       props.history.push(`${props.match.url}/results`);
     } catch (error) {
+      setLoading();
       console.error(error);
     } // Search for pill
   };
@@ -54,6 +59,7 @@ const SearchPill = ({ setData, ...props }) => {
         </h4>
         <div className='search-container'>
           <form className='form-container' onSubmit={search}>
+            <SpinWhile still={loading}>
             <div className='field-container'>
               <h5>Pill Name</h5>
               <TextField
@@ -110,6 +116,7 @@ const SearchPill = ({ setData, ...props }) => {
                 Identify Pill
               </Button>
             </div>
+            </SpinWhile>
           </form>
         </div>
       </div>

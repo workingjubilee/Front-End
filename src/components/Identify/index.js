@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addMed } from 'actions';
 
+import ErrorBoundary from 'components/ErrorBoundary/ErrorBoundary';
 import Spinner from 'components/Spinner/Spinner.js';
 
 const IdentifyOptions = lazy(() => import('./Options'));
@@ -26,6 +27,7 @@ function Identify({ match, location, history, addMed, ...props }) {
   };
 
   return (
+    <ErrorBoundary>
     <Suspense fallback={<Spinner />}>
       <Route
         exact
@@ -41,6 +43,7 @@ function Identify({ match, location, history, addMed, ...props }) {
         )}
       />
     </Suspense>
+    </ErrorBoundary>
   );
 }
 
