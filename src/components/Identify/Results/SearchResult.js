@@ -38,7 +38,8 @@ const styles = {
   },
   buttons: {
     display: 'flex',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    marginTop: '.5rem'
   },
   button: {
     width: '30%',
@@ -47,7 +48,11 @@ const styles = {
     color: 'white',
     fontWeight: 'bold',
     textTransform: 'Capitalize',
-    boxShadow: '.1rem .1rem .1rem grey'
+    boxShadow: '.1rem .1rem .1rem grey',
+    [`${tablet}`]: {
+      height: '4rem',
+      fontSize: '1rem'
+    }
   },
   view: {
     backgroundColor: '#5AAC49'
