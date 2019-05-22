@@ -47,6 +47,7 @@ function ScanOrAdd({ location, history, addMed }) {
           handleAddPill={handleAddPill}
           handleAddPillReminders={handleAddPillReminders}
           history={history}
+          // setData={setData}
         />
       ) : (
         <section className='scan-container'>

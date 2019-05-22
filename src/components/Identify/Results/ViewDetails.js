@@ -96,7 +96,8 @@ const ViewDetails = ({
   classes,
   pill,
   handleAddPill,
-  handleAddPillReminders
+  handleAddPillReminders,
+  setPill
 }) => {
   const correctCasing = string => {
     const lowerCasedString = string.toLowerCase();
@@ -180,6 +181,7 @@ const ViewDetails = ({
         <Button
           onClick={e => {
             e.preventDefault();
+            setPill(null);
           }}
           className={`${classes.button} ${classes.cancel}`}
         >

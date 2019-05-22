@@ -24,6 +24,7 @@ const SearchResults = ({
         pill={pill}
         handleAddPill={handleAddPill}
         handleAddPillReminders={handleAddPillReminders}
+        setPill={setPill}
       />
     );
   } else {
