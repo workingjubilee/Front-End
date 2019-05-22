@@ -11,8 +11,8 @@ export const team = [
     image: require('./assets/Chris.jpg'),
     name: 'Christopher Foster',
     role: 'Web Developer',
-    gitHub: 'https://github.com/VictorGoic0',
-    linkedIn: 'https://www.linkedin.com/in/victor-m-goico/'
+    gitHub: 'https://github.com/ChristopherJFoster',
+    linkedIn: 'https://www.linkedin.com/in/christopherjfoster/'
   },
   {
     image: require('./assets/Victor.jpg'),
