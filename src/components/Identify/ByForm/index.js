@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { withRouter } from 'react-router';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { valid_shapes as shapes } from 'data/rxdata.json';
@@ -10,7 +11,7 @@ import parseMedStrengths from 'utilities/parseMedStrengths';
 
 // import AddPillButton from '../Scan/SearchResults/AddPillButton';
 
-const SearchPill = ({ dispatch, setData, ...rest }) => {
+const SearchPill = ({ setData, ...props }) => {
   const [name, setName] = useState('');
   const [imprint, setImprint] = useState('');
   const [color, setColor] = useState('');
@@ -38,6 +39,7 @@ const SearchPill = ({ dispatch, setData, ...rest }) => {
       const results = await axios.post(formEndpoint, query);
       const parsedResults = parseMedStrengths(results.data);
       setData(parsedResults);
+      props.history.push(`${props.match.url}/results`);
     } catch (error) {
       console.error(error);
     } // Search for pill
@@ -143,4 +145,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   null
-)(SearchPill);
+)(withRouter(SearchPill));
