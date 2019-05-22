@@ -57,18 +57,17 @@ const SearchResults = ({
 const styles = theme => ({
   mainStyle: {
     display: 'flex',
-    // margin: '0 5rem',
+    width: '100%',
+    margin: '2rem 6rem',
     [`${tablet}`]: {
-      display: 'none',
-      margin: 'none'
+      margin: '0 auto'
     }
   },
   leftStyle: {
-    maxWidth: '90%',
-    marginRight: '5rem',
+    width: '50%',
     [`${tablet}`]: {
-      display: 'none',
-      margin: 'none'
+      margin: 'none',
+      width: '100%'
     }
   }
 });

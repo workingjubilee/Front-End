@@ -1,18 +1,37 @@
 import React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
+import MuiCardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 // import CircularProgress from '@material-ui/core/CircularProgress';
 // import Image from './Image';
 import ResultInfo from './ResultInfo';
 
+import { tablet } from 'scss/mediaVariables';
+
+const CardContent = withStyles({
+  info: {
+    padding: '0'
+  },
+  root: {
+    padding: '0',
+    border: 'none'
+  }
+})(props => <MuiCardContent {...props} />);
+
+CardContent.muiName = 'CardContent';
+
 const styles = {
   card: {
     border: '1px solid gray',
     margin: '2%',
-    width: '96%'
+    width: '75%',
+    padding: '1rem',
+    [`${tablet}`]: {
+      width: '90%',
+      margin: '0 auto'
+    }
   },
   info: {
     display: 'flex'
@@ -24,7 +43,7 @@ const styles = {
   button: {
     width: '30%',
     height: '2.3rem',
-    fontSize: '0.5rem',
+    fontSize: '0.8rem',
     color: 'white',
     fontWeight: 'bold',
     textTransform: 'Capitalize',
@@ -37,8 +56,8 @@ const styles = {
     backgroundColor: '#2D90F5'
   },
   genericImage: {
-    width: '100px',
-    height: '100px'
+    width: '85px',
+    height: '85px'
   }
 };
 
