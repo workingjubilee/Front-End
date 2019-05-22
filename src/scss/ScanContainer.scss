@@ -2,6 +2,44 @@ $red: #dc4250;
 $lightgray: #d6d8dd;
 
 .scan-container {
+  max-width: 1440px;
+  .header-logo {
+    width: 1440px;
+    height: 400px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-image: url('/images/stretched.png');
+    margin-bottom: 40px;
+    h1,
+    h4 {
+      color: white;
+      width: 100%;
+      text-align: center;
+    }
+    h1 {
+      font-size: 3.8rem;
+      line-height: 1.2;
+      margin-top: 40px;
+    }
+    h4 {
+      font-size: 1.3rem;
+      font-weight: 300;
+      line-height: 1.4;
+    }
+    button {
+      width: 180px;
+      height: 58px;
+      background-color: $primary;
+      color: white;
+      text-transform: none;
+      font-weight: 300;
+      font-size: 1.2rem;
+    }
+  }
+}
+
+.options-container {
   margin: 48px auto auto auto;
   max-width: 1262px;
   padding-bottom: 64px;
