@@ -2,24 +2,26 @@ import React from 'react';
 import CloudIcon from '@material-ui/icons/CloudUpload';
 import Button from '@material-ui/core/Button';
 
-const FileInput = ({ photoSelect, classes }) => {
+const ImageUpload = ({ photoSelect, classes, uniqueID }) => {
   // Extremely breakable component, please be careful.
+  // A uniqueID must be provided for the querySelector to work.
+  // Do not have styling outside this depend on the uniqueID, it can break.
 
   const magicClicker = event => {
     if (event.which === 32 || event.which === 13) {
       event.preventDefault();
-      document.querySelector('#image-upload-button').click();
+      document.querySelector(`#${uniqueID}`).click();
     }
-  };
+  }; // Makes accessible "clicking" possible.
 
   return (
     <div className='upload-button-container'>
       <CloudIcon />
-      <label htmlFor='image-upload-button'>
+      <label htmlFor={uniqueID}>
         <input
           accept='image/*'
           className={classes.input}
-          id='image-upload-button'
+          id={uniqueID}
           onChange={photoSelect}
           type='file'
         />
@@ -39,4 +41,4 @@ const FileInput = ({ photoSelect, classes }) => {
   )
 };
 
-export default FileInput;
+export default ImageUpload;
