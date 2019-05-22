@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, Suspense, lazy } from 'react';
+import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addMed } from 'actions';
-import { useToggle } from 'utilities/useToggle';
-import Button from '@material-ui/core/Button';
-import ImageSearch from './ByImage'; // Prioritizing the Scan component
-import FormSearch from './ByForm';
-import SearchResults from './Results';
-import PillInfoModal from 'components/Modals/PillInfoModal';
-// import Pill from 'components/PillsContainer/Pill.js';
 
-function ScanOrAdd({ location, history, addMed }) {
-  const [open, setOpen] = useToggle(false);
+import ByImage from './ByImage'; // Prioritizing the Scan component
+import ByForm from './ByForm';
+import OrAdd from './OrAdd.js';
+import Spinner from 'components/Spinner/Spinner.js';
+
+const SearchResults = lazy(() => import('./Results'));
+
+function ScanOrAdd({ location, history, addMed, ...props }) {
   const [data, setData] = useState();
 
   const handleAddPill = pillInfo => {
@@ -40,8 +40,8 @@ function ScanOrAdd({ location, history, addMed }) {
   };
 
   return (
-    <>
-      {data ? (
+      <Suspense fallback={<Spinner />}>
+      {data ? ( 
         <SearchResults
           searchResults={data}
           handleAddPill={handleAddPill}
@@ -51,27 +51,15 @@ function ScanOrAdd({ location, history, addMed }) {
       ) : (
         <section className='scan-container'>
           <h2>Identify your Pill before scheduling</h2>
-          <ImageSearch history={history} setData={setData} />
-          <FormSearch setData={setData} />
-          <section className='option3-container'>
-            <div className='label'>
-              <h5>
-                <strong>Option 3 - </strong>Know your pill? Add it manually
-              </h5>
-            </div>
-            <Button onClick={setOpen} variant='contained'>
-              Add Pill Manually
-            </Button>
-          </section>
-          <PillInfoModal
-            open={open}
+          <ByImage setData={setData} />
+          <ByForm setData={setData} />
+          <OrAdd 
             handleAddPill={handleAddPill}
             handleAddPillReminders={handleAddPillReminders}
-            handleClose={setOpen}
           />
         </section>
       )}
-    </>
+      </Suspense>
   );
 }
 
