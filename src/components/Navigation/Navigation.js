@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import MuiToolbar from '@material-ui/core/Toolbar';
 import MuiIconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
+import MuiTypography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
@@ -14,7 +14,7 @@ import ScanIcon from '@material-ui/icons/CenterFocusStrong';
 import MuiSvgIcon from '@material-ui/core/SvgIcon';
 import { Link, NavLink } from 'react-router-dom';
 
-import { tablet } from 'scss/mediaVariables';
+import { mobile, tablet } from 'scss/mediaVariables';
 
 const SvgIcon = withStyles({
   root: {
@@ -23,6 +23,16 @@ const SvgIcon = withStyles({
 })(props => <MuiSvgIcon {...props} />);
 
 SvgIcon.muiName = 'SvgIcon';
+
+const Typography = withStyles({
+  root: {
+    [mobile]: {
+      fontSize: '12px'
+    }
+  }
+})(props => <MuiTypography {...props} />);
+
+Typography.muiName = 'Typography';
 
 const Toolbar = withStyles({
   root: {

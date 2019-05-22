@@ -96,7 +96,6 @@ const DosageTime = ({
                   at
                   <TextField
                     id='time'
-                    label='Alarm clock'
                     type='time'
                     defaultValue={reminderData[reminderData.indexOf(data)].time}
                     onChange={e =>
