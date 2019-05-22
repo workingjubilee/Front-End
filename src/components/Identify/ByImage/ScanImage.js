@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-// import ImageCapture from './ImageCapture.js';
-// import { useToggle } from 'utilities/useToggle';
+import { withRouter } from 'react-router';
+import { useToggle } from 'utilities/useToggle';
 import axios from 'axios';
-import { withStyles } from '@material-ui/core/styles';
+
 import Button from '@material-ui/core/Button';
 import parseMedStrengths from 'utilities/parseMedStrengths';
-import ImageUpload from 'components/ImageUpload';
+import SpinWhile from 'components/Spinner/SpinWhile';
+import ImageUploader from './ImageUpload';
 
-function ScanImage({ setData, classes, ...props }) {
+function ScanImage({ setData, classes, hasVideo, ...props }) {
   const [photo, setPhoto] = useState(null);
-  // const [camera, toggleCamera] = useToggle(false);
-  const photoSelect = event => setPhoto(event.target.files[0]);
+  const [loading, setLoading] = useToggle(false);
 
   const upload = async () => {
     if (!photo) {
@@ -18,19 +18,19 @@ function ScanImage({ setData, classes, ...props }) {
       return;
     }
     const photoEndpoint = `${process.env.REACT_APP_BACKEND}/api/upload`;
-    const imgData = new FormData();
-    imgData.append('image', photo, photo.filename);
+    const postData = new FormData();
+    postData.append('image', photo);
 
-    console.log('start');
+    setLoading();
     try {
-      const results = await axios.post(photoEndpoint, imgData);
+      const results = await axios.post(photoEndpoint, postData);
       const parsedResults = parseMedStrengths(results.data);
       setData(parsedResults);
-      // return dispatch({ type: 'analysisResults', payload: parsedResults });
+      props.history.push(`${props.match.url}/results`);
     } catch (error) {
       console.error(error);
+      setLoading();
     }
-    console.log('end');
   };
 
   return (
@@ -40,34 +40,20 @@ function ScanImage({ setData, classes, ...props }) {
           <strong>Option 1 - </strong>Identify by uploading pill image
         </h4>
         <div className='image-upload'>
-          <h5>Pill Image Upload</h5>
-          <ImageUpload
-            classes={classes}
-            photoSelect={photoSelect}
-            uniqueID='image-scan-upload'
-          />
-          {/*state && state.hasVideo && (
-            <Button style={{ display: 'none' }} onClick={toggleCamera}>
-              Take Photo
+          <SpinWhile still={loading}>
+            <h5>Pill Image Upload</h5>
+            <ImageUploader
+              photo={photo}
+              setPhoto={setPhoto}
+              buttonText='front image of pill'
+              subText='or drag and drop them here'
+            />
+            <Button onClick={upload} className='identify-button'>
+              Identify Pill
             </Button>
-          )*/}
-          <Button onClick={upload} className='identify-button'>
-            Identify Pill
-          </Button>
+          </SpinWhile>
         </div>
       </div>
-      <div>
-        {photo && (
-          <img
-            src={URL.createObjectURL(photo)}
-            alt='upload preview'
-            style={{ maxWidth: '400px' }}
-          />
-        )}
-      </div>
-      {/*camera ? (
-        <ImageCapture setPhoto={setPhoto} />
-      ) : null*/}
       <section className='directions'>
         <h2>Steps To Identify Pill</h2>
         <h3>OPTION - 1</h3>
@@ -90,10 +76,4 @@ function ScanImage({ setData, classes, ...props }) {
   );
 }
 
-const styles = theme => ({
-  input: {
-    display: 'none'
-  }
-});
-
-export default withStyles(styles)(ScanImage);
+export default withRouter(ScanImage);

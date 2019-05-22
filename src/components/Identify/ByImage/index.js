@@ -1,8 +1,10 @@
 import React from 'react';
+// import { useToggle } from 'utilities/useToggle';
 import ScanImage from './ScanImage';
 import ErrorBoundary from 'components/ErrorBoundary/ErrorBoundary.js';
 
-export default function ScanDetection({ history, setData }) {
+export default function ByImage(props) {
+  // const [hasVideo, setHasVideo] = useToggle();
   // Scan Detection
   // useEffect(() => {
   //   const checkVideo = async () => {
@@ -10,26 +12,23 @@ export default function ScanDetection({ history, setData }) {
   //     if (navigator.mediaDevices && navigator.mediaDevices.enumerateDevices) {
   //       try {
   //         devices = await navigator.mediaDevices.enumerateDevices();
-  //         dispatch({
-  //           type: 'hasVideo',
-  //           payload: devices.filter(device => device.kind === 'videoinput')
-  //             ? true
-  //             : false
-  //         });
+  //         devices.filter(device => device.kind === 'videoinput');
+  //         if (hasVideo === null && devices.length >) {
+  //           setHasVideo(true);
+  //         }
   //       } catch (error) {
   //         console.error(error);
   //       }
   //     }
   //   };
   //   checkVideo();
-  // }, [dispatch]);
+  // }, []);
+
+  // console.log(hasVideo);
 
   return (
     <ErrorBoundary>
-      <ScanImage
-        history={history}
-        setData={setData}
-      />
+      <ScanImage {...props} />
     </ErrorBoundary>
   );
 }
