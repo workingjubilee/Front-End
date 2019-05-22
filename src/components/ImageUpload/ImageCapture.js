@@ -2,8 +2,9 @@ import React from 'react';
 import Camera, { IMAGE_TYPES, FACING_MODES } from 'react-html5-camera-photo';
 import 'react-html5-camera-photo/build/css/index.css';
 
-export default function ImageCapture({ setPhoto, state, dispatch }) {
+export default function ImageCapture({ setPhoto, toggleCamera }) {
   const onTakePhoto = dataURI => {
+
     let data = dataURI.split(',');
     let byteString; // initializes without declaring!
 
@@ -20,6 +21,7 @@ export default function ImageCapture({ setPhoto, state, dispatch }) {
 
     let blob = new Blob([bufferArray], { type: 'image/png' }); // binary => image
     setPhoto(blob); // sets data in state
+    toggleCamera();
   };
 
   const onCameraError = error => console.error('onCameraError', error);

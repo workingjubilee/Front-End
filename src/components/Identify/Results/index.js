@@ -9,8 +9,7 @@ import { tablet } from 'scss/mediaVariables';
 
 const SearchResults = ({
   searchResults,
-  handleAddPill,
-  handleAddPillReminders,
+  addPill,
   history,
   classes,
   setData
@@ -23,8 +22,7 @@ const SearchResults = ({
     return (
       <ViewDetails
         pill={pill}
-        handleAddPill={handleAddPill}
-        handleAddPillReminders={handleAddPillReminders}
+        addPill={addPill}
         setPill={setPill}
       />
     );
@@ -43,8 +41,7 @@ const SearchResults = ({
                 <SearchResult
                   key={result.product_code + result.setid}
                   result={result}
-                  handleAddPill={handleAddPill}
-                  handleAddPillReminders={handleAddPillReminders}
+                  addPill={addPill}
                   setPill={setPill}
                   history={history}
                 />

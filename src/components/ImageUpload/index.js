@@ -1,44 +1,34 @@
-import React from 'react';
-import CloudIcon from '@material-ui/icons/CloudUpload';
-import Button from '@material-ui/core/Button';
+import React, { Fragment } from 'react';
+import { useToggle } from 'utilities/useToggle';
+import ImageCapture from 'components/ImageUpload/ImageCapture.js';
+import ImageInput from 'components/ImageUpload/ImageInput.js';
+import IconButton from '@material-ui/core/IconButton';
+import AddAPhoto from '@material-ui/icons/AddAPhoto';
 
-const ImageUpload = ({ photoSelect, classes, uniqueID }) => {
-  // Extremely breakable component, please be careful.
-  // A uniqueID must be provided for the querySelector to work.
-  // Do not have styling outside this depend on the uniqueID, it can break.
-
-  const magicClicker = event => {
-    if (event.which === 32 || event.which === 13) {
-      event.preventDefault();
-      document.querySelector(`#${uniqueID}`).click();
-    }
-  }; // Makes accessible "clicking" possible.
+const ImageUpload = ({ buttonText, subText, photo, setPhoto, ...props }) => {
+  // Hook in this component by providing it with the parts of a seState hook.
+  // It will set a photo appropriately! Then just write an upload handler to post it where you want it.
+  const [camera, toggleCamera] = useToggle(false);
+  const photoSelect = event => setPhoto(event.target.files[0]);
 
   return (
-    <div className='upload-button-container'>
-      <CloudIcon />
-      <label htmlFor={uniqueID}>
-        <input
-          accept='image/*'
-          className={classes.input}
-          id={uniqueID}
-          onChange={photoSelect}
-          type='file'
+    <Fragment>
+      {camera ? (
+        <ImageCapture toggleCamera={toggleCamera} setPhoto={setPhoto} />
+      ) : !photo ? (
+        <ImageInput
+          buttonText={buttonText}
+          subText={subText}
+          photoSelect={photoSelect}
         />
-        <Button
-          variant='contained'
-          /* If you think this span is merely stylistic... */
-          component='span'
-          /* ...think again. */
-          className='upload-button'
-          onKeyDown={magicClicker}
-        >
-          Upload front image of pill
-        </Button>
-      </label>
-      <p>or drag and drop them here</p>
-    </div>
-  )
+      ) : (
+        <img src={URL.createObjectURL(photo)} alt='preview' />
+      )}
+      <IconButton aria-label='Use Camera For Picture' onClick={toggleCamera}>
+        <AddAPhoto />
+      </IconButton>
+    </Fragment>
+  );
 };
 
 export default ImageUpload;

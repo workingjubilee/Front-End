@@ -66,8 +66,7 @@ const styles = {
 const SearchResult = ({
   classes,
   result,
-  handleAddPill,
-  handleAddPillReminders,
+  addPill,
   setPill
 }) => {
   console.log('SEARCH RESULT: ', result);
@@ -136,7 +135,7 @@ const SearchResult = ({
           <Button
             onClick={e => {
               e.preventDefault();
-              handleAddPill(formattedPill);
+              addPill(formattedPill);
             }}
             className={`${classes.button} ${classes.add}`}
           >
@@ -145,7 +144,7 @@ const SearchResult = ({
           <Button
             onClick={e => {
               e.preventDefault();
-              handleAddPillReminders(formattedPill);
+              addPill(formattedPill, 'adddosage');
             }}
             className={`${classes.button} ${classes.add}`}
           >
