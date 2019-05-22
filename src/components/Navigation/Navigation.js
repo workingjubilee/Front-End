@@ -224,7 +224,9 @@ class Navigation extends Component {
             <Typography component='h5'>Medication Diary</Typography>
           </NavLink>
         </nav>
-        <div className={classes.greyStripe} />
+        {this.props.location.pathname !== '/scan' ? (
+          <div className={classes.greyStripe} />
+        ) : null}
       </div>
     );
   }
