@@ -14,7 +14,8 @@ const styles = theme => ({
     border: '1px solid gray',
     borderRadius: '5px',
     padding: '2rem',
-    margin: '2.5rem auto'
+    margin: '2.5rem auto',
+    flexWrap: 'wrap'
   },
   no: {
     backgroundColor: '#5AAC49'
@@ -22,8 +23,13 @@ const styles = theme => ({
   yes: {
     backgroundColor: '#3490F5'
   },
+  buttons: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'space-between'
+  },
   button: {
-    width: '30%',
+    width: '25%',
     height: '3.5rem',
     fontSize: '1rem',
     color: 'white',
@@ -73,7 +79,7 @@ const styles = theme => ({
     flexDirection: 'column',
     // Height should be a percentage of the container
     height: '50vh',
-    justifyContent: 'space-between'
+    justifyContent: 'space-evenly'
   }
 });
 
@@ -160,34 +166,34 @@ const ViewDetails = ({
           <Typography className={classes.static}>Label Author:</Typography>
           <Typography className={classes.dynamic}>{pill.author}</Typography>
         </div>
-        <div className={classes.buttons}>
-          <Button
-            onClick={e => {
-              e.preventDefault();
-            }}
-            className={`${classes.button} ${classes.cancel}`}
-          >
-            Cancel
-          </Button>
-          <Button
-            onClick={e => {
-              e.preventDefault();
-              handleAddPill(formattedPill);
-            }}
-            className={`${classes.button} ${classes.add}`}
-          >
-            Add to Med List
-          </Button>
-          <Button
-            onClick={e => {
-              e.preventDefault();
-              handleAddPillReminders(formattedPill);
-            }}
-            className={`${classes.button} ${classes.addRem}`}
-          >
-            Add with Reminder
-          </Button>
-        </div>
+      </div>
+      <div className={classes.buttons}>
+        <Button
+          onClick={e => {
+            e.preventDefault();
+          }}
+          className={`${classes.button} ${classes.cancel}`}
+        >
+          Cancel
+        </Button>
+        <Button
+          onClick={e => {
+            e.preventDefault();
+            handleAddPill(formattedPill);
+          }}
+          className={`${classes.button} ${classes.add}`}
+        >
+          Add to Med List
+        </Button>
+        <Button
+          onClick={e => {
+            e.preventDefault();
+            handleAddPillReminders(formattedPill);
+          }}
+          className={`${classes.button} ${classes.addRem}`}
+        >
+          Add with Reminder
+        </Button>
       </div>
     </div>
   );
