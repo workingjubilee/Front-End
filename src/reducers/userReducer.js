@@ -25,7 +25,10 @@ export default function userReducer(state = initialState, action) {
         ...state,
         loggingIn: false,
         loggedIn: true,
-        user: action.payload
+        user: {
+          ...action.payload,
+          username: localStorage.getItem('Auth0username')
+        }
       };
     case LOGIN_FAILURE:
       return {
@@ -33,6 +36,7 @@ export default function userReducer(state = initialState, action) {
         loggingIn: false,
         error: action.payload
       };
+
     case EDIT_USER_REQUEST:
       return {
         ...state,
@@ -48,6 +52,7 @@ export default function userReducer(state = initialState, action) {
         ...state,
         error: action.payload
       };
+
     case FETCH_USER_REQUEST:
       return {
         ...state,
@@ -58,7 +63,10 @@ export default function userReducer(state = initialState, action) {
       return {
         ...state,
         fetchingUser: false,
-        user: action.payload
+        user: {
+          ...action.payload,
+          username: localStorage.getItem('Auth0username')
+        }
       };
     case FETCH_USER_FAILURE:
       return {
