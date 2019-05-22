@@ -7,12 +7,14 @@ import withStyles from '@material-ui/core/styles/withStyles';
 
 const styles = theme => ({
   card: {
-    width: '95%',
+    width: '75%',
     height: '100%',
     minHeight: '60vh',
     display: 'flex',
     border: '1px solid gray',
-    padding: '2rem'
+    borderRadius: '5px',
+    padding: '2rem',
+    margin: '2.5rem auto'
   },
   no: {
     backgroundColor: '#5AAC49'
@@ -22,32 +24,46 @@ const styles = theme => ({
   },
   button: {
     width: '30%',
-    height: '2rem',
-    fontSize: '0.7rem',
+    height: '3.5rem',
+    fontSize: '1rem',
     color: 'white',
     textTransform: 'Capitalize',
-    boxShadow: '.2rem .2rem .1rem grey',
+    boxShadow: '.2rem .2rem .1rem grey'
+  },
+  cancel: {
+    background: 'black'
+  },
+  add: {
+    background: '#5AAC49'
+  },
+  addRem: {
     background: '#2D90F5'
   },
   static: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: '#F0F3F5',
     fontWeight: 'bold',
     fontSize: '16px',
-    width: '9rem',
-    height: '1.5rem',
+    width: '12rem',
+    height: '2.5rem',
     padding: '5px'
   },
   dynamic: {
+    display: 'flex',
+    alignItems: 'center',
     backgroundColor: 'white',
-    height: '1.5rem',
-    fontSize: '16px',
+    height: '2.5rem',
+    fontSize: '.8rem',
     border: '3px solid #F0F3F5',
     width: '100%',
     padding: '5px'
   },
   genericImage: {
     width: '225px',
-    height: '225px'
+    height: '225px',
+    margin: '2.5rem 5rem 0 5rem'
   },
   row: {
     display: 'flex'
@@ -148,6 +164,14 @@ const ViewDetails = ({
           <Button
             onClick={e => {
               e.preventDefault();
+            }}
+            className={`${classes.button} ${classes.cancel}`}
+          >
+            Cancel
+          </Button>
+          <Button
+            onClick={e => {
+              e.preventDefault();
               handleAddPill(formattedPill);
             }}
             className={`${classes.button} ${classes.add}`}
@@ -159,7 +183,7 @@ const ViewDetails = ({
               e.preventDefault();
               handleAddPillReminders(formattedPill);
             }}
-            className={`${classes.button} ${classes.add}`}
+            className={`${classes.button} ${classes.addRem}`}
           >
             Add with Reminder
           </Button>
