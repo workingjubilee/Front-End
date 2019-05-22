@@ -92,12 +92,7 @@ const styles = theme => ({
   }
 });
 
-const ViewDetails = ({
-  classes,
-  pill,
-  addPill,
-  setPill
-}) => {
+const ViewDetails = ({ classes, pill, addPill, setPill }) => {
   const correctCasing = string => {
     const lowerCasedString = string.toLowerCase();
     return lowerCasedString[0].toUpperCase() + lowerCasedString.slice(1);

@@ -60,62 +60,62 @@ const SearchPill = ({ setData, ...props }) => {
         <div className='search-container'>
           <form className='form-container' onSubmit={search}>
             <SpinWhile still={loading}>
-            <div className='field-container'>
-              <h5>Pill Name</h5>
-              <TextField
-                value={name}
-                onChange={e => setName(e.target.value)}
-                margin='normal'
-                variant='outlined'
-                className='field'
-              />
-            </div>
-            <div className='field-container'>
-              <h5>Imprint</h5>
-              <TextField
-                value={imprint}
-                onChange={e => setImprint(e.target.value)}
-                margin='normal'
-                variant='outlined'
-                className='field'
-              />
-            </div>
-            <p>Numbers and/or Letters on the pill</p>
-            <div className='field-container'>
-              <h5>Pill Color</h5>
-              <Dropdown
-                itemName='color'
-                itemList={colors}
-                item={color}
-                setItem={setColor}
-              />
-            </div>
-            <div className='field-container'>
-              <h5>Pill Shape</h5>
-              <Dropdown
-                itemName='shape'
-                itemList={shapes}
-                item={shape}
-                setItem={setShape}
-              />
-            </div>
-            <div className='button-container'>
-              <Button
-                variant='contained'
-                className='reset-button'
-                onClick={resetForm}
-              >
-                Reset form
-              </Button>
-              <Button
-                onClick={search}
-                type='submit'
-                variant='contained'
-                className='id-button'
-              >
-                Identify Pill
-              </Button>
-            </div>
+              <div className='field-container'>
+                <h5>Pill Name</h5>
+                <TextField
+                  value={name}
+                  onChange={e => setName(e.target.value)}
+                  margin='normal'
+                  variant='outlined'
+                  className='field'
+                />
+              </div>
+              <div className='field-container'>
+                <h5>Imprint</h5>
+                <TextField
+                  value={imprint}
+                  onChange={e => setImprint(e.target.value)}
+                  margin='normal'
+                  variant='outlined'
+                  className='field'
+                />
+              </div>
+              <p>Numbers and/or Letters on the pill</p>
+              <div className='field-container'>
+                <h5>Pill Color</h5>
+                <Dropdown
+                  itemName='color'
+                  itemList={colors}
+                  item={color}
+                  setItem={setColor}
+                />
+              </div>
+              <div className='field-container'>
+                <h5>Pill Shape</h5>
+                <Dropdown
+                  itemName='shape'
+                  itemList={shapes}
+                  item={shape}
+                  setItem={setShape}
+                />
+              </div>
+              <div className='button-container'>
+                <Button
+                  variant='contained'
+                  className='reset-button'
+                  onClick={resetForm}
+                >
+                  Reset form
+                </Button>
+                <Button
+                  onClick={search}
+                  type='submit'
+                  variant='contained'
+                  className='id-button'
+                >
+                  Identify Pill
+                </Button>
+              </div>
             </SpinWhile>
           </form>
         </div>
