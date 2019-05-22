@@ -21,8 +21,8 @@ const IdentifyOptions = ({ addPill, setData, ...props }) => {
           <Button variant='contained'>Learn more</Button>
         </div>
       </header>
+      <Tabs classes='scan-tabs' />
       <section className='options-container'>
-        <Tabs classes='tab-navigator' />
         <h2 className='options-title'>Identify your Pill before scheduling</h2>
         <ByImage setData={setData} />
         <ByForm setData={setData} />
