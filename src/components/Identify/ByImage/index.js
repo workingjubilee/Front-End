@@ -6,7 +6,7 @@ import axios from 'axios';
 import Button from '@material-ui/core/Button';
 import parseMedStrengths from 'utilities/parseMedStrengths';
 import SpinWhile from 'components/Spinner/SpinWhile';
-import ImageUploader from './ImageUpload';
+import ImageUpload from 'components/ImageUpload';
 
 import ErrorBoundary from 'components/ErrorBoundary/ErrorBoundary.js';
 
@@ -45,7 +45,7 @@ function ByImage({ setData, classes, hasVideo, ...props }) {
           <div className='image-upload'>
             <SpinWhile still={loading}>
               <h5>Pill Image Upload</h5>
-              <ImageUploader
+              <ImageUpload
                 photo={photo}
                 setPhoto={setPhoto}
                 buttonText='front image of pill'

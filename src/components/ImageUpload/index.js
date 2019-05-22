@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react';
 import { useToggle } from 'utilities/useToggle';
-import ImageCapture from './ImageCapture.js';
-import ImageUpload from 'components/ImageUpload';
+import ImageCapture from 'components/ImageUpload/ImageCapture.js';
+import ImageInput from 'components/ImageUpload/ImageInput.js';
 import IconButton from '@material-ui/core/IconButton';
 import AddAPhoto from '@material-ui/icons/AddAPhoto';
 
-const ImageUploader = ({ photo, setPhoto, ...props }) => {
+const ImageUpload = ({ photo, setPhoto, ...props }) => {
   // Hook in this component by providing it with the parts of a seState hook.
   // It will set a photo appropriately, then just write an upload handler to post it where you want it.
   const [camera, toggleCamera] = useToggle(false);
@@ -16,7 +16,7 @@ const ImageUploader = ({ photo, setPhoto, ...props }) => {
       {camera ? (
         <ImageCapture setPhoto={setPhoto} />
       ) : !photo ? (
-        <ImageUpload
+        <ImageInput
           buttonText='front image of pill'
           subText='or drag and drop them here'
           photoSelect={photoSelect}
@@ -31,4 +31,4 @@ const ImageUploader = ({ photo, setPhoto, ...props }) => {
   );
 };
 
-export default ImageUploader;
+export default ImageUpload;
