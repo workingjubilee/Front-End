@@ -11,9 +11,6 @@ import ResultInfo from './ResultInfo';
 import { tablet } from 'scss/mediaVariables';
 
 const CardContent = withStyles({
-  info: {
-    padding: '0'
-  },
   root: {
     padding: '0',
     border: 'none'
