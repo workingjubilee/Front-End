@@ -12,7 +12,8 @@ const styles = () => ({
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
-    overflow: 'hidden'
+    overflow: 'hidden',
+    border: '1px dashed red'
   },
   gridList: {
     maxWidth: 500,
