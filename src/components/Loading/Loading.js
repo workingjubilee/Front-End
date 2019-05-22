@@ -8,7 +8,7 @@ import Auth from 'Auth';
 const Loading = ({ history, logIn }) => {
   Auth.lock.on('authenticated', function(authResult) {
     localStorage.setItem('token', authResult.idToken);
-    localStorage.setItem('username', authResult.idTokenPayload.nickname);
+    localStorage.setItem('Auth0username', authResult.idTokenPayload.nickname);
     logIn()
       .then(res => {
         if (res.newUser) {
