@@ -228,7 +228,7 @@ class Navigation extends Component {
             <Typography component='h5'>Medication Diary</Typography>
           </NavLink>
         </nav>
-        {this.props.location.pathname !== '/scan' ? (
+        {this.props.location.pathname !== '/identify' ? (
           <div className={classes.greyStripe} />
         ) : null}
       </div>
