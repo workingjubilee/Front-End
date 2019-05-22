@@ -12,6 +12,7 @@ function Identify({ match, location, history, addMed, ...props }) {
   const [data, setData] = useState();
 
   const addPill = (pillInfo, destination='pills') => {
+    console.log(destination);
     addMed({
       ...pillInfo,
       med_add_date: new Date().getTime()
@@ -36,7 +37,7 @@ function Identify({ match, location, history, addMed, ...props }) {
       <Route
         path={`${match.url}/results`}
         render={props => (
-          <SearchResults searchResults={data} handleAddPill={addPill} />
+          <SearchResults searchResults={data} addPill={addPill} />
         )}
       />
     </Suspense>

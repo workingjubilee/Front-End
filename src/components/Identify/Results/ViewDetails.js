@@ -95,8 +95,7 @@ const styles = theme => ({
 const ViewDetails = ({
   classes,
   pill,
-  handleAddPill,
-  handleAddPillReminders,
+  addPill,
   setPill
 }) => {
   const correctCasing = string => {
@@ -190,7 +189,7 @@ const ViewDetails = ({
         <Button
           onClick={e => {
             e.preventDefault();
-            handleAddPill(formattedPill);
+            addPill(formattedPill);
           }}
           className={`${classes.button} ${classes.add}`}
         >
@@ -199,7 +198,7 @@ const ViewDetails = ({
         <Button
           onClick={e => {
             e.preventDefault();
-            handleAddPillReminders(formattedPill);
+            addPill(formattedPill, 'adddosage');
           }}
           className={`${classes.button} ${classes.addRem}`}
         >
