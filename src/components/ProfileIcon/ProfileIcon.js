@@ -42,12 +42,14 @@ class ProfileIcon extends Component {
 
   render() {
     const { classes, user, filteredRems } = this.props;
-    const { username } = user;
+    const { username, first_name } = user;
     return (
       <Card className={classes.paper}>
         <div className={classes.profileText}>
           <Link className={classes.link} to='/user'>
-            <Typography className={classes.text}>Hello {username} </Typography>
+            <Typography className={classes.text}>
+              Hello {first_name ? first_name : username}
+            </Typography>
           </Link>
           <Card>
             <Link className={classes.link} to='/reminders'>

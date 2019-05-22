@@ -29,7 +29,8 @@ SaveButton.muiName = 'Button';
 
 const TextField = withStyles({
   root: {
-    width: '350px'
+    width: '350px',
+    marginBottom: '20px'
   }
 })(props => <MuiTextField {...props} />);
 
@@ -38,45 +39,51 @@ TextField.muiName = 'TextField';
 const DisabledTextField = withStyles({
   root: {
     width: '350px',
+    marginBottom: '20px',
     background: '#E6E7E8'
   }
 })(props => <MuiTextField {...props} />);
 
 DisabledTextField.muiName = 'TextField';
 
-const UserProfile = ({ history, editUser, username, first_name }) => {
+const UserProfile = ({ editUser, user, username }) => {
   const firstName = useInput();
   const lastName = useInput();
   const phone = useInput();
 
   React.useEffect(() => {
-    if (first_name) {
-      firstName.setValue(first_name);
+    if (user.first_name) {
+      firstName.setValue(user.first_name);
+    }
+    if (user.last_name) {
+      lastName.setValue(user.last_name);
+    }
+    if (user.phone) {
+      phone.setValue(user.phone);
     }
     // eslint-disable-next-line
   }, []);
 
-  // const handleUpdate = e => {
-  //   e.preventDefault();
-  //   editUser({
-  //     id: localStorage.getItem('userID'),
-  //     first_name: firstName.value,
-  //     last_name: lastName.value,
-  //     phone: phone.value
-  //   })
-  //     .then(() => {
-  //       history.push('/reminders');
-  //     })
-  //     .catch(err => {
-  //       console.error(err);
-  //     });
-  // };
+  const requestEditUser = e => {
+    e.preventDefault();
+    editUser({
+      id: user.id,
+      first_name: firstName.value,
+      last_name: lastName.value,
+      phone: phone.value
+    });
+  };
 
   return (
     <div className='user-profile'>
       <div className='user-profile-banner'>My Profile</div>
       <div className='user-profile-content'>
-        <div className='user-image-upload'>User Image Upload</div>
+        <div className='user-image-upload'>
+          <p className='user-image-upload-label'>User Image Upload</p>
+          <div className='user-image-upload-component'>
+            User Image Upload Component Goes Here
+          </div>
+        </div>
         <div className='user-profile-inputs'>
           <p className='user-profile-input-label'>Username</p>
           <DisabledTextField
@@ -86,24 +93,25 @@ const UserProfile = ({ history, editUser, username, first_name }) => {
             margin='normal'
             variant='outlined'
           />
+          <p className='user-profile-input-label'>First Name</p>
           <TextField
-            id='outlined-name'
-            label='Name'
-            value={username.value}
+            id='outlined-bare'
+            value={firstName.value}
+            onChange={firstName.updateValue}
             margin='normal'
             variant='outlined'
           />
+          <p className='user-profile-input-label'>Last Name</p>
           <TextField
-            id='outlined-name'
-            label='Name'
+            id='outlined-bare'
             value={lastName.value}
             onChange={lastName.updateValue}
             margin='normal'
             variant='outlined'
           />
+          <p className='user-profile-input-label'>Phone Number</p>
           <TextField
-            id='outlined-name'
-            label='Name'
+            id='outlined-bare'
             value={phone.value}
             onChange={phone.updateValue}
             margin='normal'
@@ -113,7 +121,9 @@ const UserProfile = ({ history, editUser, username, first_name }) => {
       </div>
       <div className='user-profile-buttons'>
         <DeleteButton variant='contained'>Delete Account</DeleteButton>
-        <SaveButton variant='contained'>Save Profile</SaveButton>
+        <SaveButton variant='contained' onClick={requestEditUser}>
+          Save Profile
+        </SaveButton>
       </div>
     </div>
   );
@@ -121,7 +131,7 @@ const UserProfile = ({ history, editUser, username, first_name }) => {
 
 const mapStateToProps = state => ({
   username: 'MSTP Placeholder',
-  first_name: state.userReducer.user.first_name
+  user: state.userReducer.user
 });
 
 export default connect(

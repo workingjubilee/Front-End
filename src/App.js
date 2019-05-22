@@ -4,8 +4,6 @@ import Navigation from './components/Navigation/Navigation';
 import ErrorBoundary from 'components/ErrorBoundary/ErrorBoundary.js';
 import Spinner from 'components/Spinner/Spinner';
 
-import Auth from 'Auth';
-
 const Diary = React.lazy(() => import('./components/Diary/Diary'));
 const UserProfile = React.lazy(() =>
   import('./components/UserProfile/UserProfile')
@@ -25,7 +23,7 @@ function App() {
       <Navigation />
       <ErrorBoundary>
         <React.Suspense fallback={<Spinner />}>
-          <Route exact path='/' component={Home} />
+          <Route exact path='/' component={Landing} />
           <Route exact path='/landing' component={Landing} />
           <Route exact path='/user' component={UserProfile} />
           <Route exact path='/loading' component={Loading} />
@@ -36,28 +34,6 @@ function App() {
           <Route path='/adddosage' component={AddDosage} />
         </React.Suspense>
       </ErrorBoundary>
-    </div>
-  );
-}
-
-function Home() {
-  const logOut = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('userID');
-  };
-  return (
-    <div className='homeScreen'>
-      <h2>Home screen</h2>
-      <button
-        onClick={event => {
-          event.preventDefault();
-          Auth.lock.show();
-        }}
-      >
-        Login or Register
-      </button>
-      {/* Logout needed for Auth0 testing, needs to be moved for production */}
-      <button onClick={logOut}>Logout</button>
     </div>
   );
 }

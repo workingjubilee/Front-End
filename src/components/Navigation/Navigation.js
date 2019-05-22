@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import MuiToolbar from '@material-ui/core/Toolbar';
 import MuiIconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
+import MuiTypography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
+import { withRouter } from 'react-router-dom';
 import SearchIcon from '@material-ui/icons/Search';
 import ProfileIcon from '../ProfileIcon/ProfileIcon';
 import ArrowIcon from '@material-ui/icons/CompareArrows';
@@ -14,7 +15,17 @@ import ScanIcon from '@material-ui/icons/CenterFocusStrong';
 import SvgIcon from '@material-ui/core/SvgIcon';
 import { Link, NavLink } from 'react-router-dom';
 
-import { tablet } from 'scss/mediaVariables';
+import { mobile, tablet } from 'scss/mediaVariables';
+
+const Typography = withStyles({
+  root: {
+    [mobile]: {
+      fontSize: '12px'
+    }
+  }
+})(props => <MuiTypography {...props} />);
+
+Typography.muiName = 'Typography';
 
 const Toolbar = withStyles({
   root: {
@@ -23,7 +34,7 @@ const Toolbar = withStyles({
   },
   regular: {
     minHeight: '60px',
-    [`${tablet}`]: {
+    [tablet]: {
       minHeight: '60px',
       height: '60px'
     }
@@ -151,7 +162,9 @@ class Navigation extends Component {
     const { classes } = this.props;
 
     return (
-      <>
+      <div
+        style={{ display: this.props.location.pathname === '/' ? 'none' : '' }}
+      >
         <div className={classes.root}>
           <AppBar position='static' className={classes.bar}>
             <Toolbar>
@@ -212,11 +225,11 @@ class Navigation extends Component {
           </NavLink>
         </nav>
         <div className={classes.greyStripe} />
-      </>
+      </div>
     );
   }
 }
 
-const StyledNavigation = withStyles(styles)(Navigation);
+const StyledNavigation = withStyles(styles)(withRouter(Navigation));
 
 export default StyledNavigation;
