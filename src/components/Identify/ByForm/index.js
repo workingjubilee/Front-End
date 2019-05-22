@@ -118,17 +118,17 @@ const SearchPill = ({ setData, ...props }) => {
         <article>
           <ol>
             <li>
-              Enter pill name <span>(optional)</span>
+              Enter pill name <span>(optional).</span>
             </li>
             <li>
-              Enter the imprint (code, numbers and/or letters on the pill)
+              Enter the imprint (code, numbers and/or letters on the pill).
             </li>
             <li>
-              Select the pill color <span>(optional)</span>
+              Select the pill color <span>(optional).</span>
             </li>
-            <li>Select the shape</li>
-            <li>Click "Identify Pill" button</li>
-            <li>Click "Reset" to re-enter search fields</li>
+            <li>Select the shape.</li>
+            <li>Click "Identify Pill" button.</li>
+            <li>Click "Reset" to re-enter search fields.</li>
           </ol>
         </article>
       </div>

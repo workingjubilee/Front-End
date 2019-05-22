@@ -8,7 +8,8 @@ $pillborder: #ebecee;
   text-decoration: none;
 }
 
-.tab-navigator {
+.tab-navigator,
+.scan-tabs {
   max-width: 1000px;
   display: flex;
   margin: 24px auto 22px auto;
@@ -98,6 +99,33 @@ $pillborder: #ebecee;
     border: 1px solid $secondary;
     h5 {
       color: white;
+    }
+  }
+}
+.scan-tabs {
+  max-width: 1440px;
+  margin-top: 30px;
+  .tab {
+    width: 290px;
+    height: 80px;
+    .icon {
+      width: 40px;
+      height: 40px;
+    }
+    .scanner {
+      width: 40px;
+      height: 40px;
+    }
+    .arrow {
+      width: 40px;
+      height: 40px;
+    }
+    .diary-icon {
+      width: 36px;
+      height: 36px;
+    }
+    h5 {
+      font-size: 1.4rem;
     }
   }
 }

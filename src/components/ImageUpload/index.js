@@ -24,7 +24,11 @@ const ImageUpload = ({ buttonText, subText, photo, setPhoto, ...props }) => {
       ) : (
         <img src={URL.createObjectURL(photo)} alt='preview' />
       )}
-      <IconButton aria-label='Use Camera For Picture' onClick={toggleCamera}>
+      <IconButton
+        className='camera'
+        aria-label='Use Camera For Picture'
+        onClick={toggleCamera}
+      >
         <AddAPhoto />
       </IconButton>
     </Fragment>
