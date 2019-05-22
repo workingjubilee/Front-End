@@ -70,6 +70,7 @@ const SearchResult = ({
   handleAddPillReminders,
   setPill
 }) => {
+  console.log('SEARCH RESULT: ', result);
   const correctCasing = string => {
     const lowerCasedString = string.toLowerCase();
     return lowerCasedString[0].toUpperCase() + lowerCasedString.slice(1);
@@ -99,16 +100,17 @@ const SearchResult = ({
       result.strength[0][2]
   };
 
+  const imageSrc =
+    result.image_id !== null
+      ? `https://s3.amazonaws.com/labs12-rxidstore/reference/${result.image_id}`
+      : `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEtm2tJxpsgbyWcy36iZ6tPxSyg-wLQNBLOzRqbiNCaq1iAy5O`;
+
   return (
     <Card className={classes.card}>
       {/* Paper might not be necessary here */}
       <Paper>
         <CardContent className={classes.info}>
-          <img
-            className={classes.genericImage}
-            src={`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEtm2tJxpsgbyWcy36iZ6tPxSyg-wLQNBLOzRqbiNCaq1iAy5O`}
-            alt='A drug'
-          />
+          <img className={classes.genericImage} src={imageSrc} alt='A drug' />
           <ResultInfo result={result} correctCasing={correctCasing} />
           {/* <CircularProgress
             style={{
