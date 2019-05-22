@@ -66,17 +66,19 @@
     .text-content {
       display: flex;
       flex-direction: column;
-      width: 40%;
-      padding: 300px 0 100px 0px;
+      width: 50%;
+      padding: 300px 0 100px 100px;
 
       h1 {
         font-size: 64px;
+        font-weight: 300;
         color: #252c35;
       }
 
       p {
         margin-top: 50px;
         font-size: 20px;
+        font-weight: 300;
         color: #74869b;
       }
     }
@@ -84,7 +86,7 @@
     .tiles {
       display: flex;
       width: 50%;
-      padding: 100px 0 200px 0px;
+      padding: 100px 50px 100px 0px;
       :first-child {
         margin-top: 50px;
       }
@@ -150,7 +152,6 @@
   }
 
   .testimonials {
-    margin-top: -100px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -159,6 +160,187 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+
+      h1 {
+        font-size: 36px;
+        font-weight: 300;
+        color: #252c35;
+      }
+
+      p {
+        font-size: 20px;
+        font-weight: 300;
+        color: #74869b;
+      }
+    }
+
+    .tiles {
+      display: flex;
+      justify-content: space-between;
+      margin: 0 auto;
+      padding-top: 50px;
+      width: 90%;
+
+      .tile {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 348px;
+        height: 426px;
+        box-shadow: 0px 0px 10px 10px #f0f0f0;
+        border-radius: 5px;
+
+        .logo {
+          display: flex;
+          box-sizing: border-box;
+          width: 100px;
+          height: 100px;
+          background: #e6e7e8;
+          margin: 50px 0 20px 0;
+          border-radius: 50%;
+          justify-content: center;
+
+          img {
+            height: 50px;
+            width: 50px;
+            line-height: 100px;
+            align-self: center;
+          }
+        }
+
+        .top-text-content {
+          box-sizing: border-box;
+
+          h2 {
+            width: max-content;
+            font-size: 18px;
+            color: #252c35;
+            margin: 0 auto;
+          }
+
+          p {
+            padding-top: 2px;
+            font-size: 14px;
+            color: #74869b;
+            letter-spacing: 27;
+          }
+        }
+
+        .quote-content {
+          font-size: 20px;
+          color: #74869b;
+          letter-spacing: 27;
+          text-align: center;
+          padding-top: 50px;
+          line-height: 27px;
+        }
+      }
+    }
+  }
+
+  .team {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 100px 0 0 0;
+
+    h2 {
+      width: max-content;
+      margin: 0 auto;
+      font-size: 36px;
+      color: #252c35;
+      font-weight: 300;
+    }
+
+    p {
+      width: max-content;
+      margin: 0 auto;
+      font-size: 20px;
+      color: #74869b;
+      font-weight: 300;
+    }
+
+    .tiles {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 50px;
+      justify-content: center;
+
+      .tile {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 282px;
+        height: 350px;
+        background: #0b1a27;
+        margin: 7.5px;
+        border-radius: 5px;
+
+        img {
+          height: 100px;
+          width: 100px;
+          border-radius: 50%;
+          object-fit: cover;
+          margin: 40px auto 20px;
+        }
+
+        h3 {
+          width: 80%;
+          margin: 0 auto;
+          font-size: 24px;
+          font-weight: 900;
+          color: #ffffff;
+          flex-wrap: wrap;
+          text-align: center;
+        }
+
+        p {
+          font-size: 16px;
+          color: #81878d;
+          margin: 5px auto 0;
+        }
+
+        .links {
+          width: max-content;
+          display: flex;
+          margin: 40px auto 0;
+
+          a {
+            height: 30px;
+            width: 30px;
+            margin: 0 2.5px 50px;
+            text-decoration: none;
+
+            .fab {
+              font-size: 30px;
+              color: #ffffff;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  footer {
+    height: 200px;
+    background: #252c35;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: center;
+    margin-top: 100px;
+
+    h4 {
+      color: #ffffff;
+    }
+
+    a {
+      color: #4c5b6c;
+      text-decoration: none;
+
+      .fab {
+        font-size: 30px;
+        margin: 0 10px;
+      }
     }
   }
 }
