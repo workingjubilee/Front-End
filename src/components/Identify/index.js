@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addMed } from 'actions';
 
+import ErrorBoundary from 'components/ErrorBoundary/ErrorBoundary';
 import Spinner from 'components/Spinner/Spinner.js';
 
 const IdentifyOptions = lazy(() => import('./Options'));
@@ -11,7 +12,7 @@ const SearchResults = lazy(() => import('./Results'));
 function Identify({ match, location, history, addMed, ...props }) {
   const [data, setData] = useState();
 
-  const addPill = (pillInfo, destination='pills') => {
+  const addPill = (pillInfo, destination = 'pills') => {
     console.log(destination);
     addMed({
       ...pillInfo,
@@ -26,21 +27,23 @@ function Identify({ match, location, history, addMed, ...props }) {
   };
 
   return (
-    <Suspense fallback={<Spinner />}>
-      <Route
-        exact
-        path={`${match.url}`}
-        render={props => (
-          <IdentifyOptions {...props} addPill={addPill} setData={setData} />
-        )}
-      />
-      <Route
-        path={`${match.url}/results`}
-        render={props => (
-          <SearchResults searchResults={data} addPill={addPill} />
-        )}
-      />
-    </Suspense>
+    <ErrorBoundary>
+      <Suspense fallback={<Spinner />}>
+        <Route
+          exact
+          path={`${match.url}`}
+          render={props => (
+            <IdentifyOptions {...props} addPill={addPill} setData={setData} />
+          )}
+        />
+        <Route
+          path={`${match.url}/results`}
+          render={props => (
+            <SearchResults searchResults={data} addPill={addPill} />
+          )}
+        />
+      </Suspense>
+    </ErrorBoundary>
   );
 }
 

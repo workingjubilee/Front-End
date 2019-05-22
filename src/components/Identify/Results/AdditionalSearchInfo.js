@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -19,7 +20,7 @@ const styles = {
   }
 };
 
-const AdditionalSearchInfo = ({ classes, setData }) => {
+const AdditionalSearchInfo = ({ classes, history }) => {
   return (
     <div className={classes.card}>
       <Typography className={classes.header} variant='h5'>
@@ -28,7 +29,7 @@ const AdditionalSearchInfo = ({ classes, setData }) => {
       <button
         onClick={e => {
           e.preventDefault();
-          setData(null);
+          history.push('/identify');
         }}
       >
         Try a new Search
@@ -57,4 +58,4 @@ const AdditionalSearchInfo = ({ classes, setData }) => {
   );
 };
 
-export default withStyles(styles)(AdditionalSearchInfo);
+export default withStyles(styles)(withRouter(AdditionalSearchInfo));

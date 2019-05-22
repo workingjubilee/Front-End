@@ -19,13 +19,7 @@ const SearchResults = ({
   // Okay, these media queries are not working. 'Display: none' is just to prove this point.
 
   if (pill) {
-    return (
-      <ViewDetails
-        pill={pill}
-        addPill={addPill}
-        setPill={setPill}
-      />
-    );
+    return <ViewDetails pill={pill} addPill={addPill} setPill={setPill} />;
   } else {
     return (
       <div className={classes.mainStyle}>
