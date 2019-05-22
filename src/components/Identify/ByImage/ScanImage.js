@@ -36,10 +36,16 @@ function ScanImage({ setData, classes, ...props }) {
   return (
     <section className='option1-container'>
       <div className='image-container'>
-        <h4>Option 1 - Identify by uploading pill image</h4>
+        <h4>
+          <strong>Option 1 - </strong>Identify by uploading pill image
+        </h4>
         <div className='image-upload'>
           <h5>Pill Image Upload</h5>
-          <ImageUpload classes={classes} photoSelect={photoSelect} uniqueID="image-scan-upload" />
+          <ImageUpload
+            classes={classes}
+            photoSelect={photoSelect}
+            uniqueID='image-scan-upload'
+          />
           {/*state && state.hasVideo && (
             <Button style={{ display: 'none' }} onClick={toggleCamera}>
               Take Photo
