@@ -80,7 +80,6 @@ const SearchPill = ({ dispatch, setData, ...rest }) => {
                 itemList={colors}
                 item={color}
                 setItem={setColor}
-                className='field'
               />
             </div>
             <div className='field-container'>
@@ -90,7 +89,6 @@ const SearchPill = ({ dispatch, setData, ...rest }) => {
                 itemList={shapes}
                 item={shape}
                 setItem={setShape}
-                className='field'
               />
             </div>
             <div className='button-container'>

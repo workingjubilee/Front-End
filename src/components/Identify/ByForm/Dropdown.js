@@ -9,7 +9,8 @@ const Swatch = ({color}) => {
   const swatchObject = {
     background: `${color}`,
     padding: '0 12px',
-    marginRight: '4px'
+    marginRight: '4px',
+    minHeight: '19px'
   }
   return (
     <span style={swatchObject} />
@@ -26,10 +27,10 @@ const Dropdown = ({ itemName, itemList, item, setItem }) => {
           <OutlinedInput name={item} id={`outlined ${item}`} labelWidth={0} />
         }
       >
-        {itemList.map((item, index) => {
+        {itemList.map((thisItem, index) => {
           return (
-            <MenuItem key={index} value={item}>
-              <Swatch color={item} /> {item}
+            <MenuItem key={index} value={thisItem}>
+              <Swatch color={thisItem} /> {thisItem}
             </MenuItem>
           );
         })}
