@@ -161,6 +161,20 @@ const Landing = () => {
         </div>
       </section>
       {/* footer */}
+      <footer>
+        <h4>May 2019 Lambda Labs Project</h4>
+        <a href='https://lambdaschool.com/' target='blank'>
+          www.lambdaschool.com
+        </a>
+        <div>
+          <a href='https://twitter.com/lambdaschool' target='blank'>
+            <i class='fab fa-twitter-square' />
+          </a>
+          <a href='https://www.facebook.com/LambdaSchoolOnline/' target='blank'>
+            <i class='fab fa-facebook-square' />
+          </a>
+        </div>
+      </footer>
     </div>
   );
 };
