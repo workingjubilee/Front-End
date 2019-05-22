@@ -47,7 +47,8 @@ const SearchPill = ({ dispatch, setData, ...rest }) => {
     <section className='option2-container'>
       <div className='identify-container'>
         <h4>
-          Option 2 - Identify your pill by providing either pill name or imprint
+          <strong>Option 2 - </strong> Identify your pill by providing either
+          pill name or imprint
         </h4>
         <div className='search-container'>
           <form className='form-container' onSubmit={search}>
