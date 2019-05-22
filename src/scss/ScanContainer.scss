@@ -43,10 +43,16 @@ $lightgray: #d6d8dd;
         border-radius: 6px;
         height: 320px;
 
-        img {
+        img,
+        .react-html5-camera-photo {
           max-width: 300px;
           max-height: 200px;
           margin-top: 30px;
+        }
+
+        .display-error {
+          width: 100%;
+          text-align: center;
         }
 
         .camera {
