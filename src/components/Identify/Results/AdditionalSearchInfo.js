@@ -8,7 +8,6 @@ import { tablet } from 'scss/mediaVariables';
 const styles = {
   card: {
     width: '40%',
-    margin: '0 auto',
     boxShadow: 'none',
     textAlign: 'center',
     [`${tablet}`]: {
@@ -20,12 +19,20 @@ const styles = {
   }
 };
 
-const AdditionalSearchInfo = ({ classes }) => {
+const AdditionalSearchInfo = ({ classes, setData }) => {
   return (
-    <Card className={classes.card}>
+    <div className={classes.card}>
       <Typography className={classes.header} variant='h5'>
         Can't find what you're looking for?
       </Typography>
+      <button
+        onClick={e => {
+          e.preventDefault();
+          setData(null);
+        }}
+      >
+        Try a new Search
+      </button>
       <p>
         You can search to identify your pill by providing either the pill name,
         imprint, or uploading an image
@@ -46,7 +53,7 @@ const AdditionalSearchInfo = ({ classes }) => {
           <li>7. Find your medication or make a new search</li>
         </ol>
       </Card>
-    </Card>
+    </div>
   );
 };
 

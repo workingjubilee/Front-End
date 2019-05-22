@@ -34,7 +34,7 @@ const SearchPill = ({ setData, ...props }) => {
       shape,
       color
     };
-    console.log(query);
+    console.log('SEARCH QUERY: ', query);
     try {
       const results = await axios.post(formEndpoint, query);
       const parsedResults = parseMedStrengths(results.data);
