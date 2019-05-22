@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import AdditionalSearchInfo from './AdditionalSearchInfo';
 import SearchResult from './SearchResult';
 import ViewDetails from './ViewDetails';
+import withStyles from '@material-ui/core/styles/withStyles';
 
 import { tablet } from 'scss/mediaVariables';
 
@@ -10,28 +11,12 @@ const SearchResults = ({
   searchResults,
   handleAddPill,
   handleAddPillReminders,
-  history
+  history,
+  classes
 }) => {
   const [pill, setPill] = useState(null);
 
-  const style = {
-    display: 'flex',
-    margin: '0 5rem',
-    [`${tablet}`]: {
-      display: 'none',
-      margin: 'none'
-    }
-  };
-
   // Okay, these media queries are not working. 'Display: none' is just to prove this point.
-  const leftStyle = {
-    maxWidth: '90%',
-    marginRight: '5rem',
-    [`${tablet}`]: {
-      display: 'none',
-      margin: 'none'
-    }
-  };
 
   if (pill) {
     return (
@@ -43,8 +28,8 @@ const SearchResults = ({
     );
   } else {
     return (
-      <div style={style}>
-        <div style={leftStyle}>
+      <div className={classes.mainStyle}>
+        <div className={classes.leftStyle}>
           {searchResults &&
             searchResults
               .filter(result => {
@@ -69,4 +54,23 @@ const SearchResults = ({
   }
 };
 
-export default SearchResults;
+const styles = theme => ({
+  mainStyle: {
+    display: 'flex',
+    // margin: '0 5rem',
+    [`${tablet}`]: {
+      display: 'none',
+      margin: 'none'
+    }
+  },
+  leftStyle: {
+    maxWidth: '90%',
+    marginRight: '5rem',
+    [`${tablet}`]: {
+      display: 'none',
+      margin: 'none'
+    }
+  }
+});
+
+export default withStyles(styles)(SearchResults);
