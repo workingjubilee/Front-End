@@ -1,42 +1,34 @@
-import React from 'react';
-import CloudIcon from '@material-ui/icons/CloudUpload';
-import Button from '@material-ui/core/Button';
+import React, { Fragment } from 'react';
+import { useToggle } from 'utilities/useToggle';
+import ImageCapture from './ImageCapture.js';
+import ImageUpload from 'components/ImageUpload';
+import IconButton from '@material-ui/core/IconButton';
+import AddAPhoto from '@material-ui/icons/AddAPhoto';
 
-const ImageUpload = ({ photoSelect, buttonText, subText }) => {
-  // Extremely breakable component, please be careful.
-
-  const magicClicker = event => {
-    if (event.which === 32 || event.which === 13) {
-      event.preventDefault();
-      document.querySelector(`#image-upload-input`).click();
-    }
-  }; // Makes accessible "clicking" possible.
+const ImageUploader = ({ photo, setPhoto, ...props }) => {
+  // Hook in this component by providing it with the parts of a seState hook.
+  // It will set a photo appropriately, then just write an upload handler to post it where you want it.
+  const [camera, toggleCamera] = useToggle(false);
+  const photoSelect = event => setPhoto(event.target.files[0]);
 
   return (
-    <div className='upload-button-container'>
-      <CloudIcon />
-      <label htmlFor='image-upload-input'>
-        <input
-          accept='image/*'
-          style={{ display: 'none' }}
-          id='image-upload-input'
-          onChange={photoSelect}
-          type='file'
+    <Fragment>
+      {camera ? (
+        <ImageCapture setPhoto={setPhoto} />
+      ) : !photo ? (
+        <ImageUpload
+          buttonText='front image of pill'
+          subText='or drag and drop them here'
+          photoSelect={photoSelect}
         />
-        <Button
-          variant='contained'
-          /* If you think this span is merely stylistic... */
-          component='span'
-          /* ...think again. */
-          className='upload-button'
-          onKeyDown={magicClicker}
-        >
-          Upload {buttonText}
-        </Button>
-      </label>
-      {subText && <p>{subText}</p>}
-    </div>
+      ) : (
+        <img src={URL.createObjectURL(photo)} alt='preview' />
+      )}
+      <IconButton aria-label='Use Camera For Picture' onClick={toggleCamera}>
+        <AddAPhoto />
+      </IconButton>
+    </Fragment>
   );
 };
 
-export default ImageUpload;
+export default ImageUploader;
