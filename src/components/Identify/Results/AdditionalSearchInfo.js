@@ -19,12 +19,20 @@ const styles = {
   }
 };
 
-const AdditionalSearchInfo = ({ classes }) => {
+const AdditionalSearchInfo = ({ classes, setData }) => {
   return (
     <div className={classes.card}>
       <Typography className={classes.header} variant='h5'>
         Can't find what you're looking for?
       </Typography>
+      <button
+        onClick={e => {
+          e.preventDefault();
+          setData(null);
+        }}
+      >
+        Try a new Search
+      </button>
       <p>
         You can search to identify your pill by providing either the pill name,
         imprint, or uploading an image

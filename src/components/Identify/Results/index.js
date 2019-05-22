@@ -12,7 +12,8 @@ const SearchResults = ({
   handleAddPill,
   handleAddPillReminders,
   history,
-  classes
+  classes,
+  setData
 }) => {
   const [pill, setPill] = useState(null);
 
@@ -49,7 +50,7 @@ const SearchResults = ({
                 />
               ))}
         </div>
-        <AdditionalSearchInfo />
+        <AdditionalSearchInfo setData={setData} />
       </div>
     );
   }
