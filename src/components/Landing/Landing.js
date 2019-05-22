@@ -146,14 +146,14 @@ const Landing = () => {
               <div className='links'>
                 {teamMate.medium ? (
                   <a href={teamMate.medium} target='blank'>
-                    <i class='fab fa-medium' />
+                    <i className='fab fa-medium' />
                   </a>
                 ) : null}
                 <a href={teamMate.linkedIn} target='blank'>
-                  <i class='fab fa-linkedin' />
+                  <i className='fab fa-linkedin' />
                 </a>
                 <a href={teamMate.gitHub} target='blank'>
-                  <i class='fab fa-github' />
+                  <i className='fab fa-github' />
                 </a>
               </div>
             </div>
