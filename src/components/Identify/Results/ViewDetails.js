@@ -5,6 +5,8 @@ import Typography from '@material-ui/core/Typography';
 
 import withStyles from '@material-ui/core/styles/withStyles';
 
+import { tablet } from 'scss/mediaVariables';
+
 const styles = theme => ({
   card: {
     width: '75%',
@@ -34,7 +36,11 @@ const styles = theme => ({
     fontSize: '1rem',
     color: 'white',
     textTransform: 'Capitalize',
-    boxShadow: '.2rem .2rem .1rem grey'
+    boxShadow: '.2rem .2rem .1rem grey',
+    [`${tablet}`]: {
+      height: '5rem',
+      width: '30%'
+    }
   },
   cancel: {
     background: 'black'
@@ -69,7 +75,10 @@ const styles = theme => ({
   genericImage: {
     width: '225px',
     height: '225px',
-    margin: '2.5rem 5rem 0 5rem'
+    margin: '2.5rem 5rem 0 5rem',
+    [`${tablet}`]: {
+      margin: '0 auto'
+    }
   },
   row: {
     display: 'flex'
