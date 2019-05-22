@@ -1,38 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, Suspense, lazy } from 'react';
+import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addMed } from 'actions';
-import { useToggle } from 'utilities/useToggle';
-import Button from '@material-ui/core/Button';
-import ImageSearch from './ByImage'; // Prioritizing the Scan component
-import FormSearch from './ByForm';
-import SearchResults from './Results';
-import PillInfoModal from 'components/Modals/PillInfoModal';
-// import Pill from 'components/PillsContainer/Pill.js';
 
-function ScanOrAdd({ location, history, addMed }) {
-  const [open, setOpen] = useToggle(false);
+import Spinner from 'components/Spinner/Spinner.js';
+
+const IdentifyOptions = lazy(() => import('./Options'));
+const SearchResults = lazy(() => import('./Results'));
+
+function Identify({ match, location, history, addMed, ...props }) {
   const [data, setData] = useState();
 
-  const handleAddPill = pillInfo => {
+  const addPill = (pillInfo, destination='pills') => {
+    console.log(destination);
     addMed({
       ...pillInfo,
       med_add_date: new Date().getTime()
     })
       .then(() => {
-        history.push('/pills');
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  };
-
-  const handleAddPillReminders = pillInfo => {
-    addMed({
-      ...pillInfo,
-      med_add_date: new Date().getTime()
-    })
-      .then(() => {
-        history.push('/adddosage');
+        history.push(`/${destination}`);
       })
       .catch(error => {
         console.log(error);
@@ -40,43 +26,25 @@ function ScanOrAdd({ location, history, addMed }) {
   };
 
   return (
-    <>
-      {data ? (
-        <SearchResults
-          searchResults={data}
-          handleAddPill={handleAddPill}
-          handleAddPillReminders={handleAddPillReminders}
-          history={history}
-          setData={setData}
-        />
-      ) : (
-        <section className='scan-container'>
-          <h2>Identify your Pill before scheduling</h2>
-          <ImageSearch history={history} setData={setData} />
-          <FormSearch setData={setData} />
-          <section className='option3-container'>
-            <div className='label'>
-              <h5>
-                <strong>Option 3 - </strong>Know your pill? Add it manually
-              </h5>
-            </div>
-            <Button onClick={setOpen} variant='contained'>
-              Add Pill Manually
-            </Button>
-          </section>
-          <PillInfoModal
-            open={open}
-            handleAddPill={handleAddPill}
-            handleAddPillReminders={handleAddPillReminders}
-            handleClose={setOpen}
-          />
-        </section>
-      )}
-    </>
+    <Suspense fallback={<Spinner />}>
+      <Route
+        exact
+        path={`${match.url}`}
+        render={props => (
+          <IdentifyOptions {...props} addPill={addPill} setData={setData} />
+        )}
+      />
+      <Route
+        path={`${match.url}/results`}
+        render={props => (
+          <SearchResults searchResults={data} addPill={addPill} />
+        )}
+      />
+    </Suspense>
   );
 }
 
 export default connect(
   null,
   { addMed }
-)(ScanOrAdd);
+)(Identify);

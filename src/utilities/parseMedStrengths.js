@@ -1,8 +1,6 @@
 module.exports = function parseMedStrengths(meds) {
   const scaryRegex = /^([^0-9]*?)(\d*[.]?\d*)(\D*?)$/gi;
 
-  // console.log("Received as: ", meds);
-
   const regexStrength = (medStr, regex) =>
     medStr
       .split(';')
