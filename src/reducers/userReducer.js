@@ -2,6 +2,7 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
+  LOGOUT_SUCCESS,
   EDIT_USER_REQUEST,
   EDIT_USER_SUCCESS,
   EDIT_USER_FAILURE,
@@ -35,6 +36,11 @@ export default function userReducer(state = initialState, action) {
         ...state,
         loggingIn: false,
         error: action.payload
+      };
+
+    case LOGOUT_SUCCESS:
+      return {
+        state: initialState
       };
 
     case EDIT_USER_REQUEST:

@@ -30,6 +30,10 @@ export const logIn = () => dispatch => {
     });
 };
 
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
+
+export const logout = () => ({ type: LOGOUT_SUCCESS });
+
 export const EDIT_USER_REQUEST = 'EDIT_USER_REQUEST';
 export const EDIT_USER_SUCCESS = 'EDIT_USER_SUCCESS';
 export const EDIT_USER_FAILURE = 'EDIT_USER_FAILURE';
