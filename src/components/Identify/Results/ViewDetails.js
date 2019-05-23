@@ -68,7 +68,7 @@ const styles = theme => ({
     backgroundColor: 'white',
     height: '2.5rem',
     fontSize: '.8rem',
-    border: '3px solid #F0F3F5',
+    border: '1px solid #F0F3F5',
     width: '100%',
     padding: '5px'
   },

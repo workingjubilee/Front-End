@@ -4,8 +4,9 @@ import AdditionalSearchInfo from './AdditionalSearchInfo';
 import SearchResult from './SearchResult';
 import ViewDetails from './ViewDetails';
 import withStyles from '@material-ui/core/styles/withStyles';
+import Button from '@material-ui/core/Button';
 
-import { tablet } from 'scss/mediaVariables';
+import { desktop, tablet } from 'scss/mediaVariables';
 
 const SearchResults = ({
   searchResults,
@@ -23,28 +24,42 @@ const SearchResults = ({
     return <ViewDetails pill={pill} addPill={addPill} setPill={setPill} />;
   } else {
     return (
-      <div className={classes.mainStyle}>
-        <div className={classes.leftStyle}>
-          {searchResults &&
-            searchResults
-              .filter(result => {
-                return (
-                  result && result.strength && result.strength[0] && result
-                );
-              })
-              .map(result => (
-                <SearchResult
-                  key={result.product_code + result.setid}
-                  result={result}
-                  addPill={addPill}
-                  setPill={setPill}
-                  history={history}
-                  setImage={setImage}
-                />
-              ))}
+      <>
+        <div className='search-results-bar'>
+          <h4>Search Results:</h4>
+          <Button
+            variant='outlined'
+            onClick={e => {
+              e.preventDefault();
+              history.push('/identify');
+            }}
+          >
+            Try a new search
+          </Button>
         </div>
-        <AdditionalSearchInfo setData={setData} />
-      </div>
+        <div className={classes.mainStyle}>
+          <div className={classes.leftStyle}>
+            {searchResults &&
+              searchResults
+                .filter(result => {
+                  return (
+                    result && result.strength && result.strength[0] && result
+                  );
+                })
+                .map(result => (
+                  <SearchResult
+                    key={result.product_code + result.setid}
+                    result={result}
+                    addPill={addPill}
+                    setPill={setPill}
+                    history={history}
+                    setImage={setImage}
+                  />
+                ))}
+          </div>
+          <AdditionalSearchInfo setData={setData} />
+        </div>
+      </>
     );
   }
 };
@@ -52,15 +67,24 @@ const SearchResults = ({
 const styles = theme => ({
   mainStyle: {
     display: 'flex',
-    width: '100%',
-    margin: '2rem 6rem',
-    [`${tablet}`]: {
+    justifyContent: 'space-between',
+    width: '86.5%',
+    margin: '0 auto',
+    '@media (max-width: 1200px)': {
+      width: '94.5%'
+    },
+    [tablet]: {
+      width: '100%',
       margin: '0 auto'
     }
   },
   leftStyle: {
     width: '50%',
-    [`${tablet}`]: {
+    [desktop]: {
+      margin: '0 auto',
+      width: '90%'
+    },
+    [tablet]: {
       margin: 'none',
       width: '100%'
     }

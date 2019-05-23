@@ -43,6 +43,7 @@ function Identify({ match, location, history, addMed, setImage, ...props }) {
               searchResults={data}
               addPill={addPill}
               setImage={setImage}
+              history={history}
             />
           )}
         />
