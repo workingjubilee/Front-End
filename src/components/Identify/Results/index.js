@@ -54,13 +54,13 @@ const styles = theme => ({
     display: 'flex',
     width: '100%',
     margin: '2rem 6rem',
-    [`${tablet}`]: {
+    [tablet]: {
       margin: '0 auto'
     }
   },
   leftStyle: {
     width: '50%',
-    [`${tablet}`]: {
+    [tablet]: {
       margin: 'none',
       width: '100%'
     }
