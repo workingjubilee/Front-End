@@ -5,11 +5,9 @@ import MuiToolbar from '@material-ui/core/Toolbar';
 import Tabs from './Tabs';
 import MuiIconButton from '@material-ui/core/IconButton';
 import MuiTypography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom';
-import SearchIcon from '@material-ui/icons/Search';
 import ProfileIcon from '../ProfileIcon/ProfileIcon';
 
 import { logout } from 'actions/index';
@@ -93,29 +91,6 @@ const styles = theme => ({
     fontSize: '2.5rem',
     fontWeight: 400
   },
-  search: {
-    display: 'flex',
-    [tablet]: {
-      display: 'none'
-    },
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
-    '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25)
-    },
-    marginLeft: 0,
-    width: '100%'
-  },
-  searchIcon: {
-    margin: '0 10px 0 10px',
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
   inputRoot: {
     color: 'inherit',
     width: '100%'
@@ -197,23 +172,6 @@ class Navigation extends Component {
                     <span className={classes.subTitle}> Pill Identifier</span>
                   </Typography>
                   <LogoutLink onClick={this.handleLogout}>Logout</LogoutLink>
-                </div>
-                <div className='searchBar'>
-                  <div className={classes.search}>
-                    <div className={classes.searchIcon}>
-                      <SearchIcon />
-                    </div>
-                    <form>
-                      <InputBase
-                        name='searched'
-                        placeholder='Search to identify your pill'
-                        classes={{
-                          root: classes.inputRoot,
-                          input: classes.inputInput
-                        }}
-                      />
-                    </form>
-                  </div>
                 </div>
                 <div className={classes.sectionDesktop}>
                   <ProfileIcon />
