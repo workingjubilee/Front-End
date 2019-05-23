@@ -159,7 +159,10 @@ class Navigation extends Component {
   render() {
     const { classes } = this.props;
 
-    if (this.props.location.pathname === '/') {
+    if (
+      this.props.location.pathname === '/' ||
+      this.props.location.pathname === '/landing'
+    ) {
       return null;
     } else {
       return (
