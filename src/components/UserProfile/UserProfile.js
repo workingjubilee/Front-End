@@ -49,7 +49,8 @@ const DisabledTextField = withStyles({
 
 DisabledTextField.muiName = 'TextField';
 
-const UserProfile = ({ editUser, user, username }) => {
+const UserProfile = ({ editUser, user }) => {
+  const username = user.username ? user.username : null;
   const [photo, setPhoto] = useState();
   const firstName = useInput();
   const lastName = useInput();
@@ -154,7 +155,6 @@ const UserProfile = ({ editUser, user, username }) => {
 };
 
 const mapStateToProps = state => ({
-  username: state.userReducer.user.username,
   user: state.userReducer.user
 });
 
