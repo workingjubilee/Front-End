@@ -91,6 +91,9 @@ const styles = theme => ({
     fontSize: '2.5rem',
     fontWeight: 400
   },
+  titleDiv: {
+    marginLeft: '20px'
+  },
   inputRoot: {
     color: 'inherit',
     width: '100%'
@@ -161,7 +164,7 @@ class Navigation extends Component {
           <div className={classes.root}>
             <AppBar position='static' className={classes.bar}>
               <Toolbar>
-                <div className='title-div'>
+                <div className={classes.titleDiv}>
                   <Typography
                     className={classes.title}
                     variant='h2'
