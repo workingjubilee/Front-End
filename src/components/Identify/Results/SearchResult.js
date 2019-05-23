@@ -21,7 +21,9 @@ const styles = {
   card: {
     border: '1px solid #d6d8dd',
     margin: '2%',
-    width: '75%',
+    width: '510px',
+    padding: '12px',
+    boxShadow: 'none',
     [tablet]: {
       width: '90%',
       margin: '0 auto'
@@ -36,8 +38,7 @@ const styles = {
     marginTop: '.5rem'
   },
   button: {
-    width: '30%',
-    fontSize: '0.8rem',
+    fontSize: '1rem',
     color: 'white',
     fontWeight: '300',
     textTransform: 'Capitalize',
@@ -46,10 +47,16 @@ const styles = {
     }
   },
   view: {
-    backgroundColor: '#5AAC49'
+    backgroundColor: '#5AAC49',
+    width: '132px'
   },
   add: {
-    backgroundColor: '#2D90F5'
+    backgroundColor: '#2D90F5',
+    width: '116px'
+  },
+  rem: {
+    backgroundColor: '#2D90F5',
+    width: '160px'
   },
   genericImage: {
     width: '85px',
@@ -108,7 +115,7 @@ const SearchResult = ({ classes, result, addPill, setPill, setImage }) => {
             value={90}
           /> */}
       </CardContent>
-      <CardContent className={classes.buttons}>
+      <div className={classes.buttons}>
         <Button
           onClick={e => {
             e.preventDefault();
@@ -126,7 +133,7 @@ const SearchResult = ({ classes, result, addPill, setPill, setImage }) => {
           }}
           className={`${classes.button} ${classes.add}`}
         >
-          Add to Med List
+          Add Pill
         </Button>
         <Button
           onClick={e => {
@@ -134,11 +141,11 @@ const SearchResult = ({ classes, result, addPill, setPill, setImage }) => {
             setImage(imageSrc);
             addPill(formattedPill, 'adddosage');
           }}
-          className={`${classes.button} ${classes.add}`}
+          className={`${classes.button} ${classes.rem}`}
         >
           Add with Reminder
         </Button>
-      </CardContent>
+      </div>
     </Card>
   );
 };
