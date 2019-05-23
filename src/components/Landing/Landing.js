@@ -146,14 +146,14 @@ const Landing = () => {
               <div className='links'>
                 {teamMate.medium ? (
                   <a href={teamMate.medium} target='blank'>
-                    <i class='fab fa-medium' />
+                    <i className='fab fa-medium' />
                   </a>
                 ) : null}
                 <a href={teamMate.linkedIn} target='blank'>
-                  <i class='fab fa-linkedin' />
+                  <i className='fab fa-linkedin' />
                 </a>
                 <a href={teamMate.gitHub} target='blank'>
-                  <i class='fab fa-github' />
+                  <i className='fab fa-github' />
                 </a>
               </div>
             </div>
@@ -168,10 +168,10 @@ const Landing = () => {
         </a>
         <div>
           <a href='https://twitter.com/lambdaschool' target='blank'>
-            <i class='fab fa-twitter-square' />
+            <i className='fab fa-twitter-square' />
           </a>
           <a href='https://www.facebook.com/LambdaSchoolOnline/' target='blank'>
-            <i class='fab fa-facebook-square' />
+            <i className='fab fa-facebook-square' />
           </a>
         </div>
       </footer>

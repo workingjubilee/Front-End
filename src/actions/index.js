@@ -352,3 +352,12 @@ export const uploadImage = imgData => dispatch => {
       dispatch({ type: UPLOAD_IMAGE_FAILURE, payload: err.message });
     });
 };
+
+export const SET_IMAGE = 'SET_IMAGE';
+
+export const setImage = image => {
+  return {
+    type: SET_IMAGE,
+    payload: image
+  };
+};

@@ -6,7 +6,8 @@ import {
   ADD_REMS_SUCCESS,
   ADD_REMS_FAILURE,
   FILTER_REMINDERS,
-  DELETE_MED_SUCCESS
+  DELETE_MED_SUCCESS,
+  SET_IMAGE
 } from 'actions';
 
 import { initialState } from './initialState';
@@ -63,7 +64,11 @@ export default function remsReducer(state = initialState, action) {
         ...state,
         rems: state.rems.filter(rem => rem.med_id !== action.payload.id)
       };
-
+    case SET_IMAGE:
+      return {
+        ...state,
+        medImage: action.payload
+      };
     default:
       return state;
   }

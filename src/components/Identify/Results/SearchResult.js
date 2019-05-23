@@ -63,7 +63,7 @@ const styles = {
   }
 };
 
-const SearchResult = ({ classes, result, addPill, setPill }) => {
+const SearchResult = ({ classes, result, addPill, setPill, setImage }) => {
   console.log('SEARCH RESULT: ', result);
   const correctCasing = string => {
     const lowerCasedString = string.toLowerCase();
@@ -139,6 +139,7 @@ const SearchResult = ({ classes, result, addPill, setPill }) => {
           <Button
             onClick={e => {
               e.preventDefault();
+              setImage(imageSrc);
               addPill(formattedPill, 'adddosage');
             }}
             className={`${classes.button} ${classes.add}`}

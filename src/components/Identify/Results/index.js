@@ -10,6 +10,7 @@ import { tablet } from 'scss/mediaVariables';
 const SearchResults = ({
   searchResults,
   addPill,
+  setImage,
   history,
   classes,
   setData
@@ -38,6 +39,7 @@ const SearchResults = ({
                   addPill={addPill}
                   setPill={setPill}
                   history={history}
+                  setImage={setImage}
                 />
               ))}
         </div>
