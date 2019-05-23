@@ -45,7 +45,7 @@ function DiaryEmojiGrid({ classes, diaryEmoji, updateDiaryEmoji }) {
     <div className={classes.root}>
       <GridList cellHeight={80} className={classes.gridList} cols={6}>
         {diaryEmojiTiles.map(tile => (
-          <div className={classes.fullTile}>
+          <div className={classes.fullTile} key={tile.value}>
             <div
               onClick={() => updateDiaryEmoji(tile.value)}
               className={
