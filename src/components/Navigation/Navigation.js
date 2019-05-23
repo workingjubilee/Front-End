@@ -92,7 +92,10 @@ const styles = theme => ({
     fontWeight: 400
   },
   titleDiv: {
-    marginLeft: '20px'
+    marginLeft: '20px',
+    [mobile]: {
+      marginLeft: '0px'
+    }
   },
   inputRoot: {
     color: 'inherit',
