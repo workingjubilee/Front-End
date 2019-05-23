@@ -168,10 +168,10 @@ const Landing = () => {
         </a>
         <div>
           <a href='https://twitter.com/lambdaschool' target='blank'>
-            <i class='fab fa-twitter-square' />
+            <i className='fab fa-twitter-square' />
           </a>
           <a href='https://www.facebook.com/LambdaSchoolOnline/' target='blank'>
-            <i class='fab fa-facebook-square' />
+            <i className='fab fa-facebook-square' />
           </a>
         </div>
       </footer>
