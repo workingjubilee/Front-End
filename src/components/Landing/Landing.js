@@ -1,14 +1,33 @@
 import React from 'react';
 import Auth from 'Auth';
+import { connect } from 'react-redux';
+
 import ArrowIcon from '@material-ui/icons/CompareArrows';
 import DiaryIcon from '@material-ui/icons/QuestionAnswer';
 import ScanIcon from '@material-ui/icons/CenterFocusStrong';
 import SvgIcon from '@material-ui/core/SvgIcon';
 import { team } from './teamData';
+import { logIn } from 'actions';
+import { withRouter } from 'react-router-dom';
 
 const LogoImg = () => <img src={require('../../assets/logo.png')} alt='logo' />;
 
-const Landing = () => {
+const Landing = ({ history, logIn }) => {
+  Auth.lock.on('authenticated', function(authResult) {
+    localStorage.setItem('token', authResult.idToken);
+    localStorage.setItem('Auth0username', authResult.idTokenPayload.nickname);
+    logIn()
+      .then(res => {
+        if (res.newUser) {
+          history.push('/user');
+        } else {
+          history.push('/reminders');
+        }
+      })
+      .catch(() => {
+        history.push('/');
+      });
+  });
   return (
     <div className='landing'>
       {/* header */}
@@ -179,4 +198,7 @@ const Landing = () => {
   );
 };
 
-export default Landing;
+export default connect(
+  null,
+  { logIn }
+)(withRouter(Landing));
