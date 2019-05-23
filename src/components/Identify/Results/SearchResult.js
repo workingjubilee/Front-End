@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 // import CircularProgress from '@material-ui/core/CircularProgress';
 // import Image from './Image';
 import ResultInfo from './ResultInfo';
-import { tablet, mobile } from 'scss/mediaVariables';
+import { tablet, mobile, desktop } from 'scss/mediaVariables';
 
 const CardContent = withStyles({
   root: {
@@ -24,9 +24,9 @@ const styles = {
     width: '510px',
     padding: '12px',
     boxShadow: 'none',
-    [tablet]: {
+    [desktop]: {
       width: '90%',
-      margin: '0 auto'
+      margin: '20px auto 0px auto'
     }
   },
   info: {
@@ -41,10 +41,7 @@ const styles = {
     fontSize: '1rem',
     color: 'white',
     fontWeight: '300',
-    textTransform: 'Capitalize',
-    [tablet]: {
-      fontSize: '1rem'
-    }
+    textTransform: 'Capitalize'
   },
   view: {
     backgroundColor: '#5AAC49',

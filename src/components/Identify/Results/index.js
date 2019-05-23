@@ -6,7 +6,7 @@ import ViewDetails from './ViewDetails';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Button from '@material-ui/core/Button';
 
-import { tablet } from 'scss/mediaVariables';
+import { desktop, tablet } from 'scss/mediaVariables';
 
 const SearchResults = ({
   searchResults,
@@ -70,6 +70,9 @@ const styles = theme => ({
     justifyContent: 'space-between',
     width: '86.5%',
     margin: '0 auto',
+    '@media (max-width: 1200px)': {
+      width: '94.5%'
+    },
     [tablet]: {
       width: '100%',
       margin: '0 auto'
@@ -77,6 +80,10 @@ const styles = theme => ({
   },
   leftStyle: {
     width: '50%',
+    [desktop]: {
+      margin: '0 auto',
+      width: '90%'
+    },
     [tablet]: {
       margin: 'none',
       width: '100%'
