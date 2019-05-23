@@ -31,21 +31,24 @@ const styles = theme => ({
   },
   profileText: {
     textAlign: 'right',
-    paddingRight: '5px'
+    paddingRight: '5px',
+    '@media (max-width: 325px)': {
+      display: 'none'
+    }
   },
   lowerText: {
     fontSize: '.8rem',
     color: '#3d98f6',
     padding: '0 5px 0 5px',
     fontWeight: '300',
-    cursor: 'pointer'
+    cursor: 'pointer',
+    '@media (max-width: 325px)': {
+      display: 'none'
+    }
   },
   avatar: {
     width: '50px',
     height: '50px',
-    '@media (max-width: 375px)': {
-      display: 'none'
-    },
     marginLeft: '8px',
     cursor: 'pointer'
   },
@@ -154,7 +157,7 @@ class ProfileIcon extends React.Component {
               <div onClick={this.handleRems}>
                 <Typography className={classes.lowerText}>
                   {filteredRems.length}{' '}
-                  {filteredRems.length === 1 ? 'med' : 'meds'} scheduled today
+                  {filteredRems.length === 1 ? 'med' : 'meds'} today
                 </Typography>
               </div>
             </Card>

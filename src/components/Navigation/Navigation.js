@@ -71,7 +71,7 @@ const styles = theme => ({
   },
   subTitle: {
     fontWeight: 300,
-    '@media (max-width: 350px)': {
+    '@media (max-width: 400px)': {
       display: 'none'
     }
   },
