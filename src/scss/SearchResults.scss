@@ -1,10 +1,64 @@
-.steps {
-  text-align: left;
-  margin: 1rem;
+.results-directions {
+  max-width: 400px;
+  @media (max-width: 800px) {
+    display: none;
+  }
+  .new-search {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    h4 {
+      text-align: 'center';
+      width: 100%;
+      font-weight: 300;
+      font-size: 1.6rem;
+    }
+    button {
+      text-transform: none;
+      font-weight: 300;
+      width: 180px;
+      height: 35px;
+      margin: 44px auto 0px auto;
+      font-size: 0.95rem;
+    }
+    p {
+      font-weight: 300;
+      margin-top: 60px;
+      line-height: 1.5;
+    }
+  }
+}
 
-  border: 1px solid grey;
-  box-shadow: 1px 1px 1px grey;
-  li {
-    margin: 1rem;
+.directions {
+  width: 400px;
+  margin-top: 32px;
+  span {
+    color: $red;
+  }
+  strong {
+    font-weight: 400;
+  }
+  h3 {
+    font-size: 2rem;
+    font-weight: 300;
+  }
+  article {
+    border: 1px solid #ebecee;
+    border-radius: 6px;
+    margin-top: 28px;
+    height: 310px;
+    ol {
+      height: inherit;
+      display: flex;
+      flex-wrap: wrap;
+      align-content: space-between;
+      padding: 22px 30px 52px 56px;
+      list-style-type: decimal;
+      li {
+        font-size: 1rem;
+        font-weight: 300;
+        width: 100%;
+      }
+    }
   }
 }
