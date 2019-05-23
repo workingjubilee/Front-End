@@ -148,7 +148,7 @@ function DiaryMedPanel({ classes, med, changeFocus, diaryFocus, diaryCount }) {
             }`}
           />
           <Typography className={classNames(classes.secondaryHeading)}>
-            View/Add Entries
+            {expanded === med.id ? 'Close Entries' : 'View/Add Entries'}
           </Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>

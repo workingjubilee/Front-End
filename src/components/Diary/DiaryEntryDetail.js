@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
-import Card from '@material-ui/core/Card';
+import MuiCard from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
+import MuiCardContent from '@material-ui/core/CardContent';
+import MuiButton from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import moment from 'moment';
@@ -13,6 +13,50 @@ import { useInput } from '../../utilities/useInput';
 
 import { addDiary, editDiary, deleteDiary } from '../../actions';
 import DiaryEmojiGrid from './DiaryEmojiGrid';
+
+const Card = withStyles({
+  root: {
+    boxShadow: 'none'
+  }
+})(props => <MuiCard {...props} />);
+
+Card.muiName = 'Card';
+
+const CardContent = withStyles({
+  root: {
+    padding: '0px'
+  }
+})(props => <MuiCardContent {...props} />);
+
+CardContent.muiName = 'CardContent';
+
+const CancelButton = withStyles({
+  root: {
+    textTransform: 'capitalize'
+  }
+})(props => <MuiButton {...props} />);
+
+CancelButton.muiName = 'Button';
+
+const DeleteButton = withStyles({
+  root: {
+    textTransform: 'capitalize',
+    background: '#D00A1B',
+    color: 'white'
+  }
+})(props => <MuiButton {...props} />);
+
+DeleteButton.muiName = 'Button';
+
+const SaveButton = withStyles({
+  root: {
+    textTransform: 'capitalize',
+    background: '#40AB48',
+    color: 'white'
+  }
+})(props => <MuiButton {...props} />);
+
+SaveButton.muiName = 'Button';
 
 const styles = {
   card: {
@@ -25,7 +69,11 @@ const styles = {
     fontSize: 25
   },
   subheader: {
-    fontSize: 18
+    fontSize: 18,
+    paddingBottom: '5px'
+  },
+  textBox: {
+    paddingBottom: '5px'
   }
 };
 
@@ -48,7 +96,6 @@ const DiaryEntryDetail = ({
 
   useEffect(() => {
     if (diaryEntry) {
-      console.log('diaryEntry:', diaryEntry);
       setEntryDate(diaryEntry.diary_date);
       setDiaryEmoji(diaryEntry.diary_emoji);
       diary_text.setValue(diaryEntry.diary_text);
@@ -65,7 +112,6 @@ const DiaryEntryDetail = ({
 
   const requestAddDiary = e => {
     e.preventDefault();
-    console.log('entryDate:', entryDate);
     addDiary({
       user_id: user_id,
       med_id: med_id,
@@ -101,8 +147,9 @@ const DiaryEntryDetail = ({
           {moment(parseInt(entryDate)).format('ddd M/D/YY h:mma')}
         </Typography>
         <TextField
+          className={classes.textBox}
           id='outlined-full-width'
-          style={{ margin: 8 }}
+          style={{ margin: 0 }}
           placeholder='How are you feeling?'
           fullWidth
           multiline
@@ -122,27 +169,28 @@ const DiaryEntryDetail = ({
         />
       </CardContent>
       <CardActions className='diaryEntryButtons'>
-        <Button onClick={handleClose} variant='contained' color='default'>
+        <CancelButton onClick={handleClose} variant='contained' color='default'>
           Cancel
-        </Button>
+        </CancelButton>
         {newEntry ? (
           <div />
         ) : (
-          <Button
+          <DeleteButton
+            tabIndex='-1'
             onClick={requestDeleteDiary}
             variant='contained'
             color='secondary'
           >
             Delete Entry
-          </Button>
+          </DeleteButton>
         )}
-        <Button
+        <SaveButton
           onClick={newEntry ? requestAddDiary : requestEditDiary}
           variant='contained'
           color='secondary'
         >
           Save Entry
-        </Button>
+        </SaveButton>
       </CardActions>
     </Card>
   );
