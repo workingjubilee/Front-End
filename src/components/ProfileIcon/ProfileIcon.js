@@ -107,11 +107,12 @@ const styles = theme => ({
     fontWeight: '300'
   },
   avatar: {
-    width: '3rem',
-    height: '3rem',
+    width: '50px',
+    height: '50px',
     '@media (max-width: 375px)': {
       display: 'none'
-    }
+    },
+    marginLeft: '8px'
   },
   link: {
     textDecoration: 'none'
