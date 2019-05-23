@@ -60,11 +60,11 @@ class ProfileIcon extends Component {
               </Typography>
             </Link>
           ) : null}
-          <Card>
+          <Card className={classes.pills}>
             <Link className={classes.link} to='/reminders'>
               <Typography className={classes.lowerText}>
                 {filteredRems.length}{' '}
-                {filteredRems.length === 1 ? 'med' : 'meds'} today
+                {filteredRems.length === 1 ? 'med' : 'meds'} scheduled today
               </Typography>
             </Link>
           </Card>
@@ -85,11 +85,13 @@ const styles = theme => ({
     backgroundColor: '#2d90f5',
     boxShadow: 'none',
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginRight: 22
   },
   text: {
     fontSize: '1rem',
-    color: 'white'
+    color: 'white',
+    fontWeight: '300'
   },
   profileText: {
     textAlign: 'right',
@@ -97,11 +99,12 @@ const styles = theme => ({
   },
   lowerText: {
     fontSize: '.8rem',
-    color: '#2d90f5',
+    color: '#3d98f6',
     padding: '0 5px 0 5px',
     '&:hover': {
       background: 'lightGreen'
-    }
+    },
+    fontWeight: '300'
   },
   avatar: {
     width: '3rem',
@@ -112,6 +115,12 @@ const styles = theme => ({
   },
   link: {
     textDecoration: 'none'
+  },
+  pills: {
+    height: '25px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 });
 
