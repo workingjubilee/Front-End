@@ -1,6 +1,7 @@
 export const initialState = {
   loggingIn: false,
   loggedIn: false,
+  loggingOut: false,
   fetchingUser: false,
   isAuthenticated: false,
   user: {},

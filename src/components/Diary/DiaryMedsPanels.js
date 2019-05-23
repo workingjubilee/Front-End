@@ -4,6 +4,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import MuiSelect from '@material-ui/core/Select';
 import withStyles from '@material-ui/core/styles/withStyles';
+import { Link } from 'react-router-dom';
 
 import DiaryMedPanel from './DiaryMedPanel';
 import { editUser } from '../../actions/index';
@@ -89,10 +90,15 @@ function DiaryMedsPanels({
       {fetchingMeds === true ? (
         <h2>Loading medications...</h2>
       ) : meds.length === 0 ? (
-        <h2>
-          You aren't tracking any medications. You need to track a medication to
-          record a diary entry.
-        </h2>
+        <>
+          <h2 className='diary-h2'>
+            Use diaries to record the effects of the medications you're
+            tracking.
+          </h2>
+          <Link className='diary-link' to='/identify'>
+            <h2 className='diary-link'>Start tracking medications here.</h2>
+          </Link>
+        </>
       ) : (
         <div className='diaryMeds'>
           <div className='sortSelect'>

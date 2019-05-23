@@ -30,6 +30,10 @@ export const logIn = () => dispatch => {
     });
 };
 
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
+
+export const logout = () => ({ type: LOGOUT_SUCCESS });
+
 export const EDIT_USER_REQUEST = 'EDIT_USER_REQUEST';
 export const EDIT_USER_SUCCESS = 'EDIT_USER_SUCCESS';
 export const EDIT_USER_FAILURE = 'EDIT_USER_FAILURE';
@@ -65,6 +69,27 @@ export const fetchUser = id => dispatch => {
     .catch(err => {
       dispatch({
         type: FETCH_USER_FAILURE,
+        payload: err.response
+          ? `${err.message}. ${err.response.data.message}`
+          : err.message
+      });
+    });
+};
+
+export const DELETE_USER_REQUEST = 'DELETE_USER_REQUEST';
+export const DELETE_USER_SUCCESS = 'DELETE_USER_SUCCESS';
+export const DELETE_USER_FAILURE = 'DELETE_USER_FAILURE';
+
+export const deleteUser = id => dispatch => {
+  dispatch({ type: DELETE_USER_REQUEST });
+  axios
+    .delete(`${endpoint}/api/users/${id}/`)
+    .then(res => {
+      dispatch({ type: DELETE_USER_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({
+        type: DELETE_USER_FAILURE,
         payload: err.response
           ? `${err.message}. ${err.response.data.message}`
           : err.message
