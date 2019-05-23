@@ -15,6 +15,7 @@ export const initialState = {
   activeMeds: [],
   inactiveMeds: [],
   med: {},
+  medImage: null,
   searchResults: [],
   fetchingDiary: false,
   addingDiary: false,

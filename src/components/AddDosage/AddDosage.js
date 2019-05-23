@@ -22,7 +22,7 @@ let date =
   dateData[3] +
   dateData[4];
 
-const AddPill = ({ med, addRems, editMed, user, history }) => {
+const AddPill = ({ med, medImage, addRems, user, editMed, history }) => {
   const [capsulesPerDose, setCapsulesPerDose] = useState(0);
   const [lengthOfDosage, setLenghOfDosage] = useState(0);
   const [dosageFrequency, setDosageFrequency] = useState('');
@@ -216,12 +216,12 @@ const AddPill = ({ med, addRems, editMed, user, history }) => {
       setDates={setDates}
       reminderData={reminderData}
       setReminderData={setReminderData}
+      med={med}
+      medImage={medImage}
     />,
     <StepTwo
-      name={med.med_name}
-      // imprint={props.imprint}
-      // color={props.color}
-      // shape={props.shape}
+      med={med}
+      medImage={medImage}
       capsulesPerDose={capsulesPerDose}
       lengthOfDosage={lengthOfDosage}
       dosageFrequency={dosageFrequency}
@@ -237,6 +237,7 @@ const AddPill = ({ med, addRems, editMed, user, history }) => {
 const mapStateToProps = state => {
   return {
     med: state.medsReducer.med,
+    medImage: state.remsReducer.medImage,
     user: state.userReducer.user
   };
 };

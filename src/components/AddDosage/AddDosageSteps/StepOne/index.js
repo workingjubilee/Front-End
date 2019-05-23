@@ -11,6 +11,7 @@ import DosageInstructions from './components/DosageInstructions';
 import DosageTime from './components/DosageTime';
 import StartDate from './components/StartDate';
 import DosageDuration from './components/DosageDuration';
+import PillCard from '../PillCard';
 
 const StepOne = ({
   capsulesPerDose,
@@ -34,7 +35,9 @@ const StepOne = ({
   nextStep,
   startDate,
   dosageDuration,
-  setDosageDuration
+  setDosageDuration,
+  med,
+  medImage
 }) => {
   const handleConfirmDosage = () => {
     if (!capsulesPerDose) {
@@ -51,6 +54,10 @@ const StepOne = ({
           selectedDates.length < lengthOfDosage
         ) {
           alert('please select a day of the month for each dose');
+        } else if (!dosageDuration) {
+          alert(
+            'please define how long the dosage will last with dosage duration'
+          );
         } else {
           nextStep();
         }
@@ -62,11 +69,12 @@ const StepOne = ({
     }
   };
   return (
-    <div style={{ marginBottom: '2.5rem' }}>
+    <div style={{ margin: '0 0 25px 50px' }}>
       <Typography style={{ fontSize: '2.5rem' }} component='p'>
         Add Dosage
       </Typography>
       <Card style={{ width: '60%' }}>
+        <PillCard med={med} medImage={medImage} />
         <CapsulesPerDose
           updateCapsulesPerDose={updateCapsulesPerDose}
           capsulesPerDose={capsulesPerDose}

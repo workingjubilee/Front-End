@@ -4,8 +4,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-// import { colors } from '../../data/colors';
-// import { shapes } from '../../data/shapes';
+import PillCard from './PillCard';
 
 const DataDisplay = props => (
   <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -16,7 +15,17 @@ const DataDisplay = props => (
   </div>
 );
 
-const StepThree = props => {
+const StepThree = ({
+  med,
+  medImage,
+  capsulesPerDose,
+  lengthOfDosage,
+  dosageFrequency,
+  dosageInstruction,
+  customInstruction,
+  setStep,
+  handleAddPill
+}) => {
   return (
     <div
       style={{
@@ -38,47 +47,7 @@ const StepThree = props => {
           Confirm Dosage Schedule
         </Typography>
         <Card style={{ width: '80%' }}>
-          <Card
-            style={{
-              width: '80%',
-              height: '50px',
-              margin: '20px auto',
-              background: '#F0F3F5',
-              borderRadius: '5px',
-              boxShadow: 'none'
-            }}
-          >
-            <CardContent>
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <Typography component='div'>Pill Name</Typography>
-                <Typography component='div'>{props.name}</Typography>
-              </div>
-              {/* <div style={{ display: 'flex' }}>
-            <Typography component='div'>
-              Imprint
-            </Typography>
-            <Typography component='div'>
-              {props.imprint.value}
-            </Typography>
-          </div>
-          <div style={{ display: 'flex' }}>
-            <Typography component='div'>
-              Color
-            </Typography>
-            <Typography component='div'>
-              {colors[props.color].name}
-            </Typography>
-          </div>
-          <div style={{ display: 'flex' }}>
-            <Typography component='div'>
-              Shape
-            </Typography>
-            <Typography component='div'>
-              {shapes[props.shape].name}
-            </Typography>
-          </div> */}
-            </CardContent>
-          </Card>
+          <PillCard med={med} medImage={medImage} />
           <Card style={{ width: '65%', margin: '0 auto', boxShadow: 'none' }}>
             <Typography
               style={{
@@ -98,37 +67,34 @@ const StepThree = props => {
               <DataDisplay
                 title='Dosage Quantity'
                 data={
-                  props.capsulesPerDose +
-                  (props.capsulesPerDose > 1
+                  capsulesPerDose +
+                  (capsulesPerDose > 1
                     ? ' capsules'
-                    : props.capsulesPerDose === 0
+                    : capsulesPerDose === 0
                     ? ' capsules'
                     : ' capsule')
                 }
               />
               <DataDisplay
                 title='Length of Dosage'
-                data={props.lengthOfDosage + 'X'}
+                data={lengthOfDosage + 'X'}
               />
-              <DataDisplay
-                title='Dosage Frequency'
-                data={props.dosageFrequency}
-              />
+              <DataDisplay title='Dosage Frequency' data={dosageFrequency} />
               <DataDisplay
                 title='Dosage Instruction'
-                data={props.customInstruction.value || props.dosageInstruction}
+                data={customInstruction.value || dosageInstruction}
               />
             </CardContent>
             <CardActions>
               <Button
                 style={{ background: 'black', color: 'white' }}
-                onClick={() => props.setStep(0)}
+                onClick={() => setStep(0)}
               >
                 Edit Schedule
               </Button>
               <Button
                 style={{ background: '#40AB48', color: 'white' }}
-                onClick={() => props.handleAddPill()}
+                onClick={() => handleAddPill()}
               >
                 Save Dosage
               </Button>
