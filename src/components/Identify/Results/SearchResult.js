@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 // import CircularProgress from '@material-ui/core/CircularProgress';
 // import Image from './Image';
 import ResultInfo from './ResultInfo';
-import { tablet } from 'scss/mediaVariables';
+import { tablet, mobile } from 'scss/mediaVariables';
 
 const CardContent = withStyles({
   root: {
@@ -48,15 +48,33 @@ const styles = {
   },
   view: {
     backgroundColor: '#5AAC49',
-    width: '132px'
+    width: '132px',
+    [tablet]: {
+      width: '28%'
+    },
+    [mobile]: {
+      width: '28%'
+    }
   },
   add: {
     backgroundColor: '#2D90F5',
-    width: '116px'
+    width: '116px',
+    [tablet]: {
+      width: '22%'
+    },
+    [mobile]: {
+      width: '22%'
+    }
   },
   rem: {
     backgroundColor: '#2D90F5',
-    width: '160px'
+    width: '160px',
+    [tablet]: {
+      width: '40%'
+    },
+    [mobile]: {
+      width: '40%'
+    }
   },
   genericImage: {
     width: '85px',
