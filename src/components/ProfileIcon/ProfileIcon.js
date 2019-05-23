@@ -10,6 +10,14 @@ import { Link } from 'react-router-dom';
 
 class ProfileIcon extends Component {
   componentDidMount() {
+    this.handleInitialization();
+  }
+  componentDidUpdate(prevProps) {
+    if (prevProps.loggingIn && !this.props.loggingIn && !this.props.error) {
+      this.handleInitialization();
+    }
+  }
+  handleInitialization = () => {
     const {
       user,
       fetchUser,
@@ -38,7 +46,7 @@ class ProfileIcon extends Component {
         filterReminders(startDate, endDate);
       });
     }
-  }
+  };
 
   render() {
     const { classes, user, filteredRems } = this.props;
@@ -64,7 +72,7 @@ class ProfileIcon extends Component {
         <Link className={classes.link} to='/user'>
           <Avatar
             className={classes.avatar}
-            alt={user.username ? user.username : avatar}
+            alt={user.username ? user.username : 'avatar'}
           />
         </Link>
       </Card>
@@ -111,7 +119,9 @@ const mapStateToProps = state => ({
   user: state.userReducer.user,
   meds: state.medsReducer.meds,
   rems: state.remsReducer.rems,
-  filteredRems: state.remsReducer.filteredRems
+  filteredRems: state.remsReducer.filteredRems,
+  loggingIn: state.userReducer.loggingIn,
+  error: state.userReducer.error
 });
 
 const StyledProfileIcon = withStyles(styles)(ProfileIcon);
