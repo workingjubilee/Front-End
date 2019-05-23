@@ -47,6 +47,7 @@ const styles = theme => ({
     }
   },
   avatar: {
+    background: 'white',
     width: '50px',
     height: '50px',
     marginLeft: '8px',
@@ -163,6 +164,11 @@ class ProfileIcon extends React.Component {
             </Card>
           </div>
           <Avatar
+            src={
+              user.profile_image_url
+                ? user.profile_image_url
+                : '/images/avatar-3.png'
+            }
             className={classes.avatar}
             alt={user.username ? user.username : 'avatar'}
             aria-owns={anchorEl ? 'simple-menu' : undefined}
