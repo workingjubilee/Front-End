@@ -10,6 +10,14 @@ import { Link } from 'react-router-dom';
 
 class ProfileIcon extends Component {
   componentDidMount() {
+    this.handleInitialization();
+  }
+  componentDidUpdate(prevProps) {
+    if (prevProps.loggingIn && !this.props.loggingIn && !this.props.error) {
+      this.handleInitialization();
+    }
+  }
+  handleInitialization = () => {
     const {
       user,
       fetchUser,
@@ -38,30 +46,34 @@ class ProfileIcon extends Component {
         filterReminders(startDate, endDate);
       });
     }
-  }
+  };
 
   render() {
     const { classes, user, filteredRems } = this.props;
-    const { username, first_name } = user;
     return (
       <Card className={classes.paper}>
         <div className={classes.profileText}>
-          <Link className={classes.link} to='/user'>
-            <Typography className={classes.text}>
-              Hello {first_name ? first_name : username}
-            </Typography>
-          </Link>
-          <Card>
+          {user.id ? (
+            <Link className={classes.link} to='/user'>
+              <Typography className={classes.text}>
+                Hello {user.first_name ? user.first_name : user.username}
+              </Typography>
+            </Link>
+          ) : null}
+          <Card className={classes.pills}>
             <Link className={classes.link} to='/reminders'>
               <Typography className={classes.lowerText}>
                 {filteredRems.length}{' '}
-                {filteredRems.length === 1 ? 'med' : 'meds'} today
+                {filteredRems.length === 1 ? 'med' : 'meds'} scheduled today
               </Typography>
             </Link>
           </Card>
         </div>
         <Link className={classes.link} to='/user'>
-          <Avatar className={classes.avatar} alt={user.username} />
+          <Avatar
+            className={classes.avatar}
+            alt={user.username ? user.username : 'avatar'}
+          />
         </Link>
       </Card>
     );
@@ -73,11 +85,13 @@ const styles = theme => ({
     backgroundColor: '#2d90f5',
     boxShadow: 'none',
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginRight: 22
   },
   text: {
     fontSize: '1rem',
-    color: 'white'
+    color: 'white',
+    fontWeight: '300'
   },
   profileText: {
     textAlign: 'right',
@@ -85,21 +99,29 @@ const styles = theme => ({
   },
   lowerText: {
     fontSize: '.8rem',
-    color: '#2d90f5',
+    color: '#3d98f6',
     padding: '0 5px 0 5px',
-    '&:hover': {
-      background: 'lightGreen'
-    }
+    fontWeight: '300'
   },
   avatar: {
-    width: '3rem',
-    height: '3rem',
+    width: '50px',
+    height: '50px',
     '@media (max-width: 375px)': {
       display: 'none'
-    }
+    },
+    marginLeft: '8px'
   },
   link: {
     textDecoration: 'none'
+  },
+  pills: {
+    height: '25px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    '&:hover': {
+      background: 'lightGreen'
+    }
   }
 });
 
@@ -107,7 +129,9 @@ const mapStateToProps = state => ({
   user: state.userReducer.user,
   meds: state.medsReducer.meds,
   rems: state.remsReducer.rems,
-  filteredRems: state.remsReducer.filteredRems
+  filteredRems: state.remsReducer.filteredRems,
+  loggingIn: state.userReducer.loggingIn,
+  error: state.userReducer.error
 });
 
 const StyledProfileIcon = withStyles(styles)(ProfileIcon);

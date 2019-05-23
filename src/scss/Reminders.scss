@@ -8,13 +8,16 @@
     }
     .attention {
       border-top: 2px solid #f3f3f4;
-      padding: 20px;
+      width: 260px;
+      margin: 0 auto;
+      padding: 20px 0px 20px 0px;
       h6 {
         font-size: 1rem;
       }
       p {
         font-size: 1rem;
-        color: #a2abbf;
+        color: #8f98a9;
+        font-weight: 300;
       }
     }
   }
