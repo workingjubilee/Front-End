@@ -6,22 +6,22 @@ import Auth from 'Auth';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 const Loading = ({ history, logIn, classes }) => {
-  Auth.lock.on('authenticated', function(authResult) {
-    localStorage.setItem('token', authResult.idToken);
-    localStorage.setItem('Auth0username', authResult.idTokenPayload.nickname);
-    logIn()
-      .then(res => {
-        if (res.newUser) {
-          history.push('/user');
-        } else {
-          history.push('/reminders');
-        }
-      })
-      .catch(() => {
-        alert('Log in failed');
-        history.push('/');
-      });
-  });
+  // Auth.lock.on('authenticated', function(authResult) {
+  //   localStorage.setItem('token', authResult.idToken);
+  //   localStorage.setItem('Auth0username', authResult.idTokenPayload.nickname);
+  //   logIn()
+  //     .then(res => {
+  //       if (res.newUser) {
+  //         history.push('/user');
+  //       } else {
+  //         history.push('/reminders');
+  //       }
+  //     })
+  //     .catch(() => {
+  //       alert('Log in failed');
+  //       history.push('/');
+  //     });
+  // });
   useEffect(() => {
     Auth.lock.resumeAuth(history.location.hash, function(error, authResult) {
       if (error) {
