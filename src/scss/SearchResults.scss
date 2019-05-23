@@ -24,9 +24,6 @@
   max-width: 400px;
   margin: 36px 54px 0px 0px;
   margin-top: 36px;
-  @media (max-width: 800px) {
-    display: none;
-  }
   .new-search {
     display: flex;
     flex-wrap: wrap;
@@ -50,6 +47,13 @@
       margin-top: 60px;
       line-height: 1.5;
     }
+  }
+
+  @media (max-width: 1200px) {
+    margin: 36px 0px 0px 0px;
+  }
+  @media (max-width: 1000px) {
+    display: none;
   }
 }
 
