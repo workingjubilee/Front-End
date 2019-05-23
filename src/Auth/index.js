@@ -20,7 +20,8 @@ const Auth = (function() {
           logo,
           primaryColor: '#2C90F5',
           secondaryColor: '#5BAC48'
-        }
+        },
+        rememberLastLogin: false
       }
     );
     wm.set(privateStore, {
