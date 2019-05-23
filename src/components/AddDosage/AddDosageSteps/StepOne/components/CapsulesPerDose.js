@@ -11,7 +11,7 @@ const CapsulesPerDose = ({ updateCapsulesPerDose, capsulesPerDose }) => {
     updateCapsulesPerDose(capsulesPerDose + 1);
   };
   const handleDecrementCapsulesPerDose = () => {
-    if (capsulesPerDose > 0) {
+    if (capsulesPerDose > 1) {
       updateCapsulesPerDose(capsulesPerDose - 1);
     }
   };

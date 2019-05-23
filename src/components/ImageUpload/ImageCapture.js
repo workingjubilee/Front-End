@@ -4,7 +4,6 @@ import 'react-html5-camera-photo/build/css/index.css';
 
 export default function ImageCapture({ setPhoto, toggleCamera }) {
   const onTakePhoto = dataURI => {
-
     let data = dataURI.split(',');
     let byteString; // initializes without declaring!
 

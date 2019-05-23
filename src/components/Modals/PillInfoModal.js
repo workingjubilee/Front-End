@@ -21,10 +21,8 @@ class PillInfoModal extends Component {
       med_name: '',
       med_color: '',
       med_shape: '',
-      med_strength: 0,
-      med_strength_unit: '',
-      med_dose: 0,
-      med_dose_unit: ''
+      med_strength: '',
+      med_strength_unit: ''
     }
   };
   changeHandler = e => {
@@ -44,9 +42,7 @@ class PillInfoModal extends Component {
       med_color,
       med_shape,
       med_strength,
-      med_strength_unit,
-      med_dose,
-      med_dose_unit
+      med_strength_unit
     } = this.state.pill;
     return (
       <Dialog
@@ -116,27 +112,6 @@ class PillInfoModal extends Component {
             value={med_strength_unit}
             onChange={this.changeHandler}
             name='med_strength_unit'
-          >
-            <MenuItem value={'IU'}>{'IU'}</MenuItem>
-            <MenuItem value={'mcg'}>{'mcg'}</MenuItem>
-            <MenuItem value='mg'>{'mg'}</MenuItem>
-            <MenuItem value={'g'}>{'g'}</MenuItem>
-          </Select>
-          <TextField
-            margin='normal'
-            name='med_dose'
-            label='Med Dosage'
-            type='number'
-            onChange={this.changeHandler}
-            value={med_dose}
-            required
-            fullWidth
-          />
-          <InputLabel>Med Dose Unit</InputLabel>
-          <Select
-            value={med_dose_unit}
-            onChange={this.changeHandler}
-            name='med_dose_unit'
           >
             <MenuItem value={'IU'}>{'IU'}</MenuItem>
             <MenuItem value={'mcg'}>{'mcg'}</MenuItem>
