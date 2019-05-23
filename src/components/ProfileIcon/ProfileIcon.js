@@ -101,9 +101,6 @@ const styles = theme => ({
     fontSize: '.8rem',
     color: '#3d98f6',
     padding: '0 5px 0 5px',
-    '&:hover': {
-      background: 'lightGreen'
-    },
     fontWeight: '300'
   },
   avatar: {
@@ -121,7 +118,10 @@ const styles = theme => ({
     height: '25px',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    '&:hover': {
+      background: 'lightGreen'
+    }
   }
 });
 
