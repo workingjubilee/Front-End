@@ -176,7 +176,7 @@ const DiaryEntryDetail = ({
           <div />
         ) : (
           <DeleteButton
-            tabindex='-1'
+            tabIndex='-1'
             onClick={requestDeleteDiary}
             variant='contained'
             color='secondary'
