@@ -216,14 +216,12 @@ const AddPill = ({ med, medImage, addRems, user, editMed, history }) => {
       setDates={setDates}
       reminderData={reminderData}
       setReminderData={setReminderData}
+      med={med}
+      medImage={medImage}
     />,
     <StepTwo
       med={med}
       medImage={medImage}
-      name={med.med_name}
-      // imprint={med.med_imprint}
-      color={med.med_color}
-      shape={med.med_shape}
       capsulesPerDose={capsulesPerDose}
       lengthOfDosage={lengthOfDosage}
       dosageFrequency={dosageFrequency}

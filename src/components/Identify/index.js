@@ -1,7 +1,7 @@
 import React, { useState, Suspense, lazy } from 'react';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { addMed } from 'actions';
+import { addMed, setImage } from 'actions';
 
 import ErrorBoundary from 'components/ErrorBoundary/ErrorBoundary';
 import Spinner from 'components/Spinner/Spinner.js';
@@ -9,7 +9,7 @@ import Spinner from 'components/Spinner/Spinner.js';
 const IdentifyOptions = lazy(() => import('./Options'));
 const SearchResults = lazy(() => import('./Results'));
 
-function Identify({ match, location, history, addMed, ...props }) {
+function Identify({ match, location, history, addMed, setImage, ...props }) {
   const [data, setData] = useState();
 
   const addPill = (pillInfo, destination = 'pills') => {
@@ -39,7 +39,11 @@ function Identify({ match, location, history, addMed, ...props }) {
         <Route
           path={`${match.url}/results`}
           render={props => (
-            <SearchResults searchResults={data} addPill={addPill} />
+            <SearchResults
+              searchResults={data}
+              addPill={addPill}
+              setImage={setImage}
+            />
           )}
         />
       </Suspense>
@@ -49,5 +53,5 @@ function Identify({ match, location, history, addMed, ...props }) {
 
 export default connect(
   null,
-  { addMed }
+  { addMed, setImage }
 )(Identify);

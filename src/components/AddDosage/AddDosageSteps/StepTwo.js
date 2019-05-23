@@ -4,8 +4,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-// import { colors } from '../../data/colors';
-// import { shapes } from '../../data/shapes';
+import PillCard from './PillCard';
 
 const DataDisplay = props => (
   <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -48,42 +47,7 @@ const StepThree = ({
           Confirm Dosage Schedule
         </Typography>
         <Card style={{ width: '80%' }}>
-          <Card
-            style={{
-              width: '80%',
-              height: '150px',
-              margin: '20px auto',
-              background: '#F0F3F5',
-              borderRadius: '5px',
-              boxShadow: 'none'
-            }}
-          >
-            <CardContent>
-              <img src={medImage} alt='your pill' />
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <Typography component='div'>Pill Name</Typography>
-                <Typography component='div'>{med.med_name}</Typography>
-              </div>
-              {/* <div style={{ display: 'flex' }}>
-                <Typography component='div'>Imprint</Typography>
-                <Typography component='div'>{imprint}</Typography>
-              </div> */}
-              <div style={{ display: 'flex' }}>
-                <Typography component='div'>Color</Typography>
-                <Typography component='div'>
-                  {/* {colors[color].name} */}
-                  {med.med_color}
-                </Typography>
-              </div>
-              <div style={{ display: 'flex' }}>
-                <Typography component='div'>Shape</Typography>
-                <Typography component='div'>
-                  {/* {shapes[shape].name} */}
-                  {med.med_shape}
-                </Typography>
-              </div>
-            </CardContent>
-          </Card>
+          <PillCard med={med} medImage={medImage} />
           <Card style={{ width: '65%', margin: '0 auto', boxShadow: 'none' }}>
             <Typography
               style={{
