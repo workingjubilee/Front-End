@@ -55,6 +55,9 @@ $lightgray: #d6d8dd;
 
   h2 {
     font-size: 2rem;
+    @media (max-width: 1000px) {
+      text-align: center;
+    }
   }
   h3 {
     font-size: 1.6rem;
@@ -155,6 +158,13 @@ $lightgray: #d6d8dd;
           text-transform: capitalize;
         }
       }
+      @media (max-width: 1000px) {
+        order: 2;
+        margin-top: 40px;
+      }
+      @media (max-width: 800px) {
+        width: 95%;
+      }
     }
     .directions {
       width: 380px;
@@ -191,6 +201,17 @@ $lightgray: #d6d8dd;
           }
         }
       }
+      @media (max-width: 1000px) {
+        order: 1;
+      }
+    }
+    @media (max-width: 1000px) {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    @media (max-width: 800px) {
+      width: 98%;
+      margin: 60px auto 0px auto;
     }
   }
   .option2-container {
@@ -227,6 +248,9 @@ $lightgray: #d6d8dd;
             .form-control {
               width: 452px;
             }
+            @media (max-width: 800px) {
+              width: 100%;
+            }
           }
           p {
             font-size: 0.6rem;
@@ -258,8 +282,22 @@ $lightgray: #d6d8dd;
               width: 150px;
               height: 42px;
             }
+            @media (max-width: 800px) {
+              margin: 20px auto 0px auto;
+              position: initial;
+            }
+          }
+          @media (max-width: 800px) {
+            margin: 12px 20px 0px 20px;
           }
         }
+      }
+      @media (max-width: 1000px) {
+        order: 2;
+        margin-top: 40px;
+      }
+      @media (max-width: 800px) {
+        width: 95%;
       }
     }
     .directions {
@@ -286,6 +324,18 @@ $lightgray: #d6d8dd;
           }
         }
       }
+      @media (max-width: 1000px) {
+        order: 1;
+        margin-top: 0px;
+      }
+    }
+    @media (max-width: 1000px) {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    @media (max-width: 800px) {
+      width: 98%;
+      margin: 40px auto 0px auto;
     }
   }
   .option3-container {
@@ -318,6 +368,12 @@ $lightgray: #d6d8dd;
       color: white;
       background-color: $secondary;
       text-transform: capitalize;
+    }
+    @media (max-width: 1000px) {
+      margin: 40px auto 0px auto;
+    }
+    @media (max-width: 800px) {
+      width: 98%;
     }
   }
 }
