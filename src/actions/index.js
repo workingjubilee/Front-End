@@ -72,6 +72,27 @@ export const fetchUser = id => dispatch => {
     });
 };
 
+export const DELETE_USER_REQUEST = 'DELETE_USER_REQUEST';
+export const DELETE_USER_SUCCESS = 'DELETE_USER_SUCCESS';
+export const DELETE_USER_FAILURE = 'DELETE_USER_FAILURE';
+
+export const deleteUser = id => dispatch => {
+  dispatch({ type: DELETE_USER_REQUEST });
+  axios
+    .delete(`${endpoint}/api/users/${id}/`)
+    .then(res => {
+      dispatch({ type: DELETE_USER_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({
+        type: DELETE_USER_FAILURE,
+        payload: err.response
+          ? `${err.message}. ${err.response.data.message}`
+          : err.message
+      });
+    });
+};
+
 export const FETCH_MEDS_REQUEST = 'FETCH_MEDS_REQUEST';
 export const FETCH_MEDS_SUCCESS = 'FETCH_MEDS_SUCCESS';
 export const FETCH_MEDS_FAILURE = 'FETCH_MEDS_FAILURE';

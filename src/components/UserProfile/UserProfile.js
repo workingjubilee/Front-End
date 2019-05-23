@@ -142,7 +142,7 @@ const UserProfile = ({ editUser, user, username }) => {
         </div>
       </div>
       <div className='user-profile-buttons'>
-        <DeleteButton tabindex='-1' variant='contained'>
+        <DeleteButton tabIndex='-1' variant='contained'>
           Delete Account
         </DeleteButton>
         <SaveButton variant='contained' onClick={requestEditUser}>
