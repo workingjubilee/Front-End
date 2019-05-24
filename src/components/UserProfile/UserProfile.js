@@ -254,5 +254,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { editUser, deleteUser }
+  { editUser, deleteUser, fetchUser }
 )(withRouter(UserProfile));
