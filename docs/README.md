@@ -7,9 +7,9 @@
 
 ## Features
 
-  * Image recognition-driven pill identification
-  * Add medications to personal medication tracker
-  * Automatic identification to tracker transition
-  * Accessible and personalizable user experience
+- Image recognition-driven pill identification
+- Add medications to personal medication tracker
+- Automatic identification to tracker transition
+- Accessible and personalizable user experience
 
 ## Deployed to ~The Cloud~ on AWS!
