@@ -174,7 +174,7 @@ const styles = theme => ({
     justifyContent: 'space-between',
     width: 480,
     alignSelf: 'center',
-    marginTop: 20
+    marginTop: 30
   },
   addMed: {
     width: 210
