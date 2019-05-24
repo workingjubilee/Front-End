@@ -10,9 +10,17 @@
       margin: 38px auto 38px auto;
       width: 100%;
       text-align: center;
+      font-weight: 300;
     }
     .pill-navigator {
       margin-top: 38px;
+    }
+    .no-inactive-meds {
+      color: $primary;
+      &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+      }
     }
   }
   padding-bottom: 60px;

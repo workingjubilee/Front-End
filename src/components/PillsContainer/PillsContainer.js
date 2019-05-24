@@ -181,8 +181,8 @@ const StyledPillsContainer = withStyles(styles)(PillsContainer);
 
 const mapStateToProps = state => ({
   user: state.userReducer.user,
-  fetchingUser: state.fetchingUser,
-  error: state.error
+  fetchingUser: state.userReducer.fetchingUser,
+  error: state.userReducer.error
 });
 
 export default connect(

@@ -29,7 +29,8 @@ const PillCard = ({ med, medImage }) => {
           height: '50px',
           width: '50px',
           objectFit: 'cover',
-          marginRight: '20px'
+          marginRight: '20px',
+          borderRadius: '2px'
         }}
         src={medImage || require('../../../assets/logo.png')}
         alt='your pill'

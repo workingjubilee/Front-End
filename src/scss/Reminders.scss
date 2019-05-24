@@ -22,6 +22,25 @@
     }
   }
 
+  .no-reminders {
+    width: 900px;
+    margin: 0 auto;
+    h2 {
+      width: 100%;
+      font-size: 1.5rem;
+      font-weight: 300;
+      text-align: center;
+      margin-top: 20px;
+    }
+    span {
+      color: $primary;
+      &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+      }
+    }
+  }
+
   .reminders-container {
     margin: 0 auto;
     width: 962px;

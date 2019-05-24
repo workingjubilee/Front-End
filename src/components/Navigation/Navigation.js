@@ -23,18 +23,6 @@ const Typography = withStyles({
 
 Typography.muiName = 'Typography';
 
-const LogoutLink = withStyles({
-  root: {
-    color: 'aqua',
-    'text-decoration': 'none',
-    fontSize: '12px',
-    paddingLeft: '1.5px',
-    cursor: 'pointer'
-  }
-})(props => <MuiTypography {...props} />);
-
-LogoutLink.muiName = 'Typography';
-
 const Toolbar = withStyles({
   root: {
     height: '110px',
@@ -83,7 +71,7 @@ const styles = theme => ({
   },
   subTitle: {
     fontWeight: 300,
-    '@media (max-width: 350px)': {
+    '@media (max-width: 400px)': {
       display: 'none'
     }
   },
@@ -92,7 +80,10 @@ const styles = theme => ({
     fontWeight: 400
   },
   titleDiv: {
-    marginLeft: '20px'
+    marginLeft: '20px',
+    [mobile]: {
+      marginLeft: '0px'
+    }
   },
   inputRoot: {
     color: 'inherit',
@@ -129,13 +120,6 @@ class Navigation extends Component {
     mobileMoreAnchorEl: null
   };
 
-  handleLogout = e => {
-    e.preventDefault();
-    localStorage.clear();
-    this.props.logout();
-    this.props.history.push('/');
-  };
-
   handleProfileMenuOpen = event => {
     this.setState({ anchorEl: event.currentTarget });
   };
@@ -156,7 +140,10 @@ class Navigation extends Component {
   render() {
     const { classes } = this.props;
 
-    if (this.props.location.pathname === '/') {
+    if (
+      this.props.location.pathname === '/' ||
+      this.props.location.pathname === '/landing'
+    ) {
       return null;
     } else {
       return (
@@ -174,7 +161,6 @@ class Navigation extends Component {
                     <strong className={classes.strong}>RxID</strong>
                     <span className={classes.subTitle}> Pill Identifier</span>
                   </Typography>
-                  <LogoutLink onClick={this.handleLogout}>Logout</LogoutLink>
                 </div>
                 <div className={classes.sectionDesktop}>
                   <ProfileIcon />

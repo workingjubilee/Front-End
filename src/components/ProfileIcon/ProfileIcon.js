@@ -1,84 +1,20 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 import Card from '@material-ui/core/Card';
 import withStyles from '@material-ui/core/styles/withStyles';
+import { connect } from 'react-redux';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
-import { fetchUser, fetchMeds, fetchRems, filterReminders } from 'actions';
 import moment from 'moment';
-import { Link } from 'react-router-dom';
-
-class ProfileIcon extends Component {
-  componentDidMount() {
-    this.handleInitialization();
-  }
-  componentDidUpdate(prevProps) {
-    if (prevProps.loggingIn && !this.props.loggingIn && !this.props.error) {
-      this.handleInitialization();
-    }
-  }
-  handleInitialization = () => {
-    const {
-      user,
-      fetchUser,
-      fetchMeds,
-      fetchRems,
-      meds,
-      rems,
-      filterReminders
-    } = this.props;
-    const userID = user.id ? user.id : localStorage.getItem('userID');
-
-    if (!user.username && userID) {
-      fetchUser(userID);
-    }
-    if (meds.length === 0 && userID) {
-      fetchMeds(userID);
-    }
-    if (rems.length === 0 && userID) {
-      fetchRems(userID).then(res => {
-        const startDate = moment(new Date())
-          .startOf('day')
-          ._d.getTime();
-        const endDate = moment(new Date())
-          .endOf('day')
-          ._d.getTime();
-        filterReminders(startDate, endDate);
-      });
-    }
-  };
-
-  render() {
-    const { classes, user, filteredRems } = this.props;
-    return (
-      <Card className={classes.paper}>
-        <div className={classes.profileText}>
-          {user.id ? (
-            <Link className={classes.link} to='/user'>
-              <Typography className={classes.text}>
-                Hello {user.first_name ? user.first_name : user.username}
-              </Typography>
-            </Link>
-          ) : null}
-          <Card className={classes.pills}>
-            <Link className={classes.link} to='/reminders'>
-              <Typography className={classes.lowerText}>
-                {filteredRems.length}{' '}
-                {filteredRems.length === 1 ? 'med' : 'meds'} scheduled today
-              </Typography>
-            </Link>
-          </Card>
-        </div>
-        <Link className={classes.link} to='/user'>
-          <Avatar
-            className={classes.avatar}
-            alt={user.username ? user.username : 'avatar'}
-          />
-        </Link>
-      </Card>
-    );
-  }
-}
+import { withRouter } from 'react-router-dom';
+import {
+  fetchUser,
+  fetchMeds,
+  fetchRems,
+  filterReminders,
+  logout
+} from 'actions';
 
 const styles = theme => ({
   paper: {
@@ -95,21 +31,27 @@ const styles = theme => ({
   },
   profileText: {
     textAlign: 'right',
-    paddingRight: '5px'
+    paddingRight: '5px',
+    '@media (max-width: 325px)': {
+      display: 'none'
+    }
   },
   lowerText: {
     fontSize: '.8rem',
     color: '#3d98f6',
     padding: '0 5px 0 5px',
-    fontWeight: '300'
+    fontWeight: '300',
+    cursor: 'pointer',
+    '@media (max-width: 325px)': {
+      display: 'none'
+    }
   },
   avatar: {
+    background: 'white',
     width: '50px',
     height: '50px',
-    '@media (max-width: 375px)': {
-      display: 'none'
-    },
-    marginLeft: '8px'
+    marginLeft: '8px',
+    cursor: 'pointer'
   },
   link: {
     textDecoration: 'none'
@@ -125,6 +67,132 @@ const styles = theme => ({
   }
 });
 
+class ProfileIcon extends React.Component {
+  state = {
+    anchorEl: null
+  };
+
+  handleClick = event => {
+    this.setState({ anchorEl: event.currentTarget });
+  };
+
+  handleClose = () => {
+    this.setState({ anchorEl: null });
+  };
+
+  handleRems = e => {
+    e.preventDefault();
+    this.setState({ anchorEl: null });
+    this.props.history.push('/reminders');
+  };
+
+  handleProfile = e => {
+    e.preventDefault();
+    this.props.history.push('/user');
+    this.setState({ anchorEl: null });
+  };
+
+  handleLogout = e => {
+    e.preventDefault();
+    localStorage.clear();
+    this.props.logout();
+    this.props.history.push('/');
+  };
+
+  componentDidMount() {
+    this.handleInitialization();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.loggingIn && !this.props.loggingIn && !this.props.error) {
+      this.handleInitialization();
+    }
+  }
+
+  handleInitialization = () => {
+    const {
+      user,
+      fetchUser,
+      fetchMeds,
+      fetchRems,
+      meds,
+      rems,
+      filterReminders
+    } = this.props;
+
+    const userID = user.id ? user.id : localStorage.getItem('userID');
+
+    if (!user.username && userID) {
+      fetchUser(userID);
+    }
+    if (meds.length === 0 && userID) {
+      fetchMeds(userID);
+    }
+    if (rems.length === 0 && userID) {
+      fetchRems(userID).then(res => {
+        if (rems.length > 0) {
+          const startDate = moment(new Date())
+            .startOf('day')
+            ._d.getTime();
+          const endDate = moment(new Date())
+            .endOf('day')
+            ._d.getTime();
+          filterReminders(startDate, endDate);
+        }
+      });
+    }
+  };
+
+  render() {
+    const { anchorEl } = this.state;
+    const { classes, user, filteredRems } = this.props;
+
+    return (
+      <div>
+        <Card className={classes.paper}>
+          <div className={classes.profileText}>
+            {user.id ? (
+              <Typography className={classes.text}>
+                Hello {user.first_name ? user.first_name : user.username}
+              </Typography>
+            ) : null}
+            <Card className={classes.pills}>
+              <div onClick={this.handleRems}>
+                <Typography className={classes.lowerText}>
+                  {filteredRems.length}{' '}
+                  {filteredRems.length === 1 ? 'med' : 'meds'} today
+                </Typography>
+              </div>
+            </Card>
+          </div>
+          <Avatar
+            src={
+              user.profile_image_url
+                ? user.profile_image_url
+                : '/images/avatar-3.png'
+            }
+            className={classes.avatar}
+            alt={user.username ? user.username : 'avatar'}
+            aria-owns={anchorEl ? 'simple-menu' : undefined}
+            aria-haspopup='true'
+            onClick={this.handleClick}
+          />
+        </Card>
+
+        <Menu
+          id='profileMenu'
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={this.handleClose}
+        >
+          <MenuItem onClick={this.handleProfile}>My Profile</MenuItem>
+          <MenuItem onClick={this.handleLogout}>Logout</MenuItem>
+        </Menu>
+      </div>
+    );
+  }
+}
+
 const mapStateToProps = state => ({
   user: state.userReducer.user,
   meds: state.medsReducer.meds,
@@ -134,9 +202,9 @@ const mapStateToProps = state => ({
   error: state.userReducer.error
 });
 
-const StyledProfileIcon = withStyles(styles)(ProfileIcon);
+const StyledProfileIcon = withStyles(styles)(withRouter(ProfileIcon));
 
 export default connect(
   mapStateToProps,
-  { fetchUser, fetchMeds, fetchRems, filterReminders }
+  { fetchUser, fetchMeds, fetchRems, filterReminders, logout }
 )(StyledProfileIcon);

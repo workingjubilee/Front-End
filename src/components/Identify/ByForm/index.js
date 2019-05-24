@@ -29,11 +29,41 @@ const SearchPill = ({ setData, ...props }) => {
     setShape('');
   };
 
+  const modifyImprint = string => {
+    if (Number(string)) {
+      return string;
+    }
+    const characters = string.split('');
+    let length = characters.length;
+    if (Number(characters[0])) {
+      for (let i = 0; i < length; i++) {
+        if (!Number(characters[i])) {
+          const numbers = characters.slice(0, i);
+          const letters = characters.slice(i, length);
+          numbers[i] = ';';
+          const combined = numbers.concat(letters);
+          return combined.join('');
+        }
+      }
+    }
+    for (let i = 0; i < length; i++) {
+      if (Number(characters[i])) {
+        const numbers = characters.slice(i, length);
+        const letters = characters.slice(0, i);
+        letters[i] = ';';
+        const combined = letters.concat(numbers);
+        return combined.join('');
+      }
+    }
+    return string;
+  };
+
   const search = async e => {
     e.preventDefault();
+    const modifiedImprint = modifyImprint(imprint);
     const query = {
       pill_name: name,
-      imprint,
+      imprint: modifiedImprint,
       shape,
       color
     };
