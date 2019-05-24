@@ -130,7 +130,7 @@ const AddPill = ({ med, medImage, addRems, user, editMed, history }) => {
   useEffect(() => {
     setEndDate(
       moment(startDate || date)
-        .add(dosageDuration, 'days')
+        .add(dosageDuration, 'weeks')
         .format('L')
     );
     console.log(endDate);
@@ -227,6 +227,8 @@ const AddPill = ({ med, medImage, addRems, user, editMed, history }) => {
       dosageFrequency={dosageFrequency}
       dosageInstruction={dosageInstruction}
       customInstruction={customInstruction}
+      dosageDuration={dosageDuration}
+      startDate={moment(startDate).format('dddd, MMMM Do YYYY')}
       setStep={setStep}
       handleAddPill={handleAddPill}
     />

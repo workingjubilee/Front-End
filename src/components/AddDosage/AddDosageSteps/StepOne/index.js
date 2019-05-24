@@ -70,7 +70,10 @@ const StepOne = ({
   };
   return (
     <div style={{ margin: '0 0 25px 50px' }}>
-      <Typography style={{ fontSize: '2.5rem' }} component='p'>
+      <Typography
+        style={{ fontSize: '25px', margin: '30px 0', fontWeight: '900' }}
+        component='p'
+      >
         Add Dosage
       </Typography>
       <Card style={{ width: '60%' }}>
