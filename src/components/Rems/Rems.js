@@ -6,27 +6,8 @@ import Rem from './Rem';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 class Rems extends Component {
-  state = {
-    noRems: false
-  };
-
-  componentDidUpdate(prevProps) {
-    if (
-      prevProps.fetchingRems &&
-      !this.props.fetchingRems &&
-      this.props.error
-    ) {
-      if (
-        this.props.error ===
-        'Request failed with status code 404. User with specified ID does not have any reminders.'
-      ) {
-        this.setState({ noRems: true });
-      }
-    }
-  }
-
   render() {
-    const { fetchingRems, classes, rems, filteredRems } = this.props;
+    const { fetchingRems, classes, rems, filteredRems, history } = this.props;
     if (fetchingRems) {
       return (
         <div className={classes.loading}>
@@ -37,8 +18,19 @@ class Rems extends Component {
           />
         </div>
       );
-    } else if (this.state.noRems) {
-      return <h1>You do not have any reminders saved yet.</h1>;
+    } else if (!fetchingRems && rems.length === 0) {
+      return (
+        <div className='no-reminders'>
+          <h2>You do not have any reminders saved yet.</h2>
+          <span
+            onClick={() => {
+              history.push('/identify');
+            }}
+          >
+            <h2>Start tracking medications and reminders here.</h2>
+          </span>
+        </div>
+      );
     } else if (rems.length > 0 && filteredRems.length === 0) {
       return <h1>You do not have any reminders saved for this date.</h1>;
     } else {
