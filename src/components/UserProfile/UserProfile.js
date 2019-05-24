@@ -6,8 +6,9 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import ImageUpload from 'components/ImageUpload';
 import ErrorBoundary from 'components/ErrorBoundary/ErrorBoundary.js';
 import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 
-import { editUser } from 'actions';
+import { editUser, deleteUser } from 'actions';
 import { useInput } from 'utilities/useInput';
 
 const DeleteButton = withStyles({
@@ -49,7 +50,7 @@ const DisabledTextField = withStyles({
 
 DisabledTextField.muiName = 'TextField';
 
-const UserProfile = ({ editUser, user }) => {
+const UserProfile = ({ editUser, deleteUser, user, history }) => {
   const username = user.username ? user.username : null;
   const [photo, setPhoto] = useState();
   const firstName = useInput();
@@ -78,6 +79,12 @@ const UserProfile = ({ editUser, user }) => {
     });
   };
 
+  const requestDeleteUser = e => {
+    e.preventDefault();
+    deleteUser(user.id);
+    history.push('/');
+  };
+
   const upload = async () => {
     if (!photo) {
       console.log('Need a photo!');
@@ -92,9 +99,9 @@ const UserProfile = ({ editUser, user }) => {
     try {
       const results = await axios.post(photoEndpoint, postData);
       if (results.data.message.search(/success/i) > -1) {
-        console.log(results, "Success!");
+        console.log(results, 'Success!');
       } else {
-        console.error(results, "Failure?");
+        console.error(results, 'Failure?');
       }
     } catch (error) {
       console.error(error);
@@ -150,7 +157,11 @@ const UserProfile = ({ editUser, user }) => {
         </div>
       </div>
       <div className='user-profile-buttons'>
-        <DeleteButton tabIndex='-1' variant='contained'>
+        <DeleteButton
+          tabIndex='-1'
+          variant='contained'
+          onClick={requestDeleteUser}
+        >
           Delete Account
         </DeleteButton>
         <SaveButton variant='contained' onClick={requestEditUser}>
@@ -167,5 +178,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { editUser }
-)(UserProfile);
+  { editUser, deleteUser }
+)(withRouter(UserProfile));
