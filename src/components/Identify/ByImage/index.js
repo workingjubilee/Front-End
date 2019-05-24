@@ -44,7 +44,7 @@ function ByImage({ setData, classes, hasVideo, ...props }) {
         <ErrorBoundary>
           <div className='image-upload'>
             <SpinWhile still={loading}>
-              <h5>Pill <br /> Image <br /> Upload</h5>
+              <h5>Pill Image Upload</h5>
               <ImageUpload
                 photo={photo}
                 setPhoto={setPhoto}
