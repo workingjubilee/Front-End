@@ -6,6 +6,11 @@ import ArrowIcon from '@material-ui/icons/CompareArrows';
 import DiaryIcon from '@material-ui/icons/QuestionAnswer';
 import ScanIcon from '@material-ui/icons/CenterFocusStrong';
 import SvgIcon from '@material-ui/core/SvgIcon';
+import iconGitHub from 'assets/github.svg';
+import iconLinkedIn from 'assets/linkedin.svg';
+import iconMedium from 'assets/medium.svg';
+import iconTwitter from 'assets/twitter.svg';
+import iconFacebook from 'assets/facebook.svg';
 import { team } from './teamData';
 import { logIn } from 'actions';
 import { withRouter } from 'react-router-dom';
@@ -157,23 +162,22 @@ const Landing = ({ history, logIn }) => {
         <div className='tiles'>
           {team.map(teamMate => (
             <div className='tile' key={team.indexOf(teamMate)}>
-              <img src={teamMate.image} alt={teamMate.name} />
+              <img className='profile-image' src={teamMate.image} alt={teamMate.name} />
               <div>
                 <h3>{teamMate.name}</h3>
                 <p>{teamMate.role}</p>
               </div>
               <div className='links'>
-                {teamMate.medium ? (
+                { teamMate.medium && (
                   <a href={teamMate.medium} target='blank'>
-                    <i className='fab fa-medium' />
-                  </a>
-                ) : null}
-                <a href={teamMate.linkedIn} target='blank'>
-                  <i className='fab fa-linkedin' />
-                </a>
-                <a href={teamMate.gitHub} target='blank'>
-                  <i className='fab fa-github' />
-                </a>
+                    <img className='brand-icon' src={iconMedium} alt="Medium Link" />
+                  </a>)}
+                { teamMate.linkedIn && (<a href={teamMate.linkedIn} target='blank'>
+                  <img className='brand-icon' src={iconLinkedIn} alt="LinkedIn Link" />
+                </a> )}
+                { teamMate.gitHub && (<a href={teamMate.gitHub} target='blank'>
+                  <img className='brand-icon' src={iconGitHub} alt="GitHub Link" />
+                </a> )}
               </div>
             </div>
           ))}
@@ -187,10 +191,10 @@ const Landing = ({ history, logIn }) => {
         </a>
         <div>
           <a href='https://twitter.com/lambdaschool' target='blank'>
-            <i className='fab fa-twitter-square' />
+            <img className='brand-icon' src={iconTwitter} alt="Twitter Link" />
           </a>
           <a href='https://www.facebook.com/LambdaSchoolOnline/' target='blank'>
-            <i className='fab fa-facebook-square' />
+            <img className='brand-icon' src={iconFacebook} alt="Facebook Link" />
           </a>
         </div>
       </footer>
