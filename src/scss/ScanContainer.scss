@@ -377,3 +377,37 @@ $lightgray: #d6d8dd;
     }
   }
 }
+.add-manually {
+  .title {
+    width: 668px;
+    height: 80px;
+    color: white;
+    background-color: #877355;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4rem;
+    font-weight: 300;
+  }
+  .fields {
+    max-width: 668px;
+    height: 400px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    .field-container {
+      display: flex;
+      justify-content: space-between;
+      width: 94%;
+      margin: 0 auto;
+      align-items: center;
+      h5 {
+        font-size: 1.2rem;
+      }
+      .field,
+      .form-control {
+        width: 452px;
+      }
+    }
+  }
+}

@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addMed } from 'actions';
 import withStyles from '@material-ui/core/styles/withStyles';
+import FormControl from '@material-ui/core/FormControl';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import InputLabel from '@material-ui/core/InputLabel';
+import Typography from '@material-ui/core/Typography';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
@@ -51,68 +51,92 @@ class PillInfoModal extends Component {
         keepMounted
         open={open}
         onClose={handleClose}
+        className='add-manually'
+        maxWidth='xl'
       >
-        <DialogTitle id='add-pill'>{'Pill Info'}</DialogTitle>
-        <DialogContent>
-          <TextField
-            margin='normal'
-            name='med_name'
-            label='Pill Name'
-            onChange={this.changeHandler}
-            value={med_name}
-            required
-            fullWidth
-          />
-          <InputLabel>Color</InputLabel>
-          <Select
-            value={med_color}
-            onChange={this.changeHandler}
-            name='med_color'
-          >
-            {colors.map((color, index) => {
-              return (
-                <MenuItem key={index} value={color}>
-                  {color}
-                </MenuItem>
-              );
-            })}
-          </Select>
-          <InputLabel>Shape</InputLabel>
-          <Select
-            value={med_shape}
-            onChange={this.changeHandler}
-            name='med_shape'
-          >
-            {shapes.map((shape, index) => {
-              return (
-                <MenuItem key={index} value={shape}>
-                  {shape}
-                </MenuItem>
-              );
-            })}
-          </Select>
-          <TextField
-            margin='normal'
-            name='med_strength'
-            label='Med Strength'
-            type='number'
-            onChange={this.changeHandler}
-            value={med_strength}
-            required
-            fullWidth
-          />
-          <InputLabel>Med Strength Unit</InputLabel>
-          <Select
-            value={med_strength_unit}
-            onChange={this.changeHandler}
-            name='med_strength_unit'
-          >
-            <MenuItem value={'IU'}>{'IU'}</MenuItem>
-            <MenuItem value={'mcg'}>{'mcg'}</MenuItem>
-            <MenuItem value='mg'>{'mg'}</MenuItem>
-            <MenuItem value={'g'}>{'g'}</MenuItem>
-          </Select>
-        </DialogContent>
+        <Typography component='h4' className='title' id='add-pill'>
+          {'ADD YOUR PILL MANUALLY'}
+        </Typography>
+        <div className='fields'>
+          <div className='field-container'>
+            <h5>Pill Name</h5>
+            <TextField
+              className='field'
+              margin='normal'
+              name='med_name'
+              onChange={this.changeHandler}
+              value={med_name}
+              required
+              variant='outlined'
+            />
+          </div>
+          <div className='field-container'>
+            <h5>Pill Color</h5>
+            <FormControl variant='outlined' className='form-control'>
+              <Select
+                value={med_color}
+                onChange={this.changeHandler}
+                input={<OutlinedInput name='med_color' labelWidth={0} />}
+              >
+                {colors.map((color, index) => {
+                  return (
+                    <MenuItem key={index} value={color}>
+                      {color}
+                    </MenuItem>
+                  );
+                })}
+              </Select>
+            </FormControl>
+          </div>
+          <div className='field-container'>
+            <h5>Pill Shape</h5>
+            <FormControl variant='outlined' className='form-control'>
+              <Select
+                value={med_shape}
+                onChange={this.changeHandler}
+                input={<OutlinedInput name='med_shape' labelWidth={0} />}
+              >
+                {shapes.map((shape, index) => {
+                  return (
+                    <MenuItem key={index} value={shape}>
+                      {shape}
+                    </MenuItem>
+                  );
+                })}
+              </Select>
+            </FormControl>
+          </div>
+          <div className='field-container'>
+            <h5>Med Strength</h5>
+            <TextField
+              className='field'
+              margin='normal'
+              name='med_strength'
+              type='number'
+              onChange={this.changeHandler}
+              value={med_strength}
+              required
+              variant='outlined'
+            />
+          </div>
+          <div className='field-container'>
+            <h5>Med Strength Unit</h5>
+            <FormControl variant='outlined' className='form-control'>
+              <Select
+                value={med_strength_unit}
+                onChange={this.changeHandler}
+                input={
+                  <OutlinedInput name='med_strength_unit' labelWidth={0} />
+                }
+              >
+                <MenuItem value={'IU'}>{'IU'}</MenuItem>
+                <MenuItem value={'mcg'}>{'mcg'}</MenuItem>
+                <MenuItem value='mg'>{'mg'}</MenuItem>
+                <MenuItem value={'g'}>{'g'}</MenuItem>
+              </Select>
+            </FormControl>
+          </div>
+        </div>
         <DialogActions className={classes.actions}>
           <Button
             color='secondary'
@@ -149,7 +173,8 @@ const styles = theme => ({
     flexWrap: 'wrap',
     justifyContent: 'space-between',
     width: 480,
-    alignSelf: 'center'
+    alignSelf: 'center',
+    marginTop: 20
   },
   addMed: {
     width: 210
