@@ -1,60 +1,49 @@
-import React, { Component } from 'react';
+import React from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { connect } from 'react-redux';
 import { fetchRems } from '../../actions';
 import Rem from './Rem';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-class Rems extends Component {
-  state = {
-    noRems: false
-  };
-
-  componentDidUpdate(prevProps) {
-    if (
-      prevProps.fetchingRems &&
-      !this.props.fetchingRems &&
-      this.props.error
-    ) {
-      if (
-        this.props.error ===
-        'Request failed with status code 404. User with specified ID does not have any reminders.'
-      ) {
-        this.setState({ noRems: true });
-      }
-    }
-  }
-
-  render() {
-    const { fetchingRems, classes, rems, filteredRems } = this.props;
-    if (fetchingRems) {
-      return (
-        <div className={classes.loading}>
-          <CircularProgress
-            className={classes.progress}
-            color='primary'
-            disableShrink
-          />
+const Rems = ({ fetchingRems, classes, rems, filteredRems, history }) => {
+  if (fetchingRems) {
+    return (
+      <div className={classes.loading}>
+        <CircularProgress
+          className={classes.progress}
+          color='primary'
+          disableShrink
+        />
+      </div>
+    );
+  } else if (!fetchingRems && rems.length === 0) {
+    return (
+      <div className='no-reminders'>
+        <h2>You do not have any reminders saved yet.</h2>
+        <span
+          onClick={() => {
+            history.push('/identify');
+          }}
+        >
+          <h2>Start tracking medications and reminders here.</h2>
+        </span>
+      </div>
+    );
+  } else if (rems.length > 0 && filteredRems.length === 0) {
+    return <h1>You do not have any reminders saved for this date.</h1>;
+  } else {
+    return (
+      <section className='reminders-container'>
+        <h2>Your scheduled medications for today</h2>
+        <div className='rems-list'>
+          {filteredRems.map(rem => (
+            <Rem key={rem.id} rem={rem} />
+          ))}
         </div>
-      );
-    } else if (this.state.noRems) {
-      return <h1>You do not have any reminders saved yet.</h1>;
-    } else if (rems.length > 0 && filteredRems.length === 0) {
-      return <h1>You do not have any reminders saved for this date.</h1>;
-    } else {
-      return (
-        <section className='reminders-container'>
-          <h2>Your scheduled medications for today</h2>
-          <div className='rems-list'>
-            {filteredRems.map(rem => (
-              <Rem key={rem.id} rem={rem} />
-            ))}
-          </div>
-        </section>
-      );
-    }
+      </section>
+    );
   }
-}
+};
 
 const styles = theme => ({
   progress: {
