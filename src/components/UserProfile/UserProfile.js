@@ -8,7 +8,7 @@ import ErrorBoundary from 'components/ErrorBoundary/ErrorBoundary.js';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 
-import { editUser, deleteUser } from 'actions';
+import { editUser, deleteUser, fetchUser } from 'actions';
 import { useInput } from 'utilities/useInput';
 import { useToggle } from 'utilities/useToggle';
 
@@ -118,7 +118,7 @@ const UserProfile = ({ editUser, deleteUser, user, history }) => {
     try {
       const results = await axios.post(photoEndpoint, postData);
       if (results.data.message.search(/success/i) > -1) {
-        console.log(results, 'Success!');
+        fetchUser(user.id);
       } else {
         console.error(results, 'Failure?');
       }
