@@ -79,7 +79,14 @@ const styles = {
   }
 };
 
-const SearchResult = ({ classes, result, addPill, setPill, setImage }) => {
+const SearchResult = ({
+  classes,
+  result,
+  addPill,
+  setPill,
+  setImage,
+  setImageLink
+}) => {
   console.log('SEARCH RESULT: ', result);
   const correctCasing = string => {
     const lowerCasedString = string.toLowerCase();
@@ -134,6 +141,7 @@ const SearchResult = ({ classes, result, addPill, setPill, setImage }) => {
         <Button
           onClick={e => {
             e.preventDefault();
+            setImageLink(imageSrc);
             setPill(result);
             // history.push('/viewdetails');
           }}
