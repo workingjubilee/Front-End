@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import CardContent from '@material-ui/core/CardContent';
+// import CardContent from '@material-ui/core/CardContent';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
@@ -115,13 +115,33 @@ const StepOne = ({
           dosageDuration={dosageDuration}
           setDosageDuration={setDosageDuration}
         />
-        <CardContent>Text Reminder</CardContent>
-        <CardActions style={{ justifyContent: 'center' }}>
-          <Button style={{ background: 'black', color: 'white' }}>
+        {/* <CardContent>Text Reminder</CardContent> */}
+        <CardActions
+          style={{
+            width: '40%',
+            justifyContent: 'space-between',
+            margin: '0 auto'
+          }}
+        >
+          <Button
+            style={{
+              background: 'black',
+              color: 'white',
+              boxShadow: '0px 0px 10px 5px #f3f3f3',
+              margin: '0 10px 10px 10px',
+              textTransform: 'none'
+            }}
+          >
             Cancel
           </Button>
           <Button
-            style={{ background: '#40AB48', color: 'white' }}
+            style={{
+              background: '#40AB48',
+              color: 'white',
+              boxShadow: '0px 0px 10px 5px #f3f3f3',
+              margin: '0 10px 10px 10px',
+              textTransform: 'none'
+            }}
             onClick={handleConfirmDosage}
           >
             Confirm Dosage

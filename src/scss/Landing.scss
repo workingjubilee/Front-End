@@ -277,7 +277,7 @@
         margin: 7.5px;
         border-radius: 5px;
 
-        img {
+        .profile-image {
           height: 100px;
           width: 100px;
           border-radius: 50%;
@@ -312,14 +312,17 @@
             margin: 0 2.5px 50px;
             text-decoration: none;
 
-            .fab {
-              font-size: 30px;
-              color: #ffffff;
-            }
+
           }
         }
       }
     }
+  }
+
+  .brand-icon {
+    max-height: 30px;
+    max-width: 30px;
+    display: inline;
   }
 
   footer {
