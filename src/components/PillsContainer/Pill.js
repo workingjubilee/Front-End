@@ -75,14 +75,19 @@ const styles = theme => ({
   },
   card: {
     width: '446px',
-    marginTop: '28px'
+    marginTop: '28px',
+    boxShadow: 'none',
+    border: '1px solid #eaebec'
   },
   actions: {
     display: 'flex',
     justifyContent: 'space-evenly'
   },
   buttons: {
-    borderRadius: '0px'
+    borderRadius: '0px',
+    textTransform: 'Capitalize',
+    fontWeight: 300,
+    border: '1px solid #e6e6e6'
   }
 });
 
