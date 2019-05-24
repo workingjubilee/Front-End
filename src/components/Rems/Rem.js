@@ -57,14 +57,18 @@ const styles = theme => ({
   },
   card: {
     width: '446px',
-    marginBottom: '28px'
+    marginBottom: '28px',
+    boxShadow: 'none',
+    border: '1px solid #eaebec'
   },
   actions: {
     display: 'flex',
     justifyContent: 'space-evenly'
   },
   buttons: {
-    borderRadius: '0px'
+    borderRadius: '0px',
+    textTransform: 'Capitalize',
+    fontWeight: 300
   }
 });
 
