@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addMed } from 'actions';
-// import withStyles from '@material-ui/core/styles/withStyles';
+import withStyles from '@material-ui/core/styles/withStyles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -36,7 +36,7 @@ class PillInfoModal extends Component {
     });
   };
   render() {
-    const { open, handleClose, addPill } = this.props;
+    const { open, handleClose, addPill, classes } = this.props;
     const {
       med_name,
       med_color,
@@ -70,12 +70,9 @@ class PillInfoModal extends Component {
             name='med_color'
           >
             {colors.map((color, index) => {
-              const lowerCasedColor = color.toLowerCase();
-              const finalColor =
-                lowerCasedColor[0].toUpperCase() + lowerCasedColor.slice(1);
               return (
-                <MenuItem key={index} value={finalColor}>
-                  {finalColor}
+                <MenuItem key={index} value={color}>
+                  {color}
                 </MenuItem>
               );
             })}
@@ -87,12 +84,9 @@ class PillInfoModal extends Component {
             name='med_shape'
           >
             {shapes.map((shape, index) => {
-              const lowerCasedShape = shape.toLowerCase();
-              const finalShape =
-                lowerCasedShape[0].toUpperCase() + lowerCasedShape.slice(1);
               return (
-                <MenuItem key={index} value={finalShape}>
-                  {finalShape}
+                <MenuItem key={index} value={shape}>
+                  {shape}
                 </MenuItem>
               );
             })}
@@ -119,18 +113,29 @@ class PillInfoModal extends Component {
             <MenuItem value={'g'}>{'g'}</MenuItem>
           </Select>
         </DialogContent>
-        <DialogActions>
-          <Button color='primary' onClick={handleClose}>
-            Cancel
-          </Button>
-          <Button color='primary' onClick={() => addPill(this.state.pill)}>
-            Add Pill
+        <DialogActions className={classes.actions}>
+          <Button
+            color='secondary'
+            variant='contained'
+            className={`${classes.addMed} ${classes.button}`}
+            onClick={() => addPill(this.state.pill)}
+          >
+            Add to medication list
           </Button>
           <Button
             color='primary'
+            variant='contained'
+            className={`${classes.addRem} ${classes.button}`}
             onClick={() => addPill(this.state.pill, 'adddosage')}
           >
-            Add Pill With Reminders
+            Add and schedule dosage
+          </Button>
+          <Button
+            variant='contained'
+            className={`${classes.cancel} ${classes.button}`}
+            onClick={handleClose}
+          >
+            Cancel
           </Button>
         </DialogActions>
       </Dialog>
@@ -138,11 +143,36 @@ class PillInfoModal extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  error: state.medsReducer.error
+const styles = theme => ({
+  actions: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    width: 480,
+    alignSelf: 'center'
+  },
+  addMed: {
+    width: 210
+  },
+  addRem: {
+    width: 230
+  },
+  cancel: {
+    backgroundColor: 'black',
+    color: 'white',
+    width: 120,
+    margin: '46px auto 38px auto'
+  },
+  button: {
+    textTransform: 'none',
+    fontWeight: 300,
+    fontSize: '1rem'
+  }
 });
 
+const StyledModal = withStyles(styles)(PillInfoModal);
+
 export default connect(
-  mapStateToProps,
+  null,
   { addMed }
-)(PillInfoModal);
+)(StyledModal);
