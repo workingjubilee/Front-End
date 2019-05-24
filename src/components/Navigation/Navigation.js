@@ -67,7 +67,6 @@ const styles = theme => ({
     margin: '3px 10px 0 0',
     fontSize: '1.2rem',
     fontWeight: 'light',
-    fontFamily: 'Roboto'
   },
   subTitle: {
     fontWeight: 300,

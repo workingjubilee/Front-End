@@ -16,6 +16,7 @@ const theme = createMuiTheme({
     }
   },
   typography: {
+    fontFamily: ['Raleway', 'Helvetica', 'Arial', 'sans-serif'].join(','),
     useNextVariants: true
   }
 });
