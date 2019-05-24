@@ -19,7 +19,7 @@ const styles = {
     fontSize: '.7rem',
     width: '9rem',
     height: '2.2rem',
-    padding: '5px',
+    padding: '5px 5px 5px 10px',
     display: 'flex',
     alignItems: 'center'
   },
@@ -27,7 +27,8 @@ const styles = {
     backgroundColor: 'white',
     height: '2.2rem',
     fontSize: '1rem',
-    border: '3px solid #F0F3F5',
+    border: '1px solid #F0F3F5',
+    fontWeight: '300',
     width: '100%',
     padding: '5px',
     display: 'flex',

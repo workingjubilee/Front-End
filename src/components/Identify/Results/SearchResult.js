@@ -3,12 +3,10 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
 import MuiCardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
-import Paper from '@material-ui/core/Paper';
 // import CircularProgress from '@material-ui/core/CircularProgress';
 // import Image from './Image';
 import ResultInfo from './ResultInfo';
-
-import { tablet } from 'scss/mediaVariables';
+import { tablet, mobile, desktop } from 'scss/mediaVariables';
 
 const CardContent = withStyles({
   root: {
@@ -21,13 +19,14 @@ CardContent.muiName = 'CardContent';
 
 const styles = {
   card: {
-    border: '1px solid gray',
+    border: '1px solid #d6d8dd',
     margin: '2%',
-    width: '75%',
-    padding: '1rem',
-    [`${tablet}`]: {
+    width: '510px',
+    padding: '12px',
+    boxShadow: 'none',
+    [desktop]: {
       width: '90%',
-      margin: '0 auto'
+      margin: '20px auto 0px auto'
     }
   },
   info: {
@@ -39,23 +38,40 @@ const styles = {
     marginTop: '.5rem'
   },
   button: {
-    width: '30%',
-    height: '2.3rem',
-    fontSize: '0.8rem',
+    fontSize: '1rem',
     color: 'white',
-    fontWeight: 'bold',
-    textTransform: 'Capitalize',
-    boxShadow: '.1rem .1rem .1rem grey',
-    [`${tablet}`]: {
-      height: '4rem',
-      fontSize: '1rem'
-    }
+    fontWeight: '300',
+    textTransform: 'Capitalize'
   },
   view: {
-    backgroundColor: '#5AAC49'
+    backgroundColor: '#5AAC49',
+    width: '132px',
+    [tablet]: {
+      width: '28%'
+    },
+    [mobile]: {
+      width: '28%'
+    }
   },
   add: {
-    backgroundColor: '#2D90F5'
+    backgroundColor: '#2D90F5',
+    width: '116px',
+    [tablet]: {
+      width: '22%'
+    },
+    [mobile]: {
+      width: '22%'
+    }
+  },
+  rem: {
+    backgroundColor: '#2D90F5',
+    width: '160px',
+    [tablet]: {
+      width: '40%'
+    },
+    [mobile]: {
+      width: '40%'
+    }
   },
   genericImage: {
     width: '85px',
@@ -101,12 +117,10 @@ const SearchResult = ({ classes, result, addPill, setPill, setImage }) => {
 
   return (
     <Card className={classes.card}>
-      {/* Paper might not be necessary here */}
-      <Paper>
-        <CardContent className={classes.info}>
-          <img className={classes.genericImage} src={imageSrc} alt='A drug' />
-          <ResultInfo result={result} correctCasing={correctCasing} />
-          {/* <CircularProgress
+      <CardContent className={classes.info}>
+        <img className={classes.genericImage} src={imageSrc} alt='A drug' />
+        <ResultInfo result={result} correctCasing={correctCasing} />
+        {/* <CircularProgress
             style={{
               marginLeft: '2rem',
               width: '3rem',
@@ -115,39 +129,38 @@ const SearchResult = ({ classes, result, addPill, setPill, setImage }) => {
             variant='static'
             value={90}
           /> */}
-        </CardContent>
-        <CardContent className={classes.buttons}>
-          <Button
-            onClick={e => {
-              e.preventDefault();
-              setPill(result);
-              // history.push('/viewdetails');
-            }}
-            className={`${classes.button} ${classes.view}`}
-          >
-            View Details
-          </Button>
-          <Button
-            onClick={e => {
-              e.preventDefault();
-              addPill(formattedPill);
-            }}
-            className={`${classes.button} ${classes.add}`}
-          >
-            Add to Med List
-          </Button>
-          <Button
-            onClick={e => {
-              e.preventDefault();
-              setImage(imageSrc);
-              addPill(formattedPill, 'adddosage');
-            }}
-            className={`${classes.button} ${classes.add}`}
-          >
-            Add with Reminder
-          </Button>
-        </CardContent>
-      </Paper>
+      </CardContent>
+      <div className={classes.buttons}>
+        <Button
+          onClick={e => {
+            e.preventDefault();
+            setPill(result);
+            // history.push('/viewdetails');
+          }}
+          className={`${classes.button} ${classes.view}`}
+        >
+          View Details
+        </Button>
+        <Button
+          onClick={e => {
+            e.preventDefault();
+            addPill(formattedPill);
+          }}
+          className={`${classes.button} ${classes.add}`}
+        >
+          Add Pill
+        </Button>
+        <Button
+          onClick={e => {
+            e.preventDefault();
+            setImage(imageSrc);
+            addPill(formattedPill, 'adddosage');
+          }}
+          className={`${classes.button} ${classes.rem}`}
+        >
+          Add with Reminder
+        </Button>
+      </div>
     </Card>
   );
 };
