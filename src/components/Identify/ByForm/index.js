@@ -35,8 +35,19 @@ const SearchPill = ({ setData, ...props }) => {
     }
     const characters = string.split('');
     let length = characters.length;
+    if (Number(characters[0])) {
+      for (let i = 0; i < length; i++) {
+        if (!Number(characters[i])) {
+          const numbers = characters.slice(0, i);
+          const letters = characters.slice(i, length);
+          numbers[i] = ';';
+          const combined = numbers.concat(letters);
+          return combined.join('');
+        }
+      }
+    }
     for (let i = 0; i < length; i++) {
-      if (Number(string[i])) {
+      if (Number(characters[i])) {
         const numbers = characters.slice(i, length);
         const letters = characters.slice(0, i);
         letters[i] = ';';
