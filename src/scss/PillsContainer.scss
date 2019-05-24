@@ -15,6 +15,12 @@
     .pill-navigator {
       margin-top: 38px;
     }
+    .no-inactive-meds {
+      color: $primary;
+      &:hover {
+        cursor: pointer;
+      }
+    }
   }
   padding-bottom: 60px;
 }

@@ -60,7 +60,11 @@ class PillsList extends Component {
           <PillsNav />
           {location.pathname === '/pills/active' ||
           location.pathname === '/pills' ? (
-            <ActivePills activeMeds={activeMeds} openDialog={openDialog} />
+            <ActivePills
+              activeMeds={activeMeds}
+              openDialog={openDialog}
+              history={this.props.history}
+            />
           ) : location.pathname === '/pills/inactive' ? (
             <InactivePills
               inactiveMeds={inactiveMeds}

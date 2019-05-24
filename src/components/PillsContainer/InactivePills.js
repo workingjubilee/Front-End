@@ -4,7 +4,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 
 const InactivePills = ({ classes, inactiveMeds, openDialog }) => {
   if (inactiveMeds.length === 0) {
-    return <h2>You do not have any inactive meds.</h2>;
+    return <h3>You do not have any inactive meds.</h3>;
   } else {
     return (
       <div className={classes.meds}>
