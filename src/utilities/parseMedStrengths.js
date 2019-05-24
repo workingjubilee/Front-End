@@ -7,10 +7,13 @@ module.exports = function parseMedStrengths(meds) {
       .filter(Boolean)
       .map(ingredient => ingredient.split(regex).filter(Boolean));
 
-  const typeCheck = maybeJSON => {
+  const fixToJSON = maybeJSON => {
     if (maybeJSON instanceof Array) {
-      if (maybeJSON.length === 1) return [JSON.parse(maybeJSON[0])];
-      else {
+      if (maybeJSON.length === 1) {
+        return [JSON.parse(maybeJSON[0])];
+      } else if (maybeJSON.every(med => typeof med !== 'object' ? true : false )) {
+        return maybeJSON.map(JSONchunk => JSON.parse(`[${JSONchunk.slice()}]`)).flatMap(array => array);
+      } else {
         return maybeJSON;
       }
     } else if (typeof maybeJSON === 'string') {
@@ -23,8 +26,8 @@ module.exports = function parseMedStrengths(meds) {
   };
 
   try {
-    const extractedMeds = typeCheck(meds);
-    return extractedMeds.map(med => {
+    const preppedMeds = fixToJSON(meds);
+    return preppedMeds.map(med => {
       med['strength'] = med['spl_strength']
         ? regexStrength(med['spl_strength'], scaryRegex)
         : [['unknown', null, null]];
