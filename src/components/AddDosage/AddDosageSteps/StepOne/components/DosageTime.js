@@ -62,11 +62,18 @@ const DosageTime = ({
   };
   return (
     <CardContent style={{ display: 'flex' }}>
-      <Typography style={{ width: '20%' }} component='p'>
+      <Typography style={{ width: '150px', alignSelf: 'center' }} component='p'>
         Dosage Time(s) <br /> of day
       </Typography>
 
-      <Button onClick={handleOpenDialogue}>
+      <Button
+        onClick={handleOpenDialogue}
+        style={{
+          boxShadow: '0px 0px 10px 5px #f3f3f3',
+          margin: '0 10px',
+          textTransform: 'none'
+        }}
+      >
         Open to Select Dosage Time of Day
       </Button>
       <Dialog
