@@ -86,7 +86,8 @@ const styles = theme => ({
   buttons: {
     borderRadius: '0px',
     textTransform: 'Capitalize',
-    fontWeight: 300
+    fontWeight: 300,
+    border: '1px solid #e6e6e6'
   }
 });
 
