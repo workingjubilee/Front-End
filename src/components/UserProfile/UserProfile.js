@@ -84,16 +84,17 @@ const UserProfile = ({ editUser, user }) => {
       return;
     }
 
+    // prettier-ignore
     const photoEndpoint = `${process.env.REACT_APP_BACKEND}/api/users/${user.id}/avatar`;
     const postData = new FormData();
     postData.append('image', photo);
 
     try {
       const results = await axios.post(photoEndpoint, postData);
-      if (results.data.message.search(/success/i)) {
-        console.log(results);
+      if (results.data.message.search(/success/i) > -1) {
+        console.log(results, "Success!");
       } else {
-        console.error(results)
+        console.error(results, "Failure?");
       }
     } catch (error) {
       console.error(error);
@@ -109,6 +110,7 @@ const UserProfile = ({ editUser, user }) => {
           <div className='user-image-upload-component'>
             <ErrorBoundary>
               <ImageUpload photo={photo} setPhoto={setPhoto} />
+              <MuiButton onClick={upload}>Upload Image!</MuiButton>
             </ErrorBoundary>
           </div>
         </div>

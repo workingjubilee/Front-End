@@ -166,7 +166,7 @@ class ProfileIcon extends React.Component {
           <Avatar
             src={
               user.profile_image_url
-                ? user.profile_image_url
+                ? `/users/images/${user.profile_image_url}`
                 : '/images/avatar-3.png'
             }
             className={classes.avatar}
