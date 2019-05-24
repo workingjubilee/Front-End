@@ -18,10 +18,19 @@ const CapsulesPerDose = ({ updateCapsulesPerDose, capsulesPerDose }) => {
 
   return (
     <CardContent style={{ display: 'flex' }}>
-      <Typography style={{ width: '20%' }} component='p'>
+      <Typography style={{ width: '150px', alignSelf: 'center' }} component='p'>
         Dosage Quantity
       </Typography>
-      <Card style={{ display: 'flex', height: '40px', paddingLeft: '1rem' }}>
+      <Card
+        style={{
+          display: 'flex',
+          height: '40px',
+          paddingLeft: '20px',
+          boxShadow: '0px 0px 10px 5px #f3f3f3',
+          margin: '0 10px',
+          textTransform: 'none'
+        }}
+      >
         <Typography style={{ lineHeight: '40px' }} component='p'>
           Number of Capsules per dose
         </Typography>

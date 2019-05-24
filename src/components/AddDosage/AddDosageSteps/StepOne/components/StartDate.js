@@ -31,17 +31,20 @@ const StartDate = ({ startDate, setStartDate }) => {
 
   return (
     <CardContent style={{ display: 'flex' }}>
-      <Typography style={{ width: '20%' }} component='p'>
+      <Typography style={{ width: '150px', alignSelf: 'center' }} component='p'>
         Start Date
       </Typography>
       <Button
         style={{
           background: startDate === todaysDate ? '#2D90F5' : '',
-          color: startDate === todaysDate ? 'white' : ''
+          color: startDate === todaysDate ? 'white' : '',
+          boxShadow: '0px 0px 10px 5px #f3f3f3',
+          margin: '0 10px',
+          textTransform: 'none'
         }}
         onClick={() => setStartDate(todaysDate)}
       >
-        today
+        Today
       </Button>
       <Button
         style={{
@@ -62,7 +65,10 @@ const StartDate = ({ startDate, setStartDate }) => {
                 .format('L')
             )
               ? 'white'
-              : ''
+              : '',
+          boxShadow: '0px 0px 10px 5px #f3f3f3',
+          margin: '0 10px',
+          textTransform: 'none'
         }}
         onClick={() =>
           setStartDate(
@@ -74,7 +80,7 @@ const StartDate = ({ startDate, setStartDate }) => {
           )
         }
       >
-        tomorrow
+        Tomorrow
       </Button>
       <TextField
         style={{

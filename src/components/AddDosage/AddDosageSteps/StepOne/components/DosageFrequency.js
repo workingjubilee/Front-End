@@ -49,13 +49,16 @@ const DosageFrequency = ({
   };
   return (
     <CardContent style={{ display: 'flex', flexWrap: 'wrap' }}>
-      <Typography style={{ width: '20%' }} component='p'>
+      <Typography style={{ width: '150px', alignSelf: 'center' }} component='p'>
         Dosage Frequency
       </Typography>
       <Button
         style={{
           background: dosageFrequency === 'daily' ? '#2D90F5' : '',
-          color: dosageFrequency === 'daily' ? 'white' : ''
+          color: dosageFrequency === 'daily' ? 'white' : '',
+          boxShadow: '0px 0px 10px 5px #f3f3f3',
+          margin: '0 10px',
+          textTransform: 'none'
         }}
         onClick={() => handleDosageFrequencyChange('daily')}
       >
@@ -64,7 +67,10 @@ const DosageFrequency = ({
       <Button
         style={{
           background: dosageFrequency === 'weekly' ? '#2D90F5' : '',
-          color: dosageFrequency === 'weekly' ? 'white' : ''
+          color: dosageFrequency === 'weekly' ? 'white' : '',
+          boxShadow: '0px 0px 10px 5px #f3f3f3',
+          margin: '0 10px',
+          textTransform: 'none'
         }}
         onClick={() => handleDosageFrequencyChange('weekly')}
       >
@@ -73,7 +79,10 @@ const DosageFrequency = ({
       <Button
         style={{
           background: dosageFrequency === 'monthly' ? '#2D90F5' : '',
-          color: dosageFrequency === 'monthly' ? 'white' : ''
+          color: dosageFrequency === 'monthly' ? 'white' : '',
+          boxShadow: '0px 0px 10px 5px #f3f3f3',
+          margin: '0 10px',
+          textTransform: 'none'
         }}
         onClick={() => handleDosageFrequencyChange('monthly')}
       >

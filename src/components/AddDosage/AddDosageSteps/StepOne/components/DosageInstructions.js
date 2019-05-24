@@ -20,14 +20,20 @@ const DosageInstructions = ({
 
   return (
     <CardContent style={{ display: 'flex' }}>
-      <Typography style={{ width: '20%' }} component='p'>
+      <Typography
+        style={{ width: '150px !imporant', alignSelf: 'center' }}
+        component='p'
+      >
         How will you take this pill?
       </Typography>
-      <div style={{ flexWrap: 'wrap' }}>
+      <CardContent style={{ flexWrap: 'wrap', paddingBottom: '0' }}>
         <Button
           style={{
             background: dosageInstruction === 'Before Meal' ? '#2D90F5' : '',
-            color: dosageInstruction === 'Before Meal' ? 'white' : ''
+            color: dosageInstruction === 'Before Meal' ? 'white' : '',
+            boxShadow: '0px 0px 10px 5px #f3f3f3',
+            margin: '0 10px',
+            textTransform: 'none'
           }}
           onClick={() => handleDosageInstructionChange('Before Meal')}
         >
@@ -36,7 +42,10 @@ const DosageInstructions = ({
         <Button
           style={{
             background: dosageInstruction === 'With Meal' ? '#2D90F5' : '',
-            color: dosageInstruction === 'With Meal' ? 'white' : ''
+            color: dosageInstruction === 'With Meal' ? 'white' : '',
+            boxShadow: '0px 0px 10px 5px #f3f3f3',
+            margin: '0 10px',
+            textTransform: 'none'
           }}
           onClick={() => handleDosageInstructionChange('With Meal')}
         >
@@ -45,7 +54,10 @@ const DosageInstructions = ({
         <Button
           style={{
             background: dosageInstruction === 'After Meal' ? '#2D90F5' : '',
-            color: dosageInstruction === 'After Meal' ? 'white' : ''
+            color: dosageInstruction === 'After Meal' ? 'white' : '',
+            boxShadow: '0px 0px 10px 5px #f3f3f3',
+            margin: '0 10px',
+            textTransform: 'none'
           }}
           onClick={() => handleDosageInstructionChange('After Meal')}
         >
@@ -54,20 +66,28 @@ const DosageInstructions = ({
         <Button
           style={{
             background: dosageInstruction === 'Without Meal' ? '#2D90F5' : '',
-            color: dosageInstruction === 'Without Meal' ? 'white' : ''
+            color: dosageInstruction === 'Without Meal' ? 'white' : '',
+            boxShadow: '0px 0px 10px 5px #f3f3f3',
+            margin: '0 10px',
+            textTransform: 'none'
           }}
           onClick={() => handleDosageInstructionChange('Without Meal')}
         >
           Without Meal
         </Button>
         <TextField
+          style={{
+            boxShadow: '0px 0px 10px 5px #f3f3f3',
+            margin: '20px 10px'
+          }}
           label='custom instruction'
           value={customInstruction.value}
           onClick={() => handleDosageInstructionChange('')}
           onChange={customInstruction.updateValue}
           margin='normal'
+          variant='outlined'
         />
-      </div>
+      </CardContent>
     </CardContent>
   );
 };
