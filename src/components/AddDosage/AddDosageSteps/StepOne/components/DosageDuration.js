@@ -14,7 +14,7 @@ const DosageDuration = ({ dosageDuration, setDosageDuration }) => {
       </Typography>
       <Card style={{ display: 'flex', height: '40px', paddingLeft: '1rem' }}>
         <Typography style={{ lineHeight: '40px' }} component='p'>
-          Number of days
+          Number of weeks
         </Typography>
 
         <Button
