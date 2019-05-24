@@ -41,7 +41,6 @@ const SearchPill = ({ setData, ...props }) => {
         const letters = characters.slice(0, i);
         letters[i] = ';';
         const combined = letters.concat(numbers);
-        console.log(combined.join(''));
         return combined.join('');
       }
     }
