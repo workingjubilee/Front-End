@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 import moment from 'moment';
 import { withRouter } from 'react-router-dom';
+
 import {
   fetchUser,
   fetchMeds,
