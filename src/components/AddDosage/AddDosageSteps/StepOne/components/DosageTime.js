@@ -81,11 +81,18 @@ const DosageTime = ({
         open={dosageDialogueOppenness}
         onClose={() => setDosageDialogueOppenness(false)}
       >
-        <DialogTitle>Fill the form</DialogTitle>
+        <DialogTitle>Select Dosage Times</DialogTitle>
         <DialogContent>
           {reminderData.length
             ? reminderData.map(data => (
-                <div key={reminderData.indexOf(data)}>
+                <div
+                  style={{
+                    dispay: 'flex',
+                    justifyContent: 'center',
+                    lineHeight: '40px'
+                  }}
+                  key={reminderData.indexOf(data)}
+                >
                   {reminderData.length > 1 ? (
                     <span>
                       {ordinalSuffixer(reminderData.indexOf(data) + 1)} reminder
@@ -102,6 +109,7 @@ const DosageTime = ({
                   ) : null}{' '}
                   at
                   <TextField
+                    style={{ paddingLeft: '20px' }}
                     id='time'
                     type='time'
                     defaultValue={reminderData[reminderData.indexOf(data)].time}
