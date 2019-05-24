@@ -76,7 +76,7 @@ const styles = theme => ({
   },
   strong: {
     fontSize: '2.5rem',
-    fontWeight: 400
+    fontWeight: 700
   },
   titleDiv: {
     marginLeft: '20px',
