@@ -46,13 +46,15 @@ const SearchPill = ({ setData, ...props }) => {
         }
       }
     }
-    for (let i = 0; i < length; i++) {
-      if (Number(characters[i])) {
-        const numbers = characters.slice(i, length);
-        const letters = characters.slice(0, i);
-        letters[i] = ';';
-        const combined = letters.concat(numbers);
-        return combined.join('');
+    if (!Number(characters[0]) && Number(characters[length - 1])) {
+      for (let i = 0; i < length; i++) {
+        if (Number(characters[i])) {
+          const numbers = characters.slice(i, length);
+          const letters = characters.slice(0, i);
+          letters[i] = ';';
+          const combined = letters.concat(numbers);
+          return combined.join('');
+        }
       }
     }
     return string;
