@@ -65,7 +65,7 @@ const styles = {
   },
   rem: {
     backgroundColor: '#2D90F5',
-    width: '160px',
+    width: '164px',
     [tablet]: {
       width: '40%'
     },

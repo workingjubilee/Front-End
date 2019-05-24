@@ -10,6 +10,7 @@ import { withRouter } from 'react-router-dom';
 
 import { editUser, deleteUser } from 'actions';
 import { useInput } from 'utilities/useInput';
+import { useToggle } from 'utilities/useToggle';
 
 const DeleteButton = withStyles({
   root: {
@@ -50,8 +51,26 @@ const DisabledTextField = withStyles({
 
 DisabledTextField.muiName = 'TextField';
 
+const NewAvatarButton = withStyles({
+  root: {
+    textTransform: 'capitalize',
+    background: '#40AB48',
+    color: 'white'
+  }
+})(props => <MuiButton {...props} />);
+
+const CancelUploadButton = withStyles({
+  root: {
+    textTransform: 'capitalize',
+    background: '#D00A1B',
+    color: 'white'
+  }
+})(props => <MuiButton {...props} />);
+
 const UserProfile = ({ editUser, deleteUser, user, history }) => {
   const username = user.username ? user.username : null;
+  const [uploading, setUploading] = useToggle();
+
   const [photo, setPhoto] = useState();
   const firstName = useInput();
   const lastName = useInput();
@@ -108,16 +127,73 @@ const UserProfile = ({ editUser, deleteUser, user, history }) => {
     }
   };
 
+  const clearUpload = () => {
+    setUploading();
+    setPhoto();
+  };
+
   return (
     <div className='user-profile'>
       <div className='user-profile-banner'>My Profile</div>
       <div className='user-profile-content'>
         <div className='user-image-upload'>
           <p className='user-image-upload-label'>User Image Upload</p>
-          <div className='user-image-upload-component'>
+          <div
+            className='user-image-upload-component'
+            style={{ display: 'flex', flexFlow: 'column nowrap' }}
+          >
             <ErrorBoundary>
-              <ImageUpload photo={photo} setPhoto={setPhoto} />
-              <MuiButton onClick={upload}>Upload Image!</MuiButton>
+              <div style={{ height: '350px', width: '350px' }}>
+                {!uploading ? (
+                  <img
+                    style={{
+                      objectFit: 'cover',
+                      height: '100%',
+                      width: '100%'
+                    }}
+                    src={
+                      user.profile_image_url
+                        ? `/users/images/${user.profile_image_url}`
+                        : `/images/avatar-3.png`
+                    }
+                    alt='you'
+                  />
+                ) : (
+                  <ImageUpload
+                    maskImage={
+                      user.profile_image_url
+                        ? `/users/images/${user.profile_image_url}`
+                        : `/images/avatar-3.png`
+                    }
+                    photo={photo}
+                    setPhoto={setPhoto}
+                  />
+                )}
+              </div>
+              <div>
+                {' '}
+                {!uploading ? (
+                  <NewAvatarButton onClick={setUploading}>
+                    Upload New Image?
+                  </NewAvatarButton>
+                ) : (
+                  <React.Fragment>
+                    <CancelUploadButton
+                      onClick={clearUpload}
+                      style={{ margin: '0 5px' }}
+                    >
+                      Cancel?
+                    </CancelUploadButton>
+                    <NewAvatarButton
+                      onClick={upload}
+                      style={{ margin: '0 5px' }}
+                    >
+                      {' '}
+                      Upload Image!{' '}
+                    </NewAvatarButton>
+                  </React.Fragment>
+                )}
+              </div>
             </ErrorBoundary>
           </div>
         </div>

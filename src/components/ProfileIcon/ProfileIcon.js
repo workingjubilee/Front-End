@@ -23,7 +23,6 @@ const styles = theme => ({
     boxShadow: 'none',
     display: 'flex',
     alignItems: 'center',
-    marginRight: 22
   },
   text: {
     fontSize: '1rem',
@@ -131,7 +130,7 @@ class ProfileIcon extends React.Component {
     }
     if (rems.length === 0 && userID) {
       fetchRems(userID).then(res => {
-        if (rems.length > 0) {
+        if (this.props.rems.length > 0) {
           const startDate = moment(new Date())
             .startOf('day')
             ._d.getTime();
@@ -178,6 +177,7 @@ class ProfileIcon extends React.Component {
             aria-haspopup='true'
             onClick={this.handleClick}
           />
+            <button onClick={this.handleClick} style={{ fontSize: '20px', userSelect: 'none', background: 'none', cursor: 'pointer', color: 'white', border: 'none', padding: '0px' }}>▼</button>
         </Card>
 
         <Menu
