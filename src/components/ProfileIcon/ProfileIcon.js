@@ -130,7 +130,7 @@ class ProfileIcon extends React.Component {
     }
     if (rems.length === 0 && userID) {
       fetchRems(userID).then(res => {
-        if (rems.length > 0) {
+        if (this.props.rems.length > 0) {
           const startDate = moment(new Date())
             .startOf('day')
             ._d.getTime();
