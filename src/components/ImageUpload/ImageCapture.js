@@ -1,6 +1,6 @@
 import React from 'react';
 import Camera, { IMAGE_TYPES, FACING_MODES } from 'react-html5-camera-photo';
-import 'react-html5-camera-photo/build/css/index.css';
+import './ImageCapture.scss';
 
 export default function ImageCapture({ setPhoto, toggleCamera }) {
   const onTakePhoto = dataURI => {
