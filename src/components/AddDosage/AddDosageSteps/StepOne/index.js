@@ -116,12 +116,32 @@ const StepOne = ({
           setDosageDuration={setDosageDuration}
         />
         {/* <CardContent>Text Reminder</CardContent> */}
-        <CardActions style={{ justifyContent: 'center' }}>
-          <Button style={{ background: 'black', color: 'white' }}>
+        <CardActions
+          style={{
+            width: '40%',
+            justifyContent: 'space-between',
+            margin: '0 auto'
+          }}
+        >
+          <Button
+            style={{
+              background: 'black',
+              color: 'white',
+              boxShadow: '0px 0px 10px 5px #f3f3f3',
+              margin: '0 10px 10px 10px',
+              textTransform: 'none'
+            }}
+          >
             Cancel
           </Button>
           <Button
-            style={{ background: '#40AB48', color: 'white' }}
+            style={{
+              background: '#40AB48',
+              color: 'white',
+              boxShadow: '0px 0px 10px 5px #f3f3f3',
+              margin: '0 10px 10px 10px',
+              textTransform: 'none'
+            }}
             onClick={handleConfirmDosage}
           >
             Confirm Dosage
