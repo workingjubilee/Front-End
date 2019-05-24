@@ -5,7 +5,7 @@ import MuiTextField from '@material-ui/core/TextField';
 import withStyles from '@material-ui/core/styles/withStyles';
 import ImageUpload from 'components/ImageUpload';
 import ErrorBoundary from 'components/ErrorBoundary/ErrorBoundary.js';
-// import axios from 'axios';
+import axios from 'axios';
 
 import { editUser } from 'actions';
 import { useInput } from 'utilities/useInput';
@@ -65,8 +65,7 @@ const UserProfile = ({ editUser, user }) => {
     }
     if (user.phone) {
       phone.setValue(user.phone);
-    }
-    // eslint-disable-next-line
+    } // eslint-disable-next-line
   }, []);
 
   const requestEditUser = e => {
@@ -79,21 +78,27 @@ const UserProfile = ({ editUser, user }) => {
     });
   };
 
-  // const upload = async () => {
-  //   if (!photo) {
-  //     console.log('Need a photo!');
-  //     return;
-  //   }
-  //   const photoEndpoint = `${process.env.REACT_APP_BACKEND}/api/upload`;
-  //   const postData = new FormData();
-  //   postData.append('image', photo);
+  const upload = async () => {
+    if (!photo) {
+      console.log('Need a photo!');
+      return;
+    }
 
-  //   try {
-  //     const results = await axios.post(photoEndpoint, postData);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
+    const photoEndpoint = `${process.env.REACT_APP_BACKEND}/api/users/${user.id}/avatar`;
+    const postData = new FormData();
+    postData.append('image', photo);
+
+    try {
+      const results = await axios.post(photoEndpoint, postData);
+      if (results.data.message.search(/success/i)) {
+        console.log(results);
+      } else {
+        console.error(results)
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div className='user-profile'>
