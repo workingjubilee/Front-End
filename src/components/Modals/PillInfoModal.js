@@ -14,6 +14,16 @@ import TextField from '@material-ui/core/TextField';
 import { valid_shapes as shapes } from 'data/rxdata.json';
 import { valid_colors as colors } from 'data/rxdata.json';
 
+const Swatch = ({ color }) => {
+  const swatchObject = {
+    background: `${color}`,
+    padding: '0 12px',
+    marginRight: '4px',
+    minHeight: '19px'
+  };
+  return <span style={swatchObject} />;
+};
+
 class PillInfoModal extends Component {
   state = {
     pill: {
@@ -81,7 +91,7 @@ class PillInfoModal extends Component {
                 {colors.map((color, index) => {
                   return (
                     <MenuItem key={index} value={color}>
-                      {color}
+                      <Swatch color={color} /> {color}
                     </MenuItem>
                   );
                 })}
