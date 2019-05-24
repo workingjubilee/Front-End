@@ -8,7 +8,7 @@ import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
 import moment from 'moment';
 
-const Reminders = ({ user, classes, filterReminders, rems }) => {
+const Reminders = ({ user, classes, filterReminders, rems, history }) => {
   const { username } = user;
   const [date, setDate] = useState(new Date());
   const [startDate, setStartDate] = useState(
@@ -68,7 +68,7 @@ const Reminders = ({ user, classes, filterReminders, rems }) => {
           </article>
         </Card>
       </section>
-      {username ? <Rems user_id={userID} /> : null}
+      {username ? <Rems user_id={userID} history={history} /> : null}
     </section>
   );
 };
