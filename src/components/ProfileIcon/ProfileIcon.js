@@ -22,7 +22,7 @@ const styles = theme => ({
     backgroundColor: '#2d90f5',
     boxShadow: 'none',
     display: 'flex',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   text: {
     fontSize: '1rem',
@@ -177,7 +177,20 @@ class ProfileIcon extends React.Component {
             aria-haspopup='true'
             onClick={this.handleClick}
           />
-            <button onClick={this.handleClick} style={{ fontSize: '20px', userSelect: 'none', background: 'none', cursor: 'pointer', color: 'white', border: 'none', padding: '0px' }}>▼</button>
+          <button
+            onClick={this.handleClick}
+            style={{
+              fontSize: '20px',
+              userSelect: 'none',
+              background: 'none',
+              cursor: 'pointer',
+              color: 'white',
+              border: 'none',
+              padding: '0px'
+            }}
+          >
+            ▼
+          </button>
         </Card>
 
         <Menu

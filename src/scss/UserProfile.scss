@@ -49,6 +49,11 @@
   max-width: 350px;
   min-width: 350px;
   height: 300px;
+
+  img, .react-html5-camera-photo {
+    max-width: 350px;
+    max-height: 350px;
+  }
 }
 
 .user-profile-inputs {
@@ -63,6 +68,8 @@
   font-weight: 700;
   letter-spacing: 0.4px;
 }
+
+
 
 .user-profile-buttons {
   display: flex;

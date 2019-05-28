@@ -21,8 +21,21 @@ const ImageInput = ({ photoSelect, buttonText, maskImage, ...props }) => {
   }; // Makes accessible "clicking" possible.
 
   return (
-    <div className='upload-button-container' style={{ color: 'rgba(0,0,0,0.5)' }}>
-      <div style={{ height: '350px', width: '350px', backgroundImage: `url(${maskImage})`, backgroundSize: 'cover', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <div
+      className='upload-button-container'
+      style={{ color: 'rgba(0,0,0,0.5)' }}
+    >
+      <div
+        style={{
+          height: '350px',
+          width: '350px',
+          backgroundImage: `url(${maskImage})`,
+          backgroundSize: 'cover',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}
+      >
         <label htmlFor='image-upload-input'>
           <input
             accept='image/*'
@@ -42,7 +55,7 @@ const ImageInput = ({ photoSelect, buttonText, maskImage, ...props }) => {
             Select Image for Upload!
           </UploadButton>
         </label>
-        </div>
+      </div>
     </div>
   );
 };
