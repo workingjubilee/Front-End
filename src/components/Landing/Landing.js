@@ -43,7 +43,7 @@ const Landing = ({ history, logIn }) => {
             RxID Pill Identifier
           </h1>
           <hr />
-          <p>
+          <p className='product-description'>
             Identify your medications on their appearance and log each
             medication and your experience with them. Schedule your medications
             and get notifications minutes before due time with image and dosage
