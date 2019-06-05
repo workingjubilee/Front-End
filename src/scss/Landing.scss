@@ -161,9 +161,6 @@ $mobile: 500px;
           border-radius: 7.5px;
           margin: 10px;
           box-shadow: 0px 0px 10px 10px #f3f3f3;
-          @media screen and (max-width: $mobile) {
-            // width: 250px;
-          }
 
           .scan-icon {
             height: 78px;
@@ -211,6 +208,9 @@ $mobile: 500px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    @media screen and (max-width: $mobile) {
+      // display: none;
+    }
 
     .text-content {
       display: flex;
@@ -236,6 +236,9 @@ $mobile: 500px;
       margin: 0 auto;
       padding-top: 50px;
       width: 90%;
+      @media screen and (max-width: $mobile) {
+        flex-direction: column;
+      }
 
       .tile {
         display: flex;
