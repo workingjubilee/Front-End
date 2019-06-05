@@ -42,6 +42,26 @@ const Landing = ({ history, logIn }) => {
             Welcome to <br />
             RxID Pill Identifier
           </h1>
+          <div className='mobile-buttons'>
+            <button
+              className='login'
+              onClick={event => {
+                event.preventDefault();
+                Auth.lock.show();
+              }}
+            >
+              Login
+            </button>
+            <button
+              onClick={event => {
+                event.preventDefault();
+                Auth.lock.show();
+              }}
+              className='join'
+            >
+              Join us
+            </button>
+          </div>
           <hr />
           <p className='product-description'>
             Identify your medications on their appearance and log each
