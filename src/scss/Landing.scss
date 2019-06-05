@@ -1,3 +1,5 @@
+$mobile: 500px;
+
 .landing {
   .header {
     display: flex;
@@ -23,11 +25,14 @@
         border: 2px solid #40ab48;
       }
 
-      p {
+      .product-description {
         color: #73869b;
         line-height: 1.5;
         font-weight: 300;
         font-size: 1.2rem;
+        // @media screen and (max-width: $mobile) {
+        //   display: none;
+        // }
       }
     }
     .buttons {
